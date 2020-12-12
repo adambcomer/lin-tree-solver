@@ -1,0 +1,15 @@
+{
+    "extends": [
+        "react-app",
+        "react-app/jest",
+        "standard-with-typescript"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "react"
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    }
+}
