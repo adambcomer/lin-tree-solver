@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom'
 import App from './App'
 // import reportWebVitals from './reportWebVitals'
 
+const redirect = sessionStorage.redirect
+delete sessionStorage.redirect
+if (redirect !== undefined && redirect !== window.location.href) {
+  window.history.replaceState(null, '', redirect)
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

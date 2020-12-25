@@ -13,7 +13,7 @@ const ruleSet = new RuleSet('Chapter 2, Syntax: A Generative Introduction, by An
 });
 [
   ['AdvP', '(AdvP) Adv'],
-  ['AdjP', '(AdvP) Adj'],
+  ['AdjP', '(AdjP) Adj'],
   ['PP', 'P (NP)'],
   ['NP', '(D) (AdjP+) N (PP+)'],
   ['VP', '(AdvP+) V (NP) (AdvP+) (PP+) (AdvP+)'],
