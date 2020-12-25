@@ -23,3 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .vscode
+
+src/wasm-tree-solver/target
+pkg
+.eslintcache
