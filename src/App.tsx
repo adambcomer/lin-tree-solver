@@ -33,7 +33,7 @@ const App: React.FC = () => {
         <CssBaseline />
 
         <Provider store={store}>
-          <BrowserRouter>
+          <BrowserRouter basename='/lin-tree-solver'>
             <Grid container>
 
               <Navbar />
