@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, makeStyles, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core'
+import { Typography, makeStyles, List, ListItem, ListItemText, ListItemIcon, Grid } from '@material-ui/core'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import AddIcon from '@material-ui/icons/Add'
 import { RuleSet } from '../tree-solver'
@@ -39,7 +39,7 @@ const RuleSetEditor: React.FC = () => {
   const classes = useStyles()
 
   return (
-    <>
+    <Grid item xs>
       <Typography variant='h3' component='h1' className={classes.header}>Rule Set</Typography>
       <Typography variant='h5' component='h2' className={classes.header}>{ruleSet.name}</Typography>
 
@@ -79,7 +79,7 @@ const RuleSetEditor: React.FC = () => {
           <ListItemText primary='New Syntactic Rule' />
         </ListItem>
       </List>
-    </>
+    </Grid>
   )
 }
 

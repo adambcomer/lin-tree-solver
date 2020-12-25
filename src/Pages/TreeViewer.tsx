@@ -141,7 +141,7 @@ const TreeViewer: React.FC = () => {
 
   if (loading) {
     return (
-      <>
+      <Grid item xs>
         <div className={classes.loadingContainer}>
           <Fade in={loading} style={{ transitionDelay: loading ? '800ms' : '0ms' }} unmountOnExit>
             <CircularProgress />
@@ -150,51 +150,54 @@ const TreeViewer: React.FC = () => {
         <Fab color='primary' disabled className={classes.computeButton}>
           <MemoryIcon />
         </Fab>
-      </>
+      </Grid>
     )
   } else if (trees.length === 0 && metrics.duration === 0 && metrics.searched === 0) {
     return (
-      <Grid container className={classes.container} alignItems='center' justify='center'>
-        <Grid item>
-          <Button variant='contained' color='primary' startIcon={<MemoryIcon />} onClick={computeTrees} disableElevation>Compute Trees</Button>
+      <Grid item xs>
+        <Grid container className={classes.container} alignItems='center' justify='center'>
+          <Grid item>
+            <Button variant='contained' color='primary' startIcon={<MemoryIcon />} onClick={computeTrees} disableElevation>Compute Trees</Button>
+          </Grid>
         </Grid>
       </Grid>
     )
   }
 
   return (
-    <Grid container className={classes.container}>
-      <Grid item xs={12} className={classes.svgContainer}>
-        <Tooltip title='Next Tree'>
-          <Fab size='small' className={classes.nextTreeButton} disabled={trees.length === 0 || treeIndex === trees.length - 1} onClick={nextTree}>
-            <NavigateNextIcon />
-          </Fab>
-        </Tooltip>
-        <Tooltip title='Prior Tree'>
-          <Fab size='small' className={classes.priorTreeButton} disabled={trees.length === 0 || treeIndex === 0} onClick={priorTree}>
-            <NavigateBeforeIcon />
-          </Fab>
-        </Tooltip>
-        <Tooltip title='Save Image' placement='left'>
-          <Fab size='small' className={classes.printTreeButton} disabled={trees.length === 0}>
-            <ImageIcon />
-          </Fab>
-        </Tooltip>
+    <Grid item xs>
+      <Grid container className={classes.container}>
+        <Grid item xs={12} className={classes.svgContainer}>
+          <Tooltip title='Next Tree'>
+            <Fab size='small' className={classes.nextTreeButton} disabled={trees.length === 0 || treeIndex === trees.length - 1} onClick={nextTree}>
+              <NavigateNextIcon />
+            </Fab>
+          </Tooltip>
+          <Tooltip title='Prior Tree'>
+            <Fab size='small' className={classes.priorTreeButton} disabled={trees.length === 0 || treeIndex === 0} onClick={priorTree}>
+              <NavigateBeforeIcon />
+            </Fab>
+          </Tooltip>
+          <Tooltip title='Save Image' placement='left'>
+            <Fab size='small' className={classes.printTreeButton} disabled={trees.length === 0}>
+              <ImageIcon />
+            </Fab>
+          </Tooltip>
 
-        {trees.length === 0
-          ? <svg xmlns="http://www.w3.org/2000/svg" width="100%" height='100%' viewBox='0 100 1000 500'>
-            <text x='50%' y='50%' fontFamily='Roboto Mono' fontSize='16' fill='#000' textAnchor='middle'>No Tree Found</text>
-            <text x='50%' y='50%' dy='20' fontFamily='Roboto Mono' fontSize='14' fill='#000' textAnchor='middle'>Searched {metrics.searched} tree(s) in {(metrics.duration / 1000).toFixed(2)}s</text>
-          </svg>
-          : <TreeCanvas tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} />
-        }
-      </Grid>
-      <Tooltip title='Compute Trees' placement='top'>
-        <Fab color='primary' onClick={computeTrees} className={classes.computeButton}>
-          <MemoryIcon />
-        </Fab>
-      </Tooltip>
-      {/* <Grid item md={3} lg={2}>
+          {trees.length === 0
+            ? <svg xmlns="http://www.w3.org/2000/svg" width="100%" height='100%' viewBox='0 100 1000 500'>
+              <text x='50%' y='50%' fontFamily='Roboto Mono' fontSize='16' fill='#000' textAnchor='middle'>No Tree Found</text>
+              <text x='50%' y='50%' dy='20' fontFamily='Roboto Mono' fontSize='14' fill='#000' textAnchor='middle'>Searched {metrics.searched} tree(s) in {(metrics.duration / 1000).toFixed(2)}s</text>
+            </svg>
+            : <TreeCanvas tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} />
+          }
+        </Grid>
+        <Tooltip title='Compute Trees' placement='top'>
+          <Fab color='primary' onClick={computeTrees} className={classes.computeButton}>
+            <MemoryIcon />
+          </Fab>
+        </Tooltip>
+        {/* <Grid item md={3} lg={2}>
         <div className={classes.metricsContainer}>
           <Typography variant='h5' className={classes.metricsHeader}>Metrics:</Typography>
           <Typography variant='subtitle2' className={classes.metricsSubHeader}>Searched:</Typography>
@@ -205,6 +208,7 @@ const TreeViewer: React.FC = () => {
           <Typography variant='body1'>{(metrics.searched / (metrics.duration / 1000)).toFixed(2)} trees/sec</Typography>
         </div>
       </Grid> */}
+      </Grid>
     </Grid>
   )
 }

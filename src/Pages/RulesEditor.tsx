@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, makeStyles, List, ListItem, ListItemText, ListItemIcon, ListItemSecondaryAction, IconButton, Tooltip, Fab } from '@material-ui/core'
+import { Typography, makeStyles, List, ListItem, ListItemText, ListItemIcon, ListItemSecondaryAction, IconButton, Tooltip, Fab, Grid } from '@material-ui/core'
 import DoneIcon from '@material-ui/icons/Done'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -50,7 +50,7 @@ const RuleEditor: React.FC = () => {
   }
 
   return (
-    <div>
+    <Grid item xs>
       <Typography variant='h3' component='h1' className={classes.header}>Syntactic Rules</Typography>
       <List>
         {ruleSets.map((r, i) => {
@@ -89,7 +89,7 @@ const RuleEditor: React.FC = () => {
           <AddIcon />
         </Fab>
       </Tooltip>
-    </div>
+    </Grid>
   )
 }
 

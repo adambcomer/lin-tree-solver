@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, makeStyles, Typography } from '@material-ui/core'
+import { Link, makeStyles, Typography, Grid } from '@material-ui/core'
 import { Link as RouterLink } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const About: React.FC = () => {
+const Home: React.FC = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.container}>
+    <Grid item xs className={classes.container}>
       <Typography variant='h3' component='h1'>Linguistics Tree Solver</Typography>
 
       <Typography variant='h4' component='h2' className={classes.subtitle}>About:</Typography>
@@ -40,7 +40,7 @@ const About: React.FC = () => {
         Currently, this project is a bit of a mess. I'm working on rounding out the features and usability.
         I have included a annotated sentence and syntactic rules from <i>Syntax: A Generative Introduction, Third Edition, by Andrew Carnie. </i>
         Click around to see the <Link component={RouterLink} to='/sentence' className={classes.link}>sentence</Link>, the
-        <Link component={RouterLink} to='/rules' className={classes.link}>syntax rules</Link>,
+        <Link component={RouterLink} to='/rules' className={classes.link}> syntax rules</Link>,
         and <Link component={RouterLink} to='/viewer' className={classes.link}>compute the all of the trees</Link>.
       </Typography>
 
@@ -49,7 +49,7 @@ const About: React.FC = () => {
       <Typography variant='h6' component='h3' className={classes.subtitle2}>1. Define Syntax Rules (One Time Step)</Typography>
       <Typography variant='body1' component='p'>Work in progress.</Typography>
 
-      <Typography variant='h6' component='h3' className={classes.subtitle2}>2. Write and Annotate Sentence</Typography>
+      <Typography variant='h6' component='h3' className={classes.subtitle2}>2. Write and Annotate a Sentence</Typography>
       <Typography variant='body1' component='p' className={classes.body}>
         In the <Link component={RouterLink} to='/sentence' className={classes.link}>Sentence Editor</Link>, add your sentence in the text box at the top. The sentence will be automatically be split by word.
         Under each word will be all of the Parts of Speech from the Syntactic Rules. By coloring these Parts of Speech, the solver will find trees that satisfy these constraints.
@@ -77,8 +77,8 @@ const About: React.FC = () => {
         This project uses Web Workers and WASM to run the full search on the frontend. To get the best performance and support, use an up-to-date version of Chrome, Firefox, or Safari.
       </Typography>
 
-    </div>
+    </Grid>
   )
 }
 
-export default About
+export default Home

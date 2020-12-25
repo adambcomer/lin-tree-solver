@@ -10,6 +10,7 @@ import store from './redux/store'
 import RuleEditor from './Pages/RulesEditor'
 import RuleSetEditor from './Pages/RuleSetEditor'
 import Home from './Pages/Home'
+import withTracker from './withTracker'
 
 const theme = createMuiTheme({
   palette: {
@@ -38,31 +39,11 @@ const App: React.FC = () => {
 
               <Navbar />
               <Switch>
-                <Route exact path='/' >
-                  <Grid item xs>
-                    <Home />
-                  </Grid>
-                </Route>
-                <Route exact path='/sentence' >
-                  <Grid item xs>
-                    <SentenceEditor />
-                  </Grid>
-                </Route>
-                <Route exact path='/viewer' >
-                  <Grid item xs>
-                    <TreeViewer />
-                  </Grid>
-                </Route>
-                <Route exact path='/rules' >
-                  <Grid item xs>
-                    <RuleEditor />
-                  </Grid>
-                </Route>
-                <Route exact path='/rules/:id' >
-                  <Grid item xs>
-                    <RuleSetEditor />
-                  </Grid>
-                </Route>
+                <Route exact path='/' component={withTracker(Home)} />
+                <Route exact path='/sentence' component={withTracker(SentenceEditor)} />
+                <Route exact path='/viewer' component={withTracker(TreeViewer)} />
+                <Route exact path='/rules' component={withTracker(RuleEditor)} />
+                <Route exact path='/rules/:id' component={withTracker(RuleSetEditor)} />
                 <Redirect to='/' />
               </Switch>
 

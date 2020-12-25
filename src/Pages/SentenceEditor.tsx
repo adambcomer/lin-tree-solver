@@ -55,7 +55,7 @@ const SentenceEditor: React.FC = () => {
   }
 
   return (
-    <div className={classes.container}>
+    <Grid item xs className={classes.container}>
       <Typography variant='h3' component='h1'>Sentence Editor</Typography>
       <TextField label='Sentence' value={sentence} onChange={onSentenceChange} className={classes.textEdit} fullWidth />
       <Grid container className={classes.wordsContainer} spacing={1}>
@@ -80,7 +80,7 @@ const SentenceEditor: React.FC = () => {
           )
         })}
       </Grid>
-    </div>
+    </Grid>
   )
 }
 
