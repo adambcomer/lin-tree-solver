@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, makeStyles, Typography, Grid } from '@material-ui/core'
 import { Link as RouterLink } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -27,6 +28,11 @@ const Home: React.FC = () => {
 
   return (
     <Grid item xs className={classes.container}>
+      <Helmet>
+        <title>Linguistics Tree Solver</title>
+        <meta name="description" content='Automatically build trees based on linguistic syntax rules.' />
+      </Helmet>
+
       <Typography variant='h3' component='h1'>Linguistics Tree Solver</Typography>
 
       <Typography variant='h4' component='h2' className={classes.subtitle}>About:</Typography>

@@ -3,7 +3,7 @@ import TreeViewer from './Pages/TreeViewer'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { createMuiTheme, ThemeProvider, Grid } from '@material-ui/core'
 import Navbar from './Components/Navbar'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 import SentenceEditor from './Pages/SentenceEditor'
 import { Provider } from 'react-redux'
 import store from './redux/store'
@@ -34,7 +34,7 @@ const App: React.FC = () => {
         <CssBaseline />
 
         <Provider store={store}>
-          <BrowserRouter basename='/lin-tree-solver'>
+          <HashRouter>
             <Grid container>
 
               <Navbar />
@@ -48,7 +48,7 @@ const App: React.FC = () => {
               </Switch>
 
             </Grid>
-          </BrowserRouter>
+          </HashRouter>
         </Provider>
       </ThemeProvider>
     </React.Fragment >
