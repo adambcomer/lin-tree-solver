@@ -10,6 +10,7 @@ import { RootState } from '../redux/reducers'
 import { useParams } from 'react-router-dom'
 import { getColor } from '../helpers/colors'
 import { updateRuleSet } from '../redux/actions/rulesets'
+import { Helmet } from 'react-helmet'
 
 const useStyles = makeStyles((theme) => ({
   headerContainer: {
@@ -136,94 +137,100 @@ const RuleSetEditor: React.FC = () => {
   }
 
   return (
-    <Grid item xs>
-      <div className={classes.headerContainer}>
-        <Grid container alignItems='center'>
-          <Grid item xs>
-            <Typography variant='h3' component='h1'>Rule Set</Typography>
+    <>
+      <Helmet>
+        <title>Syntax Rules Editor | Linguistics Tree Solver</title>
+        <meta name='description' content='Add your custom syntax rules for the solver to build trees with.' />
+      </Helmet>
+      <Grid item xs>
+        <div className={classes.headerContainer}>
+          <Grid container alignItems='center'>
+            <Grid item xs>
+              <Typography variant='h3' component='h1'>Rule Set</Typography>
+            </Grid>
+            <Grid item>
+              <Button color='primary' variant='contained' size='large' startIcon={<SaveIcon />} onClick={saveRuleSet} disableElevation>Save</Button>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Button color='primary' variant='contained' size='large' startIcon={<SaveIcon />} onClick={saveRuleSet} disableElevation>Save</Button>
-          </Grid>
+
+          <TextField variant='outlined' label='Name' value={ruleSet.name} onChange={onNameChange} className={classes.nameTextField} fullWidth />
+        </div>
+
+        <Typography variant='h6' component='h3' className={classes.subheader}>Parts of Speech:</Typography>
+
+        <Grid container spacing={1} className={classes.posContainer}>
+          {ruleSet.pos.map((p, i) => {
+            return (
+              <Grid item key={i}>
+                <Chip label={p} className={classes.posChip} style={{ background: getColor(i) }} onDelete={onPosDeleted(i)} />
+              </Grid>
+            )
+          })}
+          {!newPos.editing &&
+            <Grid item>
+              <Chip label='New Part of Speech' icon={<AddIcon />} onClick={onCreatePos} />
+            </Grid>
+          }
         </Grid>
 
-        <TextField variant='outlined' label='Name' value={ruleSet.name} onChange={onNameChange} className={classes.nameTextField} fullWidth />
-      </div>
-
-      <Typography variant='h6' component='h3' className={classes.subheader}>Parts of Speech:</Typography>
-
-      <Grid container spacing={1} className={classes.posContainer}>
-        {ruleSet.pos.map((p, i) => {
-          return (
-            <Grid item key={i}>
-              <Chip label={p} className={classes.posChip} style={{ background: getColor(i) }} onDelete={onPosDeleted(i)} />
+        {newPos.editing &&
+          <Grid container spacing={3} alignItems='center' className={classes.newPosContainer}>
+            <Grid item xs>
+              <TextField variant='outlined' label='Name' value={newPos.pos} error={newPos.error} onChange={onNewPosChanged} fullWidth />
             </Grid>
-          )
-        })}
-        {!newPos.editing &&
-          <Grid item>
-            <Chip label='New Part of Speech' icon={<AddIcon />} onClick={onCreatePos} />
+            <Grid item>
+              <Button color='primary' variant='contained' size='large' onClick={addPos} disabled={newPos.pos.length === 0} disableElevation>Add</Button>
+            </Grid>
+          </Grid>
+        }
+
+        <Typography variant='h6' component='h3' className={classes.subheader}>Syntactic Rules:</Typography>
+        <List>
+          {ruleSet.rules.map(([name, expression], i) => {
+            return (
+              <ListItem key={i}>
+                <Chip label={name} className={classes.syntaxRuleChip} />
+                <Typography variant='body1' className={classes.syntaxRuleChip}>&rarr;</Typography>
+                {expression.tags.map((t, j) => {
+                  if (t.values.length === 1 && rs.hasPos(t.values[0])) {
+                    return <Chip label={tagToString(t)} style={{ background: getColor(rs.getPosIndex(t.values[0])), color: '#fff' }} key={j} className={classes.syntaxRuleChip} />
+                  }
+                  return <Chip label={tagToString(t)} key={j} className={classes.syntaxRuleChip} />
+                })}
+                <ListItemSecondaryAction>
+                  <Tooltip title='Delete' placement='top'>
+                    <IconButton edge='end' onClick={deleteRule(i)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </Tooltip>
+                </ListItemSecondaryAction>
+              </ListItem>
+            )
+          })}
+          {!newRule.editing &&
+            <ListItem button onClick={onCreateRule}>
+              <ListItemIcon>
+                <AddIcon />
+              </ListItemIcon>
+              <ListItemText primary='New Syntactic Rule' />
+            </ListItem>
+          }
+        </List>
+        {newRule.editing &&
+          <Grid container spacing={3} alignItems='center' className={classes.newPosContainer}>
+            <Grid item xs={2}>
+              <TextField variant='outlined' label='Name' value={newRule.name} error={newRule.nameError} onChange={onNewRuleNameChanged} fullWidth />
+            </Grid>
+            <Grid item xs>
+              <TextField variant='outlined' label='Rule' value={newRule.rule} error={newRule.ruleError} onChange={onNewRuleChanged} fullWidth />
+            </Grid>
+            <Grid item>
+              <Button color='primary' variant='contained' size='large' onClick={addRule} disabled={newRule.name.length === 0 || newRule.rule.length === 0} disableElevation>Add</Button>
+            </Grid>
           </Grid>
         }
       </Grid>
-
-      {newPos.editing &&
-        <Grid container spacing={3} alignItems='center' className={classes.newPosContainer}>
-          <Grid item xs>
-            <TextField variant='outlined' label='Name' value={newPos.pos} error={newPos.error} onChange={onNewPosChanged} fullWidth />
-          </Grid>
-          <Grid item>
-            <Button color='primary' variant='contained' size='large' onClick={addPos} disabled={newPos.pos.length === 0} disableElevation>Add</Button>
-          </Grid>
-        </Grid>
-      }
-
-      <Typography variant='h6' component='h3' className={classes.subheader}>Syntactic Rules:</Typography>
-      <List>
-        {ruleSet.rules.map(([name, expression], i) => {
-          return (
-            <ListItem key={i}>
-              <Chip label={name} className={classes.syntaxRuleChip} />
-              <Typography variant='body1' className={classes.syntaxRuleChip}>&rarr;</Typography>
-              {expression.tags.map((t, j) => {
-                if (t.values.length === 1 && rs.hasPos(t.values[0])) {
-                  return <Chip label={tagToString(t)} style={{ background: getColor(rs.getPosIndex(t.values[0])), color: '#fff' }} key={j} className={classes.syntaxRuleChip} />
-                }
-                return <Chip label={tagToString(t)} key={j} className={classes.syntaxRuleChip} />
-              })}
-              <ListItemSecondaryAction>
-                <Tooltip title='Delete' placement='top'>
-                  <IconButton edge='end' onClick={deleteRule(i)}>
-                    <DeleteIcon />
-                  </IconButton>
-                </Tooltip>
-              </ListItemSecondaryAction>
-            </ListItem>
-          )
-        })}
-        {!newRule.editing &&
-          <ListItem button onClick={onCreateRule}>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText primary='New Syntactic Rule' />
-          </ListItem>
-        }
-      </List>
-      {newRule.editing &&
-        <Grid container spacing={3} alignItems='center' className={classes.newPosContainer}>
-          <Grid item xs={2}>
-            <TextField variant='outlined' label='Name' value={newRule.name} error={newRule.nameError} onChange={onNewRuleNameChanged} fullWidth />
-          </Grid>
-          <Grid item xs>
-            <TextField variant='outlined' label='Rule' value={newRule.rule} error={newRule.ruleError} onChange={onNewRuleChanged} fullWidth />
-          </Grid>
-          <Grid item>
-            <Button color='primary' variant='contained' size='large' onClick={addRule} disabled={newRule.name.length === 0 || newRule.rule.length === 0} disableElevation>Add</Button>
-          </Grid>
-        </Grid>
-      }
-    </Grid>
+    </>
   )
 }
 

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/reducers'
 import { getColor } from '../helpers/colors'
 import { removePos, addPos, setSentence } from '../redux/actions/sentence'
+import { Helmet } from 'react-helmet'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -55,32 +56,38 @@ const SentenceEditor: React.FC = () => {
   }
 
   return (
-    <Grid item xs className={classes.container}>
-      <Typography variant='h3' component='h1'>Sentence Editor</Typography>
-      <TextField label='Sentence' value={sentence} onChange={onSentenceChange} className={classes.textEdit} fullWidth />
-      <Grid container className={classes.wordsContainer} spacing={1}>
-        {words.map((w, i) => {
-          return (
-            <Grid item xs={2} key={i}>
-              <Card variant='outlined'>
-                <CardContent>
-                  <Typography variant='h6' component='h4' className={classes.word}>{w.word}</Typography>
-                  <Grid container spacing={1} justify='space-evenly'>
-                    {[...ruleSets[ruleSetIndex].getPos()].map((pos, j) => {
-                      return (
-                        <Grid item>
-                          <Avatar key={j} className={classes.posAvatar} style={{ backgroundColor: (w.pos.includes(pos) ? getColor(j) : '#bdbdbd') }} onClick={onPosClicked(i, pos)}>{pos}</Avatar>
-                        </Grid>
-                      )
-                    })}
-                  </Grid>
-                </CardContent>
-              </Card>
-            </Grid>
-          )
-        })}
+    <>
+      <Helmet>
+        <title>Sentence Editor | Linguistics Tree Solver</title>
+        <meta name='description' content='Add your sentence and annotate it for the tree builder.' />
+      </Helmet>
+      <Grid item xs className={classes.container}>
+        <Typography variant='h3' component='h1'>Sentence Editor</Typography>
+        <TextField label='Sentence' value={sentence} onChange={onSentenceChange} className={classes.textEdit} fullWidth />
+        <Grid container className={classes.wordsContainer} spacing={1}>
+          {words.map((w, i) => {
+            return (
+              <Grid item xs={2} key={i}>
+                <Card variant='outlined'>
+                  <CardContent>
+                    <Typography variant='h6' component='h4' className={classes.word}>{w.word}</Typography>
+                    <Grid container spacing={1} justify='space-evenly'>
+                      {[...ruleSets[ruleSetIndex].getPos()].map((pos, j) => {
+                        return (
+                          <Grid item>
+                            <Avatar key={j} className={classes.posAvatar} style={{ backgroundColor: (w.pos.includes(pos) ? getColor(j) : '#bdbdbd') }} onClick={onPosClicked(i, pos)}>{pos}</Avatar>
+                          </Grid>
+                        )
+                      })}
+                    </Grid>
+                  </CardContent>
+                </Card>
+              </Grid>
+            )
+          })}
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   )
 }
 

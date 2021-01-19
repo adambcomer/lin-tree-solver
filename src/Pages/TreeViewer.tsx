@@ -9,6 +9,7 @@ import { RootState } from '../redux/reducers'
 import { Node } from '../types'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import ParserWorker from 'worker-loader!../workers/parser.worker'
+import { Helmet } from 'react-helmet'
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -86,7 +87,7 @@ const TreeViewer: React.FC = () => {
     console.log(ruleSets[ruleSetIndex].grammar())
 
     const t1 = performance.now()
-    worker.onmessage = (e: MessageEvent<{trees: Node[], searched: number}>) => {
+    worker.onmessage = (e: MessageEvent<{ trees: Node[], searched: number }>) => {
       setTrees(e.data.trees)
       setTreeIndex(0)
 
@@ -140,51 +141,63 @@ const TreeViewer: React.FC = () => {
 
   if (loading) {
     return (
-      <Grid item xs>
-        <div className={classes.loadingContainer}>
-          <Fade in={loading} style={{ transitionDelay: loading ? '400ms' : '0ms' }} unmountOnExit>
-            <CircularProgress />
-          </Fade>
-        </div>
-      </Grid>
+      <>
+        <Helmet>
+          <title>Tree Viewer | Linguistics Tree Solver</title>
+          <meta name='description' content='View parsed and built trees.' />
+        </Helmet>
+        <Grid item xs>
+          <div className={classes.loadingContainer}>
+            <Fade in={loading} style={{ transitionDelay: loading ? '400ms' : '0ms' }} unmountOnExit>
+              <CircularProgress />
+            </Fade>
+          </div>
+        </Grid>
+      </>
     )
   }
   return (
-    <Grid item xs>
-      <Grid container className={classes.container}>
-        <Grid item xs={12} className={classes.svgContainer}>
-          <Tooltip title='Next Tree'>
-            <span className={classes.nextTreeFabContainer}>
-              <Fab size='small' className={classes.fab} disabled={trees.length === 0 || treeIndex === trees.length - 1} onClick={nextTree}>
-                <NavigateNextIcon />
-              </Fab>
-            </span>
-          </Tooltip>
-          <Tooltip title='Prior Tree'>
-            <span className={classes.priorTreeFabContainer}>
-              <Fab size='small' className={classes.fab} disabled={trees.length === 0 || treeIndex === 0} onClick={priorTree}>
-                <NavigateBeforeIcon />
-              </Fab>
-            </span>
-          </Tooltip>
-          <Tooltip title='Save Image' placement='left'>
-            <span className={classes.printTreeFabContainer}>
-              <Fab size='small' className={classes.fab} disabled={trees.length === 0}>
-                <ImageIcon />
-              </Fab>
-            </span>
-          </Tooltip>
+    <>
+      <Helmet>
+        <title>Tree Viewer | Linguistics Tree Solver</title>
+        <meta name='description' content='View parsed and built trees.' />
+      </Helmet>
+      <Grid item xs>
+        <Grid container className={classes.container}>
+          <Grid item xs={12} className={classes.svgContainer}>
+            <Tooltip title='Next Tree'>
+              <span className={classes.nextTreeFabContainer}>
+                <Fab size='small' className={classes.fab} disabled={trees.length === 0 || treeIndex === trees.length - 1} onClick={nextTree}>
+                  <NavigateNextIcon />
+                </Fab>
+              </span>
+            </Tooltip>
+            <Tooltip title='Prior Tree'>
+              <span className={classes.priorTreeFabContainer}>
+                <Fab size='small' className={classes.fab} disabled={trees.length === 0 || treeIndex === 0} onClick={priorTree}>
+                  <NavigateBeforeIcon />
+                </Fab>
+              </span>
+            </Tooltip>
+            <Tooltip title='Save Image' placement='left'>
+              <span className={classes.printTreeFabContainer}>
+                <Fab size='small' className={classes.fab} disabled={trees.length === 0}>
+                  <ImageIcon />
+                </Fab>
+              </span>
+            </Tooltip>
 
-          {trees.length === 0
-            ? <svg xmlns="http://www.w3.org/2000/svg" width="100%" height='100%' viewBox='0 100 1000 500'>
-              <text x='50%' y='50%' fontFamily='Roboto Mono' fontSize='16' fill='#000' textAnchor='middle'>No Tree Found</text>
-              {/* <text x='50%' y='50%' dy='20' fontFamily='Roboto Mono' fontSize='14' fill='#000' textAnchor='middle'>Searched {metrics.searched} tree(s) in {(metrics.duration / 1000).toFixed(2)}s</text> */}
-            </svg>
-            : <TreeCanvas tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} />
-          }
+            {trees.length === 0
+              ? <svg xmlns="http://www.w3.org/2000/svg" width="100%" height='100%' viewBox='0 100 1000 500'>
+                <text x='50%' y='50%' fontFamily='Roboto Mono' fontSize='16' fill='#000' textAnchor='middle'>No Tree Found</text>
+                {/* <text x='50%' y='50%' dy='20' fontFamily='Roboto Mono' fontSize='14' fill='#000' textAnchor='middle'>Searched {metrics.searched} tree(s) in {(metrics.duration / 1000).toFixed(2)}s</text> */}
+              </svg>
+              : <TreeCanvas tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} />
+            }
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </>
   )
 }
 

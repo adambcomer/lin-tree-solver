@@ -8,6 +8,7 @@ import { RootState } from '../redux/reducers'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeRuleSet, addRuleSet, setDefaultRuleSet } from '../redux/actions/rulesets'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -50,44 +51,50 @@ const RuleEditor: React.FC = () => {
   }
 
   return (
-    <Grid item xs>
-      <Typography variant='h3' component='h1' className={classes.header}>Syntactic Rules</Typography>
-      <List>
-        {ruleSets.map((r, i) => {
-          return (
-            <ListItem button onClick={setDefaultRuleSetClick(i)} key={i}>
-              {ruleSetIndex === i &&
-                <ListItemIcon>
-                  <Tooltip title='Default'>
-                    <DoneIcon />
-                  </Tooltip>
-                </ListItemIcon>
-              }
-              <ListItemText inset={ruleSetIndex !== i} primary={r.name} secondary={`${[...r.getPos()].length} Parts of Speech, ${[...r.getRules()].length} Syntactic Rules`} />
-              <ListItemSecondaryAction>
-                <Link to={`/rules/${i}`}>
-                  <Tooltip title='Edit'>
-                    <IconButton edge='end' className={classes.editRuleSetButton}>
-                      <EditIcon />
+    <>
+      <Helmet>
+        <title>{ruleSets[ruleSetIndex].name} Syntax Rules | Linguistics Tree Solver</title>
+        <meta name='description' content={`Edit ${ruleSets[ruleSetIndex].name} syntax rules to your heart's content.`} />
+      </Helmet>
+      <Grid item xs>
+        <Typography variant='h3' component='h1' className={classes.header}>Syntactic Rules</Typography>
+        <List>
+          {ruleSets.map((r, i) => {
+            return (
+              <ListItem button onClick={setDefaultRuleSetClick(i)} key={i}>
+                {ruleSetIndex === i &&
+                  <ListItemIcon>
+                    <Tooltip title='Default'>
+                      <DoneIcon />
+                    </Tooltip>
+                  </ListItemIcon>
+                }
+                <ListItemText inset={ruleSetIndex !== i} primary={r.name} secondary={`${[...r.getPos()].length} Parts of Speech, ${[...r.getRules()].length} Syntactic Rules`} />
+                <ListItemSecondaryAction>
+                  <Link to={`/rules/${i}`}>
+                    <Tooltip title='Edit'>
+                      <IconButton edge='end' className={classes.editRuleSetButton}>
+                        <EditIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </Link>
+                  <Tooltip title='Delete'>
+                    <IconButton edge='end' onClick={deleteRuleSetClick(i)}>
+                      <DeleteIcon />
                     </IconButton>
                   </Tooltip>
-                </Link>
-                <Tooltip title='Delete'>
-                  <IconButton edge='end' onClick={deleteRuleSetClick(i)}>
-                    <DeleteIcon />
-                  </IconButton>
-                </Tooltip>
-              </ListItemSecondaryAction>
-            </ListItem>
-          )
-        })}
-      </List>
-      <Tooltip title='New Rule Set' placement='top'>
-        <Fab color='primary' onClick={createRuleSetClick} className={classes.newRuleSetButton}>
-          <AddIcon />
-        </Fab>
-      </Tooltip>
-    </Grid>
+                </ListItemSecondaryAction>
+              </ListItem>
+            )
+          })}
+        </List>
+        <Tooltip title='New Rule Set' placement='top'>
+          <Fab color='primary' onClick={createRuleSetClick} className={classes.newRuleSetButton}>
+            <AddIcon />
+          </Fab>
+        </Tooltip>
+      </Grid>
+    </>
   )
 }
 
