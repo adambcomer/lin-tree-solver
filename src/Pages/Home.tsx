@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(2),
     paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(3)
+    paddingRight: theme.spacing(3),
+    paddingBottom: theme.spacing(2)
   },
   subtitle: {
     marginTop: theme.spacing(4)
@@ -30,7 +31,7 @@ const Home: React.FC = () => {
     <Grid item xs className={classes.container}>
       <Helmet>
         <title>Linguistics Tree Solver</title>
-        <meta name="description" content='Automatically build trees based on linguistic syntax rules.' />
+        <meta name='description' content='Automatically build trees based on linguistic syntax rules.' />
       </Helmet>
 
       <Typography variant='h3' component='h1'>Linguistics Tree Solver</Typography>
@@ -40,14 +41,15 @@ const Home: React.FC = () => {
         This tool automatically builds linguistics syntax trees.
       </Typography>
       <Typography variant='body1' component='p' className={classes.body}>
-        A major goal of this software is to be configurable with any set of syntax rules. There are many competing views in linguistics syntax and I want this tool to support a broad set of user defined syntactic rules.
+        A major goal of this tool is to accept to a broad set of syntax rules. Nearly every textbook has different rules and standards.
+        I want others to be able to add/modify the rules to work for them.
       </Typography>
       <Typography variant='body1' component='p' className={classes.body}>
         Currently, this project is a bit of a mess. I'm working on rounding out the features and usability.
-        I have included a annotated sentence and syntactic rules from <i>Syntax: A Generative Introduction, Third Edition, by Andrew Carnie. </i>
+        I have included an annotated sentence and syntax rules from <i>Syntax: A Generative Introduction, Third Edition, by Andrew Carnie. </i>
         Click around to see the <Link component={RouterLink} to='/sentence' className={classes.link}>sentence</Link>, the
         <Link component={RouterLink} to='/rules' className={classes.link}> syntax rules</Link>,
-        and <Link component={RouterLink} to='/viewer' className={classes.link}>compute the all of the trees</Link>.
+        and <Link component={RouterLink} to='/viewer' className={classes.link}>view the trees</Link>.
       </Typography>
 
       <Typography variant='h4' component='h2' className={classes.subtitle}>Tutorial:</Typography>
@@ -58,29 +60,25 @@ const Home: React.FC = () => {
       <Typography variant='h6' component='h3' className={classes.subtitle2}>2. Write and Annotate a Sentence</Typography>
       <Typography variant='body1' component='p' className={classes.body}>
         In the <Link component={RouterLink} to='/sentence' className={classes.link}>Sentence Editor</Link>, add your sentence in the text box at the top. The sentence will be automatically be split by word.
-        Under each word will be all of the Parts of Speech from the Syntactic Rules. By coloring these Parts of Speech, the solver will find trees that satisfy these constraints.
+        Under each word will be all of the Parts of Speech from the Syntax Rules. By coloring these Parts of Speech, the solver will find trees that satisfy these constraints.
       </Typography>
       <Typography variant='body1' component='p' className={classes.body}>
         <b>Note:</b> You can select multiple Parts of Speech for a single word. At first, this may seem strange. How can a word be a Noun, Verb, and Adjective at the same time?
-        But, what if we don't know what Part of Speech a word is? A word that is multiple Parts of Speech represents our uncertainty or lack of knowledge. The solver can use that
+        But, what if we don't know what Part of Speech a word is? A word that has multiple Parts of Speech represents our uncertainty or lack of knowledge. The solver can use that
         uncertainty to work out all possible trees that satisfy the other constraints.
       </Typography>
       <Typography variant='body1' component='p' className={classes.body}>
-        Once the sentence has been annotated to the best of a our ability, we can compute the trees that satisfy the syntactic rules in conjunction with the annotations.
+        Once the sentence has been annotated to the best of a our ability, we can compute the trees that satisfy the syntax rules in conjunction with the annotations.
       </Typography>
 
       <Typography variant='h6' component='h3' className={classes.subtitle2}>3. Build/Solve/Compute All Syntax Trees For a Sentence</Typography>
       <Typography variant='body1' component='p' className={classes.body}>
-        In the <Link component={RouterLink} to='/viewer' className={classes.link}>Tree Viewer</Link>, click 'Compute Trees' to compute all possible trees.
-      </Typography>
-      <Typography variant='body1' component='p' className={classes.body}>
-        <b>Note:</b> This is a intense computational process that can process hundreds of thousands of trees to exhaustively search through all structural ambiguities.
-        The pre-made sentence will take a few milliseconds to process 144 trees to resolve 2 trees, but this process can take some time depending on a number of factors.
+        In the <Link component={RouterLink} to='/viewer' className={classes.link}>Tree Viewer</Link>, you can view all of the parsed trees.
       </Typography>
 
       <Typography variant='h4' component='h2' className={classes.subtitle}>Technologies:</Typography>
       <Typography variant='body1' component='p' className={classes.body}>
-        This project uses Web Workers and WASM to run the full search on the frontend. To get the best performance and support, use an up-to-date version of Chrome, Firefox, or Safari.
+        This project uses Web Workers to parse the trees. To get the best performance and support, use an up-to-date version of Chrome, Firefox, or Safari.
       </Typography>
 
     </Grid>

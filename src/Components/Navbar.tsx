@@ -1,7 +1,7 @@
 import React from 'react'
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Divider, Typography } from '@material-ui/core'
 import AspectRatioIcon from '@material-ui/icons/AspectRatio'
-import CreateIcon from '@material-ui/icons/Create'
+import GavelIcon from '@material-ui/icons/Gavel'
 import SubjectIcon from '@material-ui/icons/Subject'
 import { Link, useRouteMatch } from 'react-router-dom'
 
@@ -53,8 +53,8 @@ const Navbar: React.FC = () => {
         </Link>
         <Link to='/rules' className={classes.link}>
           <ListItem button selected={rulesMatch?.isExact} >
-            <ListItemIcon><CreateIcon /></ListItemIcon>
-            <ListItemText primary='Syntactic Rules' />
+            <ListItemIcon><GavelIcon /></ListItemIcon>
+            <ListItemText primary='Syntax Rules' />
           </ListItem>
         </Link>
       </List>

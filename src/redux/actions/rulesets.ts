@@ -1,11 +1,11 @@
+import { RuleSet } from '../../helpers/ruleset'
 import { UPDATE_RULE_SET, ADD_RULE_SET, REMOVE_RULE_SET, SET_DEFAULT_RULE_SET } from './types'
 
 interface UpdateRuleSetAction {
   type: typeof UPDATE_RULE_SET
   payload: {
     index: number
-    pos: string[]
-    rules: string[][]
+    ruleSet: RuleSet
   }
 }
 
@@ -32,13 +32,12 @@ interface SetDefaultRuleSetAction {
 
 export type RuleSetActionTypes = UpdateRuleSetAction | AddRuleSetAction | RemoveRuleSetAction | SetDefaultRuleSetAction
 
-export function updateRuleSet (index: number, pos: string[], rules: string[][]): RuleSetActionTypes {
+export function updateRuleSet (index: number, ruleSet: RuleSet): RuleSetActionTypes {
   return {
     type: UPDATE_RULE_SET,
     payload: {
       index,
-      pos,
-      rules
+      ruleSet
     }
   }
 }

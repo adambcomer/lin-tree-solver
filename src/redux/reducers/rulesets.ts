@@ -1,4 +1,4 @@
-import { RuleSet } from '../../tree-solver'
+import { RuleSet } from '../../helpers/ruleset'
 import { RuleSetActionTypes } from '../actions/rulesets'
 import { ADD_RULE_SET, UPDATE_RULE_SET, REMOVE_RULE_SET, SET_DEFAULT_RULE_SET } from '../actions/types'
 
@@ -7,20 +7,19 @@ export interface RuleSetsReducerState {
   ruleSets: RuleSet[]
 }
 
-const ruleSet = new RuleSet('Chapter 2, Syntax: A Generative Introduction, by Andrew Carnie');
-['N', 'D', 'V', 'Adj', 'Adv', 'P', 'Conj', 'C', 'T'].forEach(t => {
-  ruleSet.addPos(t)
-});
+const ruleSet = new RuleSet('Chapter 3, Syntax: A Generative Introduction, by Andrew Carnie');
+['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach(t => ruleSet.addPos(t));
 [
+  ['CP', '(C) TP'],
+  ['TP', '{NP/CP} (T) VP'],
+  ['VP', '(AdvP+) V (NP) ({NP/CP}) (AdvP+) (PP+) (AdvP+)'],
+  ['NP', '(D) (AdjP+) N (PP+) (CP)'],
+  ['PP', 'P NP'],
   ['AdvP', '(AdvP) Adv'],
   ['AdjP', '(AdjP) Adj'],
-  ['PP', 'P (NP)'],
-  ['NP', '(D) (AdjP+) N (PP+)'],
-  ['VP', '(AdvP+) V (NP) (AdvP+) (PP+) (AdvP+)'],
-  ['TP', '(NP) (T) (VP)']
-].forEach(([name, rule]) => {
-  ruleSet.addRule(name, rule)
-})
+  ['XP', 'XP Conj XP'],
+  ['X', 'X Conj X']
+].forEach(([name, rule]) => ruleSet.addRule(name, rule))
 
 const initialState: RuleSetsReducerState = {
   index: 0,
@@ -31,18 +30,10 @@ const initialState: RuleSetsReducerState = {
 export default function reducer (state = initialState, action: RuleSetActionTypes): RuleSetsReducerState {
   switch (action.type) {
     case UPDATE_RULE_SET: {
-      const { index, pos, rules } = action.payload
+      const { index, ruleSet } = action.payload
       if (index >= state.ruleSets.length) {
         return state
       }
-
-      const ruleSet = new RuleSet(state.ruleSets[index].name)
-      pos.forEach(t => {
-        ruleSet.addPos(t)
-      })
-      rules.forEach(([name, rule]) => {
-        ruleSet.addRule(name, rule)
-      })
 
       state.ruleSets[index] = ruleSet
 

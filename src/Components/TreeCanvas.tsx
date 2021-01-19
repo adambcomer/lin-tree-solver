@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core'
 import React, { useEffect, useRef, useState } from 'react'
-import { Node, RuleSet, Tree } from '../tree-solver'
+import { RuleSet } from '../helpers/ruleset'
 import FontFaceObserver from 'fontfaceobserver'
 import { getColor } from '../helpers/colors'
+import { Node } from '../types'
 
 interface TreeCanvasProps {
   rules: RuleSet
@@ -10,7 +11,7 @@ interface TreeCanvasProps {
     word: string
     pos: string[]
   }>
-  tree: Tree
+  tree: Node
 }
 
 const useStyles = makeStyles(() => ({
@@ -39,55 +40,47 @@ const TreeCanvas: React.FC<TreeCanvasProps> = (props) => {
   }, [canvas])
 
   useEffect(() => {
-    function drawTree (ctx: CanvasRenderingContext2D, nodes: Node[], words: string[], start: number, width: number): void {
-      if (nodes.length === 1) {
+    function drawTree (ctx: CanvasRenderingContext2D, node: Node|string, words: string[], start: number, width: number, level: number): void {
+      if (typeof node === 'string') {
         ctx.fillStyle = '#000'
         ctx.textAlign = 'center'
         ctx.font = '64px Roboto Mono'
-        ctx.fillText(nodes[0].tag.name, Math.floor(width / 2) + start, 200 + (nodes[0].level * 400))
+        ctx.fillText(node, Math.floor((width / 2) + start), 200 + (level * 400))
 
-        ctx.fillStyle = getColor(props.rules.getPosIndex(nodes[0].tag.name))
-        ctx.fillRect(Math.floor(width / 2) + start - (26 * words[0].length), 325 + (nodes[0].level * 400), 52 * words[0].length, 20)
+        ctx.fillStyle = getColor(props.rules.getPosIndex(node))
+        ctx.fillRect(Math.floor((width / 2) + start - (26 * words[0].length)), 325 + (level * 400), 52 * words[0].length, 20)
 
         ctx.fillStyle = '#000'
         ctx.font = '500 72px Roboto Mono'
-        ctx.fillText(words[0], Math.floor(width / 2) + start, 325 + (nodes[0].level * 400))
+        ctx.fillText(words[0], Math.floor((width / 2) + start), 325 + (level * 400))
         return
       }
-
-      const level = nodes[nodes.length - 1].level
-      let ranges = []
-      let s = nodes.length - 1
-      for (let i = nodes.length - 3; i >= 0; i--) {
-        if (nodes[i].level === level + 1) {
-          ranges.push([i + 1, s])
-          s = i + 1
-        }
-      }
-      ranges.push([0, s])
-
-      ranges = ranges.reverse()
-      const posInRange = ranges.map(r => nodes.slice(r[0], r[1]).filter(n => props.rules.hasPos(n.tag.name)).length)
-      const cumulativePosInRange = posInRange.map((_, i) => posInRange.slice(0, i + 1).reduce((s, n) => n + s, 0))
-      const rangeTotal = posInRange.reduce((s, n) => n + s, 0)
-      const rangeWidths = posInRange.map(n => n / rangeTotal)
-      const cumulativeRangeWidths = rangeWidths.map((_, i) => rangeWidths.slice(0, i + 1).reduce((s, n) => n + s, 0))
 
       ctx.fillStyle = '#000'
       ctx.textAlign = 'center'
       ctx.font = '64px Roboto Mono'
-      ctx.fillText(nodes[nodes.length - 1].tag.name, Math.floor(width / 2) + start, 200 + (level * 400))
+      ctx.fillText(node.node, Math.floor((width / 2) + start), 200 + (level * 400))
 
-      ranges.forEach((r, i) => {
+      const widthChunk = width * (1 / node.terminals)
+
+      let cumulative = 0
+      for (const c of node.children) {
+        let w = 1
+        if (typeof c !== 'string') {
+          w = c.terminals
+        }
+
         ctx.beginPath()
-        ctx.moveTo(Math.floor(width / 2) + start, 250 + (level * 400))
-        ctx.lineTo((i === 0 ? 0 : cumulativeRangeWidths[i - 1] * width) + (rangeWidths[i] * (width / 2)) + start, 500 + (level * 400))
+        ctx.moveTo(Math.floor((width / 2) + start), 250 + (level * 400))
+        ctx.lineTo(Math.floor((cumulative * widthChunk) + (((w * widthChunk) / 2)) + start), 500 + (level * 400))
         ctx.lineWidth = 6
         ctx.lineCap = 'round'
         ctx.stroke()
 
-        drawTree(ctx, nodes.slice(r[0], r[1]), words.slice((i === 0 ? 0 : cumulativePosInRange[i - 1]), cumulativePosInRange[i] + 1), i === 0 ? start : Math.floor(cumulativeRangeWidths[i - 1] * width) + start, Math.floor(rangeWidths[i] * width))
-      })
+        drawTree(ctx, c, words.slice(cumulative, cumulative + w), (cumulative * widthChunk) + start, w * widthChunk, level + 1)
+
+        cumulative += w
+      }
     }
 
     const font = new FontFaceObserver('Roboto Mono')
@@ -100,15 +93,15 @@ const TreeCanvas: React.FC<TreeCanvasProps> = (props) => {
         if (ctx === null) {
           return
         }
-        ctx.clearRect(0, 0, canvasSize.width, canvasSize.height)
 
         ctx.setTransform(1, 0, 0, 1, 0, 0)
+
+        ctx.clearRect(0, 0, canvasSize.width, canvasSize.height)
 
         ctx.translate(canvasPan.dx, canvasPan.dy)
         ctx.scale(canvasZoom, canvasZoom)
 
-        const nodes = props.tree.nodes.filter(n => n.expanded)
-        drawTree(ctx, nodes, props.words.map(w => w.word), 0, canvasSize.width)
+        drawTree(ctx, props.tree, props.words.map(w => w.word), 0, canvasSize.width, 0)
       })
     }).catch(() => { })
     // eslint-disable-next-line react-hooks/exhaustive-deps

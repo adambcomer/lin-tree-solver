@@ -55,7 +55,7 @@ const RuleEditor: React.FC = () => {
       <List>
         {ruleSets.map((r, i) => {
           return (
-            <ListItem button onClick={setDefaultRuleSetClick(i)}>
+            <ListItem button onClick={setDefaultRuleSetClick(i)} key={i}>
               {ruleSetIndex === i &&
                 <ListItemIcon>
                   <Tooltip title='Default'>
@@ -67,16 +67,14 @@ const RuleEditor: React.FC = () => {
               <ListItemSecondaryAction>
                 <Link to={`/rules/${i}`}>
                   <Tooltip title='Edit'>
-
                     <IconButton edge='end' className={classes.editRuleSetButton}>
                       <EditIcon />
                     </IconButton>
-
                   </Tooltip>
                 </Link>
                 <Tooltip title='Delete'>
-                  <IconButton edge='end'>
-                    <DeleteIcon onClick={deleteRuleSetClick(i)} />
+                  <IconButton edge='end' onClick={deleteRuleSetClick(i)}>
+                    <DeleteIcon />
                   </IconButton>
                 </Tooltip>
               </ListItemSecondaryAction>

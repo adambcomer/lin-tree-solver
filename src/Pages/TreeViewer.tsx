@@ -1,15 +1,14 @@
-import { CircularProgress, Grid, makeStyles, Fade, Fab, Tooltip, Button } from '@material-ui/core'
-import React, { useState } from 'react'
+import { CircularProgress, Grid, makeStyles, Fade, Fab, Tooltip } from '@material-ui/core'
+import React, { useEffect, useState } from 'react'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import ImageIcon from '@material-ui/icons/Image'
-import MemoryIcon from '@material-ui/icons/Memory'
-import { Tree } from '../tree-solver'
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import WasmSolverWorker from 'worker-loader!../workers/wasm-solver.worker'
 import TreeCanvas from '../Components/TreeCanvas'
 import { useSelector } from 'react-redux'
 import { RootState } from '../redux/reducers'
+import { Node } from '../types'
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import ParserWorker from 'worker-loader!../workers/parser.worker'
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -51,52 +50,52 @@ const useStyles = makeStyles(() => ({
     bottom: 20
   },
 
-  nextTreeButton: {
-    background: '#fff',
+  nextTreeFabContainer: {
     position: 'fixed',
     right: 20,
     top: 20
   },
-  priorTreeButton: {
-    background: '#fff',
+  priorTreeFabContainer: {
     position: 'fixed',
     right: 80,
     top: 20
   },
-  printTreeButton: {
-    background: '#fff',
+  printTreeFabContainer: {
     position: 'fixed',
     right: 20,
     top: 80
+  },
+  fab: {
+    background: '#fff'
   }
 }))
 
-const worker = new WasmSolverWorker()
+const worker = new ParserWorker()
 
 const TreeViewer: React.FC = () => {
   const words = useSelector((state: RootState) => state.sentence.words)
   const ruleSets = useSelector((state: RootState) => state.rules.ruleSets)
   const ruleSetIndex = useSelector((state: RootState) => state.rules.index)
-  const [trees, setTrees] = useState<Tree[]>([])
+  const [trees, setTrees] = useState<Node[]>([])
   const [treeIndex, setTreeIndex] = useState(0)
-  const [loading, setLoading] = useState(false)
-  const [metrics, setMetrics] = useState({ searched: 0, duration: 0 })
+  const [loading, setLoading] = useState(true)
+  // const [metrics, setMetrics] = useState({ searched: 0, duration: 0 })
   const classes = useStyles()
 
-  function computeTrees (): void {
-    setLoading(true)
+  useEffect(() => {
+    console.log(ruleSets[ruleSetIndex].grammar())
 
     const t1 = performance.now()
-    worker.postMessage(words)
-    worker.onmessage = function (e) {
+    worker.onmessage = (e: MessageEvent<{trees: Node[], searched: number}>) => {
       setTrees(e.data.trees)
-      console.log(e.data.trees)
       setTreeIndex(0)
-      setMetrics({ searched: e.data.searched, duration: performance.now() - t1 })
-      console.log(`Solved in ${(performance.now() - t1)}ms, Searched ${e.data.searched as number} Trees, Found ${e.data.trees.length as number} Solutions`)
+
+      console.log(`Solved in ${(performance.now() - t1)}ms`)
+
       setLoading(false)
     }
-  }
+    worker.postMessage({ grammar: ruleSets[ruleSetIndex].grammar(), words })
+  }, [ruleSetIndex, ruleSets, words])
 
   function nextTree (): void {
     setTreeIndex(treeIndex + 1)
@@ -143,71 +142,47 @@ const TreeViewer: React.FC = () => {
     return (
       <Grid item xs>
         <div className={classes.loadingContainer}>
-          <Fade in={loading} style={{ transitionDelay: loading ? '800ms' : '0ms' }} unmountOnExit>
+          <Fade in={loading} style={{ transitionDelay: loading ? '400ms' : '0ms' }} unmountOnExit>
             <CircularProgress />
           </Fade>
         </div>
-        <Fab color='primary' disabled className={classes.computeButton}>
-          <MemoryIcon />
-        </Fab>
-      </Grid>
-    )
-  } else if (trees.length === 0 && metrics.duration === 0 && metrics.searched === 0) {
-    return (
-      <Grid item xs>
-        <Grid container className={classes.container} alignItems='center' justify='center'>
-          <Grid item>
-            <Button variant='contained' color='primary' startIcon={<MemoryIcon />} onClick={computeTrees} disableElevation>Compute Trees</Button>
-          </Grid>
-        </Grid>
       </Grid>
     )
   }
-
   return (
     <Grid item xs>
       <Grid container className={classes.container}>
         <Grid item xs={12} className={classes.svgContainer}>
           <Tooltip title='Next Tree'>
-            <Fab size='small' className={classes.nextTreeButton} disabled={trees.length === 0 || treeIndex === trees.length - 1} onClick={nextTree}>
-              <NavigateNextIcon />
-            </Fab>
+            <span className={classes.nextTreeFabContainer}>
+              <Fab size='small' className={classes.fab} disabled={trees.length === 0 || treeIndex === trees.length - 1} onClick={nextTree}>
+                <NavigateNextIcon />
+              </Fab>
+            </span>
           </Tooltip>
           <Tooltip title='Prior Tree'>
-            <Fab size='small' className={classes.priorTreeButton} disabled={trees.length === 0 || treeIndex === 0} onClick={priorTree}>
-              <NavigateBeforeIcon />
-            </Fab>
+            <span className={classes.priorTreeFabContainer}>
+              <Fab size='small' className={classes.fab} disabled={trees.length === 0 || treeIndex === 0} onClick={priorTree}>
+                <NavigateBeforeIcon />
+              </Fab>
+            </span>
           </Tooltip>
           <Tooltip title='Save Image' placement='left'>
-            <Fab size='small' className={classes.printTreeButton} disabled={trees.length === 0}>
-              <ImageIcon />
-            </Fab>
+            <span className={classes.printTreeFabContainer}>
+              <Fab size='small' className={classes.fab} disabled={trees.length === 0}>
+                <ImageIcon />
+              </Fab>
+            </span>
           </Tooltip>
 
           {trees.length === 0
             ? <svg xmlns="http://www.w3.org/2000/svg" width="100%" height='100%' viewBox='0 100 1000 500'>
               <text x='50%' y='50%' fontFamily='Roboto Mono' fontSize='16' fill='#000' textAnchor='middle'>No Tree Found</text>
-              <text x='50%' y='50%' dy='20' fontFamily='Roboto Mono' fontSize='14' fill='#000' textAnchor='middle'>Searched {metrics.searched} tree(s) in {(metrics.duration / 1000).toFixed(2)}s</text>
+              {/* <text x='50%' y='50%' dy='20' fontFamily='Roboto Mono' fontSize='14' fill='#000' textAnchor='middle'>Searched {metrics.searched} tree(s) in {(metrics.duration / 1000).toFixed(2)}s</text> */}
             </svg>
             : <TreeCanvas tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} />
           }
         </Grid>
-        <Tooltip title='Compute Trees' placement='top'>
-          <Fab color='primary' onClick={computeTrees} className={classes.computeButton}>
-            <MemoryIcon />
-          </Fab>
-        </Tooltip>
-        {/* <Grid item md={3} lg={2}>
-        <div className={classes.metricsContainer}>
-          <Typography variant='h5' className={classes.metricsHeader}>Metrics:</Typography>
-          <Typography variant='subtitle2' className={classes.metricsSubHeader}>Searched:</Typography>
-          <Typography variant='body1'>{metrics.searched} tree(s)</Typography>
-          <Typography variant='subtitle2' className={classes.metricsSubHeader}>Search Time:</Typography>
-          <Typography variant='body1'>{(metrics.duration / 1000).toFixed(2)} sec</Typography>
-          <Typography variant='subtitle2' className={classes.metricsSubHeader}>Trees per Second:</Typography>
-          <Typography variant='body1'>{(metrics.searched / (metrics.duration / 1000)).toFixed(2)} trees/sec</Typography>
-        </div>
-      </Grid> */}
       </Grid>
     </Grid>
   )

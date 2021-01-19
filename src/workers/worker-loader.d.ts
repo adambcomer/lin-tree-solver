@@ -1,7 +1,7 @@
 declare module 'worker-loader!*' {
-  class WasmSolverWorker extends Worker {
+  class ParserWorker extends Worker {
     constructor ();
   }
 
-  export default WasmSolverWorker
+  export default ParserWorker
 }

@@ -34,7 +34,7 @@ const App: React.FC = () => {
         <CssBaseline />
 
         <Provider store={store}>
-          <HashRouter>
+          <HashRouter basename='/lin-tree-solver'>
             <Grid container>
 
               <Navbar />
