@@ -139,8 +139,8 @@ const RuleSetEditor: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Syntax Rules Editor | Linguistics Tree Solver</title>
-        <meta name='description' content='Add your custom syntax rules for the solver to build trees with.' />
+        <title>{rs.name} Syntax Rules | Linguistics Tree Solver</title>
+        <meta name='description' content={`Edit ${rs.name} syntax rules to your heart's content.`} />
       </Helmet>
       <Grid item xs>
         <div className={classes.headerContainer}>
