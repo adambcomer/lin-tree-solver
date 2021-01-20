@@ -65,7 +65,5 @@ ctx.onmessage = (e: MessageEvent<{ grammar: string, words: Array<{ word: string,
     } catch (e) {}
   }
 
-  console.log(trees)
-
   postMessage({ trees, searched: 1 })
 }

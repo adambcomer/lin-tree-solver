@@ -57,7 +57,7 @@ const RuleEditor: React.FC = () => {
         <meta name='description' content='Add your custom syntax rules for the solver to build trees with.' />
       </Helmet>
       <Grid item xs>
-        <Typography variant='h3' component='h1' className={classes.header}>Syntactic Rules</Typography>
+        <Typography variant='h3' component='h1' className={classes.header}>Syntax Rules</Typography>
         <List>
           {ruleSets.map((r, i) => {
             return (

@@ -184,7 +184,7 @@ const RuleSetEditor: React.FC = () => {
           </Grid>
         }
 
-        <Typography variant='h6' component='h3' className={classes.subheader}>Syntactic Rules:</Typography>
+        <Typography variant='h6' component='h3' className={classes.subheader}>Syntax Rules:</Typography>
         <List>
           {ruleSet.rules.map(([name, expression], i) => {
             return (

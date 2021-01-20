@@ -80,12 +80,9 @@ const TreeViewer: React.FC = () => {
   const [trees, setTrees] = useState<Node[]>([])
   const [treeIndex, setTreeIndex] = useState(0)
   const [loading, setLoading] = useState(true)
-  // const [metrics, setMetrics] = useState({ searched: 0, duration: 0 })
   const classes = useStyles()
 
   useEffect(() => {
-    console.log(ruleSets[ruleSetIndex].grammar())
-
     const t1 = performance.now()
     worker.onmessage = (e: MessageEvent<{ trees: Node[], searched: number }>) => {
       setTrees(e.data.trees)
