@@ -9,6 +9,7 @@ export interface RuleSetsReducerState {
 
 const ruleSet = new RuleSet('Chapter 3, Syntax: A Generative Introduction, by Andrew Carnie');
 ['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach(t => ruleSet.addPos(t));
+['CP'].forEach(t => ruleSet.addRoot(t));
 [
   ['CP', '(C) TP'],
   ['TP', '{NP/CP} (T) VP'],
@@ -27,7 +28,7 @@ const initialState: RuleSetsReducerState = {
 }
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
-export default function reducer (state = initialState, action: RuleSetActionTypes): RuleSetsReducerState {
+export default function reducer(state = initialState, action: RuleSetActionTypes): RuleSetsReducerState {
   switch (action.type) {
     case UPDATE_RULE_SET: {
       const { index, ruleSet } = action.payload

@@ -4,7 +4,7 @@ export interface Tag {
   repeated: boolean
 }
 
-export function tagToString (tag: Tag): string {
+export function tagToString(tag: Tag): string {
   if (tag.optional && tag.repeated) {
     if (tag.values.length === 1) {
       return `(${tag.values[0]}+)`
@@ -26,7 +26,7 @@ export class Expression {
   name: string
   tags: Tag[] = []
 
-  constructor (name: string, rule: string) {
+  constructor(name: string, rule: string) {
     this.name = name
 
     rule.match(/(\({[a-zA-Z/+]+}\)|{[a-zA-Z/+]+}|\([a-zA-Z+]+\)|[a-zA-Z]+)/g)?.forEach(t => {
@@ -46,58 +46,67 @@ export class Expression {
     })
   }
 
-  tagsToString (): string {
+  tagsToString(): string {
     return this.tags.map(t => tagToString(t)).join(' ')
   }
 }
 
 export class RuleSet {
   name: string
+  root: Set<string> = new Set()
   pos: Set<string> = new Set()
   rules: Map<string, Expression> = new Map()
 
-  constructor (name: string) {
+  constructor(name: string) {
     this.name = name
   }
 
-  addPos (pos: string): void {
+  addPos(pos: string): void {
     this.pos.add(pos)
   }
 
-  addRule (name: string, rule: string): void {
+  addRule(name: string, rule: string): void {
     this.rules.set(name, new Expression(name, rule))
   }
 
-  has (name: string): boolean {
+  addRoot(name: string): void {
+    this.root.add(name)
+  }
+
+  has(name: string): boolean {
     return this.pos.has(name) || this.rules.has(name)
   }
 
-  hasRule (name: string): boolean {
+  hasRule(name: string): boolean {
     return this.rules.has(name)
   }
 
-  hasPos (name: string): boolean {
+  hasPos(name: string): boolean {
     return this.pos.has(name)
   }
 
-  getRule (name: string): Expression | undefined {
+  getRule(name: string): Expression | undefined {
     return this.rules.get(name)
   }
 
-  getPosIndex (name: string): number {
+  getPosIndex(name: string): number {
     return [...this.pos].indexOf(name)
   }
 
-  getPos (): Set<string> {
+  getPos(): Set<string> {
     return this.pos
   }
 
-  getRules (): Map<string, Expression> {
+  getRules(): Map<string, Expression> {
     return this.rules
   }
 
-  grammar (): string {
-    let g = 'main -> CP'
+  getRoot(): Set<string> {
+    return this.root
+  }
+
+  grammar(): string {
+    let g = `main -> ${[...this.root].join('|')}`
 
     for (const [name, exp] of this.rules.entries()) {
       const tags = []
@@ -157,7 +166,7 @@ export class RuleSet {
         }
       %}`
 
-      g = `${g}\n${name} -> ${tags.join(' ')} ${f}`
+      g += `\n${name} -> ${tags.join(' ')} ${f}`
     }
     return g
   }

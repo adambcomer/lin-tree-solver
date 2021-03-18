@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Typography, makeStyles, List, ListItem, ListItemText, ListItemIcon, Grid, TextField, Chip, Button, ListItemSecondaryAction, IconButton, Tooltip } from '@material-ui/core'
+import { Typography, makeStyles, List, ListItem, ListItemText, ListItemIcon, Grid, TextField, Chip, Button, ListItemSecondaryAction, IconButton, Tooltip, Snackbar } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
-// import InfoIcon from '@material-ui/icons/Info'
 import SaveIcon from '@material-ui/icons/Save'
 import DeleteIcon from '@material-ui/icons/Delete'
+import CloseIcon from '@material-ui/icons/Close'
 import { Expression, RuleSet, tagToString } from '../helpers/ruleset'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../redux/reducers'
@@ -51,32 +51,34 @@ const useStyles = makeStyles((theme) => ({
 const RuleSetEditor: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const rs = useSelector((state: RootState) => state.rules.ruleSets[Number(id)])
-  const [ruleSet, setRuleSet] = useState({ name: rs.name, pos: [...rs.getPos()], rules: [...rs.getRules().entries()] })
+  const [ruleSet, setRuleSet] = useState({ name: rs.name, pos: [...rs.getPos()], rules: [...rs.getRules().entries()], root: [...rs.getRoot()] })
   const [newPos, setNewPos] = useState({ editing: false, pos: '', error: false })
+  const [newRoot, setNewRoot] = useState({ editing: false, root: '', error: false })
   const [newRule, setNewRule] = useState({ editing: false, name: '', rule: '', nameError: false, ruleError: false })
+  const [saved, setSaved] = useState(false)
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  function onNameChange (e: React.ChangeEvent<HTMLInputElement>): void {
+  function onNameChange(e: React.ChangeEvent<HTMLInputElement>): void {
     setRuleSet({ ...ruleSet, name: e.target.value })
   }
 
-  function onPosDeleted (index: number): () => void {
+  function onPosDeleted(index: number): () => void {
     return () => {
       ruleSet.pos.splice(index, 1)
       setRuleSet({ ...ruleSet, pos: [...ruleSet.pos] })
     }
   }
 
-  function onCreatePos (): void {
+  function onCreatePos(): void {
     setNewPos({ ...newPos, editing: true })
   }
 
-  function onNewPosChanged (e: React.ChangeEvent<HTMLInputElement>): void {
+  function onNewPosChanged(e: React.ChangeEvent<HTMLInputElement>): void {
     setNewPos({ ...newPos, pos: e.target.value, error: false })
   }
 
-  function addPos (): void {
+  function addPos(): void {
     if (ruleSet.pos.includes(newPos.pos) || ruleSet.rules.some(([r]) => r === newPos.pos)) {
       setNewPos({ ...newPos, error: true })
       return
@@ -86,19 +88,49 @@ const RuleSetEditor: React.FC = () => {
     setNewPos({ editing: false, pos: '', error: false })
   }
 
-  function onCreateRule (): void {
+  function onRootDeleted(index: number): () => void {
+    return () => {
+      ruleSet.root.splice(index, 1)
+      setRuleSet({ ...ruleSet, root: [...ruleSet.root] })
+    }
+  }
+
+  function onCreateRoot(): void {
+    setNewRoot({ ...newRoot, editing: true })
+  }
+
+  function onNewRootChanged(e: React.ChangeEvent<HTMLInputElement>): void {
+    setNewRoot({ ...newRoot, root: e.target.value, error: false })
+  }
+
+
+  function addRoot(): void {
+    if (ruleSet.root.includes(newRoot.root)) {
+      setNewRoot({ ...newRoot, error: true })
+      return
+    }
+    if (!ruleSet.pos.includes(newRoot.root) && !ruleSet.rules.some(([r]) => r === newRoot.root)) {
+      setNewRoot({ ...newRoot, error: true })
+      return
+    }
+
+    setRuleSet({ ...ruleSet, root: [...ruleSet.root, newRoot.root] })
+    setNewRoot({ editing: false, root: '', error: false })
+  }
+
+  function onCreateRule(): void {
     setNewRule({ ...newRule, editing: true })
   }
 
-  function onNewRuleNameChanged (e: React.ChangeEvent<HTMLInputElement>): void {
+  function onNewRuleNameChanged(e: React.ChangeEvent<HTMLInputElement>): void {
     setNewRule({ ...newRule, name: e.target.value, nameError: false })
   }
 
-  function onNewRuleChanged (e: React.ChangeEvent<HTMLInputElement>): void {
+  function onNewRuleChanged(e: React.ChangeEvent<HTMLInputElement>): void {
     setNewRule({ ...newRule, rule: e.target.value, ruleError: false })
   }
 
-  function addRule (): void {
+  function addRule(): void {
     if (ruleSet.pos.includes(newRule.name) || ruleSet.rules.some(([r]) => r === newRule.name)) {
       setNewRule({ ...newRule, nameError: true })
       return
@@ -121,19 +153,25 @@ const RuleSetEditor: React.FC = () => {
     setNewRule({ editing: false, name: '', rule: '', nameError: false, ruleError: false })
   }
 
-  function deleteRule (index: number): () => void {
+  function deleteRule(index: number): () => void {
     return () => {
       ruleSet.rules.splice(index, 1)
       setRuleSet({ ...ruleSet, rules: [...ruleSet.rules] })
     }
   }
 
-  function saveRuleSet (): void {
+  function saveRuleSet(): void {
     const r = new RuleSet(ruleSet.name)
     r.pos = new Set(ruleSet.pos)
     r.rules = new Map(ruleSet.rules)
+    r.root = new Set(ruleSet.root)
 
     dispatch(updateRuleSet(Number(id), r))
+    setSaved(true)
+  }
+
+  function onSavedSnackbarClose(){
+    setSaved(false)
   }
 
   return (
@@ -150,6 +188,15 @@ const RuleSetEditor: React.FC = () => {
             </Grid>
             <Grid item>
               <Button color='primary' variant='contained' size='large' startIcon={<SaveIcon />} onClick={saveRuleSet} disableElevation>Save</Button>
+              <Snackbar open={saved} autoHideDuration={6000} onClose={onSavedSnackbarClose} message='Saved Rule Set' anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              action={
+                <>
+                  <IconButton size='small' aria-label='close' color='inherit' onClick={onSavedSnackbarClose}>
+                    <CloseIcon fontSize='small' />
+                  </IconButton>
+                </>
+              }
+              />
             </Grid>
           </Grid>
 
@@ -184,6 +231,33 @@ const RuleSetEditor: React.FC = () => {
           </Grid>
         }
 
+        <Typography variant='h6' component='h3' className={classes.subheader}>Root Tags:</Typography>
+        <Grid container spacing={1} className={classes.posContainer}>
+          {ruleSet.root.map((r, i) => {
+            return (
+              <Grid item key={i}>
+                <Chip label={r} onDelete={onRootDeleted(i)} />
+              </Grid>
+            )
+          })}
+          {!newPos.editing &&
+            <Grid item>
+              <Chip label='New Root' icon={<AddIcon />} onClick={onCreateRoot} />
+            </Grid>
+          }
+        </Grid>
+
+        {newRoot.editing &&
+          <Grid container spacing={3} alignItems='center' className={classes.newPosContainer}>
+            <Grid item xs>
+              <TextField variant='outlined' label='Name' value={newRoot.root} error={newRoot.error} onChange={onNewRootChanged} fullWidth />
+            </Grid>
+            <Grid item>
+              <Button color='primary' variant='contained' size='large' onClick={addRoot} disabled={newRoot.root.length === 0} disableElevation>Add</Button>
+            </Grid>
+          </Grid>
+        }
+
         <Typography variant='h6' component='h3' className={classes.subheader}>Syntax Rules:</Typography>
         <List>
           {ruleSet.rules.map(([name, expression], i) => {
@@ -212,7 +286,7 @@ const RuleSetEditor: React.FC = () => {
               <ListItemIcon>
                 <AddIcon />
               </ListItemIcon>
-              <ListItemText primary='New Syntactic Rule' />
+              <ListItemText primary='New Syntax Rule' />
             </ListItem>
           }
         </List>
