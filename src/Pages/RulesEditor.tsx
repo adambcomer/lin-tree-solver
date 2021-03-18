@@ -69,7 +69,7 @@ const RuleEditor: React.FC = () => {
                     </Tooltip>
                   </ListItemIcon>
                 }
-                <ListItemText inset={ruleSetIndex !== i} primary={r.name} secondary={`${[...r.getPos()].length} Parts of Speech, ${[...r.getRules()].length} Syntactic Rules`} />
+                <ListItemText inset={ruleSetIndex !== i} primary={r.name} secondary={`${[...r.getPos()].length} Parts of Speech, ${[...r.getRules()].length} Syntax Rules`} />
                 <ListItemSecondaryAction>
                   <Link to={`/rules/${i}`}>
                     <Tooltip title='Edit'>
