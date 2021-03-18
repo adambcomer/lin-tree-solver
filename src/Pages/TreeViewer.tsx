@@ -1,5 +1,5 @@
 import { CircularProgress, Grid, makeStyles, Fade, Fab, Tooltip } from '@material-ui/core'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import ImageIcon from '@material-ui/icons/Image'
@@ -80,6 +80,7 @@ const TreeViewer: React.FC = () => {
   const [trees, setTrees] = useState<Node[]>([])
   const [treeIndex, setTreeIndex] = useState(0)
   const [loading, setLoading] = useState(true)
+  const canvas = useRef<HTMLCanvasElement>(null)
   const classes = useStyles()
 
   useEffect(() => {
@@ -95,46 +96,33 @@ const TreeViewer: React.FC = () => {
     worker.postMessage({ grammar: ruleSets[ruleSetIndex].grammar(), words })
   }, [ruleSetIndex, ruleSets, words])
 
-  function nextTree (): void {
+  function nextTree(): void {
     setTreeIndex(treeIndex + 1)
   }
 
-  function priorTree (): void {
+  function priorTree(): void {
     setTreeIndex(treeIndex - 1)
   }
 
-  // function print (): void {
-  //   if (treeSvg.current === null) {
-  //     return
-  //   }
-  //   const { height, width } = treeSvg.current.getBBox()
+  function saveTreeImage(): void {
+    if (canvas.current === null) return
 
-  //   const blob = new Blob([treeSvg.current.outerHTML], { type: 'image/svg+xml' })
+    const image = document.createElement('canvas')
+    image.width = canvas.current.width
+    image.height = canvas.current.height
 
-  //   const blobURL = URL.createObjectURL(blob)
+    const context = image.getContext('2d')
+    if (context === null) return
+    context.fillStyle = '#fff'
+    context.fillRect(0, 0, image.width, image.height)
+    context.drawImage(canvas.current, 0, 0)
 
-  //   const image = new Image()
-  //   image.onload = () => {
-  //     const canvas = document.createElement('canvas')
-  //     canvas.width = width * 4
-  //     canvas.height = height * 4
-
-  //     const context = canvas.getContext('2d')
-  //     if (context === null) {
-  //       return
-  //     }
-  //     context.fillStyle = '#fff'
-  //     context.fillRect(0, 0, canvas.width, canvas.height)
-  //     context.drawImage(image, 0, 0, canvas.width, canvas.height)
-
-  //     const png = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
-  //     const link = document.createElement('a')
-  //     link.download = 'tree.png'
-  //     link.href = png
-  //     link.click()
-  //   }
-  //   image.src = blobURL
-  // }
+    const png = image.toDataURL('image/png').replace('image/png', 'image/octet-stream')
+    const link = document.createElement('a')
+    link.download = 'tree.png'
+    link.href = png
+    link.click()
+  }
 
   if (loading) {
     return (
@@ -178,7 +166,7 @@ const TreeViewer: React.FC = () => {
             </Tooltip>
             <Tooltip title='Save Image' placement='left'>
               <span className={classes.printTreeFabContainer}>
-                <Fab size='small' className={classes.fab} disabled={trees.length === 0}>
+                <Fab size='small' className={classes.fab} disabled={trees.length === 0} onClick={saveTreeImage}>
                   <ImageIcon />
                 </Fab>
               </span>
@@ -186,10 +174,8 @@ const TreeViewer: React.FC = () => {
 
             {trees.length === 0
               ? <svg xmlns="http://www.w3.org/2000/svg" width="100%" height='100%' viewBox='0 100 1000 500'>
-                <text x='50%' y='50%' fontFamily='Roboto Mono' fontSize='16' fill='#000' textAnchor='middle'>No Tree Found</text>
-                {/* <text x='50%' y='50%' dy='20' fontFamily='Roboto Mono' fontSize='14' fill='#000' textAnchor='middle'>Searched {metrics.searched} tree(s) in {(metrics.duration / 1000).toFixed(2)}s</text> */}
-              </svg>
-              : <TreeCanvas tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} />
+                <text x='50%' y='50%' fontFamily='Roboto Mono' fontSize='16' fill='#000' textAnchor='middle'>No Tree Found</text>              </svg>
+              : <TreeCanvas ref={canvas} tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} />
             }
           </Grid>
         </Grid>
