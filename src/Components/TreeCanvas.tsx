@@ -12,6 +12,7 @@ interface TreeCanvasProps {
     pos: string[]
   }>
   tree: Node
+  zoom: number
 }
 
 let frame: number | undefined
@@ -29,7 +30,6 @@ const useStyles = makeStyles(() => ({
 const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props, ref) => {
   const [canvasSize, setCanvasSize] = useState({ height: 0, width: 0 })
   const [canvasPan, setCanvasPan] = useState({ x: 0, y: 0, dx: 0, dy: 0, down: false })
-  const [canvasZoom, setCanvasZoom] = useState(1)
   const canvas = useRef<HTMLCanvasElement>(null)
   const classes = useStyles()
 
@@ -109,16 +109,16 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props, ref) =
       ctx.clearRect(0, 0, width, height)
 
       ctx.translate(dx, dy)
-      ctx.scale(1, 1)
+      ctx.scale(props.zoom, props.zoom)
 
       recursiveDraw(ctx, props.tree, props.words.map(w => w.word), 0, width, 0)
       frame = undefined
     })
-  }, [canvas, props.rules, props.words, props.tree])
+  }, [canvas, props.zoom, props.rules, props.words, props.tree])
 
   useEffect(() => {
     drawTree(canvasSize.height, canvasSize.width, canvasPan.dx, canvasPan.dy)
-  }, [canvasSize, canvasPan, canvasZoom, props.tree, props.words, drawTree])
+  }, [canvasSize, canvasPan, drawTree])
 
   function onMouseDownCanvas(e: React.MouseEvent<HTMLCanvasElement, MouseEvent>): void {
     setCanvasPan({ ...canvasPan, x: e.clientX, y: e.clientY, down: true })

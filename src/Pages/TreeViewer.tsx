@@ -4,6 +4,8 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import ImageIcon from '@material-ui/icons/Image'
 import TreeCanvas from '../Components/TreeCanvas'
+import ZoomInIcon from '@material-ui/icons/ZoomIn'
+import ZoomOutIcon from '@material-ui/icons/ZoomOut'
 import { useSelector } from 'react-redux'
 import { RootState } from '../redux/reducers'
 import { Node } from '../types'
@@ -61,6 +63,16 @@ const useStyles = makeStyles(() => ({
     right: 80,
     top: 20
   },
+  zoomInFabContainer: {
+    position: 'fixed',
+    right: 20,
+    bottom: 20
+  },
+  zoomOutFabContainer: {
+    position: 'fixed',
+    right: 80,
+    bottom: 20
+  },
   printTreeFabContainer: {
     position: 'fixed',
     right: 20,
@@ -80,6 +92,7 @@ const TreeViewer: React.FC = () => {
   const [trees, setTrees] = useState<Node[]>([])
   const [treeIndex, setTreeIndex] = useState(0)
   const [loading, setLoading] = useState(true)
+  const [canvasZoom, setCanvasZoom] = useState(1)
   const canvas = useRef<HTMLCanvasElement>(null)
   const classes = useStyles()
 
@@ -102,6 +115,14 @@ const TreeViewer: React.FC = () => {
 
   function priorTree(): void {
     setTreeIndex(treeIndex - 1)
+  }
+
+  function zoomIn(): void {
+    setCanvasZoom(canvasZoom * 4/3)
+  }
+
+  function zoomOut(): void {
+    setCanvasZoom(canvasZoom * 3/4)
   }
 
   function saveTreeImage(): void {
@@ -164,6 +185,22 @@ const TreeViewer: React.FC = () => {
                 </Fab>
               </span>
             </Tooltip>
+
+            <Tooltip title='Zoom In' placement='top'>
+              <span className={classes.zoomInFabContainer}>
+                <Fab size='small' className={classes.fab} disabled={trees.length === 0} onClick={zoomIn}>
+                  <ZoomInIcon />
+                </Fab>
+              </span>
+            </Tooltip>
+            <Tooltip title='Zoom Out' placement='top'>
+              <span className={classes.zoomOutFabContainer}>
+                <Fab size='small' className={classes.fab} disabled={trees.length === 0} onClick={zoomOut}>
+                  <ZoomOutIcon />
+                </Fab>
+              </span>
+            </Tooltip>
+
             <Tooltip title='Save Image' placement='left'>
               <span className={classes.printTreeFabContainer}>
                 <Fab size='small' className={classes.fab} disabled={trees.length === 0} onClick={saveTreeImage}>
@@ -175,7 +212,7 @@ const TreeViewer: React.FC = () => {
             {trees.length === 0
               ? <svg xmlns="http://www.w3.org/2000/svg" width="100%" height='100%' viewBox='0 100 1000 500'>
                 <text x='50%' y='50%' fontFamily='Roboto Mono' fontSize='16' fill='#000' textAnchor='middle'>No Tree Found</text>              </svg>
-              : <TreeCanvas ref={canvas} tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} />
+              : <TreeCanvas ref={canvas} tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} zoom={canvasZoom} />
             }
           </Grid>
         </Grid>
