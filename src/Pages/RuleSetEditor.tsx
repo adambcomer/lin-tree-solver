@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 const RuleSetEditor: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const rs = useSelector((state: RootState) => state.rules.ruleSets[Number(id)])
-  const [ruleSet, setRuleSet] = useState({ name: rs.name, pos: [...rs.getPos()], rules: [...rs.getRules().entries()], root: [...rs.getRoot()] })
+  const [ruleSet, setRuleSet] = useState({ name: rs.name, pos: [...rs.getPos()], rules: [...rs.getRules()], root: [...rs.getRoot()] })
   const [newPos, setNewPos] = useState({ editing: false, pos: '', error: false })
   const [newRoot, setNewRoot] = useState({ editing: false, root: '', error: false })
   const [newRule, setNewRule] = useState({ editing: false, name: '', rule: '', nameError: false, ruleError: false })
@@ -131,7 +131,7 @@ const RuleSetEditor: React.FC = () => {
   }
 
   function addRule(): void {
-    if (ruleSet.pos.includes(newRule.name) || ruleSet.rules.some(([r]) => r === newRule.name)) {
+    if (ruleSet.pos.includes(newRule.name)) {
       setNewRule({ ...newRule, nameError: true })
       return
     }
@@ -163,7 +163,7 @@ const RuleSetEditor: React.FC = () => {
   function saveRuleSet(): void {
     const r = new RuleSet(ruleSet.name)
     r.pos = new Set(ruleSet.pos)
-    r.rules = new Map(ruleSet.rules)
+    r.rules = [...ruleSet.rules]
     r.root = new Set(ruleSet.root)
 
     dispatch(updateRuleSet(Number(id), r))

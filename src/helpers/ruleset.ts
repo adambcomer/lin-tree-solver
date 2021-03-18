@@ -29,7 +29,7 @@ export class Expression {
   constructor(name: string, rule: string) {
     this.name = name
 
-    rule.match(/(\({[a-zA-Z/+]+}\)|{[a-zA-Z/+]+}|\([a-zA-Z+]+\)|[a-zA-Z]+)/g)?.forEach(t => {
+    rule.match(/(\({[a-zA-Z_/+]+}\)|{[a-zA-Z_/+]+}|\([a-zA-Z_+]+\)|[a-zA-Z_]+)/g)?.forEach(t => {
       if (t.startsWith('({') && t.endsWith('}+)')) {
         this.tags.push({ values: t.slice(2, t.length - 3).split('/'), optional: true, repeated: true })
       } else if (t.startsWith('({') && t.endsWith('})')) {
@@ -55,7 +55,7 @@ export class RuleSet {
   name: string
   root: Set<string> = new Set()
   pos: Set<string> = new Set()
-  rules: Map<string, Expression> = new Map()
+  rules: Array<[string, Expression]> = []
 
   constructor(name: string) {
     this.name = name
@@ -66,7 +66,7 @@ export class RuleSet {
   }
 
   addRule(name: string, rule: string): void {
-    this.rules.set(name, new Expression(name, rule))
+    this.rules.push([name, new Expression(name, rule)])
   }
 
   addRoot(name: string): void {
@@ -74,11 +74,19 @@ export class RuleSet {
   }
 
   has(name: string): boolean {
-    return this.pos.has(name) || this.rules.has(name)
+    if (this.pos.has(name)) return true
+
+    for (const [n] of this.rules) {
+      if (name === n) return true
+    }
+    return false
   }
 
   hasRule(name: string): boolean {
-    return this.rules.has(name)
+    for (const [n] of this.rules) {
+      if (name === n) return true
+    }
+    return false
   }
 
   hasPos(name: string): boolean {
@@ -86,7 +94,9 @@ export class RuleSet {
   }
 
   getRule(name: string): Expression | undefined {
-    return this.rules.get(name)
+    for (const [n, exp] of this.rules) {
+      if (name === n) return exp
+    }
   }
 
   getPosIndex(name: string): number {
@@ -97,7 +107,7 @@ export class RuleSet {
     return this.pos
   }
 
-  getRules(): Map<string, Expression> {
+  getRules(): Array<[string, Expression]> {
     return this.rules
   }
 
@@ -108,7 +118,7 @@ export class RuleSet {
   grammar(): string {
     let g = `main -> ${[...this.root].join('|')}`
 
-    for (const [name, exp] of this.rules.entries()) {
+    for (const [name, exp] of this.rules) {
       const tags = []
       for (const tag of exp.tags) {
         if (tag.optional && tag.repeated) {

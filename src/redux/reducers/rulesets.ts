@@ -7,9 +7,9 @@ export interface RuleSetsReducerState {
   ruleSets: RuleSet[]
 }
 
-const ruleSet = new RuleSet('Chapter 3, Syntax: A Generative Introduction, by Andrew Carnie');
-['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach(t => ruleSet.addPos(t));
-['CP'].forEach(t => ruleSet.addRoot(t));
+const ruleSet0 = new RuleSet('Chapter 3: Constituency, Trees, and Rules, Syntax: A Generative Introduction, by Andrew Carnie');
+['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach(t => ruleSet0.addPos(t));
+['CP'].forEach(t => ruleSet0.addRoot(t));
 [
   ['CP', '(C) TP'],
   ['TP', '{NP/CP} (T) VP'],
@@ -20,11 +20,40 @@ const ruleSet = new RuleSet('Chapter 3, Syntax: A Generative Introduction, by An
   ['AdjP', '(AdjP) Adj'],
   ['XP', 'XP Conj XP'],
   ['X', 'X Conj X']
-].forEach(([name, rule]) => ruleSet.addRule(name, rule))
+].forEach(([name, rule]) => ruleSet0.addRule(name, rule))
+
+const ruleSet1 = new RuleSet('Chapter 6: X-bar Theory, Syntax: A Generative Introduction, by Andrew Carnie');
+['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach(t => ruleSet1.addPos(t));
+['CP'].forEach(t => ruleSet1.addRoot(t));
+[
+  ['CP', '(C) TP'],
+  ['TP', '{NP/CP} (T) VP'],
+  ['VP', 'V_bar'],
+  ['V_bar', 'V_bar PP'],
+  ['V_bar', 'V_bar AdvP'],
+  ['V_bar', 'AdvP V_bar'],
+  ['V_bar', 'V (NP)'],
+  ['NP', '(D) N_bar'],
+  ['N_bar', 'AdjP N_bar'],
+  ['N_bar', 'N_bar PP'],
+  ['N_bar', 'N (PP)'],
+  ['PP', 'P_Bar'],
+  ['P_Bar', 'P_Bar PP'],
+  ['P_Bar', 'AdvP P_Bar'],
+  ['P_Bar', 'P (NP)'],
+  ['AdvP', 'Adv_bar'],
+  ['Adv_bar', 'AdvP Adv_bar'],
+  ['Adv_bar', 'Adv (PP)'],
+  ['AdjP', 'Adj_bar'],
+  ['Adj_bar', 'AdjP Adj_bar'],
+  ['Adj_bar', 'Adj (PP)'],
+  ['XP', 'XP Conj XP'],
+  ['X', 'X Conj X']
+].forEach(([name, rule]) => ruleSet1.addRule(name, rule))
 
 const initialState: RuleSetsReducerState = {
   index: 0,
-  ruleSets: [ruleSet]
+  ruleSets: [ruleSet0, ruleSet1]
 }
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
