@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+# Linguistics Tree Solver
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About:
+This tool automatically builds linguistics syntax trees.
 
-## Available Scripts
+A major goal of this tool is to accept to a broad set of syntax rules. Nearly every textbook has different rules and standards.
 
-In the project directory, you can run:
+I want others to be able to add/modify the rules to work for them.
 
-### `npm start`
+I have included an annotated sentence and syntax rules from _Syntax: A Generative Introduction, Third Edition, by Andrew Carnie_.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Click around to view the [sentence](https://adambcomer.com/lin-tree-solver/sentence), the [syntax rules](https://adambcomer.com/lin-tree-solver/rules), and [parsed trees](https://adambcomer.com/lin-tree-solver/viewer).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tutorial:
 
-### `npm test`
+### 1. Define Syntax Rules (One Time Step)
+Work in progress.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Write and Annotate a Sentence
+In the [Sentence Editor<](https://adambcomer.com/lin-tree-solver/sentence), add your sentence in the text box at the top. The sentence will be automatically be split by word. Under each word will be all of the Parts of Speech from the Syntax Rules. By coloring these Parts of Speech, the solver will find trees that satisfy these constraints.
 
-### `npm run build`
+**Note:** You can select multiple Parts of Speech for a single word. At first, this may seem strange. How can a word be a Noun, Verb, and Adjective at the same time? But, what if we don't know what Part of Speech a word is? A word that has multiple Parts of Speech represents our uncertainty or lack of knowledge. The solver can use that uncertainty to work out all possible trees that satisfy the other constraints.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Once the sentence has been annotated to the best of a our ability, we can compute the trees that satisfy the syntax rules in conjunction with the annotations.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. Build/Solve/Compute All Syntax Trees For a Sentence</Typography>
+In the [Tree Viewer](https://adambcomer.com/lin-tree-solver/viewer), you can view all of the parsed trees.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies:
+This project uses Web Workers to parse the trees. To get the best performance and support, use an up-to-date version of Chrome, Firefox, or Safari.
+## FAQ:
 
-### `npm run eject`
+### Why are a few the syntax rules slightly different from the textbook?
+The textbook has some rules that don't work well with parsers and were modified to work as the author intended. For example, the X-Bar rule in the textbook N'&rarr;N' (PP). This rule can be satisfied by an infinite chain of N's. Intuitively, we know that the shortest possible tree is the desired result, but the computer doesn't know that when it searches for every possible tree. I modified some of the rules to work with the parser to give the desired parsed trees rather then make the exact rules work. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Can I save a picture of the parsed trees?
+Yes. In the [Tree Viewer](https://adambcomer.com/lin-tree-solver/viewer), there is a Image button in the top right. Clicking this button will generate an image based on the viewer window and automatically download it.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### How do I share my Sentence/Syntax Rules with a friend?
+Currently, there are no sharing mechanisms. This feature is under active development. I'm considering several strategies to make this feature work seamlessly. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Is this project open source?
+  Yes. You can view the code at my [Github Repository](https://github.com/adambcomer/lin-tree-solver). I'm happy to merge pull requests that build on the project.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## To-Do:
 
-## Learn More
+- Saving of Sentences/Syntax Rules/Trees
+- Sharing of Sentences/Syntax Rules/Trees
+- Embeddable iframes
+- Tooling to catch common syntax rule errors
+- Improve rendering for larger trees
+- Label structural relationships between all of the nodes in a tree
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Resources:
+Email: [adambcomer@gmail.com](mailto:adambcomer@gmail.com)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Project Site: [Project Site](https://adambcomer.com/lin-tree-solver/)
+Personal Site: [Personal Site](https://adambcomer.com/)
+Repository: [Project Github Repository](https://github.com/adambcomer/lin-tree-solver)

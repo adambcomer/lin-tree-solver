@@ -125,7 +125,8 @@ const Home: React.FC = () => {
 
       <Typography variant='h4' component='h2' className={classes.subtitle}>Resources:</Typography>
       <Typography variant='body1' component='p' className={classes.body}>Email: <a href='mailto:adambcomer@gmail.com' className={classes.link}>adambcomer@gmail.com</a></Typography>
-      <Typography variant='body1' component='p' className={classes.body}>Website: <a href='https://adambcomer.com/' className={classes.link}>My Personal Website</a></Typography>
+      <Typography variant='body1' component='p' className={classes.body}>Project Site: <a href='https://adambcomer.com/lin-tree-solver/' className={classes.link}>Project Site</a></Typography>
+      <Typography variant='body1' component='p' className={classes.body}>Personal Site: <a href='https://adambcomer.com/' className={classes.link}>Personal Site</a></Typography>
       <Typography variant='body1' component='p' className={classes.body}>Repository: <a href='https://github.com/adambcomer/lin-tree-solver' className={classes.link}>Project Github Repository</a></Typography>
     </Grid>
   )
