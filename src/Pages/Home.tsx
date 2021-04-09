@@ -36,9 +36,16 @@ const Home: React.FC = () => {
 
   return (
     <Grid item xs className={classes.container}>
-      <Helmet>
+      <Helmet htmlAttributes={{ lang: 'en' }}>
         <title>Linguistics Tree Solver</title>
         <meta name='description' content='Automatically build trees based on linguistic syntax rules.' />
+
+        <link rel='canonical' href='https://adambcomer.com/lin-tree-solver/' />
+
+        <meta property='og:title' content='Linguistics Tree Solver' />
+        <meta property='og:description' content='Automatically build trees based on linguistic syntax rules.' />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/' />
       </Helmet>
 
       <Typography variant='h3' component='h1'>Linguistics Tree Solver</Typography>

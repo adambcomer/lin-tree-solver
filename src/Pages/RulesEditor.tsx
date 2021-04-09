@@ -52,9 +52,16 @@ const RuleEditor: React.FC = () => {
 
   return (
     <>
-      <Helmet>
+      <Helmet htmlAttributes={{ lang: 'en' }}>
         <title>Syntax Rules Editor | Linguistics Tree Solver</title>
         <meta name='description' content='Add your custom syntax rules for the solver to build trees with.' />
+
+        <link rel='canonical' href='https://adambcomer.com/lin-tree-solver/rules' />
+
+        <meta property='og:title' content='Syntax Rules Editor | Linguistics Tree Solver' />
+        <meta property='og:description' content='Add your custom syntax rules for the solver to build trees with.' />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/rules' />
       </Helmet>
       <Grid item xs>
         <Typography variant='h3' component='h1' className={classes.header}>Syntax Rules</Typography>

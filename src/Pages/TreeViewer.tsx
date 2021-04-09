@@ -148,9 +148,16 @@ const TreeViewer: React.FC = () => {
   if (loading) {
     return (
       <>
-        <Helmet>
+        <Helmet htmlAttributes={{ lang: 'en' }}>
           <title>Tree Viewer | Linguistics Tree Solver</title>
           <meta name='description' content='View parsed and built trees.' />
+
+          <link rel='canonical' href='https://adambcomer.com/lin-tree-solver/viewer' />
+
+          <meta property='og:title' content='Tree Viewer | Linguistics Tree Solver' />
+          <meta property='og:description' content='View parsed and built trees.' />
+          <meta property='og:type' content='website' />
+          <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/viewer' />
         </Helmet>
         <Grid item xs>
           <div className={classes.loadingContainer}>
@@ -164,10 +171,17 @@ const TreeViewer: React.FC = () => {
   }
   return (
     <>
-      <Helmet>
-        <title>Tree Viewer | Linguistics Tree Solver</title>
-        <meta name='description' content='View parsed and built trees.' />
-      </Helmet>
+        <Helmet htmlAttributes={{ lang: 'en' }}>
+          <title>Tree Viewer | Linguistics Tree Solver</title>
+          <meta name='description' content='View parsed and built trees.' />
+
+          <link rel='canonical' href='https://adambcomer.com/lin-tree-solver/viewer' />
+
+          <meta property='og:title' content='Tree Viewer | Linguistics Tree Solver' />
+          <meta property='og:description' content='View parsed and built trees.' />
+          <meta property='og:type' content='website' />
+          <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/viewer' />
+        </Helmet>
       <Grid item xs>
         <Grid container className={classes.container}>
           <Grid item xs={12} className={classes.svgContainer}>

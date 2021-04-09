@@ -176,9 +176,16 @@ const RuleSetEditor: React.FC = () => {
 
   return (
     <>
-      <Helmet>
+      <Helmet htmlAttributes={{ lang: 'en' }}>
         <title>{rs.name} Syntax Rules | Linguistics Tree Solver</title>
-        <meta name='description' content={`Edit ${rs.name} syntax rules to your heart's content.`} />
+        <meta name='description' content={`${rs.name} syntax rules.`} />
+
+        <link rel='canonical' href={`https://adambcomer.com/lin-tree-solver/rules/${id}`} />
+
+        <meta property='og:title' content={`${rs.name} Syntax Rules | Linguistics Tree Solver`} />
+        <meta property='og:description' content={`${rs.name} syntax rules.`} />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content={`https://adambcomer.com/lin-tree-solver/rules/${id}`} />
       </Helmet>
       <Grid item xs>
         <div className={classes.headerContainer}>

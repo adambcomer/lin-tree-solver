@@ -57,9 +57,16 @@ const SentenceEditor: React.FC = () => {
 
   return (
     <>
-      <Helmet>
+      <Helmet htmlAttributes={{ lang: 'en' }}>
         <title>Sentence Editor | Linguistics Tree Solver</title>
         <meta name='description' content='Add your sentence and annotate it for the tree builder.' />
+
+        <link rel='canonical' href='https://adambcomer.com/lin-tree-solver/sentence' />
+
+        <meta property='og:title' content='Sentence Editor | Linguistics Tree Solver' />
+        <meta property='og:description' content='Add your sentence and annotate it for the tree builder.' />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/sentence' />
       </Helmet>
       <Grid item xs className={classes.container}>
         <Typography variant='h3' component='h1'>Sentence Editor</Typography>
@@ -74,8 +81,8 @@ const SentenceEditor: React.FC = () => {
                     <Grid container spacing={1} justify='space-evenly'>
                       {[...ruleSets[ruleSetIndex].getPos()].map((pos, j) => {
                         return (
-                          <Grid item>
-                            <Avatar key={j} className={classes.posAvatar} style={{ backgroundColor: (w.pos.includes(pos) ? getColor(j) : '#bdbdbd') }} onClick={onPosClicked(i, pos)}>{pos}</Avatar>
+                          <Grid item key={j}>
+                            <Avatar className={classes.posAvatar} style={{ backgroundColor: (w.pos.includes(pos) ? getColor(j) : '#bdbdbd') }} onClick={onPosClicked(i, pos)}>{pos}</Avatar>
                           </Grid>
                         )
                       })}
