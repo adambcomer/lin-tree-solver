@@ -44,8 +44,10 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props, ref) =
   }, [canvas, ref]);
 
   useEffect(() => {
-    const font = new FontFaceObserver('Roboto Mono')
-    font.load().then(() => {
+    const font1 = new FontFaceObserver('Roboto Mono')
+    const font2 = new FontFaceObserver('Roboto Mono', { weight: 500 })
+
+    Promise.all([font1.load(), font2.load()]).then(() => {
       if (canvas.current == null) return
       setCanvasSize({ width: canvas.current.clientWidth * 4, height: canvas.current.clientHeight * 4 })
     }).catch(() => { })
