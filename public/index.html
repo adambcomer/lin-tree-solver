@@ -24,6 +24,18 @@
   <meta property="og:description" content="Automatically build trees based on linguistic syntax rules." data-react-helmet="true" />
   <meta property="og:type" content="website" data-react-helmet="true" />
   <meta property="og:url" content="https://adambcomer.com/lin-tree-solver/" data-react-helmet="true" />
+
+  <% if (process.env.NODE_ENV === 'production') { %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPWF2XR6L3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-NPWF2XR6L3');
+    </script>
+  <% } %>
 </head>
 
 <body>

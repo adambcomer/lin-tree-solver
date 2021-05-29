@@ -59,7 +59,7 @@ const App: React.FC = () => {
           </BrowserRouter>
         </Provider>
       </ThemeProvider>
-    </React.Fragment >
+    </React.Fragment>
   )
 }
 

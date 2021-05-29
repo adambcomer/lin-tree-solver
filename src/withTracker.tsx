@@ -1,46 +1,24 @@
-/**
- * From ReactGA Community Wiki Page https://github.com/react-ga/react-ga/wiki/React-Router-v4-withTracker
- */
+import { ComponentType, useEffect } from 'react'
+import { RouteChildrenProps } from 'react-router'
 
-import React, { Component, ComponentType, ReactNode } from 'react'
-import ReactGA from 'react-ga'
+const withTracker = <P extends RouteChildrenProps>(WrappedComponent: ComponentType<P>) => {
+  const trackPage = (page: string) => {
+    if (window.gtag === undefined) return
 
-ReactGA.initialize('UA-129077573-1')
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export default function withTracker (WrappedComponent: ComponentType, options = {}) {
-  const trackPage = (page: string): void => {
-    ReactGA.set({
-      page: '/lin-tree-solver' + page,
-      ...options
-    })
-    ReactGA.pageview('/lin-tree-solver' + page)
+    window.gtag('config', 'G-NPWF2XR6L3', { 'page_path': page })
+    window.gtag('config', 'UA-129077573-1', { 'page_path': page })
   }
 
-  const HOC = class extends Component<{ location: { pathname: string } }> {
-    componentDidMount (): void {
-      const {
-        location: { pathname: page }
-      } = this.props
-      trackPage(page)
-    }
+  const HOC = (props: P) => {
 
-    // eslint-disable-next-line camelcase
-    UNSAFE_componentWillReceiveProps (nextProps: { location: { pathname: string } }): void {
-      const {
-        location: { pathname: currentPage }
-      } = this.props
-      const nextPage = nextProps.location.pathname
+    useEffect(() => {
+      trackPage(props.location.pathname)
+    }, [props.location.pathname])
 
-      if (currentPage !== nextPage) {
-        trackPage(nextPage)
-      }
-    }
-
-    render (): ReactNode {
-      return <WrappedComponent {...this.props} />
-    }
+    return <WrappedComponent {...props as P} />
   }
 
   return HOC
 }
+
+export default withTracker
