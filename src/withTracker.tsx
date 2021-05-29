@@ -12,7 +12,7 @@ const withTracker = <P extends RouteChildrenProps>(WrappedComponent: ComponentTy
   const HOC = (props: P) => {
 
     useEffect(() => {
-      trackPage(props.location.pathname)
+      trackPage('/lin-tree-solver' + props.location.pathname)
     }, [props.location.pathname])
 
     return <WrappedComponent {...props as P} />
