@@ -1,11 +1,7 @@
-import { RuleSet } from '../../helpers/ruleset'
-import { RuleSetActionTypes } from '../actions/rulesets'
-import { ADD_RULE_SET, UPDATE_RULE_SET, REMOVE_RULE_SET, SET_DEFAULT_RULE_SET } from '../actions/types'
-
-export interface RuleSetsReducerState {
-  index: number
-  ruleSets: RuleSet[]
-}
+import { FC, useState } from 'react'
+import { RuleSet } from '../helpers/ruleset'
+import { RuleSetsContext } from './RuleSetsContext'
+import { SentenceContext, Word } from './SentenceContext'
 
 const ruleSet0 = new RuleSet('Chapter 3: Constituency, Trees, and Rules, Syntax: A Generative Introduction, by Andrew Carnie');
 ['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach(t => ruleSet0.addPos(t));
@@ -51,56 +47,30 @@ const ruleSet1 = new RuleSet('Chapter 6: X-bar Theory, Syntax: A Generative Intr
   ['X', 'X Conj X']
 ].forEach(([name, rule]) => ruleSet1.addRule(name, rule))
 
-const initialState: RuleSetsReducerState = {
-  index: 0,
-  ruleSets: [ruleSet0, ruleSet1]
+const GlobalContextProvider: FC = ({ children }) => {
+  const [words, setWords] = useState<Word[]>(
+    [
+      { word: 'The', pos: ['D'] },
+      { word: 'small', pos: ['Adj'] },
+      { word: 'dog', pos: ['N'] },
+      { word: 'quickly', pos: ['Adv'] },
+      { word: 'ran', pos: ['V'] },
+      { word: 'home', pos: ['N'] },
+      { word: 'to', pos: ['P'] },
+      { word: 'his', pos: ['D'] },
+      { word: 'owner', pos: ['N'] }
+    ]
+  )
+  const [ruleSets, setRuleSets] = useState<RuleSet[]>([ruleSet0, ruleSet1])
+  const [ruleSetIdx, setRuleSetIdx] = useState(0)
+
+  return (
+    <SentenceContext.Provider value={{ words: words, setWords: setWords }}>
+      <RuleSetsContext.Provider value={{ ruleSets: ruleSets, idx: ruleSetIdx, setRuleSets: setRuleSets, setRuleSetIdx: setRuleSetIdx }}>
+        {children}
+      </RuleSetsContext.Provider>
+    </SentenceContext.Provider>
+  )
 }
 
-// eslint-disable-next-line @typescript-eslint/default-param-last
-export default function reducer(state = initialState, action: RuleSetActionTypes): RuleSetsReducerState {
-  switch (action.type) {
-    case UPDATE_RULE_SET: {
-      const { index, ruleSet } = action.payload
-      if (index >= state.ruleSets.length) {
-        return state
-      }
-
-      state.ruleSets[index] = ruleSet
-
-      return {
-        ...state,
-        ruleSets: [...state.ruleSets]
-      }
-    }
-    case ADD_RULE_SET: {
-      const { name } = action.payload
-
-      const ruleSet = new RuleSet(name)
-
-      return {
-        ...state,
-        ruleSets: [...state.ruleSets, ruleSet]
-      }
-    }
-    case REMOVE_RULE_SET: {
-      const { index } = action.payload
-
-      state.ruleSets.splice(index, 1)
-
-      return {
-        ...state,
-        ruleSets: [...state.ruleSets]
-      }
-    }
-    case SET_DEFAULT_RULE_SET: {
-      const { index } = action.payload
-
-      return {
-        ...state,
-        index
-      }
-    }
-    default:
-      return state
-  }
-}
+export default GlobalContextProvider

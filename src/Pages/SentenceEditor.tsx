@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import { ChangeEvent, FC, useContext, useState } from 'react'
 import { Typography, Grid, makeStyles, TextField, Avatar, Card, CardContent } from '@material-ui/core'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../redux/reducers'
 import { getColor } from '../helpers/colors'
-import { removePos, addPos, setSentence } from '../redux/actions/sentence'
 import { Helmet } from 'react-helmet'
+import { SentenceContext } from '../Context/SentenceContext'
+import { RuleSetsContext } from '../Context/RuleSetsContext'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,27 +29,35 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const SentenceEditor: React.FC = () => {
-  const words = useSelector((state: RootState) => state.sentence.words)
+const SentenceEditor: FC = () => {
+  const { words, setWords } = useContext(SentenceContext)
+  const { ruleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
   const [sentence, setSentenceText] = useState(words.map(w => w.word).join(' '))
 
-  const ruleSets = useSelector((state: RootState) => state.rules.ruleSets)
-  const ruleSetIndex = useSelector((state: RootState) => state.rules.index)
-
-  const dispatch = useDispatch()
   const classes = useStyles()
 
-  function onSentenceChange (e: React.ChangeEvent<HTMLInputElement>): void {
+  function onSentenceChange (e: ChangeEvent<HTMLInputElement>): void {
     setSentenceText(e.target.value)
-    dispatch(setSentence(e.target.value))
+
+    const words: Array<{ word: string, pos: string[] }> = []
+    e.target.value.split(' ').forEach(w => {
+      if (w === '') {
+        return
+      }
+      words.push({ word: w, pos: [] })
+    })
+
+    setWords(words)
   }
 
   function onPosClicked (wordIndex: number, pos: string): () => void {
     return (): void => {
       if (words[wordIndex].pos.includes(pos)) {
-        dispatch(removePos(wordIndex, pos))
+        words[wordIndex].pos = words[wordIndex].pos.filter(p => p !== pos)
+        setWords([...words])
       } else {
-        dispatch(addPos(wordIndex, pos))
+        words[wordIndex].pos.push(pos)
+        setWords([...words])
       }
     }
   }

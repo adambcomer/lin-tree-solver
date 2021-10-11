@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC } from 'react'
 import { Link, makeStyles, Typography, Grid } from '@material-ui/core'
 import { Link as RouterLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
@@ -27,11 +27,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2)
   },
   answer: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1)
   }
 }))
 
-const Home: React.FC = () => {
+const Home: FC = () => {
   const classes = useStyles()
 
   return (
@@ -98,21 +98,21 @@ const Home: React.FC = () => {
 
       <Typography variant='h6' component='h3' className={classes.question}>Why are a few the syntax rules slightly different from the textbook?</Typography>
       <Typography variant='body1' component='p' className={classes.answer}>
-        The textbook has some rules that don't work well with parsers and were modified to work as the author intended. 
-        For example, the X-Bar rule in the textbook N'&rarr;N' (PP). This rule can be satisfied by an infinite chain of N's. 
+        The textbook has some rules that don't work well with parsers and were modified to work as the author intended.
+        For example, the X-Bar rule in the textbook N'&rarr;N' (PP). This rule can be satisfied by an infinite chain of N's.
         Intuitively, we know that the shortest possible tree is the desired result, but the computer doesn't know that when it searches for every possible tree.
-        I modified some of the rules to work with the parser to give the desired parsed trees rather then make the exact rules work. 
+        I modified some of the rules to work with the parser to give the desired parsed trees rather then make the exact rules work.
       </Typography>
 
       <Typography variant='h6' component='h3' className={classes.question}>Can I save a picture of the parsed trees?</Typography>
       <Typography variant='body1' component='p' className={classes.answer}>
-        Yes. In the <Link component={RouterLink} to='/viewer' className={classes.link}>Tree Viewer</Link>, there is a Image button in the top right. 
+        Yes. In the <Link component={RouterLink} to='/viewer' className={classes.link}>Tree Viewer</Link>, there is a Image button in the top right.
         Clicking this button will generate an image based on the viewer window and automatically download it.
       </Typography>
 
       <Typography variant='h6' component='h3' className={classes.question}>How do I share my Sentence/Syntax Rules with a friend?</Typography>
       <Typography variant='body1' component='p' className={classes.answer}>
-        Currently, there are no sharing mechanisms. This feature is under active development. I'm considering several strategies to make this feature work seamlessly. 
+        Currently, there are no sharing mechanisms. This feature is under active development. I'm considering several strategies to make this feature work seamlessly.
       </Typography>
 
       <Typography variant='h6' component='h3' className={classes.question}>Is this project open source?</Typography>
@@ -122,7 +122,7 @@ const Home: React.FC = () => {
 
       <Typography variant='h4' component='h2' className={classes.subtitle}>To-Do:</Typography>
       <ul>
-      <li><Typography variant='body1' component='p' className={classes.body}>Saving of Sentences/Syntax Rules/Trees</Typography></li>
+        <li><Typography variant='body1' component='p' className={classes.body}>Saving of Sentences/Syntax Rules/Trees</Typography></li>
         <li><Typography variant='body1' component='p' className={classes.body}>Sharing of Sentences/Syntax Rules/Trees</Typography></li>
         <li><Typography variant='body1' component='p' className={classes.body}>Embeddable iframes</Typography></li>
         <li><Typography variant='body1' component='p' className={classes.body}>Tooling to catch common syntax rule errors</Typography></li>

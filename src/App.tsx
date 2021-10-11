@@ -1,16 +1,15 @@
-import React from 'react'
+import { FC } from 'react'
 import TreeViewer from './Pages/TreeViewer'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import { createMuiTheme, ThemeProvider, Grid } from '@material-ui/core'
+import { ThemeProvider, Grid, createTheme } from '@material-ui/core'
 import Navbar from './Components/Navbar'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import SentenceEditor from './Pages/SentenceEditor'
-import { Provider } from 'react-redux'
-import store from './redux/store'
 import RuleEditor from './Pages/RulesEditor'
 import RuleSetEditor from './Pages/RuleSetEditor'
 import Home from './Pages/Home'
 import withTracker from './withTracker'
+import GlobalContextProvider from './Context/GlobalContextProvider'
 
 import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
@@ -20,7 +19,7 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto-mono/400.css'
 import '@fontsource/roboto-mono/500.css'
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#263238',
@@ -35,31 +34,28 @@ const theme = createMuiTheme({
   }
 })
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
-    <React.Fragment>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <GlobalContextProvider>
+        <BrowserRouter basename='/lin-tree-solver'>
+          <Grid container>
 
-        <Provider store={store}>
-          <BrowserRouter basename='/lin-tree-solver'>
-            <Grid container>
+            <Navbar />
+            <Switch>
+              <Route exact path='/' component={withTracker(Home)} />
+              <Route exact path='/sentence' component={withTracker(SentenceEditor)} />
+              <Route exact path='/viewer' component={withTracker(TreeViewer)} />
+              <Route exact path='/rules' component={withTracker(RuleEditor)} />
+              <Route exact path='/rules/:id' component={withTracker(RuleSetEditor)} />
+              <Redirect to='/' />
+            </Switch>
 
-              <Navbar />
-              <Switch>
-                <Route exact path='/' component={withTracker(Home)} />
-                <Route exact path='/sentence' component={withTracker(SentenceEditor)} />
-                <Route exact path='/viewer' component={withTracker(TreeViewer)} />
-                <Route exact path='/rules' component={withTracker(RuleEditor)} />
-                <Route exact path='/rules/:id' component={withTracker(RuleSetEditor)} />
-                <Redirect to='/' />
-              </Switch>
-
-            </Grid>
-          </BrowserRouter>
-        </Provider>
-      </ThemeProvider>
-    </React.Fragment>
+          </Grid>
+        </BrowserRouter>
+      </GlobalContextProvider>
+    </ThemeProvider>
   )
 }
 

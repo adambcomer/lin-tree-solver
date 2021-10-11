@@ -1,17 +1,17 @@
 import { CircularProgress, Grid, makeStyles, Fade, Fab, Tooltip } from '@material-ui/core'
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, FC, useContext } from 'react'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import ImageIcon from '@material-ui/icons/Image'
 import TreeCanvas from '../Components/TreeCanvas'
 import ZoomInIcon from '@material-ui/icons/ZoomIn'
 import ZoomOutIcon from '@material-ui/icons/ZoomOut'
-import { useSelector } from 'react-redux'
-import { RootState } from '../redux/reducers'
 import { Node } from '../types'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import ParserWorker from 'worker-loader!../workers/parser.worker'
 import { Helmet } from 'react-helmet'
+import { SentenceContext } from '../Context/SentenceContext'
+import { RuleSetsContext } from '../Context/RuleSetsContext'
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -85,10 +85,9 @@ const useStyles = makeStyles(() => ({
 
 const worker = new ParserWorker()
 
-const TreeViewer: React.FC = () => {
-  const words = useSelector((state: RootState) => state.sentence.words)
-  const ruleSets = useSelector((state: RootState) => state.rules.ruleSets)
-  const ruleSetIndex = useSelector((state: RootState) => state.rules.index)
+const TreeViewer: FC = () => {
+  const { words } = useContext(SentenceContext)
+  const { ruleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
   const [trees, setTrees] = useState<Node[]>([])
   const [treeIndex, setTreeIndex] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -109,23 +108,23 @@ const TreeViewer: React.FC = () => {
     worker.postMessage({ grammar: ruleSets[ruleSetIndex].grammar(), words })
   }, [ruleSetIndex, ruleSets, words])
 
-  function nextTree(): void {
+  function nextTree (): void {
     setTreeIndex(treeIndex + 1)
   }
 
-  function priorTree(): void {
+  function priorTree (): void {
     setTreeIndex(treeIndex - 1)
   }
 
-  function zoomIn(): void {
-    setCanvasZoom(canvasZoom * 4/3)
+  function zoomIn (): void {
+    setCanvasZoom(canvasZoom * 4 / 3)
   }
 
-  function zoomOut(): void {
-    setCanvasZoom(canvasZoom * 3/4)
+  function zoomOut (): void {
+    setCanvasZoom(canvasZoom * 3 / 4)
   }
 
-  function saveTreeImage(): void {
+  function saveTreeImage (): void {
     if (canvas.current === null) return
 
     const image = document.createElement('canvas')
@@ -171,17 +170,17 @@ const TreeViewer: React.FC = () => {
   }
   return (
     <>
-        <Helmet htmlAttributes={{ lang: 'en' }}>
-          <title>Tree Viewer | Linguistics Tree Solver</title>
-          <meta name='description' content='View parsed and built trees.' />
+      <Helmet htmlAttributes={{ lang: 'en' }}>
+        <title>Tree Viewer | Linguistics Tree Solver</title>
+        <meta name='description' content='View parsed and built trees.' />
 
-          <link rel='canonical' href='https://adambcomer.com/lin-tree-solver/viewer' />
+        <link rel='canonical' href='https://adambcomer.com/lin-tree-solver/viewer' />
 
-          <meta property='og:title' content='Tree Viewer | Linguistics Tree Solver' />
-          <meta property='og:description' content='View parsed and built trees.' />
-          <meta property='og:type' content='website' />
-          <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/viewer' />
-        </Helmet>
+        <meta property='og:title' content='Tree Viewer | Linguistics Tree Solver' />
+        <meta property='og:description' content='View parsed and built trees.' />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/viewer' />
+      </Helmet>
       <Grid item xs>
         <Grid container className={classes.container}>
           <Grid item xs={12} className={classes.svgContainer}>

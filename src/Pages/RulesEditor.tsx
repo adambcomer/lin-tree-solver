@@ -1,14 +1,13 @@
-import React from 'react'
+import { FC, useContext } from 'react'
 import { Typography, makeStyles, List, ListItem, ListItemText, ListItemIcon, ListItemSecondaryAction, IconButton, Tooltip, Fab, Grid } from '@material-ui/core'
 import DoneIcon from '@material-ui/icons/Done'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import AddIcon from '@material-ui/icons/Add'
-import { RootState } from '../redux/reducers'
-import { useSelector, useDispatch } from 'react-redux'
-import { removeRuleSet, addRuleSet, setDefaultRuleSet } from '../redux/actions/rulesets'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import { RuleSetsContext } from '../Context/RuleSetsContext'
+import { RuleSet } from '../helpers/ruleset'
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -26,28 +25,27 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const RuleEditor: React.FC = () => {
-  const ruleSets = useSelector((state: RootState) => state.rules.ruleSets)
-  const ruleSetIndex = useSelector((state: RootState) => state.rules.index)
-  const dispatch = useDispatch()
+const RuleEditor: FC = () => {
+  const { ruleSets, setRuleSets, idx: ruleSetIndex, setRuleSetIdx } = useContext(RuleSetsContext)
 
   const classes = useStyles()
 
   function deleteRuleSetClick (index: number): () => void {
     return () => {
-      dispatch(removeRuleSet(index))
+      ruleSets.splice(index, 1)
+      setRuleSets([...ruleSets])
     }
   }
 
   function setDefaultRuleSetClick (index: number): () => void {
     return () => {
-      dispatch(setDefaultRuleSet(index))
+      setRuleSetIdx(index)
     }
   }
 
   function createRuleSetClick (): void {
     const d = new Date()
-    dispatch(addRuleSet(`New Rule Set - ${d.toLocaleDateString('en-US')} ${d.toLocaleTimeString('en-US')}`))
+    setRuleSets([...ruleSets, new RuleSet(`New Rule Set - ${d.toLocaleDateString('en-US')} ${d.toLocaleTimeString('en-US')}`)])
   }
 
   return (

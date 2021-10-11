@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC } from 'react'
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Divider, Typography } from '@material-ui/core'
 import AspectRatioIcon from '@material-ui/icons/AspectRatio'
 import GavelIcon from '@material-ui/icons/Gavel'
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Navbar: React.FC = () => {
+const Navbar: FC = () => {
   const sentenceMatch = useRouteMatch('/sentence')
   const viewerMatch = useRouteMatch('/viewer')
   const rulesMatch = useRouteMatch('/rules')

@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import React, { forwardRef, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { forwardRef, MouseEvent, TouchEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { RuleSet } from '../helpers/ruleset'
 import FontFaceObserver from 'fontfaceobserver'
 import { getColor } from '../helpers/colors'
@@ -41,7 +41,7 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props, ref) =
         (ref as any).current = canvas.current
       }
     }
-  }, [canvas, ref]);
+  }, [canvas, ref])
 
   useEffect(() => {
     const font1 = new FontFaceObserver('Roboto Mono')
@@ -122,15 +122,15 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props, ref) =
     drawTree(canvasSize.height, canvasSize.width, canvasPan.dx, canvasPan.dy)
   }, [canvasSize, canvasPan, drawTree])
 
-  function onMouseDownCanvas(e: React.MouseEvent<HTMLCanvasElement, MouseEvent>): void {
+  function onMouseDownCanvas (e: MouseEvent<HTMLCanvasElement>): void {
     setCanvasPan({ ...canvasPan, x: e.clientX, y: e.clientY, down: true })
   }
 
-  function onMouseUpCanvas(e: React.MouseEvent<HTMLCanvasElement, MouseEvent>): void {
+  function onMouseUpCanvas (e: MouseEvent<HTMLCanvasElement>): void {
     setCanvasPan({ ...canvasPan, x: e.clientX, y: e.clientY, down: false })
   }
 
-  function onMouseMoveCanvas(e: React.MouseEvent<HTMLCanvasElement, MouseEvent>): void {
+  function onMouseMoveCanvas (e: MouseEvent<HTMLCanvasElement>): void {
     if (!canvasPan.down) return
 
     const dx = (e.clientX - canvasPan.x) * 4
@@ -139,15 +139,15 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props, ref) =
     setCanvasPan({ ...canvasPan, x: e.clientX, y: e.clientY, dx: canvasPan.dx + dx, dy: canvasPan.dy + dy })
   }
 
-  function onTouchDownCanvas(e: React.TouchEvent<HTMLCanvasElement>): void {
+  function onTouchDownCanvas (e: TouchEvent<HTMLCanvasElement>): void {
     setCanvasPan({ ...canvasPan, x: e.touches[0].clientX, y: e.touches[0].clientY, down: true })
   }
 
-  function onTouchUpCanvas(e: React.TouchEvent<HTMLCanvasElement>): void {
+  function onTouchUpCanvas (e: TouchEvent<HTMLCanvasElement>): void {
     setCanvasPan({ ...canvasPan, down: false })
   }
 
-  function onTouchMoveCanvas(e: React.TouchEvent<HTMLCanvasElement>): void {
+  function onTouchMoveCanvas (e: TouchEvent<HTMLCanvasElement>): void {
     if (!canvasPan.down) return
 
     const dx = (e.touches[0].clientX - canvasPan.x) * 4

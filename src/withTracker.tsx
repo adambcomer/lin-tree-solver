@@ -5,12 +5,11 @@ const withTracker = <P extends RouteChildrenProps>(WrappedComponent: ComponentTy
   const trackPage = (page: string) => {
     if (window.gtag === undefined) return
 
-    window.gtag('config', 'G-NPWF2XR6L3', { 'page_path': page })
-    window.gtag('config', 'UA-129077573-1', { 'page_path': page })
+    window.gtag('config', 'G-NPWF2XR6L3', { page_path: page })
+    window.gtag('config', 'UA-129077573-1', { page_path: page })
   }
 
   const HOC = (props: P) => {
-
     useEffect(() => {
       trackPage('/lin-tree-solver' + props.location.pathname)
     }, [props.location.pathname])
