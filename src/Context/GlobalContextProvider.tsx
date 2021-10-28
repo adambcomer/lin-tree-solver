@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { RuleSet } from '../helpers/ruleset'
 import { RuleSetsContext } from './RuleSetsContext'
 import { SentenceContext, Word } from './SentenceContext'

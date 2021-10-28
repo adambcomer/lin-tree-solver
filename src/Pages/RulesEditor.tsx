@@ -1,49 +1,31 @@
-import { FC, useContext } from 'react'
-import { Typography, makeStyles, List, ListItem, ListItemText, ListItemIcon, ListItemSecondaryAction, IconButton, Tooltip, Fab, Grid } from '@material-ui/core'
-import DoneIcon from '@material-ui/icons/Done'
-import EditIcon from '@material-ui/icons/Edit'
-import DeleteIcon from '@material-ui/icons/Delete'
-import AddIcon from '@material-ui/icons/Add'
+import React, { FC, useContext } from 'react'
+import { Typography, List, ListItem, ListItemText, ListItemIcon, ListItemSecondaryAction, IconButton, Tooltip, Fab, Grid } from '@mui/material'
+import DoneIcon from '@mui/icons-material/Done'
+import EditIcon from '@mui/icons-material/Edit'
+import DeleteIcon from '@mui/icons-material/Delete'
+import AddIcon from '@mui/icons-material/Add'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 import { RuleSet } from '../helpers/ruleset'
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    paddingTop: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
-  },
-  newRuleSetButton: {
-    position: 'fixed',
-    right: 20,
-    bottom: 20
-  },
-  editRuleSetButton: {
-    marginRight: 0
-  }
-}))
-
 const RuleEditor: FC = () => {
   const { ruleSets, setRuleSets, idx: ruleSetIndex, setRuleSetIdx } = useContext(RuleSetsContext)
 
-  const classes = useStyles()
-
-  function deleteRuleSetClick (index: number): () => void {
+  const deleteRuleSetClick = (index: number) => {
     return () => {
       ruleSets.splice(index, 1)
       setRuleSets([...ruleSets])
     }
   }
 
-  function setDefaultRuleSetClick (index: number): () => void {
+  const setDefaultRuleSetClick = (index: number) => {
     return () => {
       setRuleSetIdx(index)
     }
   }
 
-  function createRuleSetClick (): void {
+  const createRuleSetClick = () => {
     const d = new Date()
     setRuleSets([...ruleSets, new RuleSet(`New Rule Set - ${d.toLocaleDateString('en-US')} ${d.toLocaleTimeString('en-US')}`)])
   }
@@ -62,7 +44,7 @@ const RuleEditor: FC = () => {
         <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/rules' />
       </Helmet>
       <Grid item xs>
-        <Typography variant='h3' component='h1' className={classes.header}>Syntax Rules</Typography>
+        <Typography variant='h3' component='h1' sx={{ pt: 2, px: 2 }}>Syntax Rules</Typography>
         <List>
           {ruleSets.map((r, i) => {
             return (
@@ -72,13 +54,12 @@ const RuleEditor: FC = () => {
                     <Tooltip title='Default'>
                       <DoneIcon />
                     </Tooltip>
-                  </ListItemIcon>
-                }
+                  </ListItemIcon>}
                 <ListItemText inset={ruleSetIndex !== i} primary={r.name} secondary={`${[...r.getPos()].length} Parts of Speech, ${[...r.getRules()].length} Syntax Rules`} />
                 <ListItemSecondaryAction>
                   <Link to={`/rules/${i}`}>
                     <Tooltip title='Edit'>
-                      <IconButton edge='end' className={classes.editRuleSetButton}>
+                      <IconButton edge='end' sx={{ mr: 0 }}>
                         <EditIcon />
                       </IconButton>
                     </Tooltip>
@@ -94,7 +75,7 @@ const RuleEditor: FC = () => {
           })}
         </List>
         <Tooltip title='New Rule Set' placement='top'>
-          <Fab color='primary' onClick={createRuleSetClick} className={classes.newRuleSetButton}>
+          <Fab color='primary' onClick={createRuleSetClick} sx={{ position: 'fixed', right: 20, bottom: 20 }}>
             <AddIcon />
           </Fab>
         </Tooltip>

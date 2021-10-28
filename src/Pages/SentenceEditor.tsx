@@ -1,42 +1,16 @@
-import { ChangeEvent, FC, useContext, useState } from 'react'
-import { Typography, Grid, makeStyles, TextField, Avatar, Card, CardContent } from '@material-ui/core'
+import React, { ChangeEvent, FC, useContext, useState } from 'react'
+import { Typography, Grid, TextField, Avatar, Card, CardContent } from '@mui/material'
 import { getColor } from '../helpers/colors'
 import { Helmet } from 'react-helmet'
 import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    paddingTop: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
-  },
-  textEdit: {
-    marginTop: theme.spacing(2)
-  },
-  wordsContainer: {
-    marginTop: theme.spacing(4)
-  },
-  word: {
-    textAlign: 'center',
-    marginBottom: theme.spacing(2)
-  },
-  posAvatar: {
-    height: theme.spacing(4),
-    width: theme.spacing(4),
-    fontSize: theme.typography.body2.fontSize,
-    cursor: 'pointer'
-  }
-}))
 
 const SentenceEditor: FC = () => {
   const { words, setWords } = useContext(SentenceContext)
   const { ruleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
   const [sentence, setSentenceText] = useState(words.map(w => w.word).join(' '))
 
-  const classes = useStyles()
-
-  function onSentenceChange (e: ChangeEvent<HTMLInputElement>): void {
+  const onSentenceChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSentenceText(e.target.value)
 
     const words: Array<{ word: string, pos: string[] }> = []
@@ -50,7 +24,7 @@ const SentenceEditor: FC = () => {
     setWords(words)
   }
 
-  function onPosClicked (wordIndex: number, pos: string): () => void {
+  const onPosClicked = (wordIndex: number, pos: string) => {
     return (): void => {
       if (words[wordIndex].pos.includes(pos)) {
         words[wordIndex].pos = words[wordIndex].pos.filter(p => p !== pos)
@@ -75,21 +49,21 @@ const SentenceEditor: FC = () => {
         <meta property='og:type' content='website' />
         <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/sentence' />
       </Helmet>
-      <Grid item xs className={classes.container}>
+      <Grid item xs sx={{ pt: 2, px: 2 }}>
         <Typography variant='h3' component='h1'>Sentence Editor</Typography>
-        <TextField label='Sentence' value={sentence} onChange={onSentenceChange} className={classes.textEdit} fullWidth />
-        <Grid container className={classes.wordsContainer} spacing={1}>
+        <TextField label='Sentence' value={sentence} onChange={onSentenceChange} fullWidth sx={{ mt: 2 }} />
+        <Grid container spacing={1} sx={{ mt: 2 }}>
           {words.map((w, i) => {
             return (
               <Grid item xs={2} key={i}>
                 <Card variant='outlined'>
                   <CardContent>
-                    <Typography variant='h6' component='h4' className={classes.word}>{w.word}</Typography>
-                    <Grid container spacing={1} justify='space-evenly'>
+                    <Typography variant='h6' component='h4' align='center' sx={{ mb: 2 }}>{w.word}</Typography>
+                    <Grid container spacing={1} justifyContent='space-evenly'>
                       {[...ruleSets[ruleSetIndex].getPos()].map((pos, j) => {
                         return (
                           <Grid item key={j}>
-                            <Avatar className={classes.posAvatar} style={{ backgroundColor: (w.pos.includes(pos) ? getColor(j) : '#bdbdbd') }} onClick={onPosClicked(i, pos)}>{pos}</Avatar>
+                            <Avatar sx={{ height: 32, width: 32, cursor: 'pointer', fontSize: '0.875rem' }} style={{ backgroundColor: (w.pos.includes(pos) ? getColor(j) : '#bdbdbd') }} onClick={onPosClicked(i, pos)}>{pos}</Avatar>
                           </Grid>
                         )
                       })}

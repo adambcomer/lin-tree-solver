@@ -1,4 +1,4 @@
-import { ComponentType, useEffect } from 'react'
+import React, { ComponentType, useEffect } from 'react'
 import { RouteChildrenProps } from 'react-router'
 
 const withTracker = <P extends RouteChildrenProps>(WrappedComponent: ComponentType<P>) => {

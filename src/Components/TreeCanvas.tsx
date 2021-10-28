@@ -1,9 +1,9 @@
-import { makeStyles } from '@material-ui/core'
-import { forwardRef, MouseEvent, TouchEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { forwardRef, MouseEvent, TouchEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { RuleSet } from '../helpers/ruleset'
 import FontFaceObserver from 'fontfaceobserver'
 import { getColor } from '../helpers/colors'
 import { Node } from '../types'
+import { styled } from '@mui/system'
 
 interface TreeCanvasProps {
   rules: RuleSet
@@ -17,21 +17,18 @@ interface TreeCanvasProps {
 
 let frame: number | undefined
 
-const useStyles = makeStyles(() => ({
-  canvas: {
-    width: '100%',
-    height: '100vh',
-    fontFamily: 'Roboto Mono',
-    background: '#f5f5f5',
-    cursor: 'all-scroll'
-  }
+const Canvas = styled('canvas')(() => ({
+  width: '100%',
+  height: '100vh',
+  fontFamily: 'Roboto Mono',
+  background: '#f5f5f5',
+  cursor: 'all-scroll'
 }))
 
-const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props, ref) => {
+const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props: TreeCanvasProps, ref) => {
   const [canvasSize, setCanvasSize] = useState({ height: 0, width: 0 })
   const [canvasPan, setCanvasPan] = useState({ x: 0, y: 0, dx: 0, dy: 0, down: false })
   const canvas = useRef<HTMLCanvasElement>(null)
-  const classes = useStyles()
 
   useLayoutEffect(() => {
     if (ref) {
@@ -122,15 +119,15 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props, ref) =
     drawTree(canvasSize.height, canvasSize.width, canvasPan.dx, canvasPan.dy)
   }, [canvasSize, canvasPan, drawTree])
 
-  function onMouseDownCanvas (e: MouseEvent<HTMLCanvasElement>): void {
+  const onMouseDownCanvas = (e: MouseEvent<HTMLCanvasElement>) => {
     setCanvasPan({ ...canvasPan, x: e.clientX, y: e.clientY, down: true })
   }
 
-  function onMouseUpCanvas (e: MouseEvent<HTMLCanvasElement>): void {
+  const onMouseUpCanvas = (e: MouseEvent<HTMLCanvasElement>) => {
     setCanvasPan({ ...canvasPan, x: e.clientX, y: e.clientY, down: false })
   }
 
-  function onMouseMoveCanvas (e: MouseEvent<HTMLCanvasElement>): void {
+  const onMouseMoveCanvas = (e: MouseEvent<HTMLCanvasElement>) => {
     if (!canvasPan.down) return
 
     const dx = (e.clientX - canvasPan.x) * 4
@@ -139,15 +136,15 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props, ref) =
     setCanvasPan({ ...canvasPan, x: e.clientX, y: e.clientY, dx: canvasPan.dx + dx, dy: canvasPan.dy + dy })
   }
 
-  function onTouchDownCanvas (e: TouchEvent<HTMLCanvasElement>): void {
+  const onTouchDownCanvas = (e: TouchEvent<HTMLCanvasElement>) => {
     setCanvasPan({ ...canvasPan, x: e.touches[0].clientX, y: e.touches[0].clientY, down: true })
   }
 
-  function onTouchUpCanvas (e: TouchEvent<HTMLCanvasElement>): void {
+  const onTouchUpCanvas = () => {
     setCanvasPan({ ...canvasPan, down: false })
   }
 
-  function onTouchMoveCanvas (e: TouchEvent<HTMLCanvasElement>): void {
+  const onTouchMoveCanvas = (e: TouchEvent<HTMLCanvasElement>) => {
     if (!canvasPan.down) return
 
     const dx = (e.touches[0].clientX - canvasPan.x) * 4
@@ -157,7 +154,7 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props, ref) =
   }
 
   return (
-    <canvas ref={canvas} width={canvasSize.width} height={canvasSize.height} className={classes.canvas} onMouseDown={onMouseDownCanvas} onMouseUp={onMouseUpCanvas} onMouseMove={onMouseMoveCanvas} onTouchStart={onTouchDownCanvas} onTouchMove={onTouchMoveCanvas} onTouchEnd={onTouchUpCanvas}></canvas>
+    <Canvas ref={canvas} width={canvasSize.width} height={canvasSize.height} onMouseDown={onMouseDownCanvas} onMouseUp={onMouseUpCanvas} onMouseMove={onMouseMoveCanvas} onTouchStart={onTouchDownCanvas} onTouchMove={onTouchMoveCanvas} onTouchEnd={onTouchUpCanvas} />
   )
 })
 

@@ -4,10 +4,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
     "@fontsource/roboto": "^4.4.0",
     "@fontsource/roboto-mono": "^4.4.0",
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
+    "@mui/icons-material": "^5.0.4",
+    "@mui/material": "^5.0.4",
     "fontfaceobserver": "^2.1.0",
     "nearley": "^2.20.1",
     "react": "^17.0.1",
@@ -28,8 +30,8 @@
     "@types/react-helmet": "^6.1.1",
     "@types/react-router-dom": "^5.1.7",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0"
+    "eslint-config-standard-jsx": "^10.0.0",
+    "eslint-config-standard-react": "^11.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,8 +42,16 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "standard"
-    ]
+      "standard",
+      "standard-jsx",
+      "standard-react"
+    ],
+    "rules": {
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": [
+        "error"
+      ]
+    }
   },
   "browserslist": {
     "production": [

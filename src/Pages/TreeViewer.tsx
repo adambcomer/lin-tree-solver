@@ -1,87 +1,17 @@
-import { CircularProgress, Grid, makeStyles, Fade, Fab, Tooltip } from '@material-ui/core'
-import { useEffect, useState, useRef, FC, useContext } from 'react'
-import NavigateNextIcon from '@material-ui/icons/NavigateNext'
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
-import ImageIcon from '@material-ui/icons/Image'
+import React, { useEffect, useState, useRef, FC, useContext } from 'react'
+import { CircularProgress, Grid, Fade, Fab, Tooltip, Box } from '@mui/material'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
+import ImageIcon from '@mui/icons-material/Image'
 import TreeCanvas from '../Components/TreeCanvas'
-import ZoomInIcon from '@material-ui/icons/ZoomIn'
-import ZoomOutIcon from '@material-ui/icons/ZoomOut'
+import ZoomInIcon from '@mui/icons-material/ZoomIn'
+import ZoomOutIcon from '@mui/icons-material/ZoomOut'
 import { Node } from '../types'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import ParserWorker from 'worker-loader!../workers/parser.worker'
 import { Helmet } from 'react-helmet'
 import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
-
-const useStyles = makeStyles(() => ({
-  container: {
-    background: '#fff',
-    height: '100vh'
-  },
-
-  loadingContainer: {
-    position: 'absolute',
-    top: 'calc(50% - 68px)',
-    left: '50%',
-    marginTop: -20,
-    marginLeft: -20
-  },
-
-  metricsContainer: {
-    paddingLeft: 8
-  },
-  metricsHeader: {
-    marginTop: 8
-  },
-  metricsSubHeader: {
-    marginTop: 8
-  },
-
-  svgContainer: {
-    background: '#f5f5f5',
-    height: '100vh'
-  },
-
-  toolsContainer: {
-    paddingTop: 8,
-    paddingRight: 8
-  },
-
-  computeButton: {
-    position: 'fixed',
-    right: 20,
-    bottom: 20
-  },
-
-  nextTreeFabContainer: {
-    position: 'fixed',
-    right: 20,
-    top: 20
-  },
-  priorTreeFabContainer: {
-    position: 'fixed',
-    right: 80,
-    top: 20
-  },
-  zoomInFabContainer: {
-    position: 'fixed',
-    right: 20,
-    bottom: 20
-  },
-  zoomOutFabContainer: {
-    position: 'fixed',
-    right: 80,
-    bottom: 20
-  },
-  printTreeFabContainer: {
-    position: 'fixed',
-    right: 20,
-    top: 80
-  },
-  fab: {
-    background: '#fff'
-  }
-}))
 
 const worker = new ParserWorker()
 
@@ -93,7 +23,6 @@ const TreeViewer: FC = () => {
   const [loading, setLoading] = useState(true)
   const [canvasZoom, setCanvasZoom] = useState(1)
   const canvas = useRef<HTMLCanvasElement>(null)
-  const classes = useStyles()
 
   useEffect(() => {
     const t1 = performance.now()
@@ -108,23 +37,23 @@ const TreeViewer: FC = () => {
     worker.postMessage({ grammar: ruleSets[ruleSetIndex].grammar(), words })
   }, [ruleSetIndex, ruleSets, words])
 
-  function nextTree (): void {
+  const nextTree = () => {
     setTreeIndex(treeIndex + 1)
   }
 
-  function priorTree (): void {
+  const priorTree = () => {
     setTreeIndex(treeIndex - 1)
   }
 
-  function zoomIn (): void {
+  const zoomIn = () => {
     setCanvasZoom(canvasZoom * 4 / 3)
   }
 
-  function zoomOut (): void {
+  const zoomOut = () => {
     setCanvasZoom(canvasZoom * 3 / 4)
   }
 
-  function saveTreeImage (): void {
+  const saveTreeImage = () => {
     if (canvas.current === null) return
 
     const image = document.createElement('canvas')
@@ -159,11 +88,11 @@ const TreeViewer: FC = () => {
           <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/viewer' />
         </Helmet>
         <Grid item xs>
-          <div className={classes.loadingContainer}>
+          <Box display='flex' justifyContent='center' alignItems='center' sx={{ height: '100vh' }}>
             <Fade in={loading} style={{ transitionDelay: loading ? '400ms' : '0ms' }} unmountOnExit>
               <CircularProgress />
             </Fade>
-          </div>
+          </Box>
         </Grid>
       </>
     )
@@ -182,51 +111,49 @@ const TreeViewer: FC = () => {
         <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/viewer' />
       </Helmet>
       <Grid item xs>
-        <Grid container className={classes.container}>
-          <Grid item xs={12} className={classes.svgContainer}>
+        <Grid container sx={{ background: '#fff', height: '100vh' }}>
+          <Grid item xs={12} sx={{ background: '#f5f5f5', height: '100vh' }}>
             <Tooltip title='Next Tree'>
-              <span className={classes.nextTreeFabContainer}>
-                <Fab size='small' className={classes.fab} disabled={trees.length === 0 || treeIndex === trees.length - 1} onClick={nextTree}>
+              <Box sx={{ position: 'fixed', right: 20, top: 20 }}>
+                <Fab size='small' sx={{ background: '#fff' }} disabled={trees.length === 0 || treeIndex === trees.length - 1} onClick={nextTree}>
                   <NavigateNextIcon />
                 </Fab>
-              </span>
+              </Box>
             </Tooltip>
             <Tooltip title='Prior Tree'>
-              <span className={classes.priorTreeFabContainer}>
-                <Fab size='small' className={classes.fab} disabled={trees.length === 0 || treeIndex === 0} onClick={priorTree}>
+              <Box sx={{ position: 'fixed', right: 80, top: 20 }}>
+                <Fab size='small' sx={{ background: '#fff' }} disabled={trees.length === 0 || treeIndex === 0} onClick={priorTree}>
                   <NavigateBeforeIcon />
                 </Fab>
-              </span>
+              </Box>
             </Tooltip>
 
             <Tooltip title='Zoom In' placement='top'>
-              <span className={classes.zoomInFabContainer}>
-                <Fab size='small' className={classes.fab} disabled={trees.length === 0} onClick={zoomIn}>
+              <Box sx={{ position: 'fixed', right: 20, bottom: 20 }}>
+                <Fab size='small' sx={{ background: '#fff' }} disabled={trees.length === 0} onClick={zoomIn}>
                   <ZoomInIcon />
                 </Fab>
-              </span>
+              </Box>
             </Tooltip>
             <Tooltip title='Zoom Out' placement='top'>
-              <span className={classes.zoomOutFabContainer}>
-                <Fab size='small' className={classes.fab} disabled={trees.length === 0} onClick={zoomOut}>
+              <Box sx={{ position: 'fixed', right: 80, bottom: 20 }}>
+                <Fab size='small' sx={{ background: '#fff' }} disabled={trees.length === 0} onClick={zoomOut}>
                   <ZoomOutIcon />
                 </Fab>
-              </span>
+              </Box>
             </Tooltip>
 
             <Tooltip title='Save Image' placement='left'>
-              <span className={classes.printTreeFabContainer}>
-                <Fab size='small' className={classes.fab} disabled={trees.length === 0} onClick={saveTreeImage}>
+              <Box sx={{ position: 'fixed', right: 20, top: 80 }}>
+                <Fab size='small' sx={{ background: '#fff' }} disabled={trees.length === 0} onClick={saveTreeImage}>
                   <ImageIcon />
                 </Fab>
-              </span>
+              </Box>
             </Tooltip>
 
             {trees.length === 0
-              ? <svg xmlns="http://www.w3.org/2000/svg" width="100%" height='100%' viewBox='0 100 1000 500'>
-                <text x='50%' y='50%' fontFamily='Roboto Mono' fontSize='16' fill='#000' textAnchor='middle'>No Tree Found</text>              </svg>
-              : <TreeCanvas ref={canvas} tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} zoom={canvasZoom} />
-            }
+              ? <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 100 1000 500'><text x='50%' y='50%' fontFamily='Roboto Mono' fontSize='16' fill='#000' textAnchor='middle'>No Tree Found</text></svg>
+              : <TreeCanvas ref={canvas} tree={trees[treeIndex]} words={words} rules={ruleSets[ruleSetIndex]} zoom={canvasZoom} />}
           </Grid>
         </Grid>
       </Grid>
