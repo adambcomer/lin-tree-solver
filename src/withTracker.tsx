@@ -1,20 +1,21 @@
 import React, { ComponentType, useEffect } from 'react'
-import { RouteChildrenProps } from 'react-router'
+import { useLocation } from 'react-router'
 
-const withTracker = <P extends RouteChildrenProps>(WrappedComponent: ComponentType<P>) => {
+const withTracker = (WrappedComponent: ComponentType) => {
   const trackPage = (page: string) => {
     if (window.gtag === undefined) return
 
     window.gtag('config', 'G-NPWF2XR6L3', { page_path: page })
-    window.gtag('config', 'UA-129077573-1', { page_path: page })
   }
 
-  const HOC = (props: P) => {
-    useEffect(() => {
-      trackPage('/lin-tree-solver' + props.location.pathname)
-    }, [props.location.pathname])
+  const HOC = (props: any) => {
+    const location = useLocation()
 
-    return <WrappedComponent {...props as P} />
+    useEffect(() => {
+      trackPage('/lin-tree-solver' + location.pathname)
+    }, [location.pathname])
+
+    return <WrappedComponent {...props} />
   }
 
   return HOC

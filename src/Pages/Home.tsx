@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Link as MuiLink, Typography, Grid, styled } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import withTracker from '../withTracker'
 
 const Subtitle = styled(Typography)(() => ({
   marginTop: 32
@@ -146,4 +147,4 @@ const Home: FC = () => {
   )
 }
 
-export default Home
+export default withTracker(Home)

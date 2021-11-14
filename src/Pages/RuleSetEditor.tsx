@@ -9,9 +9,10 @@ import { useParams } from 'react-router-dom'
 import { getColor } from '../helpers/colors'
 import { Helmet } from 'react-helmet'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
+import withTracker from '../withTracker'
 
 const RuleSetEditor: FC = () => {
-  const { id } = useParams<{ id: string }>()
+  const { id } = useParams()
   const { ruleSets, setRuleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
 
   const rs = ruleSets[ruleSetIndex]
@@ -274,4 +275,4 @@ const RuleSetEditor: FC = () => {
   )
 }
 
-export default RuleSetEditor
+export default withTracker(RuleSetEditor)

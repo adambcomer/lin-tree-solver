@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 import { RuleSet } from '../helpers/ruleset'
+import withTracker from '../withTracker'
 
 const RuleEditor: FC = () => {
   const { ruleSets, setRuleSets, idx: ruleSetIndex, setRuleSetIdx } = useContext(RuleSetsContext)
@@ -84,4 +85,4 @@ const RuleEditor: FC = () => {
   )
 }
 
-export default RuleEditor
+export default withTracker(RuleEditor)

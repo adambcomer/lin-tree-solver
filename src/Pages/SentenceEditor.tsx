@@ -4,6 +4,7 @@ import { getColor } from '../helpers/colors'
 import { Helmet } from 'react-helmet'
 import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
+import withTracker from '../withTracker'
 
 const SentenceEditor: FC = () => {
   const { words, setWords } = useContext(SentenceContext)
@@ -79,4 +80,4 @@ const SentenceEditor: FC = () => {
   )
 }
 
-export default SentenceEditor
+export default withTracker(SentenceEditor)

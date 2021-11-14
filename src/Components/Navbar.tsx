@@ -3,12 +3,13 @@ import { Box, Divider, Drawer, Link, List, ListItem, ListItemIcon, ListItemText,
 import AspectRatioIcon from '@mui/icons-material/AspectRatio'
 import GavelIcon from '@mui/icons-material/Gavel'
 import SubjectIcon from '@mui/icons-material/Subject'
-import { NavLink, useRouteMatch } from 'react-router-dom'
+import { useMatch } from 'react-router'
+import { NavLink } from 'react-router-dom'
 
 const Navbar: FC = () => {
-  const sentenceMatch = useRouteMatch('/sentence')
-  const viewerMatch = useRouteMatch('/viewer')
-  const rulesMatch = useRouteMatch('/rules')
+  const sentenceMatch = useMatch('/sentence')
+  const viewerMatch = useMatch('/viewer')
+  const rulesMatch = useMatch('/rules')
 
   return (
     <Drawer variant='permanent' anchor='left' sx={{ width: 240, flexShrink: 0, '& .MuiDrawer-paper': { width: 240 } }}>
@@ -20,19 +21,19 @@ const Navbar: FC = () => {
       <Divider />
       <List>
         <Link component={NavLink} to='/sentence' sx={{ color: '#000', textDecoration: 'none' }}>
-          <ListItem button selected={sentenceMatch?.isExact}>
+          <ListItem button selected={sentenceMatch != null}>
             <ListItemIcon><SubjectIcon /></ListItemIcon>
             <ListItemText primary='Sentence Editor' />
           </ListItem>
         </Link>
         <Link component={NavLink} to='/viewer' sx={{ color: '#000', textDecoration: 'none' }}>
-          <ListItem button selected={viewerMatch?.isExact}>
+          <ListItem button selected={viewerMatch != null}>
             <ListItemIcon><AspectRatioIcon /></ListItemIcon>
             <ListItemText primary='Tree Viewer' />
           </ListItem>
         </Link>
         <Link component={NavLink} to='/rules' sx={{ color: '#000', textDecoration: 'none' }}>
-          <ListItem button selected={rulesMatch?.isExact}>
+          <ListItem button selected={rulesMatch != null}>
             <ListItemIcon><GavelIcon /></ListItemIcon>
             <ListItemText primary='Syntax Rules' />
           </ListItem>

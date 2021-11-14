@@ -12,6 +12,7 @@ import ParserWorker from 'worker-loader!../workers/parser.worker'
 import { Helmet } from 'react-helmet'
 import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
+import withTracker from '../withTracker'
 
 const worker = new ParserWorker()
 
@@ -161,4 +162,4 @@ const TreeViewer: FC = () => {
   )
 }
 
-export default TreeViewer
+export default withTracker(TreeViewer)

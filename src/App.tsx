@@ -2,12 +2,11 @@ import React, { FC } from 'react'
 import { createTheme, CssBaseline, Grid, ThemeProvider } from '@mui/material'
 import TreeViewer from './Pages/TreeViewer'
 import Navbar from './Components/Navbar'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import SentenceEditor from './Pages/SentenceEditor'
 import RuleEditor from './Pages/RulesEditor'
 import RuleSetEditor from './Pages/RuleSetEditor'
 import Home from './Pages/Home'
-import withTracker from './withTracker'
 import GlobalContextProvider from './Context/GlobalContextProvider'
 
 import '@fontsource/roboto/300.css'
@@ -42,14 +41,14 @@ const App: FC = () => {
           <Grid container>
 
             <Navbar />
-            <Switch>
-              <Route exact path='/' component={withTracker(Home)} />
-              <Route exact path='/sentence' component={withTracker(SentenceEditor)} />
-              <Route exact path='/viewer' component={withTracker(TreeViewer)} />
-              <Route exact path='/rules' component={withTracker(RuleEditor)} />
-              <Route exact path='/rules/:id' component={withTracker(RuleSetEditor)} />
-              <Redirect to='/' />
-            </Switch>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/sentence' element={<SentenceEditor />} />
+              <Route path='/viewer' element={<TreeViewer />} />
+              <Route path='/rules' element={<RuleEditor />} />
+              <Route path='/rules/:id' element={<RuleSetEditor />} />
+              <Route path='*' element={<Navigate to='/' />} />
+            </Routes>
 
           </Grid>
         </BrowserRouter>
