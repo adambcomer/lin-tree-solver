@@ -9,13 +9,23 @@ const ruleSet0 = new RuleSet('Chapter 3: Constituency, Trees, and Rules, Syntax:
 [
   ['CP', '(C) TP'],
   ['TP', '{NP/CP} (T) VP'],
-  ['VP', '(AdvP+) V (NP) ({NP/CP}) (AdvP+) (PP+) (AdvP+)'],
-  ['NP', '(D) (AdjP+) N (PP+) (CP)'],
-  ['PP', 'P NP'],
-  ['AdvP', '(AdvP) Adv'],
-  ['AdjP', '(AdjP) Adj'],
-  ['XP', 'XP Conj XP'],
-  ['X', 'X Conj X']
+  ['VP', '(AdvP+) {V/V_Conj} (NP) ({NP/CP}) (AdvP+) (PP+) (AdvP+)'],
+  ['NP', '(D) (AdjP+) {N/N_Conj} (PP+) (CP)'],
+  ['PP', '{P/P_Conj} NP'],
+  ['AdvP', '(AdvP) {Adv/Adv_Conj}'],
+  ['AdjP', '(AdjP) {Adj/Adj_Conj}'],
+  ['CP', 'CP Conj CP'],
+  ['TP', 'TP Conj TP'],
+  ['VP', 'VP Conj VP'],
+  ['NP', 'NP Conj NP'],
+  ['PP', 'PP Conj PP'],
+  ['AdvP', 'AdvP Conj AdvP'],
+  ['AdjP', 'AdjP Conj AdjP'],
+  ['N_Conj', 'N Conj N'],
+  ['V_Conj', 'V Conj V'],
+  ['Adj_Conj', 'Adj Conj Adj'],
+  ['Adv_Conj', 'Adv Conj Adv'],
+  ['P_Conj', 'P Conj P']
 ].forEach(([name, rule]) => ruleSet0.addRule(name, rule))
 
 const ruleSet1 = new RuleSet('Chapter 6: X-bar Theory, Syntax: A Generative Introduction, by Andrew Carnie');
