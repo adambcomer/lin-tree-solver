@@ -13,9 +13,9 @@ import withTracker from '../withTracker'
 
 const RuleSetEditor: FC = () => {
   const { id } = useParams()
-  const { ruleSets, setRuleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
+  const { ruleSets, setRuleSets } = useContext(RuleSetsContext)
 
-  const rs = ruleSets[ruleSetIndex]
+  const rs = ruleSets[parseInt(id || '0')]
 
   const [ruleSet, setRuleSet] = useState({ name: rs.name, pos: [...rs.getPos()], rules: [...rs.getRules()], root: [...rs.getRoot()] })
   const [newPos, setNewPos] = useState({ editing: false, pos: '', error: false })
