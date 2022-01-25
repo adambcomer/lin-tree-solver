@@ -108,7 +108,7 @@ const GlobalContextProvider: FC = ({ children }) => {
     ]
   )
   const [ruleSets, setRuleSets] = useState<RuleSet[]>([ruleSet0, ruleSet1, ruleSet2])
-  const [ruleSetIdx, setRuleSetIdx] = useState(2)
+  const [ruleSetIdx, setRuleSetIdx] = useState(0)
 
   return (
     <SentenceContext.Provider value={{ words: words, setWords: setWords }}>
