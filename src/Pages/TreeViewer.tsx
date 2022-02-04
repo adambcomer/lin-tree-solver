@@ -38,23 +38,23 @@ const TreeViewer: FC = () => {
     worker.postMessage({ grammar: ruleSets[ruleSetIndex].grammar(), words })
   }, [ruleSetIndex, ruleSets, words])
 
-  const nextTree = () => {
+  const nextTree = (): void => {
     setTreeIndex(treeIndex + 1)
   }
 
-  const priorTree = () => {
+  const priorTree = (): void => {
     setTreeIndex(treeIndex - 1)
   }
 
-  const zoomIn = () => {
+  const zoomIn = (): void => {
     setCanvasZoom(canvasZoom * 4 / 3)
   }
 
-  const zoomOut = () => {
+  const zoomOut = (): void => {
     setCanvasZoom(canvasZoom * 3 / 4)
   }
 
-  const saveTreeImage = () => {
+  const saveTreeImage = (): void => {
     if (canvas.current === null) return
 
     const image = document.createElement('canvas')

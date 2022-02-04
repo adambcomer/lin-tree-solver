@@ -26,7 +26,7 @@ const RuleEditor: FC = () => {
     }
   }
 
-  const createRuleSetClick = () => {
+  const createRuleSetClick = (): void => {
     const d = new Date()
     setRuleSets([...ruleSets, new RuleSet(`New Rule Set - ${d.toLocaleDateString('en-US')} ${d.toLocaleTimeString('en-US')}`)])
   }

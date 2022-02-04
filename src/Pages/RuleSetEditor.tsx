@@ -15,7 +15,7 @@ const RuleSetEditor: FC = () => {
   const { id } = useParams()
   const { ruleSets, setRuleSets } = useContext(RuleSetsContext)
 
-  const rs = ruleSets[parseInt(id || '0')]
+  const rs = ruleSets[parseInt(id ?? '0')]
 
   const [ruleSet, setRuleSet] = useState({ name: rs.name, pos: [...rs.getPos()], rules: [...rs.getRules()], root: [...rs.getRoot()] })
   const [newPos, setNewPos] = useState({ editing: false, pos: '', error: false })
@@ -23,7 +23,7 @@ const RuleSetEditor: FC = () => {
   const [newRule, setNewRule] = useState({ editing: false, name: '', rule: '', nameError: false, ruleError: false })
   const [saved, setSaved] = useState(false)
 
-  const onNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setRuleSet({ ...ruleSet, name: e.target.value })
   }
 
@@ -34,15 +34,15 @@ const RuleSetEditor: FC = () => {
     }
   }
 
-  const onCreatePos = () => {
+  const onCreatePos = (): void => {
     setNewPos({ ...newPos, editing: true })
   }
 
-  const onNewPosChanged = (e: ChangeEvent<HTMLInputElement>) => {
+  const onNewPosChanged = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewPos({ ...newPos, pos: e.target.value, error: false })
   }
 
-  const addPos = () => {
+  const addPos = (): void => {
     if (ruleSet.pos.includes(newPos.pos) || ruleSet.rules.some(([r]) => r === newPos.pos)) {
       setNewPos({ ...newPos, error: true })
       return
@@ -59,15 +59,15 @@ const RuleSetEditor: FC = () => {
     }
   }
 
-  const onCreateRoot = () => {
+  const onCreateRoot = (): void => {
     setNewRoot({ ...newRoot, editing: true })
   }
 
-  const onNewRootChanged = (e: ChangeEvent<HTMLInputElement>) => {
+  const onNewRootChanged = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewRoot({ ...newRoot, root: e.target.value, error: false })
   }
 
-  const addRoot = () => {
+  const addRoot = (): void => {
     if (ruleSet.root.includes(newRoot.root)) {
       setNewRoot({ ...newRoot, error: true })
       return
@@ -81,19 +81,19 @@ const RuleSetEditor: FC = () => {
     setNewRoot({ editing: false, root: '', error: false })
   }
 
-  const onCreateRule = () => {
+  const onCreateRule = (): void => {
     setNewRule({ ...newRule, editing: true })
   }
 
-  const onNewRuleNameChanged = (e: ChangeEvent<HTMLInputElement>) => {
+  const onNewRuleNameChanged = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewRule({ ...newRule, name: e.target.value, nameError: false })
   }
 
-  const onNewRuleChanged = (e: ChangeEvent<HTMLInputElement>) => {
+  const onNewRuleChanged = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewRule({ ...newRule, rule: e.target.value, ruleError: false })
   }
 
-  const addRule = () => {
+  const addRule = (): void => {
     if (ruleSet.pos.includes(newRule.name)) {
       setNewRule({ ...newRule, nameError: true })
       return
@@ -123,7 +123,7 @@ const RuleSetEditor: FC = () => {
     }
   }
 
-  const saveRuleSet = () => {
+  const saveRuleSet = (): void => {
     const r = new RuleSet(ruleSet.name)
     r.pos = new Set(ruleSet.pos)
     r.rules = [...ruleSet.rules]
@@ -135,7 +135,7 @@ const RuleSetEditor: FC = () => {
     setSaved(true)
   }
 
-  const onSavedSnackbarClose = () => {
+  const onSavedSnackbarClose = (): void => {
     setSaved(false)
   }
 
@@ -145,12 +145,12 @@ const RuleSetEditor: FC = () => {
         <title>{rs.name} Syntax Rules | Linguistics Tree Solver</title>
         <meta name='description' content={`${rs.name} syntax rules.`} />
 
-        <link rel='canonical' href={`https://adambcomer.com/lin-tree-solver/rules/${id}`} />
+        <link rel='canonical' href={`https://adambcomer.com/lin-tree-solver/rules/${id ?? '0'}`} />
 
         <meta property='og:title' content={`${rs.name} Syntax Rules | Linguistics Tree Solver`} />
         <meta property='og:description' content={`${rs.name} syntax rules.`} />
         <meta property='og:type' content='website' />
-        <meta property='og:url' content={`https://adambcomer.com/lin-tree-solver/rules/${id}`} />
+        <meta property='og:url' content={`https://adambcomer.com/lin-tree-solver/rules/${id ?? '0'}`} />
       </Helmet>
       <Grid item xs>
         <Box sx={{ pt: 2, px: 2 }}>

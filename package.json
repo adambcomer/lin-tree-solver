@@ -29,12 +29,8 @@
     "@types/react-dom": "^17.0.5",
     "@types/react-helmet": "^6.1.1",
     "@types/react-router-dom": "^5.1.7",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-config-standard-jsx": "^10.0.0",
-    "eslint-config-standard-react": "^11.0.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.1",
-    "source-map-explorer": "^2.5.2"
+    "source-map-explorer": "^2.5.2",
+    "ts-standard": "^11.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,17 +41,8 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "standard",
-      "standard-jsx",
-      "standard-react"
-    ],
-    "rules": {
-      "no-use-before-define": "off",
-      "@typescript-eslint/no-use-before-define": [
-        "error"
-      ]
-    }
+      "react-app"
+    ]
   },
   "browserslist": {
     "production": [

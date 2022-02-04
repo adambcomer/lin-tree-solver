@@ -1,4 +1,3 @@
-
 import { compileGrammar } from '../helpers/compile-grammar'
 import { Parser, Grammar } from 'nearley'
 import { Node } from '../types'

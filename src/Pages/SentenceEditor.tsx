@@ -11,7 +11,7 @@ const SentenceEditor: FC = () => {
   const { ruleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
   const [sentence, setSentenceText] = useState(words.map(w => w.word).join(' '))
 
-  const onSentenceChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onSentenceChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setSentenceText(e.target.value)
 
     const words: Array<{ word: string, pos: string[] }> = []

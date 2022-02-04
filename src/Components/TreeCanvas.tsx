@@ -31,12 +31,12 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props: TreeCa
   const canvas = useRef<HTMLCanvasElement>(null)
 
   useLayoutEffect(() => {
-    if (ref) {
-      if (typeof ref === 'function') {
-        ref(canvas.current)
-      } else {
-        (ref as any).current = canvas.current
-      }
+    if (ref === null) return
+
+    if (typeof ref === 'function') {
+      ref(canvas.current)
+    } else {
+      (ref as any).current = canvas.current
     }
   }, [canvas, ref])
 
@@ -51,8 +51,8 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props: TreeCa
   }, [canvas, ref])
 
   const drawTree = useCallback((height: number, width: number, dx: number, dy: number) => {
-    if (!height || !width) return
-    if (frame) return
+    if (height === 0 || width === 0) return
+    if (frame !== undefined) return
 
     const recursiveDraw = (ctx: CanvasRenderingContext2D, node: Node | string, words: string[], start: number, width: number, level: number): void => {
       if (typeof node === 'string') {
@@ -119,15 +119,15 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props: TreeCa
     drawTree(canvasSize.height, canvasSize.width, canvasPan.dx, canvasPan.dy)
   }, [canvasSize, canvasPan, drawTree])
 
-  const onMouseDownCanvas = (e: MouseEvent<HTMLCanvasElement>) => {
+  const onMouseDownCanvas = (e: MouseEvent<HTMLCanvasElement>): void => {
     setCanvasPan({ ...canvasPan, x: e.clientX, y: e.clientY, down: true })
   }
 
-  const onMouseUpCanvas = (e: MouseEvent<HTMLCanvasElement>) => {
+  const onMouseUpCanvas = (e: MouseEvent<HTMLCanvasElement>): void => {
     setCanvasPan({ ...canvasPan, x: e.clientX, y: e.clientY, down: false })
   }
 
-  const onMouseMoveCanvas = (e: MouseEvent<HTMLCanvasElement>) => {
+  const onMouseMoveCanvas = (e: MouseEvent<HTMLCanvasElement>): void => {
     if (!canvasPan.down) return
 
     const dx = (e.clientX - canvasPan.x) * 4
@@ -136,15 +136,15 @@ const TreeCanvas = forwardRef<HTMLCanvasElement, TreeCanvasProps>((props: TreeCa
     setCanvasPan({ ...canvasPan, x: e.clientX, y: e.clientY, dx: canvasPan.dx + dx, dy: canvasPan.dy + dy })
   }
 
-  const onTouchDownCanvas = (e: TouchEvent<HTMLCanvasElement>) => {
+  const onTouchDownCanvas = (e: TouchEvent<HTMLCanvasElement>): void => {
     setCanvasPan({ ...canvasPan, x: e.touches[0].clientX, y: e.touches[0].clientY, down: true })
   }
 
-  const onTouchUpCanvas = () => {
+  const onTouchUpCanvas = (): void => {
     setCanvasPan({ ...canvasPan, down: false })
   }
 
-  const onTouchMoveCanvas = (e: TouchEvent<HTMLCanvasElement>) => {
+  const onTouchMoveCanvas = (e: TouchEvent<HTMLCanvasElement>): void => {
     if (!canvasPan.down) return
 
     const dx = (e.touches[0].clientX - canvasPan.x) * 4
