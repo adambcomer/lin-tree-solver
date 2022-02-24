@@ -128,6 +128,11 @@ const Home: FC = () => {
         Yes. You can view the code at my <OutboundLink href='https://github.com/adambcomer/lin-tree-solver'>Github Repository</OutboundLink>. I'm happy to merge pull requests that build on the project.
       </Answer>
 
+      <Question>Can I use this tool on my university linguistics syntax assignments?</Question>
+      <Answer>
+        This tool can solve many questions on introductory linguistics syntax assignments. If you are worried about committing an academic offence, I would recommend solving the trees by hand instead of using this tool.
+      </Answer>
+
       <Subtitle>To-Do:</Subtitle>
       <ul>
         <li><Paragraph>Saving of Sentences/Syntax Rules/Trees</Paragraph></li>
