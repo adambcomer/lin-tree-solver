@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { FC, useState } from 'react'
+import React, { useState } from 'react'
 import { RuleSet } from '../helpers/ruleset'
 import { RuleSetsContext } from './RuleSetsContext'
 import { SentenceContext, Word } from './SentenceContext'
@@ -107,7 +107,11 @@ const ruleSet2 = new RuleSet('Chapter 7: Extending X-bar Theory, Syntax: A Gener
   ['X', 'X Conj X']
 ].forEach(([name, rule]) => ruleSet2.addRule(name, rule))
 
-const GlobalContextProvider: FC = ({ children }) => {
+interface GlobalContextProviderProps {
+  children: React.ReactNode
+}
+
+const GlobalContextProvider = ({ children }: GlobalContextProviderProps): JSX.Element => {
   const [words, setWords] = useState<Word[]>(
     [
       { word: 'The', pos: ['D'] },

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { FC } from 'react'
+import React from 'react'
 import { Link as MuiLink, Typography, Grid, styled } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
@@ -55,7 +55,7 @@ const OutboundLink = styled(MuiLink)(() => ({
   textDecoration: 'none'
 }))
 
-const Home: FC = () => {
+const Home = (): JSX.Element => {
   return (
     <Grid item xs sx={{ px: 3, py: 2 }}>
       <Helmet htmlAttributes={{ lang: 'en' }}>

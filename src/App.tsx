@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { FC } from 'react'
+import React from 'react'
 import { createTheme, CssBaseline, Grid, ThemeProvider } from '@mui/material'
 import TreeViewer from './Pages/TreeViewer'
 import Navbar from './Components/Navbar'
@@ -48,7 +48,7 @@ const theme = createTheme({
   }
 })
 
-const App: FC = () => {
+const App = (): JSX.Element => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { FC } from 'react'
+import React from 'react'
 import { Box, Divider, Drawer, Link, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material'
 import AspectRatioIcon from '@mui/icons-material/AspectRatio'
 import GavelIcon from '@mui/icons-material/Gavel'
@@ -22,7 +22,7 @@ import SubjectIcon from '@mui/icons-material/Subject'
 import { useMatch } from 'react-router'
 import { NavLink } from 'react-router-dom'
 
-const Navbar: FC = () => {
+const Navbar = (): JSX.Element => {
   const sentenceMatch = useMatch('/sentence')
   const viewerMatch = useMatch('/viewer')
   const rulesMatch = useMatch('/rules')

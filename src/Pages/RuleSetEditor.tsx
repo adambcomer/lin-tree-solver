@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { ChangeEvent, FC, useContext, useState } from 'react'
+import React, { ChangeEvent, useContext, useState } from 'react'
 import { Typography, List, ListItem, ListItemText, ListItemIcon, Grid, TextField, Chip, Button, ListItemSecondaryAction, IconButton, Tooltip, Snackbar, Box } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import SaveIcon from '@mui/icons-material/Save'
@@ -27,7 +27,7 @@ import { Helmet } from 'react-helmet'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 import withTracker from '../withTracker'
 
-const RuleSetEditor: FC = () => {
+const RuleSetEditor = (): JSX.Element => {
   const { id } = useParams()
   const { ruleSets, setRuleSets } = useContext(RuleSetsContext)
 

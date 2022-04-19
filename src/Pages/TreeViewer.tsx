@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useState, useRef, FC, useContext } from 'react'
+import React, { useEffect, useState, useRef, useContext } from 'react'
 import { CircularProgress, Grid, Fade, Fab, Tooltip, Box } from '@mui/material'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
@@ -32,7 +32,7 @@ import withTracker from '../withTracker'
 
 const worker = new ParserWorker()
 
-const TreeViewer: FC = () => {
+const TreeViewer = (): JSX.Element => {
   const { words } = useContext(SentenceContext)
   const { ruleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
   const [trees, setTrees] = useState<Node[]>([])

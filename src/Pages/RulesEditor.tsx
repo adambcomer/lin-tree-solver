@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { FC, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Typography, List, ListItem, ListItemText, ListItemIcon, ListItemSecondaryAction, IconButton, Tooltip, Fab, Grid } from '@mui/material'
 import DoneIcon from '@mui/icons-material/Done'
 import EditIcon from '@mui/icons-material/Edit'
@@ -26,7 +26,7 @@ import { RuleSetsContext } from '../Context/RuleSetsContext'
 import { RuleSet } from '../helpers/ruleset'
 import withTracker from '../withTracker'
 
-const RuleEditor: FC = () => {
+const RuleEditor = (): JSX.Element => {
   const { ruleSets, setRuleSets, idx: ruleSetIndex, setRuleSetIdx } = useContext(RuleSetsContext)
 
   const deleteRuleSetClick = (index: number) => {

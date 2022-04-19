@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { ChangeEvent, FC, useContext, useState } from 'react'
+import React, { ChangeEvent, useContext, useState } from 'react'
 import { Typography, Grid, TextField, Avatar, Card, CardContent } from '@mui/material'
 import { getColor } from '../helpers/colors'
 import { Helmet } from 'react-helmet'
@@ -22,7 +22,7 @@ import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 import withTracker from '../withTracker'
 
-const SentenceEditor: FC = () => {
+const SentenceEditor = (): JSX.Element => {
   const { words, setWords } = useContext(SentenceContext)
   const { ruleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
   const [sentence, setSentenceText] = useState(words.map(w => w.word).join(' '))
