@@ -3,12 +3,19 @@ import react from '@vitejs/plugin-react'
 import { createHtmlPlugin } from 'vite-plugin-html'
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, 'env')
+  const env = loadEnv(mode, process.cwd())
+  console.log(env)
   return {
     plugins: [
       react(),
       createHtmlPlugin({
-        inject: { data: { ...env, MODE: mode } },
+        inject: {
+          data: {
+            PUBLIC_URL: process.env.PUBLIC_URL,
+            ...env,
+            MODE: mode,
+          },
+        },
         minify: true,
       }),
       splitVendorChunkPlugin(),
