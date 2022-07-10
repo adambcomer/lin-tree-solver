@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-import React, { ComponentType, useEffect } from 'react'
+import { ComponentType, useEffect } from 'react'
 import { useLocation } from 'react-router'
 
-function withTracker<P> (WrappedComponent: ComponentType<P>): (props: P) => JSX.Element {
+function withTracker<P>(
+  WrappedComponent: ComponentType<P>
+): (props: P) => JSX.Element {
   const trackPage = (page: string): void => {
     if (window.gtag === undefined) return
 

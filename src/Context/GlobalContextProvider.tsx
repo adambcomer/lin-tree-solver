@@ -19,10 +19,14 @@ import { RuleSet } from '../helpers/ruleset'
 import { RuleSetsContext } from './RuleSetsContext'
 import { SentenceContext, Word } from './SentenceContext'
 
-const ruleSet0 = new RuleSet('Chapter 3: Constituency, Trees, and Rules, Syntax: A Generative Introduction, by Andrew Carnie');
-['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach(t => ruleSet0.addPos(t));
-['CP'].forEach(t => ruleSet0.addRoot(t));
-[
+const ruleSet0 = new RuleSet(
+  'Chapter 3: Constituency, Trees, and Rules, Syntax: A Generative Introduction, by Andrew Carnie'
+)
+;['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach((t) =>
+  ruleSet0.addPos(t)
+)
+;['CP'].forEach((t) => ruleSet0.addRoot(t))
+;[
   ['CP', '(C) TP'],
   ['TP', '{NP/CP} (T) VP'],
   ['VP', '(AdvP+) {V/V_Conj} (NP) ({NP/CP}) (AdvP+) (PP+) (AdvP+)'],
@@ -42,13 +46,17 @@ const ruleSet0 = new RuleSet('Chapter 3: Constituency, Trees, and Rules, Syntax:
   ['V_Conj', 'V Conj V'],
   ['Adj_Conj', 'Adj Conj Adj'],
   ['Adv_Conj', 'Adv Conj Adv'],
-  ['P_Conj', 'P Conj P']
+  ['P_Conj', 'P Conj P'],
 ].forEach(([name, rule]) => ruleSet0.addRule(name, rule))
 
-const ruleSet1 = new RuleSet('Chapter 6: X-bar Theory, Syntax: A Generative Introduction, by Andrew Carnie');
-['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach(t => ruleSet1.addPos(t));
-['CP'].forEach(t => ruleSet1.addRoot(t));
-[
+const ruleSet1 = new RuleSet(
+  'Chapter 6: X-bar Theory, Syntax: A Generative Introduction, by Andrew Carnie'
+)
+;['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach((t) =>
+  ruleSet1.addPos(t)
+)
+;['CP'].forEach((t) => ruleSet1.addRoot(t))
+;[
   ['CP', '(C) TP'],
   ['TP', '{NP/CP} (T) VP'],
   ['VP', 'V_bar'],
@@ -71,13 +79,17 @@ const ruleSet1 = new RuleSet('Chapter 6: X-bar Theory, Syntax: A Generative Intr
   ['Adj_bar', 'AdjP Adj_bar'],
   ['Adj_bar', 'Adj (PP)'],
   ['XP', 'XP Conj XP'],
-  ['X', 'X Conj X']
+  ['X', 'X Conj X'],
 ].forEach(([name, rule]) => ruleSet1.addRule(name, rule))
 
-const ruleSet2 = new RuleSet('Chapter 7: Extending X-bar Theory, Syntax: A Generative Introduction, by Andrew Carnie');
-['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach(t => ruleSet2.addPos(t));
-['CP'].forEach(t => ruleSet2.addRoot(t));
-[
+const ruleSet2 = new RuleSet(
+  'Chapter 7: Extending X-bar Theory, Syntax: A Generative Introduction, by Andrew Carnie'
+)
+;['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'].forEach((t) =>
+  ruleSet2.addPos(t)
+)
+;['CP'].forEach((t) => ruleSet2.addRoot(t))
+;[
   ['CP', 'C_bar'],
   ['C_bar', '(C) TP'],
   ['TP', '{DP/CP} T_bar'],
@@ -104,35 +116,46 @@ const ruleSet2 = new RuleSet('Chapter 7: Extending X-bar Theory, Syntax: A Gener
   ['Adj_bar', 'AdjP Adj_bar'],
   ['Adj_bar', 'Adj (PP)'],
   ['XP', 'XP Conj XP'],
-  ['X', 'X Conj X']
+  ['X', 'X Conj X'],
 ].forEach(([name, rule]) => ruleSet2.addRule(name, rule))
 
 interface GlobalContextProviderProps {
   children: React.ReactNode
 }
 
-const GlobalContextProvider = ({ children }: GlobalContextProviderProps): JSX.Element => {
-  const [words, setWords] = useState<Word[]>(
-    [
-      { word: 'The', pos: ['D'] },
-      { word: 'small', pos: ['Adj'] },
-      { word: 'dog', pos: ['N'] },
-      // { word: '[PAST]', pos: ['T'] }, // Necessary for DP-hypothesis
-      { word: 'quickly', pos: ['Adv'] },
-      { word: 'ran', pos: ['V'] },
-      // { word: 'ø', pos: ['D'] }, // Necessary for DP-hypothesis
-      { word: 'home', pos: ['N'] },
-      { word: 'to', pos: ['P'] },
-      { word: 'his', pos: ['D'] },
-      { word: 'owner', pos: ['N'] }
-    ]
-  )
-  const [ruleSets, setRuleSets] = useState<RuleSet[]>([ruleSet0, ruleSet1, ruleSet2])
+const GlobalContextProvider = ({
+  children,
+}: GlobalContextProviderProps): JSX.Element => {
+  const [words, setWords] = useState<Word[]>([
+    { word: 'The', pos: ['D'] },
+    { word: 'small', pos: ['Adj'] },
+    { word: 'dog', pos: ['N'] },
+    // { word: '[PAST]', pos: ['T'] }, // Necessary for DP-hypothesis
+    { word: 'quickly', pos: ['Adv'] },
+    { word: 'ran', pos: ['V'] },
+    // { word: 'ø', pos: ['D'] }, // Necessary for DP-hypothesis
+    { word: 'home', pos: ['N'] },
+    { word: 'to', pos: ['P'] },
+    { word: 'his', pos: ['D'] },
+    { word: 'owner', pos: ['N'] },
+  ])
+  const [ruleSets, setRuleSets] = useState<RuleSet[]>([
+    ruleSet0,
+    ruleSet1,
+    ruleSet2,
+  ])
   const [ruleSetIdx, setRuleSetIdx] = useState(0)
 
   return (
     <SentenceContext.Provider value={{ words: words, setWords: setWords }}>
-      <RuleSetsContext.Provider value={{ ruleSets: ruleSets, idx: ruleSetIdx, setRuleSets: setRuleSets, setRuleSetIdx: setRuleSetIdx }}>
+      <RuleSetsContext.Provider
+        value={{
+          ruleSets: ruleSets,
+          idx: ruleSetIdx,
+          setRuleSets: setRuleSets,
+          setRuleSetIdx: setRuleSetIdx,
+        }}
+      >
         {children}
       </RuleSetsContext.Provider>
     </SentenceContext.Provider>

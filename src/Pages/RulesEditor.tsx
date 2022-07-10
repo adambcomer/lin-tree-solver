@@ -14,8 +14,19 @@
  * limitations under the License.
  */
 
-import React, { useContext } from 'react'
-import { Typography, List, ListItem, ListItemText, ListItemIcon, ListItemSecondaryAction, IconButton, Tooltip, Fab, Grid } from '@mui/material'
+import { useContext } from 'react'
+import {
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  ListItemSecondaryAction,
+  IconButton,
+  Tooltip,
+  Fab,
+  Grid,
+} from '@mui/material'
 import DoneIcon from '@mui/icons-material/Done'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -27,7 +38,12 @@ import { RuleSet } from '../helpers/ruleset'
 import withTracker from '../withTracker'
 
 const RuleEditor = (): JSX.Element => {
-  const { ruleSets, setRuleSets, idx: ruleSetIndex, setRuleSetIdx } = useContext(RuleSetsContext)
+  const {
+    ruleSets,
+    setRuleSets,
+    idx: ruleSetIndex,
+    setRuleSetIdx,
+  } = useContext(RuleSetsContext)
 
   const deleteRuleSetClick = (index: number) => {
     return () => {
@@ -44,35 +60,66 @@ const RuleEditor = (): JSX.Element => {
 
   const createRuleSetClick = (): void => {
     const d = new Date()
-    setRuleSets([...ruleSets, new RuleSet(`New Rule Set - ${d.toLocaleDateString('en-US')} ${d.toLocaleTimeString('en-US')}`)])
+    setRuleSets([
+      ...ruleSets,
+      new RuleSet(
+        `New Rule Set - ${d.toLocaleDateString('en-US')} ${d.toLocaleTimeString(
+          'en-US'
+        )}`
+      ),
+    ])
   }
 
   return (
     <>
       <Helmet htmlAttributes={{ lang: 'en' }}>
         <title>Syntax Rules Editor | Linguistics Tree Solver</title>
-        <meta name='description' content='Add your custom syntax rules for the solver to build trees with.' />
+        <meta
+          name='description'
+          content='Add your custom syntax rules for the solver to build trees with.'
+        />
 
-        <link rel='canonical' href='https://adambcomer.com/lin-tree-solver/rules' />
+        <link
+          rel='canonical'
+          href='https://adambcomer.com/lin-tree-solver/rules'
+        />
 
-        <meta property='og:title' content='Syntax Rules Editor | Linguistics Tree Solver' />
-        <meta property='og:description' content='Add your custom syntax rules for the solver to build trees with.' />
+        <meta
+          property='og:title'
+          content='Syntax Rules Editor | Linguistics Tree Solver'
+        />
+        <meta
+          property='og:description'
+          content='Add your custom syntax rules for the solver to build trees with.'
+        />
         <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://adambcomer.com/lin-tree-solver/rules' />
+        <meta
+          property='og:url'
+          content='https://adambcomer.com/lin-tree-solver/rules'
+        />
       </Helmet>
       <Grid item xs>
-        <Typography variant='h3' component='h1' sx={{ pt: 2, px: 2 }}>Syntax Rules</Typography>
+        <Typography variant='h3' component='h1' sx={{ pt: 2, px: 2 }}>
+          Syntax Rules
+        </Typography>
         <List>
           {ruleSets.map((r, i) => {
             return (
               <ListItem button onClick={setDefaultRuleSetClick(i)} key={i}>
-                {ruleSetIndex === i &&
+                {ruleSetIndex === i && (
                   <ListItemIcon>
                     <Tooltip title='Default'>
                       <DoneIcon />
                     </Tooltip>
-                  </ListItemIcon>}
-                <ListItemText inset={ruleSetIndex !== i} primary={r.name} secondary={`${[...r.getPos()].length} Parts of Speech, ${[...r.getRules()].length} Syntax Rules`} />
+                  </ListItemIcon>
+                )}
+                <ListItemText
+                  inset={ruleSetIndex !== i}
+                  primary={r.name}
+                  secondary={`${[...r.getPos()].length} Parts of Speech, ${
+                    [...r.getRules()].length
+                  } Syntax Rules`}
+                />
                 <ListItemSecondaryAction>
                   <Link to={`/rules/${i}`}>
                     <Tooltip title='Edit'>
@@ -92,7 +139,11 @@ const RuleEditor = (): JSX.Element => {
           })}
         </List>
         <Tooltip title='New Rule Set' placement='top'>
-          <Fab color='primary' onClick={createRuleSetClick} sx={{ position: 'fixed', right: 20, bottom: 20 }}>
+          <Fab
+            color='primary'
+            onClick={createRuleSetClick}
+            sx={{ position: 'fixed', right: 20, bottom: 20 }}
+          >
             <AddIcon />
           </Fab>
         </Tooltip>

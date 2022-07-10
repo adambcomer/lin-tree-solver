@@ -20,7 +20,7 @@ export interface Tag {
   repeated: boolean
 }
 
-export function tagToString (tag: Tag): string {
+export function tagToString(tag: Tag): string {
   if (tag.optional && tag.repeated) {
     if (tag.values.length === 1) {
       return `(${tag.values[0]}+)`
@@ -42,28 +42,50 @@ export class Expression {
   name: string
   tags: Tag[] = []
 
-  constructor (name: string, rule: string) {
+  constructor(name: string, rule: string) {
     this.name = name
 
-    rule.match(/(\({[a-zA-Z_/+]+}\)|{[a-zA-Z_/+]+}|\([a-zA-Z_+]+\)|[a-zA-Z_]+)/g)?.forEach(t => {
-      if (t.startsWith('({') && t.endsWith('}+)')) {
-        this.tags.push({ values: t.slice(2, t.length - 3).split('/'), optional: true, repeated: true })
-      } else if (t.startsWith('({') && t.endsWith('})')) {
-        this.tags.push({ values: t.slice(2, t.length - 2).split('/'), optional: true, repeated: false })
-      } else if (t.startsWith('{') && t.endsWith('}')) {
-        this.tags.push({ values: t.slice(1, t.length - 1).split('/'), optional: false, repeated: false })
-      } else if (t.startsWith('(') && t.endsWith('+)')) {
-        this.tags.push({ values: [t.slice(1, t.length - 2)], optional: true, repeated: true })
-      } else if (t.startsWith('(') && t.endsWith(')')) {
-        this.tags.push({ values: [t.slice(1, t.length - 1)], optional: true, repeated: false })
-      } else {
-        this.tags.push({ values: [t], optional: false, repeated: false })
-      }
-    })
+    rule
+      .match(/(\({[a-zA-Z_/+]+}\)|{[a-zA-Z_/+]+}|\([a-zA-Z_+]+\)|[a-zA-Z_]+)/g)
+      ?.forEach((t) => {
+        if (t.startsWith('({') && t.endsWith('}+)')) {
+          this.tags.push({
+            values: t.slice(2, t.length - 3).split('/'),
+            optional: true,
+            repeated: true,
+          })
+        } else if (t.startsWith('({') && t.endsWith('})')) {
+          this.tags.push({
+            values: t.slice(2, t.length - 2).split('/'),
+            optional: true,
+            repeated: false,
+          })
+        } else if (t.startsWith('{') && t.endsWith('}')) {
+          this.tags.push({
+            values: t.slice(1, t.length - 1).split('/'),
+            optional: false,
+            repeated: false,
+          })
+        } else if (t.startsWith('(') && t.endsWith('+)')) {
+          this.tags.push({
+            values: [t.slice(1, t.length - 2)],
+            optional: true,
+            repeated: true,
+          })
+        } else if (t.startsWith('(') && t.endsWith(')')) {
+          this.tags.push({
+            values: [t.slice(1, t.length - 1)],
+            optional: true,
+            repeated: false,
+          })
+        } else {
+          this.tags.push({ values: [t], optional: false, repeated: false })
+        }
+      })
   }
 
-  tagsToString (): string {
-    return this.tags.map(t => tagToString(t)).join(' ')
+  tagsToString(): string {
+    return this.tags.map((t) => tagToString(t)).join(' ')
   }
 }
 
@@ -73,23 +95,23 @@ export class RuleSet {
   pos: Set<string> = new Set()
   rules: Array<[string, Expression]> = []
 
-  constructor (name: string) {
+  constructor(name: string) {
     this.name = name
   }
 
-  addPos (pos: string): void {
+  addPos(pos: string): void {
     this.pos.add(pos)
   }
 
-  addRule (name: string, rule: string): void {
+  addRule(name: string, rule: string): void {
     this.rules.push([name, new Expression(name, rule)])
   }
 
-  addRoot (name: string): void {
+  addRoot(name: string): void {
     this.root.add(name)
   }
 
-  has (name: string): boolean {
+  has(name: string): boolean {
     if (this.pos.has(name)) return true
 
     for (const [n] of this.rules) {
@@ -98,40 +120,40 @@ export class RuleSet {
     return false
   }
 
-  hasRule (name: string): boolean {
+  hasRule(name: string): boolean {
     for (const [n] of this.rules) {
       if (name === n) return true
     }
     return false
   }
 
-  hasPos (name: string): boolean {
+  hasPos(name: string): boolean {
     return this.pos.has(name)
   }
 
-  getRule (name: string): Expression | undefined {
+  getRule(name: string): Expression | undefined {
     for (const [n, exp] of this.rules) {
       if (name === n) return exp
     }
   }
 
-  getPosIndex (name: string): number {
+  getPosIndex(name: string): number {
     return [...this.pos].indexOf(name)
   }
 
-  getPos (): Set<string> {
+  getPos(): Set<string> {
     return this.pos
   }
 
-  getRules (): Array<[string, Expression]> {
+  getRules(): Array<[string, Expression]> {
     return this.rules
   }
 
-  getRoot (): Set<string> {
+  getRoot(): Set<string> {
     return this.root
   }
 
-  grammar (): string {
+  grammar(): string {
     let g = `main -> ${[...this.root].join('|')}`
 
     for (const [name, exp] of this.rules) {
@@ -145,7 +167,11 @@ export class RuleSet {
               tags.push(`${tag.values[0]}:*`)
             }
           } else {
-            tags.push(`(${tag.values.map(v => this.hasPos(v) ? `"${v}"` : v).join('|')}):*`)
+            tags.push(
+              `(${tag.values
+                .map((v) => (this.hasPos(v) ? `"${v}"` : v))
+                .join('|')}):*`
+            )
           }
         } else if (tag.optional) {
           if (tag.values.length === 1) {
@@ -155,7 +181,11 @@ export class RuleSet {
               tags.push(`${tag.values[0]}:?`)
             }
           } else {
-            tags.push(`(${tag.values.map(v => this.hasPos(v) ? `"${v}"` : v).join('|')}):?`)
+            tags.push(
+              `(${tag.values
+                .map((v) => (this.hasPos(v) ? `"${v}"` : v))
+                .join('|')}):?`
+            )
           }
         } else {
           if (tag.values.length === 1) {
@@ -165,7 +195,11 @@ export class RuleSet {
               tags.push(`${tag.values[0]}`)
             }
           } else {
-            tags.push(`(${tag.values.map(v => this.hasPos(v) ? `"${v}"` : v).join('|')})`)
+            tags.push(
+              `(${tag.values
+                .map((v) => (this.hasPos(v) ? `"${v}"` : v))
+                .join('|')})`
+            )
           }
         }
       }

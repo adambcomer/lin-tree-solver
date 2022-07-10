@@ -11,14 +11,16 @@
     "@fontsource/roboto-mono": "^4.4.0",
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.4",
+    "@vitejs/plugin-react": "^1.3.2",
     "fontfaceobserver": "^2.1.0",
     "nearley": "^2.20.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.0.2",
-    "react-scripts": "4.0.3",
     "typescript": "^4.3.2",
+    "vite": "^2.9.13",
+    "vite-plugin-html": "^3.2.0",
     "worker-loader": "^3.0.7"
   },
   "devDependencies": {
@@ -30,15 +32,17 @@
     "@types/react-dom": "^18.0.1",
     "@types/react-helmet": "^6.1.1",
     "@types/react-router-dom": "^5.1.7",
+    "prettier": "2.7.1",
     "source-map-explorer": "^2.5.2",
     "ts-standard": "^11.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "start": "vite",
+    "build": "tsc && npx vite build",
+    "preview": "vite preview",
+    "lint": "ts-standard --fix",
+    "format": "ts-standard",
+    "analyze": "source-map-explorer 'dist/static/*.js'"
   },
   "eslintConfig": {
     "extends": [

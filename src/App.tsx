@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import React from 'react'
 import { createTheme, CssBaseline, Grid, ThemeProvider } from '@mui/material'
 import TreeViewer from './Pages/TreeViewer'
 import Navbar from './Components/Navbar'
@@ -38,14 +37,14 @@ const theme = createTheme({
     primary: {
       main: '#263238',
       light: '#4f5b62',
-      dark: '#000a12'
+      dark: '#000a12',
     },
     secondary: {
       main: '#f44336',
       light: '#ff7961',
-      dark: '#ba000d'
-    }
-  }
+      dark: '#ba000d',
+    },
+  },
 })
 
 const App = (): JSX.Element => {
@@ -55,7 +54,6 @@ const App = (): JSX.Element => {
       <GlobalContextProvider>
         <BrowserRouter basename='/lin-tree-solver'>
           <Grid container>
-
             <Navbar />
             <Routes>
               <Route path='/' element={<Home />} />
@@ -65,7 +63,6 @@ const App = (): JSX.Element => {
               <Route path='/rules/:id' element={<RuleSetEditor />} />
               <Route path='*' element={<Navigate to='/' />} />
             </Routes>
-
           </Grid>
         </BrowserRouter>
       </GlobalContextProvider>

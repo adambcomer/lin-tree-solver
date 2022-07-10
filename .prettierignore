@@ -1,0 +1,6 @@
+build
+dist
+
+*.md
+*.html
+*.json

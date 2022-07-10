@@ -19,7 +19,7 @@ import compile from 'nearley/lib/compile'
 import generate from 'nearley/lib/generate'
 import nearleyGrammar from 'nearley/lib/nearley-language-bootstrapped'
 
-export function compileGrammar (sourceCode) {
+export function compileGrammar(sourceCode) {
   // Parse the grammar source into an AST
   const grammarParser = new Parser(nearleyGrammar)
   grammarParser.feed(sourceCode)
