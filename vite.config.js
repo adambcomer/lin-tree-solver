@@ -3,8 +3,7 @@ import react from '@vitejs/plugin-react'
 import { createHtmlPlugin } from 'vite-plugin-html'
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd())
-  console.log(env)
+  const env = loadEnv(mode, process.cwd(), '')
   return {
     plugins: [
       react(),
@@ -20,5 +19,6 @@ export default defineConfig(({ mode }) => {
       }),
       splitVendorChunkPlugin(),
     ],
+    base: 'https://adambcomer.com/lin-tree-solver/'
   }
 })
