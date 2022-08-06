@@ -210,8 +210,8 @@ export class RuleSet {
           for (let i = 0; i < data.length; i++) {
             if (data[i] !== null) {
               if (Array.isArray(data[i])) {
-                if (data[i].length > 0) {
-                  children.push(data[i][0])
+                for(let j = 0; j < data[i].length; j++) {
+                  children.push(data[i][j])
                 }
               } else {
                 children.push(data[i])
