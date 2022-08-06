@@ -30,3 +30,4 @@ pkg
 .eslintcache
 
 .env
+.netlify
