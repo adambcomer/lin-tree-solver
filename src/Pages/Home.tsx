@@ -117,7 +117,7 @@ const Home = (): JSX.Element => {
       <Paragraph>
         <b>Note:</b> You can select multiple Parts of Speech for a single word.
         At first, this may seem strange. How can a word be a Noun, Verb, and
-        Adjective at the same time? But, what if we don't know what Part of
+        Adjective at the same time? But, what if we don&apos;t know what Part of
         Speech a word is? A word that has multiple Parts of Speech represents
         our uncertainty or lack of knowledge. The solver can use that
         uncertainty to work out all possible trees that satisfy the other
@@ -150,14 +150,14 @@ const Home = (): JSX.Element => {
         Why are a few the syntax rules slightly different from the textbook?
       </Question>
       <Answer>
-        The textbook has some rules that don't work well with parsers and were
-        modified to work as the author intended. For example, the X-Bar rule in
-        the textbook N'&rarr;N' (PP). This rule can be satisfied by an infinite
-        chain of N's. Intuitively, we know that the shortest possible tree is
-        the desired result, but the computer doesn't know that when it searches
-        for every possible tree. I modified some of the rules to work with the
-        parser to give the desired parsed trees rather then make the exact rules
-        work.
+        The textbook has some rules that do&apos;t work well with parsers and
+        were modified to work as the author intended. For example, the X-Bar
+        rule in the textbook N&apos;&rarr;N&apos; (PP). This rule can be
+        satisfied by an infinite chain of N&apos;s. Intuitively, we know that
+        the shortest possible tree is the desired result, but the computer
+        doesn&apos;t know that when it searches for every possible tree. I
+        modified some of the rules to work with the parser to give the desired
+        parsed trees rather then make the exact rules work.
       </Answer>
 
       <Question>Can I save a picture of the parsed trees?</Question>
@@ -172,8 +172,8 @@ const Home = (): JSX.Element => {
       </Question>
       <Answer>
         Currently, there are no sharing mechanisms. This feature is under active
-        development. I'm considering several strategies to make this feature
-        work seamlessly.
+        development. I&apos;m considering several strategies to make this
+        feature work seamlessly.
       </Answer>
 
       <Question>Is this project open source?</Question>
@@ -182,7 +182,7 @@ const Home = (): JSX.Element => {
         <OutboundLink href='https://github.com/adambcomer/lin-tree-solver'>
           Github Repository
         </OutboundLink>
-        . I'm happy to merge pull requests that build on the project.
+        . I&apos;m happy to merge pull requests that build on the project.
       </Answer>
 
       <Question>

@@ -89,7 +89,9 @@ ctx.onmessage = (
         countTerminal(t[i])
       }
       trees = trees.concat(t)
-    } catch (e) {}
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   postMessage({ trees, searched: 1 })

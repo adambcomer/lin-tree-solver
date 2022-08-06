@@ -25,6 +25,6 @@ export const RuleSetsContext = React.createContext<{
 }>({
   ruleSets: [],
   idx: 0,
-  setRuleSets: (ruleSets: RuleSet[]) => {},
-  setRuleSetIdx: (idx: number) => {},
+  setRuleSets: (ruleSets: RuleSet[]) => undefined,
+  setRuleSetIdx: (idx: number) => undefined,
 })

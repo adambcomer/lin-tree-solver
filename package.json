@@ -34,19 +34,20 @@
     "@types/react-router-dom": "^5.1.7",
     "prettier": "2.7.1",
     "source-map-explorer": "^2.5.2",
-    "ts-standard": "^11.0.0"
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.30.1"
   },
   "scripts": {
     "start": "vite",
     "build": "tsc && npx vite build",
     "preview": "vite preview",
-    "lint": "ts-standard --fix",
-    "format": "ts-standard",
+    "lint:check": "eslint .",
+    "lint": "eslint --fix .",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
     "analyze": "source-map-explorer 'dist/static/*.js'"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
   }
 }
