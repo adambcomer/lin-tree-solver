@@ -77,7 +77,7 @@ const NewTreeRoot = () => {
         <Paper elevation={4} sx={{ my: 4 }}>
           <Box
             component='img'
-            src='/images/new-tree-root/edit_syntax_rules.png'
+            src={`${import.meta.env.VITE_BASE_URL}/images/new-tree-root/edit_syntax_rules.png`}
             sx={{
               width: '100%',
             }}
@@ -100,7 +100,7 @@ const NewTreeRoot = () => {
         <Paper elevation={4} sx={{ my: 4 }}>
           <Box
             component='img'
-            src='/images/new-tree-root/edit_syntax_rule.png'
+            src={`${import.meta.env.VITE_BASE_URL}/images/new-tree-root/edit_syntax_rule.png`}
             sx={{
               width: '100%',
             }}
@@ -119,7 +119,7 @@ const NewTreeRoot = () => {
         <Paper elevation={4} sx={{ my: 4 }}>
           <Box
             component='img'
-            src='/images/new-tree-root/new_syntax_rule.png'
+            src={`${import.meta.env.VITE_BASE_URL}/images/new-tree-root/new_syntax_rule.png`}
             sx={{
               width: '100%',
             }}
@@ -138,7 +138,7 @@ const NewTreeRoot = () => {
         <Paper elevation={4} sx={{ my: 4 }}>
           <Box
             component='img'
-            src='/images/new-tree-root/final_tree.png'
+            src={`${import.meta.env.VITE_BASE_URL}/images/new-tree-root/final_tree.png`}
             sx={{
               width: '100%',
             }}
