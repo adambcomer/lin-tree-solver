@@ -28,6 +28,7 @@ import {
 import AspectRatioIcon from '@mui/icons-material/AspectRatio'
 import GavelIcon from '@mui/icons-material/Gavel'
 import SubjectIcon from '@mui/icons-material/Subject'
+import HelpIcon from '@mui/icons-material/Help'
 import { useMatch } from 'react-router'
 import { NavLink } from 'react-router-dom'
 
@@ -54,7 +55,13 @@ const Navbar = (): JSX.Element => {
         </Link>
       </Box>
       <Divider />
-      <List>
+      <List
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: 'calc(100% - 64px)',
+        }}
+      >
         <Link
           component={NavLink}
           to='/sentence'
@@ -89,6 +96,18 @@ const Navbar = (): JSX.Element => {
               <GavelIcon />
             </ListItemIcon>
             <ListItemText primary='Syntax Rules' />
+          </ListItem>
+        </Link>
+        <Link
+          component={NavLink}
+          to='/support'
+          sx={{ color: '#000', textDecoration: 'none', mt: 'auto' }}
+        >
+          <ListItem button sx={{}}>
+            <ListItemIcon>
+              <HelpIcon />
+            </ListItemIcon>
+            <ListItemText primary='Support Pages' />
           </ListItem>
         </Link>
       </List>

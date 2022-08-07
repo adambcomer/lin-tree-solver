@@ -23,6 +23,7 @@ import RuleEditor from './Pages/RulesEditor'
 import RuleSetEditor from './Pages/RuleSetEditor'
 import Home from './Pages/Home'
 import GlobalContextProvider from './Context/GlobalContextProvider'
+import Support from './Pages/Support'
 
 import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
@@ -31,6 +32,7 @@ import '@fontsource/roboto/500.css'
 
 import '@fontsource/roboto-mono/400.css'
 import '@fontsource/roboto-mono/500.css'
+import NewTreeRoot from './Pages/Support/NewTreeRoot'
 
 const theme = createTheme({
   palette: {
@@ -61,6 +63,10 @@ const App = (): JSX.Element => {
               <Route path='/viewer' element={<TreeViewer />} />
               <Route path='/rules' element={<RuleEditor />} />
               <Route path='/rules/:id' element={<RuleSetEditor />} />
+
+              <Route path='/support' element={<Support />} />
+              <Route path='/support/new-tree-root' element={<NewTreeRoot />} />
+
               <Route path='*' element={<Navigate to='/' />} />
             </Routes>
           </Grid>

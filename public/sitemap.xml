@@ -19,5 +19,14 @@
     <loc>https://adambcomer.com/lin-tree-solver/rules</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  <url>
+    <loc>https://adambcomer.com/lin-tree-solver/support</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://adambcomer.com/lin-tree-solver/support/new-tree-root</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

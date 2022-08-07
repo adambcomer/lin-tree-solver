@@ -29,6 +29,7 @@ import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 import withTracker from '../withTracker'
 import { Title } from '../Components/common'
+import { Box } from '@mui/system'
 
 const SentenceEditor = (): JSX.Element => {
   const { words, setWords } = useContext(SentenceContext)
@@ -92,58 +93,60 @@ const SentenceEditor = (): JSX.Element => {
         />
       </Helmet>
       <Grid item xs sx={{ pt: 2, px: 2 }}>
-        <Title>Sentence Editor</Title>
-        <TextField
-          label='Sentence'
-          value={sentence}
-          onChange={onSentenceChange}
-          fullWidth
-          sx={{ mt: 2 }}
-        />
-        <Grid container spacing={1} sx={{ mt: 2 }}>
-          {words.map((w, i) => {
-            return (
-              <Grid item xs={2} key={i}>
-                <Card variant='outlined'>
-                  <CardContent>
-                    <Typography
-                      variant='h6'
-                      component='h4'
-                      align='center'
-                      sx={{ mb: 2 }}
-                    >
-                      {w.word}
-                    </Typography>
-                    <Grid container spacing={1} justifyContent='space-evenly'>
-                      {[...ruleSets[ruleSetIndex].getPos()].map((pos, j) => {
-                        return (
-                          <Grid item key={j}>
-                            <Avatar
-                              sx={{
-                                height: 32,
-                                width: 32,
-                                cursor: 'pointer',
-                                fontSize: '0.875rem',
-                              }}
-                              style={{
-                                backgroundColor: w.pos.includes(pos)
-                                  ? getColor(j)
-                                  : '#bdbdbd',
-                              }}
-                              onClick={onPosClicked(i, pos)}
-                            >
-                              {pos}
-                            </Avatar>
-                          </Grid>
-                        )
-                      })}
-                    </Grid>
-                  </CardContent>
-                </Card>
-              </Grid>
-            )
-          })}
-        </Grid>
+        <Box sx={{ maxWidth: '1536px' }}>
+          <Title>Sentence Editor</Title>
+          <TextField
+            label='Sentence'
+            value={sentence}
+            onChange={onSentenceChange}
+            fullWidth
+            sx={{ mt: 2 }}
+          />
+          <Grid container spacing={1} sx={{ mt: 2 }}>
+            {words.map((w, i) => {
+              return (
+                <Grid item xs={2} key={i}>
+                  <Card variant='outlined'>
+                    <CardContent>
+                      <Typography
+                        variant='h6'
+                        component='h4'
+                        align='center'
+                        sx={{ mb: 2 }}
+                      >
+                        {w.word}
+                      </Typography>
+                      <Grid container spacing={1} justifyContent='space-evenly'>
+                        {[...ruleSets[ruleSetIndex].getPos()].map((pos, j) => {
+                          return (
+                            <Grid item key={j}>
+                              <Avatar
+                                sx={{
+                                  height: 32,
+                                  width: 32,
+                                  cursor: 'pointer',
+                                  fontSize: '0.875rem',
+                                }}
+                                style={{
+                                  backgroundColor: w.pos.includes(pos)
+                                    ? getColor(j)
+                                    : '#bdbdbd',
+                                }}
+                                onClick={onPosClicked(i, pos)}
+                              >
+                                {pos}
+                              </Avatar>
+                            </Grid>
+                          )
+                        })}
+                      </Grid>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </Box>
       </Grid>
     </>
   )
