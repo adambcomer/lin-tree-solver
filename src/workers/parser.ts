@@ -58,7 +58,7 @@ function combinations(pos: string[][]): string[] {
   return strings
 }
 
-// eslint-disable-next-line no-restricted-globals
+// eslint-disable-next-line
 const ctx: Worker = self as any
 
 ctx.onmessage = (

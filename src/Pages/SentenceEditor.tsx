@@ -28,6 +28,7 @@ import { Helmet } from 'react-helmet'
 import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 import withTracker from '../withTracker'
+import { Title } from '../Components/common'
 
 const SentenceEditor = (): JSX.Element => {
   const { words, setWords } = useContext(SentenceContext)
@@ -91,9 +92,7 @@ const SentenceEditor = (): JSX.Element => {
         />
       </Helmet>
       <Grid item xs sx={{ pt: 2, px: 2 }}>
-        <Typography variant='h3' component='h1'>
-          Sentence Editor
-        </Typography>
+        <Title>Sentence Editor</Title>
         <TextField
           label='Sentence'
           value={sentence}

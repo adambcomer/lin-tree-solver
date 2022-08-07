@@ -14,49 +14,23 @@
  * limitations under the License.
  */
 
-import { Link as MuiLink, Typography, Grid, styled } from '@mui/material'
-import { NavLink } from 'react-router-dom'
+import { Grid } from '@mui/material'
 import { Helmet } from 'react-helmet'
+import {
+  Subtitle,
+  Paragraph,
+  Subtitle2,
+  Question,
+  Answer,
+  Link,
+  OutboundLink,
+  Title,
+} from '../Components/common'
 import withTracker from '../withTracker'
-
-const Subtitle = styled(Typography)(() => ({
-  marginTop: 32,
-}))
-Subtitle.defaultProps = { variant: 'h2', typography: 'h4' }
-
-const Subtitle2 = styled(Typography)(() => ({
-  marginTop: 16,
-}))
-Subtitle2.defaultProps = { variant: 'h3', typography: 'h6' }
-
-const Paragraph = styled(Typography)(() => ({
-  marginTop: 8,
-}))
-Paragraph.defaultProps = { variant: 'body1' }
-
-const Question = styled(Typography)(() => ({
-  marginTop: 16,
-}))
-Question.defaultProps = { variant: 'h3', typography: 'h6' }
-
-const Answer = styled(Typography)(() => ({
-  marginTop: 8,
-}))
-Answer.defaultProps = { variant: 'body1' }
-
-const Link = styled(NavLink)(() => ({
-  color: '#1976d2',
-  textDecoration: 'none',
-}))
-
-const OutboundLink = styled(MuiLink)(() => ({
-  color: '#1976d2',
-  textDecoration: 'none',
-}))
 
 const Home = (): JSX.Element => {
   return (
-    <Grid item xs sx={{ px: 3, py: 2 }}>
+    <Grid item xs sx={{ px: 2, py: 2 }}>
       <Helmet htmlAttributes={{ lang: 'en' }}>
         <title>Linguistics Tree Solver</title>
         <meta
@@ -78,9 +52,7 @@ const Home = (): JSX.Element => {
         />
       </Helmet>
 
-      <Typography variant='h3' component='h1'>
-        Linguistics Tree Solver
-      </Typography>
+      <Title>Linguistics Tree Solver</Title>
 
       <Subtitle>About:</Subtitle>
       <Paragraph>

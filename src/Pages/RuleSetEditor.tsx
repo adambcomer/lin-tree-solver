@@ -41,6 +41,7 @@ import { getColor } from '../helpers/colors'
 import { Helmet } from 'react-helmet'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 import withTracker from '../withTracker'
+import { Subtitle2, Title } from '../Components/common'
 
 const RuleSetEditor = (): JSX.Element => {
   const { id } = useParams()
@@ -223,13 +224,11 @@ const RuleSetEditor = (): JSX.Element => {
           content={`https://adambcomer.com/lin-tree-solver/rules/${id ?? '0'}`}
         />
       </Helmet>
-      <Grid item xs>
-        <Box sx={{ pt: 2, px: 2 }}>
+      <Grid item xs sx={{ pt: 2, px: 2 }}>
+        <Box>
           <Grid container alignItems='center'>
             <Grid item xs>
-              <Typography variant='h3' component='h1'>
-                Rule Set
-              </Typography>
+              <Title>Rule Set</Title>
             </Grid>
             <Grid item>
               <Button
@@ -274,10 +273,7 @@ const RuleSetEditor = (): JSX.Element => {
           />
         </Box>
 
-        <Typography variant='h6' component='h3' sx={{ mt: 4, mx: 2 }}>
-          Parts of Speech:
-        </Typography>
-
+        <Subtitle2 sx={{ mt: 4 }}>Parts of Speech:</Subtitle2>
         <Grid container spacing={1} sx={{ pt: 2, px: 2 }}>
           {ruleSet.pos.map((p, i) => {
             return (
@@ -329,9 +325,7 @@ const RuleSetEditor = (): JSX.Element => {
           </Grid>
         )}
 
-        <Typography variant='h6' component='h3' sx={{ mt: 4, mx: 2 }}>
-          Root Tags:
-        </Typography>
+        <Subtitle2 sx={{ mt: 4 }}>Root Tags:</Subtitle2>
         <Grid container spacing={1} sx={{ pt: 2, px: 2 }}>
           {ruleSet.root.map((r, i) => {
             return (
@@ -378,9 +372,7 @@ const RuleSetEditor = (): JSX.Element => {
           </Grid>
         )}
 
-        <Typography variant='h6' component='h3' sx={{ mt: 4, mx: 2 }}>
-          Syntax Rules:
-        </Typography>
+        <Subtitle2 sx={{ mt: 4 }}>Syntax Rules:</Subtitle2>
         <List>
           {ruleSet.rules.map(([name, expression], i) => {
             return (
