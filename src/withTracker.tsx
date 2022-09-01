@@ -17,7 +17,7 @@
 import { ComponentType, useEffect } from 'react'
 import { useLocation } from 'react-router'
 
-function withTracker<P>(
+function withTracker<P extends JSX.IntrinsicAttributes>(
   WrappedComponent: ComponentType<P>
 ): (props: P) => JSX.Element {
   const trackPage = (page: string): void => {
