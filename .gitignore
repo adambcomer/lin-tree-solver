@@ -31,3 +31,5 @@ pkg
 
 .env
 .netlify
+
+.fleet
