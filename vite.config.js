@@ -1,5 +1,5 @@
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import process from 'process'
 
