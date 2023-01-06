@@ -38,22 +38,42 @@ const TreeViewer = (): JSX.Element => {
   const [trees, setTrees] = useState<Node[]>([])
   const [treeIndex, setTreeIndex] = useState(0)
   const [loading, setLoading] = useState(true)
+  const [errors, setErrors] =
+    useState<
+      { token: string; offset: number; tokens: string[]; pos: string[] }[]
+    >()
   const [canvasZoom, setCanvasZoom] = useState(1)
   const canvas = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     const t1 = performance.now()
     worker.onmessage = (
-      e: MessageEvent<{ trees: Node[]; searched: number }>
+      e: MessageEvent<
+        | { trees: Node[] }
+        | {
+            errors: {
+              token: string
+              offset: number
+              tokens: string[]
+              pos: string[]
+            }[]
+          }
+      >
     ) => {
-      setTrees(e.data.trees)
-      setTreeIndex(0)
+      if ('trees' in e.data) {
+        setTrees(e.data.trees)
+        setTreeIndex(0)
 
-      console.log(`Solved in ${performance.now() - t1}ms`)
-
+        console.log(`Solved in ${performance.now() - t1}ms`)
+      } else {
+        setErrors(e.data.errors)
+      }
       setLoading(false)
     }
-    worker.postMessage({ grammar: ruleSets[ruleSetIndex].grammar(), words })
+    worker.postMessage({
+      grammar: ruleSets[ruleSetIndex].grammar(),
+      words,
+    })
   }, [ruleSetIndex, ruleSets, words])
 
   const nextTree = (): void => {
@@ -232,7 +252,54 @@ const TreeViewer = (): JSX.Element => {
               </Box>
             </Tooltip>
 
-            {trees.length === 0 ? (
+            {errors?.length ? (
+              <Box
+                sx={{
+                  mx: 'auto',
+                  width: 800,
+                  maxWidth: '100%',
+                  fontFamily: 'Roboto Mono',
+                  overflowY: 'scroll',
+                  height: '100vh',
+                  pb: 6,
+                }}
+              >
+                <Box sx={{ mt: 6, fontWeight: 600 }}>Parse Errors:</Box>
+                {errors.map((err, i) => {
+                  return (
+                    <Box sx={{ mt: 6 }} key={i}>
+                      <Box sx={{ fontWeight: 600 }}>
+                        Unexpected token &quot;{err.token}&quot; at position{' '}
+                        {err.offset} in the following sentence:
+                      </Box>
+                      <Box sx={{ mt: 1 }}>
+                        {words.map((word, i) => {
+                          return (
+                            <Box
+                              component='span'
+                              sx={{
+                                mr: 1,
+                                fontWeight: i === err.offset ? 500 : 400,
+                                color: i === err.offset ? '#f82b60' : '#000',
+                                textDecoration:
+                                  i === err.offset ? 'underline' : 'none',
+                              }}
+                              key={word.word + err.pos[i]}
+                            >
+                              {word.word}({err.pos[i]})
+                            </Box>
+                          )
+                        })}
+                      </Box>
+                      <Box sx={{ mt: 1 }}>
+                        Expected one of the following parts of speech:{' '}
+                        {err.tokens.join(', ')}
+                      </Box>
+                    </Box>
+                  )
+                })}
+              </Box>
+            ) : trees.length === 0 ? (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='100%'
@@ -247,7 +314,7 @@ const TreeViewer = (): JSX.Element => {
                   fill='#000'
                   textAnchor='middle'
                 >
-                  No Tree Found
+                  No Complete Trees Found
                 </text>
               </svg>
             ) : (
