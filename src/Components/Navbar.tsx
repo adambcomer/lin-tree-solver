@@ -31,11 +31,50 @@ import SubjectIcon from '@mui/icons-material/Subject'
 import HelpIcon from '@mui/icons-material/Help'
 import { useMatch } from 'react-router'
 import { NavLink } from 'react-router-dom'
+import { appendState } from '../helpers/url-state'
+import { SentenceContext } from '../Context/SentenceContext'
+import { useContext, useEffect } from 'react'
+import { RuleSetsContext } from '../Context/RuleSetsContext'
+import { Buffer } from 'buffer'
 
 const Navbar = (): JSX.Element => {
   const sentenceMatch = useMatch('/sentence')
   const viewerMatch = useMatch('/viewer')
   const rulesMatch = useMatch('/rules')
+  const { words, setWords } = useContext(SentenceContext)
+  const { ruleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
+
+  useEffect(() => {
+    if (location.hash.slice(0, 10) === '#sentence=') {
+      try {
+        const urlWords = JSON.parse(
+          Buffer.from(location.hash.slice(10), 'base64').toString('utf-8')
+        )
+
+        const isValid =
+          Array.isArray(urlWords) &&
+          urlWords.every((w) => {
+            return (
+              typeof w === 'object' &&
+              w !== null &&
+              'word' in w &&
+              typeof w.word === 'string' &&
+              'pos' in w &&
+              Array.isArray(w.pos) &&
+              w.pos.every(
+                (p: unknown) =>
+                  typeof p === 'string' && ruleSets[ruleSetIndex].hasPos(p)
+              )
+            )
+          })
+        if (isValid) {
+          setWords(urlWords)
+        }
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  }, [])
 
   return (
     <Drawer
@@ -46,7 +85,7 @@ const Navbar = (): JSX.Element => {
       <Box sx={{ minHeight: 64 }}>
         <Link
           component={NavLink}
-          to='/'
+          to={appendState('/', words)}
           sx={{ color: '#000', textDecoration: 'none' }}
         >
           <Typography variant='h6' component='h1' align='center' sx={{ mt: 2 }}>
@@ -64,7 +103,7 @@ const Navbar = (): JSX.Element => {
       >
         <Link
           component={NavLink}
-          to='/sentence'
+          to={appendState('/sentence', words)}
           sx={{ color: '#000', textDecoration: 'none' }}
         >
           <ListItem button selected={sentenceMatch != null}>
@@ -76,7 +115,7 @@ const Navbar = (): JSX.Element => {
         </Link>
         <Link
           component={NavLink}
-          to='/viewer'
+          to={appendState('/viewer', words)}
           sx={{ color: '#000', textDecoration: 'none' }}
         >
           <ListItem button selected={viewerMatch != null}>
@@ -88,7 +127,7 @@ const Navbar = (): JSX.Element => {
         </Link>
         <Link
           component={NavLink}
-          to='/rules'
+          to={appendState('/rules', words)}
           sx={{ color: '#000', textDecoration: 'none' }}
         >
           <ListItem button selected={rulesMatch != null}>
@@ -103,7 +142,7 @@ const Navbar = (): JSX.Element => {
           to='/support'
           sx={{ color: '#000', textDecoration: 'none', mt: 'auto' }}
         >
-          <ListItem button sx={{}}>
+          <ListItem button>
             <ListItemIcon>
               <HelpIcon />
             </ListItemIcon>

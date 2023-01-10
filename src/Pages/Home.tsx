@@ -171,16 +171,7 @@ const Home = (): JSX.Element => {
         <Subtitle>To-Do:</Subtitle>
         <ul>
           <li>
-            <Paragraph>Saving of Sentences/Syntax Rules/Trees</Paragraph>
-          </li>
-          <li>
-            <Paragraph>Sharing of Sentences/Syntax Rules/Trees</Paragraph>
-          </li>
-          <li>
             <Paragraph>Embeddable iframes</Paragraph>
-          </li>
-          <li>
-            <Paragraph>Tooling to catch common syntax rule errors</Paragraph>
           </li>
           <li>
             <Paragraph>Improve rendering for larger trees</Paragraph>
@@ -189,6 +180,19 @@ const Home = (): JSX.Element => {
             <Paragraph>
               Label structural relationships between all of the nodes in a tree
             </Paragraph>
+          </li>
+        </ul>
+
+        <Subtitle>Done:</Subtitle>
+        <ul>
+          <li>
+            <Paragraph>Saving of Sentences/Syntax Rules/Trees</Paragraph>
+          </li>
+          <li>
+            <Paragraph>Sharing of Sentences/Syntax Rules/Trees</Paragraph>
+          </li>
+          <li>
+            <Paragraph>Tooling to catch common syntax rule errors</Paragraph>
           </li>
         </ul>
 

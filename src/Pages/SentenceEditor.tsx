@@ -30,6 +30,8 @@ import { RuleSetsContext } from '../Context/RuleSetsContext'
 import withTracker from '../withTracker'
 import { Title } from '../Components/common'
 import { Box } from '@mui/system'
+import { useNavigate } from 'react-router-dom'
+import { appendState } from '../helpers/url-state'
 
 const SentenceEditor = (): JSX.Element => {
   const { words, setWords } = useContext(SentenceContext)
@@ -37,6 +39,7 @@ const SentenceEditor = (): JSX.Element => {
   const [sentence, setSentenceText] = useState(
     words.map((w) => w.word).join(' ')
   )
+  const navigate = useNavigate()
 
   const onSentenceChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setSentenceText(e.target.value)
@@ -50,6 +53,9 @@ const SentenceEditor = (): JSX.Element => {
     })
 
     setWords(words)
+    navigate(appendState('/sentence', words), {
+      replace: true,
+    })
   }
 
   const onPosClicked = (wordIndex: number, pos: string) => {
@@ -61,6 +67,10 @@ const SentenceEditor = (): JSX.Element => {
         words[wordIndex].pos.push(pos)
         setWords([...words])
       }
+
+      navigate(appendState('/sentence', words), {
+        replace: true,
+      })
     }
   }
 

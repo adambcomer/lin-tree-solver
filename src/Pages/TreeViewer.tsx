@@ -63,9 +63,12 @@ const TreeViewer = (): JSX.Element => {
       if ('trees' in e.data) {
         setTrees(e.data.trees)
         setTreeIndex(0)
+        setErrors([])
 
         console.log(`Solved in ${performance.now() - t1}ms`)
       } else {
+        setTrees([])
+        setTreeIndex(0)
         setErrors(e.data.errors)
       }
       setLoading(false)

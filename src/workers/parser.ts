@@ -161,7 +161,6 @@ ctx.onmessage = (
               const stackSymbols = stateStack[0].rule.symbols
               const stackDot = stateStack[0].dot
 
-              console.log(stateStack[0])
               if (
                 stackSymbols.every(
                   (s) => typeof s === 'object' && 'literal' in s
