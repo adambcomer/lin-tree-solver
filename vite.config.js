@@ -20,6 +20,5 @@ export default defineConfig(({ mode }) => {
       }),
       splitVendorChunkPlugin(),
     ],
-    base: 'https://adambcomer.com/lin-tree-solver/',
   }
 })

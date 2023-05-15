@@ -54,7 +54,7 @@ const App = (): JSX.Element => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <GlobalContextProvider>
-        <BrowserRouter basename='/lin-tree-solver'>
+        <BrowserRouter>
           <Grid container>
             <Navbar />
             <Routes>
