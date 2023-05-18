@@ -79,7 +79,7 @@ const TreeCanvas = (
     const font1 = new FontFaceObserver('Roboto Mono')
     const font2 = new FontFaceObserver('Roboto Mono', { weight: 500 })
 
-    Promise.all([font1.load(), font2.load()]).then(() => {
+    void Promise.all([font1.load(), font2.load()]).then(() => {
       if (canvas.current == null) return
       setCanvasSize({
         width: canvas.current.clientWidth * 4,

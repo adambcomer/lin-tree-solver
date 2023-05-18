@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-import { CompiledGrammar } from 'nearley'
+import { CompiledRules } from 'nearley'
 
-export function compileGrammar(sourceCode: string): CompiledGrammar
+export function compileGrammar(sourceCode: string): CompiledRules
