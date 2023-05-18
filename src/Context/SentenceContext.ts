@@ -28,4 +28,9 @@ export interface Sentence {
 export const SentenceContext = React.createContext<{
   words: Word[]
   setWords: (words: Word[]) => void
-}>({ words: [], setWords: (words: Word[]) => undefined })
+}>({
+  words: [],
+  setWords: () => {
+    /* do nothing */
+  },
+})
