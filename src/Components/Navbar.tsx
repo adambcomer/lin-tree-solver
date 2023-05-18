@@ -32,10 +32,11 @@ import HelpIcon from '@mui/icons-material/Help'
 import { useMatch } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import { appendState } from '../helpers/url-state'
-import { SentenceContext } from '../Context/SentenceContext'
+import { SentenceContext, Word } from '../Context/SentenceContext'
 import { useContext, useEffect } from 'react'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 import { Buffer } from 'buffer'
+import { isObject } from '../helpers/common'
 
 const Navbar = (): JSX.Element => {
   const sentenceMatch = useMatch('/sentence')
@@ -44,30 +45,33 @@ const Navbar = (): JSX.Element => {
   const { words, setWords } = useContext(SentenceContext)
   const { ruleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
 
+  const isValidWordArray = (value: unknown): value is Word[] => {
+    return (
+      Array.isArray(value) &&
+      value.every((v) => {
+        return (
+          isObject(v) &&
+          'word' in v &&
+          typeof v.word === 'string' &&
+          'pos' in v &&
+          Array.isArray(v.pos) &&
+          v.pos.every(
+            (p: unknown) =>
+              typeof p === 'string' && ruleSets[ruleSetIndex].hasPos(p)
+          )
+        )
+      })
+    )
+  }
+
   useEffect(() => {
     if (location.hash.slice(0, 10) === '#sentence=') {
       try {
-        const urlWords = JSON.parse(
+        const urlWords: unknown = JSON.parse(
           Buffer.from(location.hash.slice(10), 'base64').toString('utf-8')
         )
 
-        const isValid =
-          Array.isArray(urlWords) &&
-          urlWords.every((w) => {
-            return (
-              typeof w === 'object' &&
-              w !== null &&
-              'word' in w &&
-              typeof w.word === 'string' &&
-              'pos' in w &&
-              Array.isArray(w.pos) &&
-              w.pos.every(
-                (p: unknown) =>
-                  typeof p === 'string' && ruleSets[ruleSetIndex].hasPos(p)
-              )
-            )
-          })
-        if (isValid) {
+        if (isValidWordArray(urlWords)) {
           setWords(urlWords)
         }
       } catch (e) {
