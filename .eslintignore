@@ -1,6 +1,8 @@
 build
 dist
 
+*.js
+
 *.md
 *.html
 *.json
