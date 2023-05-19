@@ -1,41 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="<%- PUBLIC_URL %>/favicon.ico" />
+    <meta
+      name="viewport"
+      content="minimum-scale=1, initial-scale=1, width=device-width"
+    />
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="<%- PUBLIC_URL %>/favicon.ico" />
-  <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-  
-  <title>Linguistics Tree Solver</title>
-  <meta name="description" content="Automatically build trees based on linguistic syntax rules." data-react-helmet="true" />
+    <title>Linguistics Tree Solver</title>
+    <meta
+      name="description"
+      content="Automatically build trees based on linguistic syntax rules."
+      data-react-helmet="true"
+    />
 
-  <link rel="canonical" href="https://adambcomer.com/lin-tree-solver/" data-react-helmet="true" />
+    <link
+      rel="canonical"
+      href="https://adambcomer.com/lin-tree-solver/"
+      data-react-helmet="true"
+    />
 
-  <meta property="og:title" content="Linguistics Tree Solver" data-react-helmet="true" />
-  <meta property="og:description" content="Automatically build trees based on linguistic syntax rules." data-react-helmet="true" />
-  <meta property="og:type" content="website" data-react-helmet="true" />
-  <meta property="og:url" content="https://adambcomer.com/lin-tree-solver/" data-react-helmet="true" />
-  <meta property="og:image" content="https://adambcomer.com/lin-tree-solver/tree.png"/>
+    <meta
+      property="og:title"
+      content="Linguistics Tree Solver"
+      data-react-helmet="true"
+    />
+    <meta
+      property="og:description"
+      content="Automatically build trees based on linguistic syntax rules."
+      data-react-helmet="true"
+    />
+    <meta property="og:type" content="website" data-react-helmet="true" />
+    <meta
+      property="og:url"
+      content="https://adambcomer.com/lin-tree-solver/"
+      data-react-helmet="true"
+    />
+    <meta
+      property="og:image"
+      content="https://adambcomer.com/lin-tree-solver/tree.png"
+    />
 
-  <% if (MODE === 'production') { %>
+    <% if (MODE === 'production') { %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPWF2XR6L3"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-NPWF2XR6L3"
+    ></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
 
-      gtag('config', 'G-NPWF2XR6L3');
+      gtag('config', 'G-NPWF2XR6L3')
     </script>
-  <% } %>
-</head>
+    <% } %>
+  </head>
 
-<body>
-  <noscript>
-    You need to enable JavaScript to run this app.
-  </noscript>
-  <div id="root"></div>
-  <script type="module" src="/src/index.tsx"></script>
-</body>
+  <body>
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
 
+    <!-- Cloudflare Web Analytics -->
+    <% if (MODE === 'production') { %>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "4a8f4dcd24dd44de90aff09a966bb224"}'
+    ></script>
+    <% } %>
+    <!-- End Cloudflare Web Analytics -->
+  </body>
 </html>
