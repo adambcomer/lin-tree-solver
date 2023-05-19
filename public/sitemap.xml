@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://adambcomer.com/lin-tree-solver/</loc>
+    <loc>https://lin-tree-solver.adambcomer.com/</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://adambcomer.com/lin-tree-solver/sentence</loc>
+    <loc>https://lin-tree-solver.adambcomer.com/sentence</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://adambcomer.com/lin-tree-solver/viewer</loc>
+    <loc>https://lin-tree-solver.adambcomer.com/viewer</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://adambcomer.com/lin-tree-solver/rules</loc>
+    <loc>https://lin-tree-solver.adambcomer.com/rules</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://adambcomer.com/lin-tree-solver/support</loc>
+    <loc>https://lin-tree-solver.adambcomer.com/support</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://adambcomer.com/lin-tree-solver/support/new-tree-root</loc>
+    <loc>https://lin-tree-solver.adambcomer.com/support/new-tree-root</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>

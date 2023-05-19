@@ -32,7 +32,7 @@ const Support = () => {
 
         <link
           rel='canonical'
-          href='https://adambcomer.com/lin-tree-solver/support'
+          href='https://lin-tree-solver.adambcomer.com/support'
         />
 
         <meta property='og:title' content='Support | Linguistics Tree Solver' />
@@ -43,7 +43,7 @@ const Support = () => {
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content='https://adambcomer.com/lin-tree-solver/support'
+          content='https://lin-tree-solver.adambcomer.com/support'
         />
       </Helmet>
 
@@ -68,15 +68,74 @@ const Support = () => {
                   background:
                     'linear-gradient(0deg,rgba(0,86,210,.14),rgba(0,86,210,.14)),#fdfbff',
                 },
+                height: 186,
               }}
             >
-              <Subtitle sx={{ mt: 0 }}>Changing the Root of a Tree</Subtitle>
-              <Paragraph>
+              <Subtitle
+                sx={{
+                  mt: 0,
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                Changing the Root of a Tree
+              </Subtitle>
+              <Paragraph
+                sx={{
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  '-webkit-box-orient': 'vertical',
+                  '-webkit-line-clamp': '3',
+                }}
+              >
                 Sometimes you don&apos;t want to build a tree for a complete
                 sentence, but rather for an individual clause within a sentence
                 like a noun phrase or verb phrase. This guide shows you how to
                 modify a rule set to build trees that start from a different
                 root.
+              </Paragraph>
+            </Box>
+          </Link>
+        </Grid>
+        <Grid item xs={12} sm={12} md={6} xl={4}>
+          <Link
+            to='/support/sharing-trees'
+            style={{ textDecoration: 'none', color: '#000' }}
+          >
+            <Box
+              sx={{
+                background:
+                  'linear-gradient(0deg,rgba(0,86,210,.08),rgba(0,86,210,.08)),#fdfbff',
+                p: 4,
+                borderRadius: 6,
+                cursor: 'pointer',
+                '&:hover': {
+                  background:
+                    'linear-gradient(0deg,rgba(0,86,210,.14),rgba(0,86,210,.14)),#fdfbff',
+                },
+                height: 186,
+              }}
+            >
+              <Subtitle
+                sx={{
+                  mt: 0,
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                Sharing Parse Trees
+              </Subtitle>
+              <Paragraph
+                sx={{
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  '-webkit-box-orient': 'vertical',
+                  '-webkit-line-clamp': '3',
+                }}
+              >
+                Sharing Parse Trees is simple, just copy the URL.
               </Paragraph>
             </Box>
           </Link>

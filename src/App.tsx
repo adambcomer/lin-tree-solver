@@ -33,6 +33,7 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto-mono/400.css'
 import '@fontsource/roboto-mono/500.css'
 import NewTreeRoot from './Pages/Support/NewTreeRoot'
+import SharingTrees from './Pages/Support/SharingTrees'
 
 const theme = createTheme({
   palette: {
@@ -66,6 +67,7 @@ const App = (): JSX.Element => {
 
               <Route path='/support' element={<Support />} />
               <Route path='/support/new-tree-root' element={<NewTreeRoot />} />
+              <Route path='/support/sharing-trees' element={<SharingTrees />} />
 
               <Route path='*' element={<Navigate to='/' />} />
             </Routes>

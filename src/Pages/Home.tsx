@@ -38,7 +38,7 @@ const Home = (): JSX.Element => {
           content='Automatically build trees based on linguistic syntax rules.'
         />
 
-        <link rel='canonical' href='https://adambcomer.com/lin-tree-solver/' />
+        <link rel='canonical' href='https://lin-tree-solver.adambcomer.com/' />
 
         <meta property='og:title' content='Linguistics Tree Solver' />
         <meta
@@ -48,7 +48,7 @@ const Home = (): JSX.Element => {
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content='https://adambcomer.com/lin-tree-solver/'
+          content='https://lin-tree-solver.adambcomer.com/'
         />
       </Helmet>
 
@@ -236,7 +236,7 @@ const Home = (): JSX.Element => {
         </Paragraph>
         <Paragraph>
           Project Site:{' '}
-          <OutboundLink href='https://adambcomer.com/lin-tree-solver/'>
+          <OutboundLink href='https://lin-tree-solver.adambcomer.com/'>
             Project Site
           </OutboundLink>
         </Paragraph>

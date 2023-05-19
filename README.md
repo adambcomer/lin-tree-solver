@@ -10,7 +10,7 @@ I want others to be able to add/modify the rules to work for them.
 
 I have included an annotated sentence and syntax rules from _Syntax: A Generative Introduction, Third Edition, by Andrew Carnie_.
 
-Click around to view the [sentence](https://adambcomer.com/lin-tree-solver/sentence), the [syntax rules](https://adambcomer.com/lin-tree-solver/rules), and [parsed trees](https://adambcomer.com/lin-tree-solver/viewer).
+Click around to view the [sentence](https://lin-tree-solver.adambcomer.com/sentence), the [syntax rules](https://lin-tree-solver.adambcomer.com/rules), and [parsed trees](https://lin-tree-solver.adambcomer.com/viewer).
 
 ## Tutorial:
 
@@ -20,7 +20,7 @@ Work in progress.
 
 ### 2. Write and Annotate a Sentence
 
-In the [Sentence Editor<](https://adambcomer.com/lin-tree-solver/sentence), add your sentence in the text box at the top. The sentence will be automatically be split by word. Under each word will be all of the Parts of Speech from the Syntax Rules. By coloring these Parts of Speech, the solver will find trees that satisfy these constraints.
+In the [Sentence Editor<](https://lin-tree-solver.adambcomer.com/sentence), add your sentence in the text box at the top. The sentence will be automatically be split by word. Under each word will be all of the Parts of Speech from the Syntax Rules. By coloring these Parts of Speech, the solver will find trees that satisfy these constraints.
 
 **Note:** You can select multiple Parts of Speech for a single word. At first, this may seem strange. How can a word be a Noun, Verb, and Adjective at the same time? But, what if we don't know what Part of Speech a word is? A word that has multiple Parts of Speech represents our uncertainty or lack of knowledge. The solver can use that uncertainty to work out all possible trees that satisfy the other constraints.
 
@@ -28,7 +28,7 @@ Once the sentence has been annotated to the best of a our ability, we can comput
 
 ### 3. Build/Solve/Compute All Syntax Trees For a Sentence</Typography>
 
-In the [Tree Viewer](https://adambcomer.com/lin-tree-solver/viewer), you can view all of the parsed trees.
+In the [Tree Viewer](https://lin-tree-solver.adambcomer.com/viewer), you can view all of the parsed trees.
 
 ## Technologies:
 
@@ -42,7 +42,7 @@ The textbook has some rules that don't work well with parsers and were modified 
 
 ### Can I save a picture of the parsed trees?
 
-Yes. In the [Tree Viewer](https://adambcomer.com/lin-tree-solver/viewer), there is a Image button in the top right. Clicking this button will generate an image based on the viewer window and automatically download it.
+Yes. In the [Tree Viewer](https://lin-tree-solver.adambcomer.com/viewer), there is a Image button in the top right. Clicking this button will generate an image based on the viewer window and automatically download it.
 
 ### How do I share my Sentence/Syntax Rules with a friend?
 
@@ -65,6 +65,6 @@ Yes. You can view the code at my [Github Repository](https://github.com/adambcom
 
 Email: [adambcomer@gmail.com](mailto:adambcomer@gmail.com)
 
-Project Site: [Project Site](https://adambcomer.com/lin-tree-solver/)
+Project Site: [Project Site](https://lin-tree-solver.adambcomer.com/)
 Personal Site: [Personal Site](https://adambcomer.com/)
 Repository: [Project Github Repository](https://github.com/adambcomer/lin-tree-solver)

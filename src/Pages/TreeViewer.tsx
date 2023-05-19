@@ -126,7 +126,7 @@ const TreeViewer = (): JSX.Element => {
 
           <link
             rel='canonical'
-            href='https://adambcomer.com/lin-tree-solver/viewer'
+            href='https://lin-tree-solver.adambcomer.com/viewer'
           />
 
           <meta
@@ -140,7 +140,7 @@ const TreeViewer = (): JSX.Element => {
           <meta property='og:type' content='website' />
           <meta
             property='og:url'
-            content='https://adambcomer.com/lin-tree-solver/viewer'
+            content='https://lin-tree-solver.adambcomer.com/viewer'
           />
         </Helmet>
         <Grid item xs>
@@ -170,7 +170,7 @@ const TreeViewer = (): JSX.Element => {
 
         <link
           rel='canonical'
-          href='https://adambcomer.com/lin-tree-solver/viewer'
+          href='https://lin-tree-solver.adambcomer.com/viewer'
         />
 
         <meta
@@ -184,7 +184,7 @@ const TreeViewer = (): JSX.Element => {
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content='https://adambcomer.com/lin-tree-solver/viewer'
+          content='https://lin-tree-solver.adambcomer.com/viewer'
         />
       </Helmet>
       <Grid item xs>

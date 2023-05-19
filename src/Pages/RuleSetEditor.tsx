@@ -210,7 +210,7 @@ const RuleSetEditor = (): JSX.Element => {
 
         <link
           rel='canonical'
-          href={`https://adambcomer.com/lin-tree-solver/rules/${id ?? '0'}`}
+          href={`https://lin-tree-solver.adambcomer.com/rules/${id ?? '0'}`}
         />
 
         <meta
@@ -221,7 +221,7 @@ const RuleSetEditor = (): JSX.Element => {
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content={`https://adambcomer.com/lin-tree-solver/rules/${id ?? '0'}`}
+          content={`https://lin-tree-solver.adambcomer.com/rules/${id ?? '0'}`}
         />
       </Helmet>
       <Grid item xs sx={{ pt: 2, px: 2 }}>

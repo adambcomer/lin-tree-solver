@@ -81,7 +81,7 @@ const RuleEditor = (): JSX.Element => {
 
         <link
           rel='canonical'
-          href='https://adambcomer.com/lin-tree-solver/rules'
+          href='https://lin-tree-solver.adambcomer.com/rules'
         />
 
         <meta
@@ -95,7 +95,7 @@ const RuleEditor = (): JSX.Element => {
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content='https://adambcomer.com/lin-tree-solver/rules'
+          content='https://lin-tree-solver.adambcomer.com/rules'
         />
       </Helmet>
       <Grid item xs>

@@ -37,7 +37,7 @@ const NewTreeRoot = () => {
 
         <link
           rel='canonical'
-          href='https://adambcomer.com/lin-tree-solver/support/new-tree-root'
+          href='https://lin-tree-solver.adambcomer.com/support/new-tree-root'
         />
 
         <meta
@@ -51,7 +51,7 @@ const NewTreeRoot = () => {
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content='https://adambcomer.com/lin-tree-solver/support/new-tree-root'
+          content='https://lin-tree-solver.adambcomer.com/support/new-tree-root'
         />
       </Helmet>
 

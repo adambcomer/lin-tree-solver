@@ -85,7 +85,7 @@ const SentenceEditor = (): JSX.Element => {
 
         <link
           rel='canonical'
-          href='https://adambcomer.com/lin-tree-solver/sentence'
+          href='https://lin-tree-solver.adambcomer.com/sentence'
         />
 
         <meta
@@ -99,7 +99,7 @@ const SentenceEditor = (): JSX.Element => {
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content='https://adambcomer.com/lin-tree-solver/sentence'
+          content='https://lin-tree-solver.adambcomer.com/sentence'
         />
       </Helmet>
       <Grid item xs sx={{ pt: 2, px: 2 }}>
