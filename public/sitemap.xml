@@ -30,4 +30,9 @@
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
+    <url>
+    <loc>https://lin-tree-solver.adambcomer.com/support/sharing-trees</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
