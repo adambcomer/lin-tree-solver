@@ -20,13 +20,13 @@ Work in progress.
 
 ### 2. Write and Annotate a Sentence
 
-In the [Sentence Editor<](https://lin-tree-solver.adambcomer.com/sentence), add your sentence in the text box at the top. The sentence will be automatically be split by word. Under each word will be all of the Parts of Speech from the Syntax Rules. By coloring these Parts of Speech, the solver will find trees that satisfy these constraints.
+In the [Sentence Editor](https://lin-tree-solver.adambcomer.com/sentence), add your sentence in the text box at the top. The sentence will be automatically be split by word. Under each word will be all of the Parts of Speech from the Syntax Rules. By coloring these Parts of Speech, the solver will find trees that satisfy these constraints.
 
 **Note:** You can select multiple Parts of Speech for a single word. At first, this may seem strange. How can a word be a Noun, Verb, and Adjective at the same time? But, what if we don't know what Part of Speech a word is? A word that has multiple Parts of Speech represents our uncertainty or lack of knowledge. The solver can use that uncertainty to work out all possible trees that satisfy the other constraints.
 
 Once the sentence has been annotated to the best of a our ability, we can compute the trees that satisfy the syntax rules in conjunction with the annotations.
 
-### 3. Build/Solve/Compute All Syntax Trees For a Sentence</Typography>
+### 3. Build/Solve/Compute All Syntax Trees For a Sentence
 
 In the [Tree Viewer](https://lin-tree-solver.adambcomer.com/viewer), you can view all of the parsed trees.
 
@@ -54,17 +54,19 @@ Yes. You can view the code at my [Github Repository](https://github.com/adambcom
 
 ## To-Do:
 
-- Saving of Sentences/Syntax Rules/Trees
-- Sharing of Sentences/Syntax Rules/Trees
 - Embeddable iframes
-- Tooling to catch common syntax rule errors
 - Improve rendering for larger trees
 - Label structural relationships between all of the nodes in a tree
 
+## Done:
+
+- Saving of Sentences/Syntax Rules/Trees
+- Sharing of Sentences/Syntax Rules/Trees
+- Tooling to catch common syntax rule errors
+
 ## Resources:
 
-Email: [adambcomer@gmail.com](mailto:adambcomer@gmail.com)
-
-Project Site: [Project Site](https://lin-tree-solver.adambcomer.com/)
-Personal Site: [Personal Site](https://adambcomer.com/)
-Repository: [Project Github Repository](https://github.com/adambcomer/lin-tree-solver)
+- Email: [adambcomer@gmail.com](mailto:adambcomer@gmail.com)
+- Project Site: [Project Site](https://lin-tree-solver.adambcomer.com/)
+- Personal Site: [Personal Site](https://adambcomer.com/)
+- Repository: [Project Github Repository](https://github.com/adambcomer/lin-tree-solver)
