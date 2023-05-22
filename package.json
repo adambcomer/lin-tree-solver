@@ -7,8 +7,8 @@
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@fontsource/roboto": "^4.4.0",
-    "@fontsource/roboto-mono": "^4.4.0",
+    "@fontsource/roboto": "^5.0.0",
+    "@fontsource/roboto-mono": "^5.0.0",
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.4",
     "@vitejs/plugin-react-swc": "^3.0.1",
