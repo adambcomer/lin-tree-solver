@@ -22,6 +22,7 @@ import {
   Avatar,
   Card,
   CardContent,
+  Box,
 } from '@mui/material'
 import { getColor } from '../helpers/colors'
 import { Helmet } from 'react-helmet'
@@ -29,7 +30,6 @@ import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 import withTracker from '../withTracker'
 import { Title } from '../Components/common'
-import { Box } from '@mui/system'
 import { useNavigate } from 'react-router-dom'
 import { appendState } from '../helpers/url-state'
 

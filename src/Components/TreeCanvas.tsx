@@ -29,7 +29,7 @@ import { RuleSet } from '../helpers/ruleset'
 import FontFaceObserver from 'fontfaceobserver'
 import { getColor } from '../helpers/colors'
 import { Node } from '../types'
-import { styled } from '@mui/system'
+import { styled } from '@mui/material'
 
 interface TreeCanvasProps {
   rules: RuleSet

@@ -15,7 +15,7 @@
  */
 
 import { ComponentType, useEffect } from 'react'
-import { useLocation } from 'react-router'
+import { useLocation } from 'react-router-dom'
 
 function withTracker<P extends JSX.IntrinsicAttributes>(
   WrappedComponent: ComponentType<P>

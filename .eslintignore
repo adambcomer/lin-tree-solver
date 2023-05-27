@@ -1,8 +1,10 @@
 build
 dist
 
-*.js
+.yarn
+.pnp.*
 
+*.js
 *.md
 *.html
 *.json
