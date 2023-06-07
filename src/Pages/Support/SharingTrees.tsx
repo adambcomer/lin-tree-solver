@@ -17,7 +17,6 @@
 import { Box, Grid } from '@mui/material'
 import { Helmet } from 'react-helmet'
 import { OutboundLink, Paragraph, Title } from '../../Components/common'
-import withTracker from '../../withTracker'
 
 const SharingTrees = () => {
   return (
@@ -102,4 +101,4 @@ const SharingTrees = () => {
   )
 }
 
-export default withTracker(SharingTrees)
+export default SharingTrees

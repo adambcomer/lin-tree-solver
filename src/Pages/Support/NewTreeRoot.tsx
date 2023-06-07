@@ -23,7 +23,6 @@ import {
   Subtitle,
   Title,
 } from '../../Components/common'
-import withTracker from '../../withTracker'
 
 const NewTreeRoot = () => {
   return (
@@ -188,4 +187,4 @@ const NewTreeRoot = () => {
   )
 }
 
-export default withTracker(NewTreeRoot)
+export default NewTreeRoot

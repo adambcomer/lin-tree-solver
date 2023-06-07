@@ -28,7 +28,6 @@ import { getColor } from '../helpers/colors'
 import { Helmet } from 'react-helmet'
 import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
-import withTracker from '../withTracker'
 import { Title } from '../Components/common'
 import { useNavigate } from 'react-router-dom'
 import { appendState } from '../helpers/url-state'
@@ -162,4 +161,4 @@ const SentenceEditor = (): JSX.Element => {
   )
 }
 
-export default withTracker(SentenceEditor)
+export default SentenceEditor

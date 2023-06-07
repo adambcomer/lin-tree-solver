@@ -40,7 +40,6 @@ import { useParams } from 'react-router-dom'
 import { getColor } from '../helpers/colors'
 import { Helmet } from 'react-helmet'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
-import withTracker from '../withTracker'
 import { Subtitle2, Title } from '../Components/common'
 
 const RuleSetEditor = (): JSX.Element => {
@@ -459,4 +458,4 @@ const RuleSetEditor = (): JSX.Element => {
   )
 }
 
-export default withTracker(RuleSetEditor)
+export default RuleSetEditor

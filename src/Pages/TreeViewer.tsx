@@ -26,7 +26,6 @@ import { Node } from '../types'
 import { Helmet } from 'react-helmet'
 import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
-import withTracker from '../withTracker'
 
 const worker = new Worker(new URL('../workers/parser.ts', import.meta.url), {
   type: 'module',
@@ -336,4 +335,4 @@ const TreeViewer = (): JSX.Element => {
   )
 }
 
-export default withTracker(TreeViewer)
+export default TreeViewer

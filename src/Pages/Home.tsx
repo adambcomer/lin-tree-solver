@@ -26,7 +26,6 @@ import {
   OutboundLink,
   Title,
 } from '../Components/common'
-import withTracker from '../withTracker'
 
 const Home = (): JSX.Element => {
   return (
@@ -257,4 +256,4 @@ const Home = (): JSX.Element => {
   )
 }
 
-export default withTracker(Home)
+export default Home

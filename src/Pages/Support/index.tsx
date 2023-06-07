@@ -18,7 +18,6 @@ import { Box, Grid } from '@mui/material'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import { Paragraph, Subtitle, Title } from '../../Components/common'
-import withTracker from '../../withTracker'
 
 const Support = () => {
   return (
@@ -145,4 +144,4 @@ const Support = () => {
   )
 }
 
-export default withTracker(Support)
+export default Support

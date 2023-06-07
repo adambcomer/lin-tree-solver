@@ -34,7 +34,6 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 import { RuleSet } from '../helpers/ruleset'
-import withTracker from '../withTracker'
 import { Title } from '../Components/common'
 
 const RuleEditor = (): JSX.Element => {
@@ -150,4 +149,4 @@ const RuleEditor = (): JSX.Element => {
   )
 }
 
-export default withTracker(RuleEditor)
+export default RuleEditor
