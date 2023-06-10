@@ -410,17 +410,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/roboto-mono@npm:5.0.2":
-  version: 5.0.2
-  resolution: "@fontsource/roboto-mono@npm:5.0.2"
-  checksum: 3a1b0b648b7e67399d4fb898d3a7815b513cb348e854570f3f363ede2dbf613bff96b67bd45399a223ffa0fd90cce9ee11c34f25d673b67dbcade6a201bdd3b6
+"@fontsource/roboto-mono@npm:5.0.3":
+  version: 5.0.3
+  resolution: "@fontsource/roboto-mono@npm:5.0.3"
+  checksum: e18b7ccadc5a4c54e65bf5ed273236d2a1d203c5d4a70f24474428fbbedb9743a874d78431c58f775b7503d7dde0e4439bc4394241eac4863de67d1d29e92959
   languageName: node
   linkType: hard
 
-"@fontsource/roboto@npm:5.0.2":
-  version: 5.0.2
-  resolution: "@fontsource/roboto@npm:5.0.2"
-  checksum: f458eac4e1a317bbc2b948853555c4f15f360e2b148cab2d0b59da3369ba61fb88eab01c2a19e1ea610308663cc84edabc9c0e1016cea7d2f73a5ff2aeeda64e
+"@fontsource/roboto@npm:5.0.3":
+  version: 5.0.3
+  resolution: "@fontsource/roboto@npm:5.0.3"
+  checksum: 70302e1165cb1acb409e0eae92d6772e98467019b96f80be1034a4a79853af0f49d60826de68e0624f5b028a327830bf1ccb1d9f48dd695d3302816679416228
   languageName: node
   linkType: hard
 
@@ -907,10 +907,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.16.16":
-  version: 18.16.16
-  resolution: "@types/node@npm:18.16.16"
-  checksum: 0efad726dd1e0bef71c392c708fc5d78c5b39c46b0ac5186fee74de4ccb1b2e847b3fa468da67d62812f56569da721b15bf31bdc795e6c69b56c73a45079ed2d
+"@types/node@npm:18.16.17":
+  version: 18.16.17
+  resolution: "@types/node@npm:18.16.17"
+  checksum: 2f7e3a552d525ef4b7a2620ef5ef59b3fdfb1d8ab20627b537e090732b35c2bd103944933d347a319cc7d478b3866b0d1bc3d629ee5899ca663a4547ca078cee
   languageName: node
   linkType: hard
 
@@ -985,25 +985,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
-  version: 18.2.7
-  resolution: "@types/react@npm:18.2.7"
+"@types/react@npm:*, @types/react@npm:18.2.11":
+  version: 18.2.11
+  resolution: "@types/react@npm:18.2.11"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: caa5da4cf929766738ec789301dc6fb6624bd48dd317d851c4c9b84b1f47cd8ebe17fe01398cadaa0bc938cd4d502d67f4b9de9ff771dc132096bdc86228efba
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:18.2.8":
-  version: 18.2.8
-  resolution: "@types/react@npm:18.2.8"
-  dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: 351fe2450d30bff2ceb6aa84788e948317555e5ea22cb44f6778e08c977aab1878a0119bd94bc3d1bec5f5af4a75ffaa2ce111df5cd9d4ce26bfd719e4d971c2
+  checksum: 3dcc326ea87468a06079b6c3a9e0f9a98a8438526aba81d29820954e2cb343b6beb8ca3d6a212878797a909fbd3199d07a4d819cd3efbbdba8c22039c06f1ed8
   languageName: node
   linkType: hard
 
@@ -3128,14 +3117,14 @@ __metadata:
   dependencies:
     "@emotion/react": 11.11.1
     "@emotion/styled": 11.11.0
-    "@fontsource/roboto": 5.0.2
-    "@fontsource/roboto-mono": 5.0.2
+    "@fontsource/roboto": 5.0.3
+    "@fontsource/roboto-mono": 5.0.3
     "@mui/icons-material": 5.11.16
     "@mui/material": 5.13.4
     "@types/fontfaceobserver": 2.1.0
     "@types/nearley": 2.11.2
-    "@types/node": 18.16.16
-    "@types/react": 18.2.8
+    "@types/node": 18.16.17
+    "@types/react": 18.2.11
     "@types/react-dom": 18.2.4
     "@types/react-helmet": 6.1.6
     "@types/react-router-dom": 5.3.3
@@ -3152,7 +3141,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-helmet: 6.1.0
-    react-router-dom: 6.12.0
+    react-router-dom: 6.12.1
     source-map-explorer: 2.5.3
     typescript: 5.1.3
     vite: 4.3.9
@@ -3895,27 +3884,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:6.12.0":
-  version: 6.12.0
-  resolution: "react-router-dom@npm:6.12.0"
+"react-router-dom@npm:6.12.1":
+  version: 6.12.1
+  resolution: "react-router-dom@npm:6.12.1"
   dependencies:
     "@remix-run/router": 1.6.3
-    react-router: 6.12.0
+    react-router: 6.12.1
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: e7c620596eb9853dcaeaae337da029fd16dbae2452eed36fbb4746916d23c02efaa4c35e31c2d3c670bd9db51541a985fe093714f0bd82c8a6eca129d6ab5d44
+  checksum: 885528986b6e32bde0cc6ff1f318186ce6931cf4a2a36511fe12eafb380576b448a991d43fe473dbb9bc97bb7efa0c87ac179a7470345a1d3534a34b65578677
   languageName: node
   linkType: hard
 
-"react-router@npm:6.12.0":
-  version: 6.12.0
-  resolution: "react-router@npm:6.12.0"
+"react-router@npm:6.12.1":
+  version: 6.12.1
+  resolution: "react-router@npm:6.12.1"
   dependencies:
     "@remix-run/router": 1.6.3
   peerDependencies:
     react: ">=16.8"
-  checksum: 3151af8539f89ff41d39c98f6bacdb47769cb661e97fb21cea2f91b27d9b620e0486d67b9ad60c395606401909f1a7fd53e9be6a2361a65b12fcfec055e9838e
+  checksum: a23a0f2e6635eba19aec8d50b9126f61663d1e6ee6e69d6b2ca6e5dd678496b54d925f0d86a375270646da11cc12be66ac5e6ebf73962957af91ac828b63d10b
   languageName: node
   linkType: hard
 
