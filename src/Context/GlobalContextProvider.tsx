@@ -67,7 +67,7 @@ const ruleSet1 = new RuleSet(
   ['NP', '(D) N_bar'],
   ['N_bar', 'AdjP N_bar'],
   ['N_bar', 'N_bar PP'],
-  ['N_bar', 'N (PP)'],
+  ['N_bar', 'N'],
   ['PP', 'P_bar'],
   ['P_bar', 'P_bar PP'],
   ['P_bar', 'AdvP P_bar'],
