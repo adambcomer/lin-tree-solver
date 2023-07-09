@@ -417,17 +417,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/roboto-mono@npm:5.0.4":
-  version: 5.0.4
-  resolution: "@fontsource/roboto-mono@npm:5.0.4"
-  checksum: cc7cae3f38c492245a4c184644ec34e4bc32f189c169b8e2165ea86bfbc2fd599b8aa78bc5b6e4c19db9e4d09abb5133032eb09efaa86443b4d119740d70c254
+"@fontsource/roboto-mono@npm:5.0.5":
+  version: 5.0.5
+  resolution: "@fontsource/roboto-mono@npm:5.0.5"
+  checksum: e43032a0a0b8fb58587fc48cd401736d5614dfab5752f2bbc079f53ea8f0efc341db01e4e230bbe957c534cfe9ff07e86f626fab93ab534d69a96fc5f7013103
   languageName: node
   linkType: hard
 
-"@fontsource/roboto@npm:5.0.4":
-  version: 5.0.4
-  resolution: "@fontsource/roboto@npm:5.0.4"
-  checksum: e86f6b92df4d79c1917b50ae75d431e770970f56ae203e3f579630a77e78985b23f179a5292284657ada8a5da071f3e2c539cf36d4b50f4abac13289860879f9
+"@fontsource/roboto@npm:5.0.5":
+  version: 5.0.5
+  resolution: "@fontsource/roboto@npm:5.0.5"
+  checksum: 07d3aa70e60b38258055ef1ec478898da52c9f156c52199c2aca2a3d313f52674d662f24a6452605a9ecdfdb1f345df1972efe45bc534269947ff7f5565ffca0
   languageName: node
   linkType: hard
 
@@ -3117,8 +3117,8 @@ __metadata:
   dependencies:
     "@emotion/react": 11.11.1
     "@emotion/styled": 11.11.0
-    "@fontsource/roboto": 5.0.4
-    "@fontsource/roboto-mono": 5.0.4
+    "@fontsource/roboto": 5.0.5
+    "@fontsource/roboto-mono": 5.0.5
     "@mui/icons-material": 5.13.7
     "@mui/material": 5.13.7
     "@types/fontfaceobserver": 2.1.0
