@@ -49,5 +49,5 @@
     "format": "prettier --write .",
     "analyze": "source-map-explorer 'dist/static/*.js'"
   },
-  "packageManager": "yarn@3.6.0"
+  "packageManager": "yarn@3.6.1"
 }
