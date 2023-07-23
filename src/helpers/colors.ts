@@ -23,7 +23,7 @@ export const colors = [
   '#ff6f2c',
   '#fcb400',
   '#20c933',
-  '#8b46ff',
+  '#8b46ff'
 ]
 
 export function getColor(hash: number): string {

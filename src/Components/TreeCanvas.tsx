@@ -23,7 +23,7 @@ import {
   useEffect,
   useLayoutEffect,
   useRef,
-  useState,
+  useState
 } from 'react'
 import { RuleSet } from '../helpers/ruleset'
 import FontFaceObserver from 'fontfaceobserver'
@@ -48,7 +48,7 @@ const Canvas = styled('canvas')(() => ({
   height: '100vh',
   fontFamily: 'Roboto Mono',
   background: '#f5f5f5',
-  cursor: 'all-scroll',
+  cursor: 'all-scroll'
 }))
 
 const TreeCanvas = (
@@ -61,7 +61,7 @@ const TreeCanvas = (
     y: 0,
     dx: 0,
     dy: 0,
-    down: false,
+    down: false
   })
   const canvas = useRef<HTMLCanvasElement>(null)
 
@@ -83,7 +83,7 @@ const TreeCanvas = (
       if (canvas.current == null) return
       setCanvasSize({
         width: canvas.current.clientWidth * 4,
-        height: canvas.current.clientHeight * 4,
+        height: canvas.current.clientHeight * 4
       })
     })
   }, [canvas, ref])
@@ -216,7 +216,7 @@ const TreeCanvas = (
       x: e.clientX,
       y: e.clientY,
       dx: canvasPan.dx + dx,
-      dy: canvasPan.dy + dy,
+      dy: canvasPan.dy + dy
     })
   }
 
@@ -225,7 +225,7 @@ const TreeCanvas = (
       ...canvasPan,
       x: e.touches[0].clientX,
       y: e.touches[0].clientY,
-      down: true,
+      down: true
     })
   }
 
@@ -244,7 +244,7 @@ const TreeCanvas = (
       x: e.touches[0].clientX,
       y: e.touches[0].clientY,
       dx: canvasPan.dx + dx,
-      dy: canvasPan.dy + dy,
+      dy: canvasPan.dy + dy
     })
   }
 

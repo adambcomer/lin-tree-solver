@@ -30,5 +30,5 @@ export const RuleSetsContext = React.createContext<{
   },
   setRuleSetIdx: () => {
     /* do nothing */
-  },
+  }
 })

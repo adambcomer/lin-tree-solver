@@ -23,7 +23,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Typography,
+  Typography
 } from '@mui/material'
 import AspectRatioIcon from '@mui/icons-material/AspectRatio'
 import GavelIcon from '@mui/icons-material/Gavel'
@@ -101,7 +101,7 @@ const Navbar = (): JSX.Element => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: 'calc(100% - 64px)',
+          height: 'calc(100% - 64px)'
         }}
       >
         <Link

@@ -30,7 +30,7 @@ function clone(node: Node): Node {
 
   return {
     ...node,
-    children,
+    children
   }
 }
 
@@ -140,7 +140,7 @@ ctx.onmessage = (
             token,
             offset,
             tokens: [],
-            pos: comb,
+            pos: comb
           })
         } else {
           const expectedTokens = new Set<string>()
@@ -205,7 +205,7 @@ ctx.onmessage = (
             token,
             offset,
             tokens: [...expectedTokens],
-            pos: comb,
+            pos: comb
           })
         }
       }

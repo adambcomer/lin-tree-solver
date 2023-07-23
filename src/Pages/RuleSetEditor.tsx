@@ -29,7 +29,7 @@ import {
   IconButton,
   Tooltip,
   Snackbar,
-  Box,
+  Box
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import SaveIcon from '@mui/icons-material/Save'
@@ -52,24 +52,24 @@ const RuleSetEditor = (): JSX.Element => {
     name: rs.name,
     pos: [...rs.getPos()],
     rules: [...rs.getRules()],
-    root: [...rs.getRoot()],
+    root: [...rs.getRoot()]
   })
   const [newPos, setNewPos] = useState({
     editing: false,
     pos: '',
-    error: false,
+    error: false
   })
   const [newRoot, setNewRoot] = useState({
     editing: false,
     root: '',
-    error: false,
+    error: false
   })
   const [newRule, setNewRule] = useState({
     editing: false,
     name: '',
     rule: '',
     nameError: false,
-    ruleError: false,
+    ruleError: false
   })
   const [saved, setSaved] = useState(false)
 
@@ -174,7 +174,7 @@ const RuleSetEditor = (): JSX.Element => {
       name: '',
       rule: '',
       nameError: false,
-      ruleError: false,
+      ruleError: false
     })
   }
 
@@ -387,7 +387,7 @@ const RuleSetEditor = (): JSX.Element => {
                         label={tagToString(t)}
                         style={{
                           background: getColor(rs.getPosIndex(t.values[0])),
-                          color: '#fff',
+                          color: '#fff'
                         }}
                         key={j}
                         sx={{ mr: 1 }}

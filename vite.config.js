@@ -13,12 +13,12 @@ export default defineConfig(({ mode }) => {
           data: {
             PUBLIC_URL: process.env.PUBLIC_URL,
             ...env,
-            MODE: mode,
-          },
+            MODE: mode
+          }
         },
-        minify: true,
+        minify: true
       }),
-      splitVendorChunkPlugin(),
-    ],
+      splitVendorChunkPlugin()
+    ]
   }
 })

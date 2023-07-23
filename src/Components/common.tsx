@@ -21,36 +21,36 @@ export const Title = styled(Typography)(() => ({}))
 Title.defaultProps = { variant: 'h1', typography: 'h3' }
 
 export const Subtitle = styled(Typography)(() => ({
-  marginTop: 32,
+  marginTop: 32
 }))
 Subtitle.defaultProps = { variant: 'h2', typography: 'h4' }
 
 export const Subtitle2 = styled(Typography)(() => ({
-  marginTop: 16,
+  marginTop: 16
 }))
 Subtitle2.defaultProps = { variant: 'h3', typography: 'h6' }
 
 export const Paragraph = styled(Typography)(() => ({
-  marginTop: 8,
+  marginTop: 8
 }))
 Paragraph.defaultProps = { variant: 'body1' }
 
 export const Question = styled(Typography)(() => ({
-  marginTop: 16,
+  marginTop: 16
 }))
 Question.defaultProps = { variant: 'h3', typography: 'h6' }
 
 export const Answer = styled(Typography)(() => ({
-  marginTop: 8,
+  marginTop: 8
 }))
 Answer.defaultProps = { variant: 'body1' }
 
 export const Link = styled(NavLink)(() => ({
   color: '#1976d2',
-  textDecoration: 'none',
+  textDecoration: 'none'
 }))
 
 export const OutboundLink = styled(MuiLink)(() => ({
   color: '#1976d2',
-  textDecoration: 'none',
+  textDecoration: 'none'
 }))

@@ -46,7 +46,7 @@ const ruleSet0 = new RuleSet(
   ['V_Conj', 'V Conj V'],
   ['Adj_Conj', 'Adj Conj Adj'],
   ['Adv_Conj', 'Adv Conj Adv'],
-  ['P_Conj', 'P Conj P'],
+  ['P_Conj', 'P Conj P']
 ].forEach(([name, rule]) => ruleSet0.addRule(name, rule))
 
 const ruleSet1 = new RuleSet(
@@ -79,7 +79,7 @@ const ruleSet1 = new RuleSet(
   ['Adj_bar', 'AdjP Adj_bar'],
   ['Adj_bar', 'Adj (PP)'],
   ['XP', 'XP Conj XP'],
-  ['X', 'X Conj X'],
+  ['X', 'X Conj X']
 ].forEach(([name, rule]) => ruleSet1.addRule(name, rule))
 
 const ruleSet2 = new RuleSet(
@@ -116,7 +116,7 @@ const ruleSet2 = new RuleSet(
   ['Adj_bar', 'AdjP Adj_bar'],
   ['Adj_bar', 'Adj (PP)'],
   ['XP', 'XP Conj XP'],
-  ['X', 'X Conj X'],
+  ['X', 'X Conj X']
 ].forEach(([name, rule]) => ruleSet2.addRule(name, rule))
 
 interface GlobalContextProviderProps {
@@ -124,7 +124,7 @@ interface GlobalContextProviderProps {
 }
 
 const GlobalContextProvider = ({
-  children,
+  children
 }: GlobalContextProviderProps): JSX.Element => {
   const [words, setWords] = useState<Word[]>([
     { word: 'The', pos: ['D'] },
@@ -137,12 +137,12 @@ const GlobalContextProvider = ({
     { word: 'home', pos: ['N'] },
     { word: 'to', pos: ['P'] },
     { word: 'his', pos: ['D'] },
-    { word: 'owner', pos: ['N'] },
+    { word: 'owner', pos: ['N'] }
   ])
   const [ruleSets, setRuleSets] = useState<RuleSet[]>([
     ruleSet0,
     ruleSet1,
-    ruleSet2,
+    ruleSet2
   ])
   const [ruleSetIdx, setRuleSetIdx] = useState(0)
 
@@ -153,7 +153,7 @@ const GlobalContextProvider = ({
           ruleSets: ruleSets,
           idx: ruleSetIdx,
           setRuleSets: setRuleSets,
-          setRuleSetIdx: setRuleSetIdx,
+          setRuleSetIdx: setRuleSetIdx
         }}
       >
         {children}

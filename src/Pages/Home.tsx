@@ -24,7 +24,7 @@ import {
   Answer,
   Link,
   OutboundLink,
-  Title,
+  Title
 } from '../Components/common'
 
 const Home = (): JSX.Element => {

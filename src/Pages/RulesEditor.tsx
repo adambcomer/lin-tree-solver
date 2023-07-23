@@ -24,7 +24,7 @@ import {
   IconButton,
   Tooltip,
   Fab,
-  Grid,
+  Grid
 } from '@mui/material'
 import DoneIcon from '@mui/icons-material/Done'
 import EditIcon from '@mui/icons-material/Edit'
@@ -41,7 +41,7 @@ const RuleEditor = (): JSX.Element => {
     ruleSets,
     setRuleSets,
     idx: ruleSetIndex,
-    setRuleSetIdx,
+    setRuleSetIdx
   } = useContext(RuleSetsContext)
 
   const deleteRuleSetClick = (index: number) => {
@@ -65,7 +65,7 @@ const RuleEditor = (): JSX.Element => {
         `New Rule Set - ${d.toLocaleDateString('en-US')} ${d.toLocaleTimeString(
           'en-US'
         )}`
-      ),
+      )
     ])
   }
 

@@ -28,7 +28,7 @@ import { SentenceContext } from '../Context/SentenceContext'
 import { RuleSetsContext } from '../Context/RuleSetsContext'
 
 const worker = new Worker(new URL('../workers/parser.ts', import.meta.url), {
-  type: 'module',
+  type: 'module'
 })
 
 const TreeViewer = (): JSX.Element => {
@@ -74,7 +74,7 @@ const TreeViewer = (): JSX.Element => {
     }
     worker.postMessage({
       grammar: ruleSets[ruleSetIndex].grammar(),
-      words,
+      words
     })
   }, [ruleSetIndex, ruleSets, words])
 
@@ -263,7 +263,7 @@ const TreeViewer = (): JSX.Element => {
                   fontFamily: 'Roboto Mono',
                   overflowY: 'scroll',
                   height: '100vh',
-                  pb: 6,
+                  pb: 6
                 }}
               >
                 <Box sx={{ mt: 6, fontWeight: 600 }}>Parse Errors:</Box>
@@ -284,7 +284,7 @@ const TreeViewer = (): JSX.Element => {
                                 fontWeight: i === err.offset ? 500 : 400,
                                 color: i === err.offset ? '#f82b60' : '#000',
                                 textDecoration:
-                                  i === err.offset ? 'underline' : 'none',
+                                  i === err.offset ? 'underline' : 'none'
                               }}
                               key={word.word + err.pos[i]}
                             >

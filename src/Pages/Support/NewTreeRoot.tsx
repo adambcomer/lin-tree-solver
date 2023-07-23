@@ -21,7 +21,7 @@ import {
   OutboundLink,
   Paragraph,
   Subtitle,
-  Title,
+  Title
 } from '../../Components/common'
 
 const NewTreeRoot = () => {
@@ -78,7 +78,7 @@ const NewTreeRoot = () => {
             component='img'
             src='/images/new-tree-root/edit_syntax_rules.png'
             sx={{
-              width: '100%',
+              width: '100%'
             }}
           />
         </Paper>
@@ -101,7 +101,7 @@ const NewTreeRoot = () => {
             component='img'
             src='/images/new-tree-root/edit_syntax_rule.png'
             sx={{
-              width: '100%',
+              width: '100%'
             }}
           />
         </Paper>
@@ -120,7 +120,7 @@ const NewTreeRoot = () => {
             component='img'
             src='/images/new-tree-root/new_syntax_rule.png'
             sx={{
-              width: '100%',
+              width: '100%'
             }}
           />
         </Paper>
@@ -139,7 +139,7 @@ const NewTreeRoot = () => {
             component='img'
             src='/images/new-tree-root/final_tree.png'
             sx={{
-              width: '100%',
+              width: '100%'
             }}
           />
         </Paper>

@@ -52,31 +52,31 @@ export class Expression {
           this.tags.push({
             values: t.slice(2, t.length - 3).split('/'),
             optional: true,
-            repeated: true,
+            repeated: true
           })
         } else if (t.startsWith('({') && t.endsWith('})')) {
           this.tags.push({
             values: t.slice(2, t.length - 2).split('/'),
             optional: true,
-            repeated: false,
+            repeated: false
           })
         } else if (t.startsWith('{') && t.endsWith('}')) {
           this.tags.push({
             values: t.slice(1, t.length - 1).split('/'),
             optional: false,
-            repeated: false,
+            repeated: false
           })
         } else if (t.startsWith('(') && t.endsWith('+)')) {
           this.tags.push({
             values: [t.slice(1, t.length - 2)],
             optional: true,
-            repeated: true,
+            repeated: true
           })
         } else if (t.startsWith('(') && t.endsWith(')')) {
           this.tags.push({
             values: [t.slice(1, t.length - 1)],
             optional: true,
-            repeated: false,
+            repeated: false
           })
         } else {
           this.tags.push({ values: [t], optional: false, repeated: false })

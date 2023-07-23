@@ -65,9 +65,9 @@ const Support = () => {
                 cursor: 'pointer',
                 '&:hover': {
                   background:
-                    'linear-gradient(0deg,rgba(0,86,210,.14),rgba(0,86,210,.14)),#fdfbff',
+                    'linear-gradient(0deg,rgba(0,86,210,.14),rgba(0,86,210,.14)),#fdfbff'
                 },
-                height: 186,
+                height: 186
               }}
             >
               <Subtitle
@@ -75,7 +75,7 @@ const Support = () => {
                   mt: 0,
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
-                  whiteSpace: 'nowrap',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 Changing the Root of a Tree
@@ -85,7 +85,7 @@ const Support = () => {
                   overflow: 'hidden',
                   display: '-webkit-box',
                   '-webkit-box-orient': 'vertical',
-                  '-webkit-line-clamp': '3',
+                  '-webkit-line-clamp': '3'
                 }}
               >
                 Sometimes you don&apos;t want to build a tree for a complete
@@ -111,9 +111,9 @@ const Support = () => {
                 cursor: 'pointer',
                 '&:hover': {
                   background:
-                    'linear-gradient(0deg,rgba(0,86,210,.14),rgba(0,86,210,.14)),#fdfbff',
+                    'linear-gradient(0deg,rgba(0,86,210,.14),rgba(0,86,210,.14)),#fdfbff'
                 },
-                height: 186,
+                height: 186
               }}
             >
               <Subtitle
@@ -121,7 +121,7 @@ const Support = () => {
                   mt: 0,
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
-                  whiteSpace: 'nowrap',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 Sharing Parse Trees
@@ -131,7 +131,7 @@ const Support = () => {
                   overflow: 'hidden',
                   display: '-webkit-box',
                   '-webkit-box-orient': 'vertical',
-                  '-webkit-line-clamp': '3',
+                  '-webkit-line-clamp': '3'
                 }}
               >
                 Sharing Parse Trees is simple, just copy the URL.

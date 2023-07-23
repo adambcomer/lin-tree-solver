@@ -22,7 +22,7 @@ import {
   Avatar,
   Card,
   CardContent,
-  Box,
+  Box
 } from '@mui/material'
 import { getColor } from '../helpers/colors'
 import { Helmet } from 'react-helmet'
@@ -53,7 +53,7 @@ const SentenceEditor = (): JSX.Element => {
 
     setWords(words)
     navigate(appendState('/sentence', words), {
-      replace: true,
+      replace: true
     })
   }
 
@@ -68,7 +68,7 @@ const SentenceEditor = (): JSX.Element => {
       }
 
       navigate(appendState('/sentence', words), {
-        replace: true,
+        replace: true
       })
     }
   }
@@ -134,12 +134,12 @@ const SentenceEditor = (): JSX.Element => {
                                   height: 32,
                                   width: 32,
                                   cursor: 'pointer',
-                                  fontSize: '0.875rem',
+                                  fontSize: '0.875rem'
                                 }}
                                 style={{
                                   backgroundColor: w.pos.includes(pos)
                                     ? getColor(j)
-                                    : '#bdbdbd',
+                                    : '#bdbdbd'
                                 }}
                                 onClick={onPosClicked(i, pos)}
                               >

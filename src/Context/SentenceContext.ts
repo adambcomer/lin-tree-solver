@@ -32,5 +32,5 @@ export const SentenceContext = React.createContext<{
   words: [],
   setWords: () => {
     /* do nothing */
-  },
+  }
 })

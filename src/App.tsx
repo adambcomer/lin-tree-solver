@@ -40,14 +40,14 @@ const theme = createTheme({
     primary: {
       main: '#263238',
       light: '#4f5b62',
-      dark: '#000a12',
+      dark: '#000a12'
     },
     secondary: {
       main: '#f44336',
       light: '#ff7961',
-      dark: '#ba000d',
-    },
-  },
+      dark: '#ba000d'
+    }
+  }
 })
 
 const App = (): JSX.Element => {
