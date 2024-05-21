@@ -32,8 +32,9 @@ const worker = new Worker(new URL('../workers/parser.ts', import.meta.url), {
 })
 
 const TreeViewer = (): JSX.Element => {
-  const { words } = useContext(SentenceContext)
-  const { ruleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
+  const { sentence: words } = useContext(SentenceContext)
+  const { ruleSets, currentRuleSetIndex: ruleSetIndex } =
+    useContext(RuleSetsContext)
   const [trees, setTrees] = useState<Node[]>([])
   const [treeIndex, setTreeIndex] = useState(0)
   const [loading, setLoading] = useState(true)

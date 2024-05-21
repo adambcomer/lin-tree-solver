@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adam Bishop Comer
+ * Copyright 2024 Adam Bishop Comer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-import React from 'react'
 import { RuleSet, isRuleSetProperties } from 'src/helpers/ruleset'
-import { RuleSetsContext } from 'src/Context/RuleSetsContext'
-import { SentenceContext } from 'src/Context/SentenceContext'
-import { Sentence, isSentence } from 'src/helpers/sentence'
 
 const DEFAULT_RULESET_0 = new RuleSet(
   'Chapter 3: Constituency, Trees, and Rules, Syntax: A Generative Introduction, by Andrew Carnie'
@@ -126,31 +122,38 @@ const DEFAULT_RULESETS = [
   DEFAULT_RULESET_2
 ]
 
-const DEFAULT_SENTENCE: Sentence = [
-  { word: 'The', pos: ['D'] },
-  { word: 'small', pos: ['Adj'] },
-  { word: 'dog', pos: ['N'] },
-  // { word: '[PAST]', pos: ['T'] }, // Necessary for DP-hypothesis
-  { word: 'quickly', pos: ['Adv'] },
-  { word: 'ran', pos: ['V'] },
-  // { word: 'ø', pos: ['D'] }, // Necessary for DP-hypothesis
-  { word: 'home', pos: ['N'] },
-  { word: 'to', pos: ['P'] },
-  { word: 'his', pos: ['D'] },
-  { word: 'owner', pos: ['N'] }
-]
+const parseRuleSetsParam = (ruleSets: string): RuleSet[] | null => {
+  try {
+    const parsedRuleSets: unknown = JSON.parse(
+      Buffer.from(ruleSets, 'base64').toString('utf-8')
+    )
 
-function parseRuleSets() {
+    return Array.isArray(parsedRuleSets)
+      ? parsedRuleSets
+          .filter(isRuleSetProperties)
+          .map((r) => RuleSet.FromProps(r))
+      : null
+  } catch (e) {
+    console.error(e)
+  }
+
+  return null
+}
+
+interface UseRulesResponse {
+  ruleSets: RuleSet[]
+  setRuleSets: (ruleSets: RuleSet[]) => void
+  currentRuleSetIndex: number
+  setCurrentRuleSetIndex: (index: number) => void
+}
+
+export const useRules = (): UseRulesResponse => {
   if (typeof location === 'undefined') {
     return {
       ruleSets: DEFAULT_RULESETS,
-      setRuleSets: (ruleSets: RuleSet[]) => {
-        // TODO: Update location.hash
-      },
+      setRuleSets: () => {},
       currentRuleSetIndex: 0,
-      setCurrentRuleSetIndex: () => {
-        // TODO: Update location.hash
-      }
+      setCurrentRuleSetIndex: () => {}
     }
   }
 
@@ -158,92 +161,16 @@ function parseRuleSets() {
     location.hash.length ? location.hash.slice(1) : ''
   )
 
-  let ruleSets = DEFAULT_RULESETS
-  try {
-    const parsedRuleSets: unknown = JSON.parse(
-      Buffer.from(params.get('ruleSets') ?? '', 'base64').toString('utf-8')
-    )
-
-    if (Array.isArray(parsedRuleSets)) {
-      ruleSets = parsedRuleSets
-        .filter(isRuleSetProperties)
-        .map((r) => RuleSet.FromProps(r))
-    }
-  } catch (e) {
-    console.error(e)
-  }
+  const ruleSets =
+    parseRuleSetsParam(params.get('ruleSets') ?? '') ?? DEFAULT_RULESETS
 
   const currentRuleSetIndex =
     parseInt(params.get('currentRuleSetIndex') ?? '0') || 0
 
   return {
     ruleSets,
-    setRuleSets: () => {
-      // TODO: Update location.hash
-    },
+    setRuleSets: () => {},
     currentRuleSetIndex,
-    setCurrentRuleSetIndex: () => {
-      // TODO: Update location.hash
-    }
+    setCurrentRuleSetIndex: () => {}
   }
 }
-
-function parseSentence(ruleSet: RuleSet) {
-  if (typeof location === 'undefined') {
-    return {
-      sentence: DEFAULT_SENTENCE,
-      setSentence: () => {}
-    }
-  }
-
-  const params = new URLSearchParams(
-    location.hash.length ? location.hash.slice(1) : ''
-  )
-
-  let sentence = DEFAULT_SENTENCE
-  try {
-    const parsedSentence: unknown = JSON.parse(
-      Buffer.from(params.get('sentence') ?? '', 'base64').toString('utf-8')
-    )
-
-    if (isSentence(parsedSentence, ruleSet)) {
-      sentence = parsedSentence
-    }
-  } catch (e) {
-    console.error(e)
-  }
-
-  return {
-    sentence,
-    setSentence: () => {}
-  }
-}
-
-interface GlobalContextProviderProps {
-  children: React.ReactNode
-}
-
-const GlobalContextProvider = ({
-  children
-}: GlobalContextProviderProps): JSX.Element => {
-  const { ruleSets, setRuleSets, currentRuleSetIndex, setCurrentRuleSetIndex } =
-    parseRuleSets()
-  const { sentence, setSentence } = parseSentence(ruleSets[currentRuleSetIndex])
-
-  return (
-    <SentenceContext.Provider value={{ sentence, setSentence }}>
-      <RuleSetsContext.Provider
-        value={{
-          ruleSets,
-          currentRuleSetIndex,
-          setRuleSets,
-          setCurrentRuleSetIndex
-        }}
-      >
-        {children}
-      </RuleSetsContext.Provider>
-    </SentenceContext.Provider>
-  )
-}
-
-export default GlobalContextProvider

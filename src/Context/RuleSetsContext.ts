@@ -19,16 +19,12 @@ import { RuleSet } from '../helpers/ruleset'
 
 export const RuleSetsContext = React.createContext<{
   ruleSets: RuleSet[]
-  idx: number
+  currentRuleSetIndex: number
   setRuleSets: (ruleSets: RuleSet[]) => void
-  setRuleSetIdx: (idx: number) => void
+  setCurrentRuleSetIndex: (index: number) => void
 }>({
   ruleSets: [],
-  idx: 0,
-  setRuleSets: () => {
-    /* do nothing */
-  },
-  setRuleSetIdx: () => {
-    /* do nothing */
-  }
+  currentRuleSetIndex: 0,
+  setRuleSets: () => {},
+  setCurrentRuleSetIndex: () => {}
 })

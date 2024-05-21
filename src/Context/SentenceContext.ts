@@ -15,22 +15,12 @@
  */
 
 import React from 'react'
-
-export interface Word {
-  word: string
-  pos: string[]
-}
-
-export interface Sentence {
-  words: Word[]
-}
+import { Sentence } from 'src/helpers/sentence'
 
 export const SentenceContext = React.createContext<{
-  words: Word[]
-  setWords: (words: Word[]) => void
+  sentence: Sentence
+  setSentence: (sentence: Sentence) => void
 }>({
-  words: [],
-  setWords: () => {
-    /* do nothing */
-  }
+  sentence: [],
+  setSentence: () => {}
 })

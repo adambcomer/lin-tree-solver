@@ -40,8 +40,8 @@ const RuleEditor = (): JSX.Element => {
   const {
     ruleSets,
     setRuleSets,
-    idx: ruleSetIndex,
-    setRuleSetIdx
+    currentRuleSetIndex: ruleSetIndex,
+    setCurrentRuleSetIndex: setRuleSetIdx
   } = useContext(RuleSetsContext)
 
   const deleteRuleSetClick = (index: number) => {

@@ -20,7 +20,7 @@ import {
   Drawer,
   Link,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   Typography
@@ -29,56 +29,22 @@ import AspectRatioIcon from '@mui/icons-material/AspectRatio'
 import GavelIcon from '@mui/icons-material/Gavel'
 import SubjectIcon from '@mui/icons-material/Subject'
 import HelpIcon from '@mui/icons-material/Help'
-import { NavLink, useMatch } from 'react-router-dom'
-import { appendState } from '../helpers/url-state'
-import { SentenceContext, Word } from '../Context/SentenceContext'
-import { useContext, useEffect } from 'react'
-import { RuleSetsContext } from '../Context/RuleSetsContext'
-import { Buffer } from 'buffer'
-import { isObject } from '../helpers/common'
+import { appendState } from 'src/helpers/url-state'
+import { useContext } from 'react'
+import { SentenceContext } from 'src/Context/SentenceContext'
 
-const Navbar = (): JSX.Element => {
-  const sentenceMatch = useMatch('/sentence')
-  const viewerMatch = useMatch('/viewer')
-  const rulesMatch = useMatch('/rules')
-  const { sentence: words, setSentence: setWords } = useContext(SentenceContext)
-  const { ruleSets, currentRuleSetIndex: ruleSetIndex } =
-    useContext(RuleSetsContext)
+export enum NavbarTab {
+  SentenceEditor,
+  TreeViewer,
+  RulesSettings
+}
 
-  const isValidWordArray = (value: unknown): value is Word[] => {
-    return (
-      Array.isArray(value) &&
-      value.every((v) => {
-        return (
-          isObject(v) &&
-          'word' in v &&
-          typeof v.word === 'string' &&
-          'pos' in v &&
-          Array.isArray(v.pos) &&
-          v.pos.every(
-            (p: unknown) =>
-              typeof p === 'string' && ruleSets[ruleSetIndex].hasPos(p)
-          )
-        )
-      })
-    )
-  }
+interface NavbarProps {
+  tab?: NavbarTab
+}
 
-  useEffect(() => {
-    if (location.hash.slice(0, 10) === '#sentence=') {
-      try {
-        const urlWords: unknown = JSON.parse(
-          Buffer.from(location.hash.slice(10), 'base64').toString('utf-8')
-        )
-
-        if (isValidWordArray(urlWords)) {
-          setWords(urlWords)
-        }
-      } catch (e) {
-        console.error(e)
-      }
-    }
-  }, [])
+export const Navbar = ({ tab }: NavbarProps) => {
+  const { sentence } = useContext(SentenceContext)
 
   return (
     <Drawer
@@ -88,8 +54,7 @@ const Navbar = (): JSX.Element => {
     >
       <Box sx={{ minHeight: 64 }}>
         <Link
-          component={NavLink}
-          to={appendState('/', words)}
+          href={appendState('/', sentence)}
           sx={{ color: '#000', textDecoration: 'none' }}
         >
           <Typography variant='h6' component='h1' align='center' sx={{ mt: 2 }}>
@@ -106,56 +71,50 @@ const Navbar = (): JSX.Element => {
         }}
       >
         <Link
-          component={NavLink}
-          to={appendState('/sentence', words)}
+          href={appendState('/sentence', sentence)}
           sx={{ color: '#000', textDecoration: 'none' }}
         >
-          <ListItem button selected={sentenceMatch != null}>
+          <ListItemButton selected={tab === NavbarTab.SentenceEditor}>
             <ListItemIcon>
               <SubjectIcon />
             </ListItemIcon>
             <ListItemText primary='Sentence Editor' />
-          </ListItem>
+          </ListItemButton>
         </Link>
         <Link
-          component={NavLink}
-          to={appendState('/viewer', words)}
+          href={appendState('/viewer', sentence)}
           sx={{ color: '#000', textDecoration: 'none' }}
         >
-          <ListItem button selected={viewerMatch != null}>
+          <ListItemButton selected={tab === NavbarTab.TreeViewer}>
             <ListItemIcon>
               <AspectRatioIcon />
             </ListItemIcon>
             <ListItemText primary='Tree Viewer' />
-          </ListItem>
+          </ListItemButton>
         </Link>
         <Link
-          component={NavLink}
-          to={appendState('/rules', words)}
+          href={appendState('/rules', sentence)}
           sx={{ color: '#000', textDecoration: 'none' }}
         >
-          <ListItem button selected={rulesMatch != null}>
+          <ListItemButton selected={tab === NavbarTab.RulesSettings}>
             <ListItemIcon>
               <GavelIcon />
             </ListItemIcon>
             <ListItemText primary='Syntax Rules' />
-          </ListItem>
+          </ListItemButton>
         </Link>
         <Link
-          component={NavLink}
-          to='/support'
+          href='/support'
           sx={{ color: '#000', textDecoration: 'none', mt: 'auto' }}
         >
-          <ListItem button>
+          <ListItemButton>
             <ListItemIcon>
               <HelpIcon />
             </ListItemIcon>
             <ListItemText primary='Support Pages' />
-          </ListItem>
+          </ListItemButton>
         </Link>
       </List>
     </Drawer>
   )
 }
-
-export default Navbar

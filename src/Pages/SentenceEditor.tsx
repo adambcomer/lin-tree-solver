@@ -33,8 +33,9 @@ import { useNavigate } from 'react-router-dom'
 import { appendState } from '../helpers/url-state'
 
 const SentenceEditor = (): JSX.Element => {
-  const { words, setWords } = useContext(SentenceContext)
-  const { ruleSets, idx: ruleSetIndex } = useContext(RuleSetsContext)
+  const { sentence: words, setSentence: setWords } = useContext(SentenceContext)
+  const { ruleSets, currentRuleSetIndex: ruleSetIndex } =
+    useContext(RuleSetsContext)
   const [sentence, setSentenceText] = useState(
     words.map((w) => w.word).join(' ')
   )

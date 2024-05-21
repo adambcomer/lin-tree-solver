@@ -1,8 +1,8 @@
-import { Word } from '../Context/SentenceContext'
 import { Buffer } from 'buffer'
+import { Sentence } from 'src/helpers/sentence'
 
-export const appendState = (path: string, words: Word[]): string => {
-  return `${path}#sentence=${Buffer.from(JSON.stringify(words)).toString(
+export function appendState(path: string, sentence: Sentence): string {
+  return `${path}#sentence=${Buffer.from(JSON.stringify(sentence)).toString(
     'base64'
   )}`
 }
