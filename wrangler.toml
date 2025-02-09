@@ -12,3 +12,6 @@ database_id = "29899e04-511c-4c38-a2c4-0172e6970afc"
 [vars]
 PUBLIC_ENV__API_BASE="http://localhost:8788"
 
+[env.preview.vars]
+PUBLIC_ENV__API_BASE=""
+
