@@ -25,31 +25,19 @@ import {
   useRef,
   useState
 } from 'react'
-import { RuleSet } from '../helpers/ruleset'
 import FontFaceObserver from 'fontfaceobserver'
 import { getColor } from '../helpers/colors'
 import { Node } from '../types'
-import { styled } from '@mui/material'
+import { Ruleset, Sentence } from '../../api/useWorkspace'
 
 interface TreeCanvasProps {
-  rules: RuleSet
-  words: Array<{
-    word: string
-    pos: string[]
-  }>
+  ruleset: Ruleset
+  sentence: Sentence
   tree: Node
   zoom: number
 }
 
 let frame: number | undefined
-
-const Canvas = styled('canvas')(() => ({
-  width: '100%',
-  height: '100vh',
-  fontFamily: 'Roboto Mono',
-  background: '#f5f5f5',
-  cursor: 'all-scroll'
-}))
 
 const TreeCanvas = (
   props: TreeCanvasProps,
@@ -65,6 +53,10 @@ const TreeCanvas = (
   })
   const canvas = useRef<HTMLCanvasElement>(null)
 
+  const colorMap = new Map(
+    [...props.ruleset.pos].map((p, i) => [p, getColor(i)])
+  )
+
   useLayoutEffect(() => {
     if (ref === null) return
 
@@ -76,8 +68,10 @@ const TreeCanvas = (
   }, [canvas, ref])
 
   useEffect(() => {
-    const font1 = new FontFaceObserver('Roboto Mono')
-    const font2 = new FontFaceObserver('Roboto Mono', { weight: 500 })
+    const font1 = new FontFaceObserver('Noto Sans Mono Variable')
+    const font2 = new FontFaceObserver('Noto Sans Mono Variable', {
+      weight: 500
+    })
 
     void Promise.all([font1.load(), font2.load()]).then(() => {
       if (canvas.current == null) return
@@ -104,10 +98,10 @@ const TreeCanvas = (
         if (typeof node === 'string') {
           ctx.fillStyle = '#000'
           ctx.textAlign = 'center'
-          ctx.font = '64px Roboto Mono'
+          ctx.font = '64px Noto Sans Mono Variable'
           ctx.fillText(node, Math.floor(width / 2 + start), 200 + level * 400)
 
-          ctx.fillStyle = getColor(props.rules.getPosIndex(node))
+          ctx.fillStyle = colorMap.get(node) ?? ''
           ctx.fillRect(
             Math.floor(width / 2 + start - 26 * words[0].length),
             325 + level * 400,
@@ -116,7 +110,7 @@ const TreeCanvas = (
           )
 
           ctx.fillStyle = '#000'
-          ctx.font = '500 72px Roboto Mono'
+          ctx.font = '500 72px Noto Sans Mono Variable'
           ctx.fillText(
             words[0],
             Math.floor(width / 2 + start),
@@ -127,7 +121,7 @@ const TreeCanvas = (
 
         ctx.fillStyle = '#000'
         ctx.textAlign = 'center'
-        ctx.font = '64px Roboto Mono'
+        ctx.font = '64px Noto Sans Mono Variable'
         ctx.fillText(
           node.node,
           Math.floor(width / 2 + start),
@@ -182,7 +176,7 @@ const TreeCanvas = (
         recursiveDraw(
           ctx,
           props.tree,
-          props.words.map((w) => w.word),
+          props.sentence.map((w) => w.word),
           0,
           width,
           0
@@ -190,7 +184,7 @@ const TreeCanvas = (
         frame = undefined
       })
     },
-    [canvas, props.zoom, props.rules, props.words, props.tree]
+    [canvas, props.zoom, props.ruleset, props.sentence, props.tree]
   )
 
   useEffect(() => {
@@ -249,7 +243,13 @@ const TreeCanvas = (
   }
 
   return (
-    <Canvas
+    <canvas
+      className='w-full h-screen rounded-medium'
+      style={{
+        fontFamily: "'Noto Sans Mono Variable', monospace",
+        background: '#f5f5f5',
+        cursor: 'all-scroll'
+      }}
       ref={canvas}
       width={canvasSize.width}
       height={canvasSize.height}

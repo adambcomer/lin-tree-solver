@@ -324,7 +324,7 @@ const TreeViewer = (): JSX.Element => {
                 ref={canvas}
                 tree={trees[treeIndex]}
                 words={words}
-                rules={ruleSets[ruleSetIndex]}
+                ruleset={ruleSets[ruleSetIndex]}
                 zoom={canvasZoom}
               />
             )}

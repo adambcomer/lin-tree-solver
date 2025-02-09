@@ -38,6 +38,8 @@ export function tagToString(tag: Tag): string {
   return `{${tag.values.join('/')}}`
 }
 
+export type ExpressionData = [string, string]
+
 export class Expression {
   name: string
   tags: Tag[] = []
@@ -89,14 +91,35 @@ export class Expression {
   }
 }
 
-export class RuleSet {
+export interface RuleSetData {
   name: string
+  root: string[]
+  pos: string[]
+  rules: ExpressionData[]
+}
+
+export class RuleSet {
   root: Set<string> = new Set()
   pos: Set<string> = new Set()
-  rules: Array<[string, Expression]> = []
+  rules: Array<Expression> = []
 
-  constructor(name: string) {
-    this.name = name
+  constructor() {}
+
+  static parse(data: RuleSetData): RuleSet {
+    const r = new RuleSet()
+    r.pos = new Set(data.pos)
+
+    for (const rule of data.rules) {
+      r.rules.push(new Expression(rule[0], rule[1]))
+    }
+
+    for (const root of data.root) {
+      if (r.pos.has(root) || r.rules.findIndex((r) => r.name === root) != -1) {
+        r.root.add(root)
+      }
+    }
+
+    return r
   }
 
   addPos(pos: string): void {
@@ -104,7 +127,7 @@ export class RuleSet {
   }
 
   addRule(name: string, rule: string): void {
-    this.rules.push([name, new Expression(name, rule)])
+    this.rules.push(new Expression(name, rule))
   }
 
   addRoot(name: string): void {
@@ -114,15 +137,15 @@ export class RuleSet {
   has(name: string): boolean {
     if (this.pos.has(name)) return true
 
-    for (const [n] of this.rules) {
-      if (name === n) return true
+    for (const rule of this.rules) {
+      if (name === rule.name) return true
     }
     return false
   }
 
   hasRule(name: string): boolean {
-    for (const [n] of this.rules) {
-      if (name === n) return true
+    for (const rule of this.rules) {
+      if (name === rule.name) return true
     }
     return false
   }
@@ -132,8 +155,8 @@ export class RuleSet {
   }
 
   getRule(name: string): Expression | undefined {
-    for (const [n, exp] of this.rules) {
-      if (name === n) return exp
+    for (const rule of this.rules) {
+      if (name === rule.name) return rule
     }
   }
 
@@ -145,7 +168,7 @@ export class RuleSet {
     return this.pos
   }
 
-  getRules(): Array<[string, Expression]> {
+  getRules(): Array<Expression> {
     return this.rules
   }
 
@@ -156,9 +179,9 @@ export class RuleSet {
   grammar(): string {
     let g = `main -> ${[...this.root].join('|')}`
 
-    for (const [name, exp] of this.rules) {
+    for (const rule of this.rules) {
       const tags = []
-      for (const tag of exp.tags) {
+      for (const tag of rule.tags) {
         if (tag.optional && tag.repeated) {
           if (tag.values.length === 1) {
             if (this.hasPos(tag.values[0])) {
@@ -219,14 +242,14 @@ export class RuleSet {
             }
           }
           return {
-            node: '${name}',
+            node: '${rule.name}',
             terminals: 0,
             children: children
           }
         }
       %}`
 
-      g += `\n${name} -> ${tags.join(' ')} ${f}`
+      g += `\n${rule.name} -> ${tags.join(' ')} ${f}`
     }
     return g
   }

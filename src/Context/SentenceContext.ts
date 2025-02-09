@@ -21,8 +21,8 @@ export interface Word {
   pos: string[]
 }
 
-export interface Sentence {
-  words: Word[]
+export interface Sentence 
+   Word[]
 }
 
 export const SentenceContext = React.createContext<{
