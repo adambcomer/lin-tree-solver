@@ -1,10 +1,10 @@
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
 import { navigate } from 'vike/client/router'
 
 const Page = () => {
   const onGetStarted = async () => {
     const res = await fetch(
-      `${import.meta.env.PUBLIC_ENV__API_BASE}/api/workspaces`,
+      `${import.meta.env.PUBLIC_ENV__API_BASE ?? ''}/api/workspaces`,
       { method: 'POST' }
     )
     const data = await res.json()
