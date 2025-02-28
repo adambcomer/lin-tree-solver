@@ -1,4 +1,4 @@
-import { Input } from "@heroui/input"
+import { Input } from '@heroui/input'
 import {
   Ruleset,
   Sentence,
@@ -7,7 +7,7 @@ import {
 } from '../../../api/useWorkspace'
 import { getColor } from '../../../src/helpers/colors'
 import { Dispatch, useState } from 'react'
-import { Button } from "@heroui/button"
+import { cn } from '@heroui/theme'
 
 interface SentenceEditorProps {
   sentence: Sentence
@@ -39,21 +39,20 @@ export const SentenceEditor = ({
         }}
       />
 
-      <div className='grid grid-cols-8 gap-4 mt-8'>
+      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mt-8'>
         {sentence.map((w, wordIndex) => (
           <div key={wordIndex} className='border-medium rounded-medium p-4'>
             <div className='text-center font-bold'>{w.word}</div>
-            <div className='flex flex-wrap gap-2 mt-4'>
+            <div className='grid grid-cols-2 gap-2 mt-4'>
               {[...ruleset.pos].map((p, i) => (
-                <Button
+                <div
                   key={p}
-                  size='sm'
                   style={
                     w.pos.has(p)
                       ? { backgroundColor: getColor(i), color: '#fff' }
                       : {}
                   }
-                  onPress={() =>
+                  onClick={() =>
                     w.pos.has(p)
                       ? updateSentence({
                           type: SentenceActionTypes.DeleteWordPOS,
@@ -66,10 +65,16 @@ export const SentenceEditor = ({
                           pos: p
                         })
                   }
-                  className='font-mono'
+                  className={cn(
+                    'py-2 text-center font-mono cursor-pointer rounded-lg border-medium',
+                    {
+                      [`bg-${getColor(i)} text-white border-transparent`]:
+                        w.pos.has(p)
+                    }
+                  )}
                 >
                   {p}
-                </Button>
+                </div>
               ))}
             </div>
           </div>
