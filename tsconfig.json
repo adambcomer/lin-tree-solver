@@ -11,6 +11,5 @@
     "esModuleInterop": true,
     "noEmit": true
   },
-  "include": ["pages/**/*"],
-  "exclude": ["functions/**/*"]
+  "include": ["pages/**/*", "+config.ts"]
 }
