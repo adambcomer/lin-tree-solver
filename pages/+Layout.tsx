@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeroUIProvider } from "@heroui/system"
+import { HeroUIProvider } from '@heroui/system'
 
 import './style.css'
 

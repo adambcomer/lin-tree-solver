@@ -3,10 +3,7 @@ import { navigate } from 'vike/client/router'
 
 const Page = () => {
   const onGetStarted = async () => {
-    const res = await fetch(
-      `${import.meta.env.PUBLIC_ENV__API_BASE ?? ''}/api/workspaces`,
-      { method: 'POST' }
-    )
+    const res = await fetch('/api/workspaces', { method: 'POST' })
     const data = await res.json()
 
     navigate(`/${data.id}/builder`)

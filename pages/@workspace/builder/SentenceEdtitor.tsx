@@ -21,7 +21,7 @@ export const SentenceEditor = ({
   updateSentence
 }: SentenceEditorProps) => {
   const [sentenceText, setSentenceText] = useState(
-    sentence.map((s) => s.word).join(' ')
+    sentence.words.map((s) => s.text).join(' ')
   )
 
   return (
@@ -40,9 +40,9 @@ export const SentenceEditor = ({
       />
 
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mt-8'>
-        {sentence.map((w, wordIndex) => (
+        {sentence.words.map((w, wordIndex) => (
           <div key={wordIndex} className='border-medium rounded-medium p-4'>
-            <div className='text-center font-bold'>{w.word}</div>
+            <div className='text-center font-bold'>{w.text}</div>
             <div className='grid grid-cols-2 gap-2 mt-4'>
               {[...ruleset.pos].map((p, i) => (
                 <div

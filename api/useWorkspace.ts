@@ -1,18 +1,22 @@
-import {  useReducer } from 'react'
+import { useReducer } from 'react'
 
 interface WordData {
-  word: string
+  text: string
   pos: string[]
 }
 
-type SentenceData = WordData[]
+interface SentenceData {
+  words: WordData[]
+}
 
 export interface Word {
-  word: string
+  text: string
   pos: Set<string>
 }
 
-export type Sentence = Word[]
+export interface Sentence {
+  words: Word[]
+}
 
 export enum SentenceActionTypes {
   SetSentence,
@@ -43,8 +47,6 @@ export interface Tag {
   optional: boolean
   repeated: boolean
 }
-
-type RuleData = [string, string]
 
 export interface Rule {
   name: string
@@ -95,19 +97,19 @@ export const parseRuleTags = (rule: string) => {
 
 interface RulesetData {
   name: string
-  root: string[]
+  roots: string[]
   pos: string[]
-  rules: RuleData[]
+  rules: Rule[]
 }
 
 export interface Ruleset {
-  root: Set<string>
+  roots: Set<string>
   pos: Set<string>
   rules: Rule[]
 }
 
 export const buildRulesetGrammar = (ruleset: Ruleset) => {
-  let g = `main -> ${[...ruleset.root].join('|')}`
+  let g = `main -> ${[...ruleset.roots].join('|')}`
 
   for (const rule of ruleset.rules) {
     const tags = []
@@ -247,10 +249,10 @@ export const useWorkspace = (initialData: Response) => {
         case RulesetActionTypes.SetRuleset:
           return {
             pos: new Set(action.data.pos),
-            root: new Set(action.data.root),
+            roots: new Set(action.data.roots),
             rules: action.data.rules.map((r) => ({
-              name: r[0],
-              tags: parseRuleTags(r[1])
+              name: r.name,
+              tags: r.tags
             }))
           }
         case RulesetActionTypes.AddPOS:
@@ -260,10 +262,10 @@ export const useWorkspace = (initialData: Response) => {
           state.pos.delete(action.pos)
           return { ...state }
         case RulesetActionTypes.AddRoot:
-          state.root.add(action.root)
+          state.roots.add(action.root)
           return { ...state }
         case RulesetActionTypes.DeleteRoot:
-          state.root.delete(action.root)
+          state.roots.delete(action.root)
           return { ...state }
         case RulesetActionTypes.AddRule:
           return {
@@ -287,10 +289,10 @@ export const useWorkspace = (initialData: Response) => {
     {},
     () => ({
       pos: new Set(initialData.ruleset.pos),
-      root: new Set(initialData.ruleset.root),
+      roots: new Set(initialData.ruleset.roots),
       rules: initialData.ruleset.rules.map((r) => ({
-        name: r[0],
-        tags: parseRuleTags(r[1])
+        name: r.name,
+        tags: r.tags
       }))
     })
   )
@@ -299,29 +301,34 @@ export const useWorkspace = (initialData: Response) => {
     (state: Sentence, action: SentenceActions) => {
       switch (action.type) {
         case SentenceActionTypes.SetSentence:
-          return action.data.map((w) => ({
-            word: w.word,
-            pos: new Set(w.pos)
-          }))
+          return {
+            words: action.data.words.map((w) => ({
+              text: w.text,
+              pos: new Set(w.pos)
+            }))
+          }
         case SentenceActionTypes.UpdateSentenceText:
-          return action.text
-            .split(' ')
-            .filter((w) => w !== '')
-            .map((word): Word => ({ word, pos: new Set() }))
+          return {
+            words: action.text
+              .split(' ')
+              .filter((w) => w !== '')
+              .map((word): Word => ({ text: word, pos: new Set() }))
+          }
         case SentenceActionTypes.AddWordPOS:
-          state[action.index].pos.add(action.pos)
-          return [...state]
+          state.words[action.index].pos.add(action.pos)
+          return { ...state }
         case SentenceActionTypes.DeleteWordPOS:
-          state[action.index].pos.delete(action.pos)
-          return [...state]
+          state.words[action.index].pos.delete(action.pos)
+          return { ...state }
       }
     },
     {},
-    () =>
-      initialData.sentence.map((w) => ({
-        word: w.word,
+    () => ({
+      words: initialData.sentence.words.map((w) => ({
+        text: w.text,
         pos: new Set(w.pos)
       }))
+    })
   )
 
   return {

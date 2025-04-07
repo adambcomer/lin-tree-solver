@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+message Tag {
+  repeated string values = 1;
+  bool optional = 2;
+  bool repeated = 3;
+}
+
+message Rule {
+  string name = 1;
+  repeated Tag tags = 2;
+}
+
+message RuleSet {
+  repeated string roots = 1;
+  repeated string pos = 2;
+  repeated Rule rules = 3;
+}

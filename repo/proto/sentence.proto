@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+message Word {
+  string text = 1;
+  repeated string pos = 2;
+}
+
+message Sentence { repeated Word words = 1; }

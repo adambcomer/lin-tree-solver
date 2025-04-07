@@ -6,7 +6,7 @@ import {
 } from '../../../api/useWorkspace'
 import TreeCanvas from '../../../src/Components/TreeCanvas'
 import { Node } from '../../../src/types'
-import { Spinner } from "@heroui/spinner"
+import { Spinner } from '@heroui/spinner'
 
 interface TreeViewerProps {
   sentence: Sentence
@@ -61,7 +61,7 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
     }
     worker.postMessage({
       grammar: buildRulesetGrammar(ruleset),
-      words: sentence.map((w) => ({ word: w.word, pos: [...w.pos] }))
+      words: sentence.words.map((w) => ({ word: w.text, pos: [...w.pos] }))
     })
   }, [ruleset, sentence])
 
@@ -84,7 +84,7 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
                 {err.offset} in the following sentence:
               </div>
               <div className='mt-1'>
-                {sentence.map((word, i) => {
+                {sentence.words.map((word, i) => {
                   return (
                     <span
                       className={
@@ -92,9 +92,9 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
                           ? 'mr-1 font-medium text-red-500 underline'
                           : 'mr-1'
                       }
-                      key={word.word + err.pos[i]}
+                      key={word.text + err.pos[i]}
                     >
-                      {word.word}({err.pos[i]})
+                      {word.text}({err.pos[i]})
                     </span>
                   )
                 })}

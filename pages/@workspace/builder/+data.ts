@@ -1,11 +1,16 @@
 import { PageContextServer } from 'vike/types'
+import { render } from 'vike/abort'
+import { db } from '../../../repo/database'
+import { getWorkspace } from '../../../repo/workspace'
 
 export const data = async (pageContext: PageContextServer) => {
-  if (import.meta.env.PROD) {
-    return pageContext.data
+  const workspace = await getWorkspace(db, pageContext.routeParams.workspace)
+  if (!workspace) {
+    throw render(
+      404,
+      `Workspace with ID ${pageContext.routeParams.workspace} doesn't exist.`
+    )
   }
 
-  return fetch(
-    `${import.meta.env.PUBLIC_ENV__API_BASE}/api/workspaces/${pageContext.routeParams.workspace}`
-  ).then((res) => res.json())
+  return workspace
 }

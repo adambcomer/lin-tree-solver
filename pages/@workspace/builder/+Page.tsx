@@ -4,11 +4,34 @@ import { Response, useWorkspace } from '../../../api/useWorkspace'
 import { RulesetEditor } from './RulesetEditor'
 import { SentenceEditor } from './SentenceEdtitor'
 import { TreeViewer } from './TreeViewer'
+import useDebounce from './useDebounce'
 
 const Page = () => {
   const { routeParams } = usePageContext()
   const initialData = useData<Response>()
   const { data, updateSentence, updateRuleset } = useWorkspace(initialData)
+
+  useDebounce(data, 500, async (value) => {
+    fetch(`/api/workspaces/${initialData.id}`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify({
+        ruleset: {
+          roots: [...value.ruleset.roots],
+          pos: [...value.ruleset.pos],
+          rules: value.ruleset.rules
+        },
+        sentence: {
+          words: value.sentence.words.map((w) => ({
+            text: w.text,
+            pos: [...w.pos]
+          }))
+        }
+      })
+    }).catch(console.error)
+  })
 
   return (
     <>

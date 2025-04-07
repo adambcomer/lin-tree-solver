@@ -1,6 +1,6 @@
-import { Chip } from "@heroui/chip"
+import { Chip } from '@heroui/chip'
 import { tagToString } from '../../../src/helpers/ruleset'
-import { Accordion, AccordionItem } from "@heroui/accordion"
+import { Accordion, AccordionItem } from '@heroui/accordion'
 import { getColor } from '../../../src/helpers/colors'
 import {
   parseRuleTags,
@@ -9,8 +9,8 @@ import {
   RulesetActionTypes
 } from '../../../api/useWorkspace'
 import { Dispatch, useState } from 'react'
-import { Button } from "@heroui/button"
-import { Input } from "@heroui/input"
+import { Button } from '@heroui/button'
+import { Input } from '@heroui/input'
 
 interface PosRulesetEditorProps {
   ruleset: Ruleset
@@ -108,7 +108,7 @@ const RootRulesetEditor = ({
   return (
     <>
       <div className='flex mb-4'>
-        {[...ruleset.root].map((r) => (
+        {[...ruleset.roots].map((r) => (
           <Chip
             key={r}
             onClose={() =>
@@ -149,7 +149,7 @@ const RootRulesetEditor = ({
           />
           <Button
             onPress={() => {
-              if (ruleset.root.has(value)) {
+              if (ruleset.roots.has(value)) {
                 setError('Root already exists. Enter a new Root.')
                 return
               } else if (ruleset.rules.every((r) => value !== r.name)) {
