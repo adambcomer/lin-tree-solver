@@ -4,7 +4,7 @@ import type { Config } from 'tailwindcss'
 export default {
   content: [
     './pages/**/*.tsx',
-    './node_modules/@heroui/theme/dist/components/(button|spinner|chip|accordion|input).js'
+    './node_modules/@heroui/theme/dist/components/(button|spinner|chip|accordion|input|tooltip|popover).js'
   ],
   theme: {
     extend: {

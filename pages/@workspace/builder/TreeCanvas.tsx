@@ -26,9 +26,9 @@ import {
   useState
 } from 'react'
 import FontFaceObserver from 'fontfaceobserver'
-import { getColor } from '../helpers/colors'
-import { Node } from '../types'
-import { Ruleset, Sentence } from '../../api/useWorkspace'
+import { getColor } from '../../../src/helpers/colors'
+import { Node } from '../../../src/types'
+import { Ruleset, Sentence } from '../../../api/useWorkspace'
 
 interface TreeCanvasProps {
   ruleset: Ruleset
@@ -176,7 +176,7 @@ const TreeCanvas = (
         recursiveDraw(
           ctx,
           props.tree,
-          props.sentence.map((w) => w.word),
+          props.sentence.words.map((w) => w.text),
           0,
           width,
           0
@@ -244,7 +244,7 @@ const TreeCanvas = (
 
   return (
     <canvas
-      className='w-full h-screen rounded-medium'
+      className='w-full h-full rounded-medium'
       style={{
         fontFamily: "'Noto Sans Mono Variable', monospace",
         background: '#f5f5f5',
