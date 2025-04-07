@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import { compileGrammar } from '../helpers/compile-grammar'
+import { compileGrammar } from './compile-grammar'
 import { Parser, Grammar } from 'nearley'
-import { Node } from '../types'
+import { Node } from './types'
 
 function clone(node: Node): Node {
   const children = []

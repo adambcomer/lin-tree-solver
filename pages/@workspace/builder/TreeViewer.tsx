@@ -5,7 +5,7 @@ import {
   Sentence
 } from '../../../api/useWorkspace'
 import TreeCanvas from './TreeCanvas'
-import { Node } from '../../../src/types'
+import { Node } from './types'
 import { Spinner } from '@heroui/spinner'
 import { Tooltip } from '@heroui/tooltip'
 import { Button } from '@heroui/button'
@@ -27,12 +27,9 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
   const canvas = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const worker = new Worker(
-      new URL('../../../src/workers/parser.ts', import.meta.url),
-      {
-        type: 'module'
-      }
-    )
+    const worker = new Worker(new URL('./parser.ts', import.meta.url), {
+      type: 'module'
+    })
 
     const t1 = performance.now()
     worker.onmessage = (

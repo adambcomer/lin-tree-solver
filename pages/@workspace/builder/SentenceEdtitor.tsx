@@ -5,7 +5,7 @@ import {
   SentenceActions,
   SentenceActionTypes
 } from '../../../api/useWorkspace'
-import { getColor } from '../../../src/helpers/colors'
+import { getColor } from './colors'
 import { Dispatch, useState } from 'react'
 import { cn } from '@heroui/theme'
 

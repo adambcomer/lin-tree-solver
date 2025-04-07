@@ -1,9 +1,9 @@
 import { Chip } from '@heroui/chip'
-import { tagToString } from '../../../src/helpers/ruleset'
 import { Accordion, AccordionItem } from '@heroui/accordion'
-import { getColor } from '../../../src/helpers/colors'
+import { getColor } from './colors'
 import {
   parseRuleTags,
+  tagToString,
   Ruleset,
   RulesetActions,
   RulesetActionTypes

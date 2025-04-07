@@ -26,8 +26,8 @@ import {
   useState
 } from 'react'
 import FontFaceObserver from 'fontfaceobserver'
-import { getColor } from '../../../src/helpers/colors'
-import { Node } from '../../../src/types'
+import { getColor } from './colors'
+import { Node } from './types'
 import { Ruleset, Sentence } from '../../../api/useWorkspace'
 
 interface TreeCanvasProps {

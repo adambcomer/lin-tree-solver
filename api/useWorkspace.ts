@@ -95,6 +95,24 @@ export const parseRuleTags = (rule: string) => {
   )
 }
 
+export const tagToString = (tag: Tag) => {
+  if (tag.optional && tag.repeated) {
+    if (tag.values.length === 1) {
+      return `(${tag.values[0]}+)`
+    }
+    return `({${tag.values.join('/')}}+)`
+  } else if (tag.optional) {
+    if (tag.values.length === 1) {
+      return `(${tag.values[0]})`
+    }
+    return `({${tag.values.join('/')}})`
+  }
+  if (tag.values.length === 1) {
+    return tag.values[0]
+  }
+  return `{${tag.values.join('/')}}`
+}
+
 interface RulesetData {
   name: string
   roots: string[]
