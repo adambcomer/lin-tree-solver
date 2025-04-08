@@ -8,7 +8,7 @@ export const data = async (pageContext: PageContextServer) => {
   if (!workspace) {
     throw render(
       404,
-      `Workspace with ID ${pageContext.routeParams.workspace} doesn't exist.`
+      `Workspace with ID ${pageContext.routeParams.workspace} can't be found.`
     )
   }
 
