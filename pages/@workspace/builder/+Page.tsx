@@ -5,6 +5,7 @@ import { RulesetEditor } from './RulesetEditor'
 import { SentenceEditor } from './SentenceEdtitor'
 import { TreeViewer } from './TreeViewer'
 import useDebounce from './useDebounce'
+import { Button } from '@heroui/button'
 
 const Page = () => {
   const { routeParams } = usePageContext()
@@ -52,6 +53,12 @@ const Page = () => {
 
       <h2 className='text-3xl mt-16'>3. Draw Syntax Trees</h2>
       <TreeViewer ruleset={data.ruleset} sentence={data.sentence} />
+
+      <a href='/support' target='_blank'>
+        <Button isIconOnly className='fixed bottom-5 right-5'>
+          <span className='material-symbols-rounded'>help</span>
+        </Button>
+      </a>
     </>
   )
 }
