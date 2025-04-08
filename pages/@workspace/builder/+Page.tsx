@@ -6,6 +6,7 @@ import { SentenceEditor } from './SentenceEdtitor'
 import { TreeViewer } from './TreeViewer'
 import useDebounce from './useDebounce'
 import { Button } from '@heroui/button'
+import { addToast } from '@heroui/toast'
 
 const Page = () => {
   const { routeParams } = usePageContext()
@@ -31,7 +32,12 @@ const Page = () => {
           }))
         }
       })
-    }).catch(console.error)
+    }).catch(() =>
+      addToast({
+        title: 'Error Saving Workspace',
+        color: 'danger'
+      })
+    )
   })
 
   return (

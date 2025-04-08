@@ -1,12 +1,18 @@
 import { Button } from '@heroui/button'
 import { navigate } from 'vike/client/router'
+import { addToast } from '@heroui/toast'
 
 const Page = () => {
   const onGetStarted = async () => {
-    const res = await fetch('/api/workspaces', { method: 'POST' })
-    const data = await res.json()
-
-    navigate(`/${data.id}/builder`)
+    fetch('/api/workspaces', { method: 'POST' })
+      .then((res) => res.json())
+      .then((data) => navigate(`/${data.id}/builder`))
+      .catch(() =>
+        addToast({
+          title: 'Error Creating a New Workspace',
+          color: 'danger'
+        })
+      )
   }
 
   return (
