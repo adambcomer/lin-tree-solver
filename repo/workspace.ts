@@ -5,6 +5,12 @@ import { DEFAULT_RULESET } from './data/ruleset.js'
 
 export { Sentence, RuleSet } from './proto/bundle.js'
 
+export const isSentence = (value: unknown): value is Sentence =>
+  !!value && !!Sentence.verify(value)
+
+export const isRuleSet = (value: unknown): value is RuleSet =>
+  !!value && !!RuleSet.verify(value)
+
 interface WorkspaceRow {
   id: string
   ruleset: Buffer

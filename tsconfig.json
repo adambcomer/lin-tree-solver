@@ -9,7 +9,8 @@
     "jsx": "react-jsx",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "noEmit": true
+    "noEmit": true,
+    "allowJs": true
   },
   "include": ["pages/**/*", "+config.ts"]
 }

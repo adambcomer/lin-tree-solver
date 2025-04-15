@@ -2,18 +2,21 @@ import { Button } from '@heroui/button'
 import { navigate } from 'vike/client/router'
 import { addToast } from '@heroui/toast'
 
+interface CreatWorkspaceResponse {
+  id: string
+}
+
 const Page = () => {
-  const onGetStarted = async () => {
-    fetch('/api/workspaces', { method: 'POST' })
+  const onGetStarted = () =>
+    void fetch('/api/workspaces', { method: 'POST' })
       .then((res) => res.json())
-      .then((data) => navigate(`/${data.id}/builder`))
+      .then((data: CreatWorkspaceResponse) => navigate(`/${data.id}/builder`))
       .catch(() =>
         addToast({
           title: 'Error Creating a New Workspace',
           color: 'danger'
         })
       )
-  }
 
   return (
     <div className=''>

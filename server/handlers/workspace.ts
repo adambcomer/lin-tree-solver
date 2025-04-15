@@ -1,10 +1,10 @@
-import { Router } from 'express'
+import { Request, Router } from 'express'
 import { db } from '../../repo/database.js'
 import {
   createWorkspace,
   getWorkspace,
-  RuleSet,
-  Sentence,
+  isRuleSet,
+  isSentence,
   updateWorkspace
 } from '../../repo/workspace.js'
 import { randomUUID } from 'node:crypto'
@@ -29,15 +29,21 @@ router.get('/:id', async (req, res) => {
   res.send(workspace)
 })
 
-router.put('/:id', async (req, res) => {
-  const ruleset = req.body.ruleset
-  if (!!RuleSet.verify(ruleset)) {
+type WorkspacePutReqest = Request<
+  { id: string },
+  unknown,
+  { ruleset: unknown; sentence: unknown }
+>
+
+router.put('/:id', async (req: WorkspacePutReqest, res) => {
+  const ruleset: unknown = req.body.ruleset
+  if (!isRuleSet(ruleset)) {
     res.send(422)
     return
   }
 
-  const sentence = req.body.sentence
-  if (!!Sentence.verify(sentence)) {
+  const sentence: unknown = req.body.sentence
+  if (!isSentence(sentence)) {
     res.send(422)
     return
   }

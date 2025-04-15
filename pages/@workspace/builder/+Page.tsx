@@ -13,8 +13,8 @@ const Page = () => {
   const initialData = useData<Response>()
   const { data, updateSentence, updateRuleset } = useWorkspace(initialData)
 
-  useDebounce(data, 500, async (value) => {
-    fetch(`/api/workspaces/${initialData.id}`, {
+  useDebounce(data, 500, (value) => {
+    void fetch(`/api/workspaces/${initialData.id}`, {
       headers: {
         'Content-Type': 'application/json'
       },

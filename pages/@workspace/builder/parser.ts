@@ -88,7 +88,7 @@ ctx.onmessage = (
       parser.feed(comb.join(''))
       const t = parser
         .finish()
-        .map((t) => clone(t[0]))
+        .map((t: Node[]) => clone(t[0]))
         .filter((t) =>
           !treeFilter.has(JSON.stringify(t))
             ? treeFilter.add(JSON.stringify(t))

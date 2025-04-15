@@ -17,7 +17,7 @@ const Page = () => (
       <h1 className='text-5xl mt-16'>Sharing Parse Trees</h1>
 
       <p className='mt-8'>
-        You've built your trees and now want to share them with a friend or
+        You&apos;ve built your trees and now want to share them with a friend or
         colleague. Sharing the sentence and parse trees is as simple as copying
         the URL in the browser with your Workspace ID.
       </p>

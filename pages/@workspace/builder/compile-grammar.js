@@ -32,7 +32,7 @@ export function compileGrammar(sourceCode) {
 
   // Pretend this is a CommonJS environment to catch exports from the grammar.
   const module = { exports: {} }
-  // eslint-disable-next-line no-eval
+
   eval(grammarJs)
 
   return module.exports

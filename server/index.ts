@@ -5,8 +5,6 @@ import { serve } from 'vike-server/express/serve'
 import { router as api } from './handlers/api.js'
 import { initDB } from '../repo/database.js'
 
-const isProduction = import.meta.env.NODE_ENV === 'production'
-
 initDB().catch(console.error)
 
 const app = express()
@@ -16,7 +14,7 @@ app.use(compression())
 
 app.use('/api', api)
 
-if (isProduction) {
+if (import.meta.env.PROD) {
   app.use((req, res, next) => {
     next()
     if (req.path.startsWith('/assets')) {
