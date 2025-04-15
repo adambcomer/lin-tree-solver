@@ -1,0 +1,24 @@
+name: Pull Request
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+    - name: Use Node.js 22 
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: 'pnpm'
+    - name: Install dependencies
+      run: pnpm install
+    - name: Lint
+      run: 'pnpm lint:check'
+    - name: Format
+      run: 'pnpm format:check'
+    - name: Build
+      run: pnpm Build
