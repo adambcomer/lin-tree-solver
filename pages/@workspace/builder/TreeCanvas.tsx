@@ -28,7 +28,7 @@ import {
 import FontFaceObserver from 'fontfaceobserver'
 import { getColor } from './colors'
 import { Node } from './types'
-import { Ruleset, Sentence } from '../../../api/useWorkspace'
+import { Ruleset, Sentence } from './useWorkspace'
 
 interface TreeCanvasProps {
   ruleset: Ruleset

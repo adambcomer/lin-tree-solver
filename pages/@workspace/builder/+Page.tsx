@@ -1,6 +1,6 @@
 import { usePageContext } from 'vike-react/usePageContext'
 import { useData } from 'vike-react/useData'
-import { Response, useWorkspace } from '../../../api/useWorkspace'
+import { Response, useWorkspace } from './useWorkspace'
 import { RulesetEditor } from './RulesetEditor'
 import { SentenceEditor } from './SentenceEdtitor'
 import { TreeViewer } from './TreeViewer'

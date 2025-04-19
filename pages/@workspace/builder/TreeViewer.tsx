@@ -1,9 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import {
-  buildRulesetGrammar,
-  Ruleset,
-  Sentence
-} from '../../../api/useWorkspace'
+import { buildRulesetGrammar, Ruleset, Sentence } from './useWorkspace'
 import TreeCanvas from './TreeCanvas'
 import { Node } from './types'
 import { Spinner } from '@heroui/spinner'

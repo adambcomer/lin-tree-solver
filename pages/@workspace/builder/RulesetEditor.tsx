@@ -7,7 +7,7 @@ import {
   Ruleset,
   RulesetActions,
   RulesetActionTypes
-} from '../../../api/useWorkspace'
+} from './useWorkspace'
 import { Dispatch, useState } from 'react'
 import { Button } from '@heroui/button'
 import { Input } from '@heroui/input'
