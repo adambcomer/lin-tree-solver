@@ -14,11 +14,16 @@
  * limitations under the License.
  */
 
-import type { Config } from 'vike/types'
-import vikeReact from 'vike-react/config'
-
-export const config = {
-  favicon: '/favicon.ico',
-  image: 'https://lin-tree-solver.adambcomer.com/tree.png',
-  extends: vikeReact
-} satisfies Config
+export const Head = () => {
+  return (
+    <>
+      {import.meta.env.PROD && (
+        <script
+          defer
+          src='https://static.cloudflareinsights.com/beacon.min.js'
+          data-cf-beacon='{"token": "4a8f4dcd24dd44de90aff09a966bb224"}'
+        ></script>
+      )}
+    </>
+  )
+}

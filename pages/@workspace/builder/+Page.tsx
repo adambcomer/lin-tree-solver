@@ -23,6 +23,7 @@ import { TreeViewer } from './TreeViewer'
 import useDebounce from './useDebounce'
 import { Button } from '@heroui/button'
 import { addToast } from '@heroui/toast'
+import { Head } from 'vike-react/Head'
 
 const Page = () => {
   const { routeParams } = usePageContext()
@@ -56,8 +57,32 @@ const Page = () => {
     )
   })
 
+  const senentenceText = data.sentence.words.map((w) => w.text).join(' ')
+
   return (
     <>
+      <Head>
+        <title>
+          {`"${senentenceText}" Syntax Tree | Linguistics Tree Solver`}
+        </title>
+        <meta
+          name='description'
+          content={`Syntax tree for the sentence "${senentenceText}".`}
+        />
+        <meta
+          property='og:description'
+          content={`Syntax tree for the sentence "${senentenceText}".`}
+        />
+        <link
+          rel='canonical'
+          href={`https://lin-tree-solver.adambcomer.com/${initialData.id}/builder`}
+        />
+        <meta property='og:type' content='website' />
+        <meta
+          property='og:url'
+          content={`https://lin-tree-solver.adambcomer.com/${initialData.id}/builder`}
+        />
+      </Head>
       <h1 className='text-5xl mt-16'>Linguistics Tree Solver</h1>
       <div className='mt-4 text-sm font-medium'>
         Workspace ID: {routeParams.workspace}
