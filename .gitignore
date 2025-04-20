@@ -1,12 +1,4 @@
 node_modules
 dist
-.vscode
 .env
-
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+*.sqlite

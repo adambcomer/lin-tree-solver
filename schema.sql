@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS workspaces;
+CREATE TABLE IF NOT EXISTS workspaces (
+  id TEXT PRIMARY KEY,
+  sentence TEXT NOT NULL,
+  ruleset TEXT NOT NULL,
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NOT NULL
+);
