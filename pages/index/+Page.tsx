@@ -95,14 +95,11 @@ const Page = () => {
           2. Write and Annotate a Sentence
         </h3>
         <p className='mt-2'>
-          In the{' '}
-          <a href='/sentence' className='text-sky-600'>
-            Sentence Editor
-          </a>
-          , add your sentence in the text box at the top. The sentence will be
-          automatically be split by word. Under each word will be all of the
-          Parts of Speech from the Syntax Rules. By coloring these Parts of
-          Speech, the solver will find trees that satisfy these constraints.
+          In the Sentence Editor, add your sentence in the text box at the top.
+          The sentence will be automatically be split by word. Under each word
+          will be all of the Parts of Speech from the Syntax Rules. By coloring
+          these Parts of Speech, the solver will find trees that satisfy these
+          constraints.
         </p>
         <p className='mt-2'>
           <b>Note:</b> You can select multiple Parts of Speech for a single
@@ -123,11 +120,7 @@ const Page = () => {
           3. Build/Solve/Compute All Syntax Trees For a Sentence
         </h3>
         <p className='mt-2'>
-          In the{' '}
-          <a href='/viewer' className='text-sky-600'>
-            Tree Viewer
-          </a>
-          , you can view all of the parsed trees.
+          In the Tree Viewer, you can view all of the parsed trees.
         </p>
 
         <h2 className='text-3xl mt-8'>Technologies:</h2>
@@ -157,13 +150,9 @@ const Page = () => {
           Can I save a picture of the parsed trees?
         </h3>
         <p className='mt-2'>
-          Yes. In the{' '}
-          <a href='/viewer' className='text-sky-600'>
-            Tree Viewer
-          </a>
-          , there is a Image button in the top right. Clicking this button will
-          generate an image based on the viewer window and automatically
-          download it.
+          Yes. In the Tree Viewer, there is a Image button in the top right.
+          Clicking this button will generate an image based on the viewer window
+          and automatically download it.
         </p>
 
         <h3 className='text-xl font-medium mt-4'>
