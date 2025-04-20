@@ -59,7 +59,7 @@
   "scripts": {
     "dev": "vike dev",
     "build": "vike build",
-    "preview": "vike build && NODE_ENV=production node dist/server/index.js",
+    "preview": "vike build && NODE_ENV=production DATABASE_PATH='./database.sqlite' node dist/server/index.js",
     "proto": "pbjs -t static-module -w es6 --es6 -o repo/proto/bundle.js repo/proto/sentence.proto repo/proto/ruleset.proto && pbts -o repo/proto/bundle.d.ts repo/proto/bundle.js",
     "lint:check": "eslint .",
     "lint": "eslint --fix .",

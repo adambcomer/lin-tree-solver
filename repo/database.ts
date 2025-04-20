@@ -17,7 +17,7 @@
 import fs from 'node:fs'
 import sqlite3 from 'sqlite3'
 
-export const db = new sqlite3.Database(import.meta.env.DATABASE_PATH)
+export const db = new sqlite3.Database(process.env.DATABASE_PATH ?? '')
 
 export const initDB = () => {
   return new Promise<void>((resolve, reject) => {
