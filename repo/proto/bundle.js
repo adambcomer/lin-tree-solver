@@ -104,12 +104,13 @@ export const Word = ($root.Word = (() => {
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  Word.decode = function decode(reader, length) {
+  Word.decode = function decode(reader, length, error) {
     if (!(reader instanceof $Reader)) reader = $Reader.create(reader)
     let end = length === undefined ? reader.len : reader.pos + length,
       message = new $root.Word()
     while (reader.pos < end) {
       let tag = reader.uint32()
+      if (tag === error) break
       switch (tag >>> 3) {
         case 1: {
           message.text = reader.string()
@@ -326,12 +327,13 @@ export const Sentence = ($root.Sentence = (() => {
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  Sentence.decode = function decode(reader, length) {
+  Sentence.decode = function decode(reader, length, error) {
     if (!(reader instanceof $Reader)) reader = $Reader.create(reader)
     let end = length === undefined ? reader.len : reader.pos + length,
       message = new $root.Sentence()
     while (reader.pos < end) {
       let tag = reader.uint32()
+      if (tag === error) break
       switch (tag >>> 3) {
         case 1: {
           if (!(message.words && message.words.length)) message.words = []
@@ -568,12 +570,13 @@ export const Tag = ($root.Tag = (() => {
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  Tag.decode = function decode(reader, length) {
+  Tag.decode = function decode(reader, length, error) {
     if (!(reader instanceof $Reader)) reader = $Reader.create(reader)
     let end = length === undefined ? reader.len : reader.pos + length,
       message = new $root.Tag()
     while (reader.pos < end) {
       let tag = reader.uint32()
+      if (tag === error) break
       switch (tag >>> 3) {
         case 1: {
           if (!(message.values && message.values.length)) message.values = []
@@ -816,12 +819,13 @@ export const Rule = ($root.Rule = (() => {
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  Rule.decode = function decode(reader, length) {
+  Rule.decode = function decode(reader, length, error) {
     if (!(reader instanceof $Reader)) reader = $Reader.create(reader)
     let end = length === undefined ? reader.len : reader.pos + length,
       message = new $root.Rule()
     while (reader.pos < end) {
       let tag = reader.uint32()
+      if (tag === error) break
       switch (tag >>> 3) {
         case 1: {
           message.name = reader.string()
@@ -1069,12 +1073,13 @@ export const RuleSet = ($root.RuleSet = (() => {
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  RuleSet.decode = function decode(reader, length) {
+  RuleSet.decode = function decode(reader, length, error) {
     if (!(reader instanceof $Reader)) reader = $Reader.create(reader)
     let end = length === undefined ? reader.len : reader.pos + length,
       message = new $root.RuleSet()
     while (reader.pos < end) {
       let tag = reader.uint32()
+      if (tag === error) break
       switch (tag >>> 3) {
         case 1: {
           if (!(message.roots && message.roots.length)) message.roots = []
