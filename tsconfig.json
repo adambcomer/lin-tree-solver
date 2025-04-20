@@ -12,5 +12,5 @@
     "noEmit": true,
     "allowJs": true
   },
-  "include": ["pages/**/*", "+config.ts"]
+  "include": ["pages/**/*", "+config.ts", "vite.d.ts"]
 }
