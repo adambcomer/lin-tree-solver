@@ -68,8 +68,8 @@ const TreeCanvas = (
   }, [canvas, ref])
 
   useEffect(() => {
-    const font1 = new FontFaceObserver('Noto Sans Mono Variable')
-    const font2 = new FontFaceObserver('Noto Sans Mono Variable', {
+    const font1 = new FontFaceObserver('Noto Sans Mono')
+    const font2 = new FontFaceObserver('Noto Sans Mono', {
       weight: 500
     })
 
@@ -98,7 +98,7 @@ const TreeCanvas = (
         if (typeof node === 'string') {
           ctx.fillStyle = '#000'
           ctx.textAlign = 'center'
-          ctx.font = '64px Noto Sans Mono Variable'
+          ctx.font = '64px Noto Sans Mono'
           ctx.fillText(node, Math.floor(width / 2 + start), 200 + level * 400)
 
           ctx.fillStyle = colorMap.get(node) ?? ''
@@ -110,7 +110,7 @@ const TreeCanvas = (
           )
 
           ctx.fillStyle = '#000'
-          ctx.font = '500 72px Noto Sans Mono Variable'
+          ctx.font = '500 72px Noto Sans Mono'
           ctx.fillText(
             words[0],
             Math.floor(width / 2 + start),
@@ -121,7 +121,7 @@ const TreeCanvas = (
 
         ctx.fillStyle = '#000'
         ctx.textAlign = 'center'
-        ctx.font = '64px Noto Sans Mono Variable'
+        ctx.font = '64px Noto Sans Mono'
         ctx.fillText(
           node.node,
           Math.floor(width / 2 + start),
@@ -246,7 +246,7 @@ const TreeCanvas = (
     <canvas
       className='w-full h-full rounded-medium'
       style={{
-        fontFamily: "'Noto Sans Mono Variable', monospace",
+        fontFamily: "'Noto Sans Mono', monospace",
         background: '#f5f5f5',
         cursor: 'all-scroll'
       }}

@@ -115,7 +115,14 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
           disabled={!trees.length || treeIndex === trees.length - 1}
           onPress={() => setTreeIndex(treeIndex + 1)}
         >
-          <span className='material-symbols-rounded'>chevron_right</span>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            height='24px'
+            viewBox='0 -960 960 960'
+            width='24px'
+          >
+            <path d='M504-480 348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156Z' />
+          </svg>
         </Button>
       </Tooltip>
       <Tooltip content='Previous Tree' showArrow>
@@ -125,7 +132,14 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
           disabled={!trees.length || treeIndex === 0}
           onPress={() => setTreeIndex(treeIndex - 1)}
         >
-          <span className='material-symbols-rounded'>chevron_left</span>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            height='24px'
+            viewBox='0 -960 960 960'
+            width='24px'
+          >
+            <path d='m432-480 156 156q11 11 11 28t-11 28q-11 11-28 11t-28-11L348-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 28-11t28 11q11 11 11 28t-11 28L432-480Z' />
+          </svg>
         </Button>
       </Tooltip>
 
@@ -136,7 +150,14 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
           disabled={!trees.length}
           onPress={saveTreeImage}
         >
-          <span className='material-symbols-rounded'>image</span>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            height='24px'
+            viewBox='0 -960 960 960'
+            width='24px'
+          >
+            <path d='M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0 0v-560 560Zm80-80h400q12 0 18-11t-2-21L586-459q-6-8-16-8t-16 8L450-320l-74-99q-6-8-16-8t-16 8l-80 107q-8 10-2 21t18 11Z' />
+          </svg>
         </Button>
       </Tooltip>
 
@@ -147,7 +168,14 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
           disabled={!trees.length}
           onPress={() => setCanvasZoom(canvasZoom * (4 / 3))}
         >
-          <span className='material-symbols-rounded'>zoom_in</span>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            height='24px'
+            viewBox='0 -960 960 960'
+            width='24px'
+          >
+            <path d='M340-540h-40q-17 0-28.5-11.5T260-580q0-17 11.5-28.5T300-620h40v-40q0-17 11.5-28.5T380-700q17 0 28.5 11.5T420-660v40h40q17 0 28.5 11.5T500-580q0 17-11.5 28.5T460-540h-40v40q0 17-11.5 28.5T380-460q-17 0-28.5-11.5T340-500v-40Zm40 220q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z' />
+          </svg>
         </Button>
       </Tooltip>
       <Tooltip content='Zoom Out' showArrow>
@@ -157,7 +185,14 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
           disabled={!trees.length}
           onPress={() => setCanvasZoom(canvasZoom * (3 / 4))}
         >
-          <span className='material-symbols-rounded'>zoom_out</span>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            height='24px'
+            viewBox='0 -960 960 960'
+            width='24px'
+          >
+            <path d='M320-540q-17 0-28.5-11.5T280-580q0-17 11.5-28.5T320-620h120q17 0 28.5 11.5T480-580q0 17-11.5 28.5T440-540H320Zm60 220q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z' />
+          </svg>
         </Button>
       </Tooltip>
 

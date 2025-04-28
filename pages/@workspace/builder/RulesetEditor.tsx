@@ -58,7 +58,14 @@ const PosRulesetEditor = ({
         ))}
         <Button
           startContent={
-            <span className='material-symbols-rounded !text-sm'>add</span>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              height='18px'
+              viewBox='0 -960 960 960'
+              width='18px'
+            >
+              <path d='M444-444H276q-15.3 0-25.65-10.29Q240-464.58 240-479.79t10.35-25.71Q260.7-516 276-516h168v-168q0-15.3 10.29-25.65Q464.58-720 479.79-720t25.71 10.35Q516-699.3 516-684v168h168q15.3 0 25.65 10.29Q720-495.42 720-480.21t-10.35 25.71Q699.3-444 684-444H516v168q0 15.3-10.29 25.65Q495.42-240 480.21-240t-25.71-10.35Q444-260.7 444-276v-168Z' />
+            </svg>
           }
           className='cursor-pointer h-[28px] font-mono'
           size='sm'
@@ -137,7 +144,14 @@ const RootRulesetEditor = ({
         ))}
         <Button
           startContent={
-            <span className='material-symbols-rounded !text-sm'>add</span>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              height='18px'
+              viewBox='0 -960 960 960'
+              width='18px'
+            >
+              <path d='M444-444H276q-15.3 0-25.65-10.29Q240-464.58 240-479.79t10.35-25.71Q260.7-516 276-516h168v-168q0-15.3 10.29-25.65Q464.58-720 479.79-720t25.71 10.35Q516-699.3 516-684v168h168q15.3 0 25.65 10.29Q720-495.42 720-480.21t-10.35 25.71Q699.3-444 684-444H516v168q0 15.3-10.29 25.65Q495.42-240 480.21-240t-25.71-10.35Q444-260.7 444-276v-168Z' />
+            </svg>
           }
           className='cursor-pointer h-[28px] font-mono'
           size='sm'
@@ -213,7 +227,16 @@ const RuleRulesetEditor = ({
       {ruleset.rules.map((rule, i) => (
         <div key={i} className='mb-4 flex items-center'>
           <Chip className='mr-2 font-mono'>{rule.name}</Chip>
-          <div className='material-symbols-rounded !text-lg mr-2'>east</div>
+          <div className='!text-lg mr-2'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              height='20px'
+              viewBox='0 -960 960 960'
+              width='20px'
+            >
+              <path d='M726-444H132q-15.3 0-25.65-10.29Q96-464.58 96-479.79t10.35-25.71Q116.7-516 132-516h594L573.8-668.26Q563-679 563-693.5q0-14.5 11-25.5t25.5-11q14.5 0 25.5 11l214 214q5 5.4 7.5 11.7 2.5 6.3 2.5 13.5t-2.5 13.5Q844-460 839-455L625-241q-11 11-25 10.5t-25-11.02q-11-11.48-11-26.15 0-14.66 11-25.33l151-151Z' />
+            </svg>
+          </div>
           {rule.tags.map((tag, i) => (
             <Chip
               key={i}
@@ -236,7 +259,14 @@ const RuleRulesetEditor = ({
       ))}
       <Button
         startContent={
-          <span className='material-symbols-rounded !text-sm'>add</span>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            height='18px'
+            viewBox='0 -960 960 960'
+            width='18px'
+          >
+            <path d='M444-444H276q-15.3 0-25.65-10.29Q240-464.58 240-479.79t10.35-25.71Q260.7-516 276-516h168v-168q0-15.3 10.29-25.65Q464.58-720 479.79-720t25.71 10.35Q516-699.3 516-684v168h168q15.3 0 25.65 10.29Q720-495.42 720-480.21t-10.35 25.71Q699.3-444 684-444H516v168q0 15.3-10.29 25.65Q495.42-240 480.21-240t-25.71-10.35Q444-260.7 444-276v-168Z' />
+          </svg>
         }
         className='cursor-pointer h-[28px] font-mono mb-4'
         size='sm'
