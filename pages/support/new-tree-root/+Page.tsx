@@ -99,9 +99,9 @@ const Page = () => (
       <p className='mt-4'>
         Next, add a new root tag to the empty set of root tags. The root tag you
         wish to set must already exist in the list of rules below. If root you
-        wish to use hasn't been added, add the new rule before modifying the
-        root. In this example, I'm going to change the root to a NP so I can
-        build trees that start from a noun phrase.
+        wish to use hasn&apos;t been added, add the new rule before modifying
+        the root. In this example, I&apos;m going to change the root to a NP so
+        I can build trees that start from a noun phrase.
       </p>
       <picture>
         <source srcSet={newSyntaxRuleJXL} type='image/jxl' />

@@ -17,7 +17,7 @@
 import type { Config } from 'vike/types'
 import vikeReact from 'vike-react/config'
 import favicon from './favicon.ico'
-import image from '/images/tree.jpeg'
+import image from '../images/tree.jpeg'
 
 export const config = {
   favicon,
