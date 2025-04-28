@@ -20,7 +20,7 @@
     "compression": "1.8.0",
     "express": "4.21.2",
     "fontfaceobserver": "2.3.0",
-    "framer-motion": "12.7.4",
+    "framer-motion": "12.9.2",
     "nearley": "2.20.1",
     "protobufjs": "7.5.0",
     "react": "19.1.0",
