@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@fontsource-variable/material-symbols-rounded':
-        specifier: 5.2.8
-        version: 5.2.8
+        specifier: 5.2.10
+        version: 5.2.10
       '@fontsource-variable/noto-sans':
         specifier: 5.2.6
         version: 5.2.6
@@ -606,8 +606,8 @@ packages:
     resolution: {integrity: sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@fontsource-variable/material-symbols-rounded@5.2.8':
-    resolution: {integrity: sha512-98xeSucS37RPszekmdWX9MtINCYCzKPJZIgbZaLqz4x5uWTkUSA/fwi0pQe1p0qZHSOe/oJLYE4Qz3OwEz9vXQ==}
+  '@fontsource-variable/material-symbols-rounded@5.2.10':
+    resolution: {integrity: sha512-bQAM5L95W+oHvPtgLIaN98Hgbdq5v2Y5Re+Ch+OTeo+sNY5ybvEIfkMwJS4jxj7NsLocXm47f4YxHJfR7wJ23g==}
 
   '@fontsource-variable/noto-sans-mono@5.2.6':
     resolution: {integrity: sha512-38eU68bNLlw3x08eq0CHpUTqMLOoWgrmejBlBI44Qiu3glkapMaRWPYBwWI/ffJ4lh+kZXSeFG+o9ujrjtz/2w==}
@@ -1773,6 +1773,10 @@ packages:
 
   detect-libc@2.0.3:
     resolution: {integrity: sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==}
+    engines: {node: '>=8'}
+
+  detect-libc@2.0.4:
+    resolution: {integrity: sha512-3UDv+G9CsCKO1WKMGw9fwq/SWJYbI0c5Y7LU1AXYoDdbhE2AHQ6N6Nb34sG8Fj7T5APy8qXDCKuuIHd1BR0tVA==}
     engines: {node: '>=8'}
 
   didyoumean@1.2.2:
@@ -4040,7 +4044,7 @@ snapshots:
       '@eslint/core': 0.13.0
       levn: 0.4.1
 
-  '@fontsource-variable/material-symbols-rounded@5.2.8': {}
+  '@fontsource-variable/material-symbols-rounded@5.2.10': {}
 
   '@fontsource-variable/noto-sans-mono@5.2.6': {}
 
@@ -5530,6 +5534,9 @@ snapshots:
 
   detect-libc@2.0.3: {}
 
+  detect-libc@2.0.4:
+    optional: true
+
   didyoumean@1.2.2: {}
 
   discontinuous-range@1.0.0: {}
@@ -6482,7 +6489,7 @@ snapshots:
 
   lightningcss@1.29.3:
     dependencies:
-      detect-libc: 2.0.3
+      detect-libc: 2.0.4
     optionalDependencies:
       lightningcss-darwin-arm64: 1.29.3
       lightningcss-darwin-x64: 1.29.3

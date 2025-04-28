@@ -6,7 +6,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@fontsource-variable/material-symbols-rounded": "5.2.8",
+    "@fontsource-variable/material-symbols-rounded": "5.2.10",
     "@fontsource-variable/noto-sans": "5.2.6",
     "@fontsource-variable/noto-sans-mono": "5.2.6",
     "@heroui/accordion": "2.2.14",
