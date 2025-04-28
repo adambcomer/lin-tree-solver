@@ -16,9 +16,11 @@
 
 import type { Config } from 'vike/types'
 import vikeReact from 'vike-react/config'
+import favicon from './favicon.ico'
+import image from '/images/tree.jpeg'
 
 export const config = {
-  favicon: '/favicon.ico',
-  image: 'https://lin-tree-solver.adambcomer.com/tree.png',
+  favicon,
+  image,
   extends: vikeReact
 } satisfies Config
