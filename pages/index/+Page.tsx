@@ -19,6 +19,10 @@ import { navigate } from 'vike/client/router'
 import { addToast } from '@heroui/toast'
 import { Head } from 'vike-react/Head'
 
+import treeJPEG from '/images/tree.jpeg'
+import treeAVIF from '/images/tree.avif'
+import treeJXL from '/images/tree.jxl'
+
 interface CreatWorkspaceResponse {
   id: string
 }
@@ -82,7 +86,15 @@ const Page = () => {
           New Syntax Tree
         </Button>
 
-        <img src='/tree.png' className='w-full' />
+        <picture>
+          <source srcSet={treeJXL} type='image/jxl' />
+          <source srcSet={treeAVIF} type='image/avif' />
+          <img
+            src={treeJPEG}
+            className='w-full'
+            alt='Syntax tree for the sentence "The small dog quickly ran home to his owner"'
+          />
+        </picture>
 
         <h2 className='text-3xl mt-8'>Tutorial:</h2>
 
