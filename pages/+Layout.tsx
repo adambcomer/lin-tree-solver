@@ -14,19 +14,14 @@
  * limitations under the License.
  */
 
-import React from 'react'
+import { ReactNode } from 'react'
 import { HeroUIProvider } from '@heroui/system'
 import { ToastProvider } from '@heroui/toast'
 
 import './style.css'
 
-import '@fontsource-variable/noto-sans'
-import '@fontsource-variable/noto-sans/wght-italic.css'
-import '@fontsource-variable/noto-sans-mono'
-import '@fontsource-variable/material-symbols-rounded'
-
 interface LayoutProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export const Layout = ({ children }: LayoutProps) => {

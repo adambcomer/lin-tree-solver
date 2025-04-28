@@ -25,8 +25,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Noto Sans Variable', 'sans-serif'],
-        mono: ['Noto Sans Mono Variable', 'monospace']
+        sans: ['Noto Sans', 'sans-serif'],
+        mono: ['Noto Sans Mono', 'monospace']
       }
     }
   },
