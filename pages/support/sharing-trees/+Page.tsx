@@ -30,7 +30,7 @@ const Page = () => (
       />
     </Head>
     <div>
-      <h1 className='text-5xl mt-16'>Sharing Parse Trees</h1>
+      <h1 className='text-5xl'>Sharing Parse Trees</h1>
 
       <p className='mt-8'>
         You&apos;ve built your trees and now want to share them with a friend or

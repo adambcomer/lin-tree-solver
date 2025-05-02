@@ -83,7 +83,7 @@ const Page = () => {
           content={`https://lin-tree-solver.adambcomer.com/${initialData.id}/builder`}
         />
       </Head>
-      <h1 className='text-5xl mt-16'>Linguistics Tree Solver</h1>
+      <h1 className='text-5xl'>Linguistics Tree Solver</h1>
       <div className='mt-4 text-sm font-medium'>
         Workspace ID: {routeParams.workspace}
       </div>

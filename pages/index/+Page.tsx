@@ -59,7 +59,7 @@ const Page = () => {
         />
       </Head>
       <div>
-        <h1 className='text-5xl mt-16'>Linguistics Tree Solver</h1>
+        <h1 className='text-5xl'>Linguistics Tree Solver</h1>
 
         <h2 className='text-3xl mt-8'>About:</h2>
         <p className='mt-2'>
@@ -93,6 +93,8 @@ const Page = () => {
             src={treeJPEG}
             className='w-full'
             alt='Syntax tree for the sentence "The small dog quickly ran home to his owner"'
+            height={2828}
+            width={4000}
           />
         </picture>
 

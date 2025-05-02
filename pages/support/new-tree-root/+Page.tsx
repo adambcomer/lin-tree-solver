@@ -46,7 +46,7 @@ const Page = () => (
       />
     </Head>
     <div>
-      <h1 className='text-5xl mt-16'>Changing the Root of a Tree</h1>
+      <h1 className='text-5xl'>Changing the Root of a Tree</h1>
 
       <p className='mt-8'>
         Sometimes you don&apos;t want to build a tree for a complete sentence,
