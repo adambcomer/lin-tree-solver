@@ -93,6 +93,8 @@ const Page = () => {
             src={treeJPEG}
             className='w-full'
             alt='Syntax tree for the sentence "The small dog quickly ran home to his owner"'
+            height={2828}
+            width={4000}
           />
         </picture>
 
