@@ -30,7 +30,7 @@ const Page = () => (
       />
     </Head>
     <div>
-      <h1 className='text-5xl mt-16'>Support</h1>
+      <h1 className='text-5xl'>Support</h1>
 
       <p className='mt-4'>Helpful documentation to solve common problems.</p>
 

@@ -28,7 +28,7 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <HeroUIProvider>
       <ToastProvider />
-      <div className='max-w-screen-2xl mx-auto p-4'>{children}</div>
+      <div className='max-w-screen-2xl mx-auto p-4 2xl:p-8'>{children}</div>
     </HeroUIProvider>
   )
 }
