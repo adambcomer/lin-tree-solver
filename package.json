@@ -18,7 +18,7 @@
     "@vitejs/plugin-react": "4.4.1",
     "buffer": "6.0.3",
     "compression": "1.8.0",
-    "express": "4.21.2",
+    "express": "5.1.0",
     "fontfaceobserver": "2.3.0",
     "framer-motion": "12.9.4",
     "nearley": "2.20.1",
