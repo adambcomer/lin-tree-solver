@@ -100,18 +100,49 @@ const Page = () => {
 
         <h2 className='text-3xl mt-8'>Tutorial:</h2>
 
-        <h3 className='text-xl font-medium mt-4'>
-          1. Define Syntax Rules (One Time Step)
-        </h3>
-        <p className='mt-2'>Work in progress.</p>
+        <h3 className='text-xl font-medium mt-4'>1. Define Syntax Rules</h3>
+        <p className='mt-2'>
+          The Linguistics Tree Solver starts with a basic set of syntax rules to
+          construct a basic tree, but you can modify the rules to construct
+          nearly any syntax tree.
+        </p>
+
+        <p className='mt-2'>
+          Syntax Rule consist of three parts: Parts-of-Speech, Syntax Rules, and
+          Roots. Parts-of-Speech represent each atomic unit of your sentence. In
+          English, this this commonly a word, possessive, or tense modifier, but
+          your language might differ. Syntax Rules are the EBNF-like grammar for
+          your language. Roots are the starting Syntax Rules or Parts-of-Speech
+          that inform the Solver where to start.
+        </p>
+
+        <h4 className='text-lg font-medium mt-2'>Grammar:</h4>
+        <ul>
+          <li className='mt-2'>
+            <span className='font-mono'>&#123;...&#125;</span>: Set of
+            Part-of-Speech or Syntax Rule
+          </li>
+          <li className='mt-2'>
+            <span className='font-mono'>(...)</span>: Optional (one or none)
+            Part-of-Speech or Syntax Rule
+          </li>
+          <li className='mt-2'>
+            <span className='font-mono'>(&#123;...&#125;)</span>: Optional Set
+            (one or none) Part-of-Speech or Syntax Rule
+          </li>
+          <li className='mt-2'>
+            <span className='font-mono'>(...+)</span>: Optional Repeated (none,
+            one, or more) Part-of-Speech or Syntax Rule
+          </li>
+        </ul>
 
         <h3 className='text-xl font-medium mt-4'>
           2. Write and Annotate a Sentence
         </h3>
         <p className='mt-2'>
-          In the Sentence Editor, add your sentence in the text box at the top.
-          The sentence will be automatically be split by word. Under each word
-          will be all of the Parts of Speech from the Syntax Rules. By coloring
+          In the Sentence Editor, add your sentence in the text box . The
+          sentence will be automatically be split by word. Under each word will
+          be all of the Parts of Speech from the Syntax Rules. By annotating
           these Parts of Speech, the solver will find trees that satisfy these
           constraints.
         </p>
@@ -135,13 +166,6 @@ const Page = () => {
         </h3>
         <p className='mt-2'>
           In the Tree Viewer, you can view all of the parsed trees.
-        </p>
-
-        <h2 className='text-3xl mt-8'>Technologies:</h2>
-        <p>
-          This project uses Web Workers to parse the trees. To get the best
-          performance and support, use an up-to-date version of Chrome, Firefox,
-          or Safari.
         </p>
 
         <h2 className='text-3xl mt-8'>FAQ:</h2>
@@ -173,9 +197,15 @@ const Page = () => {
           How do I share my Sentence/Syntax Rules with a friend?
         </h3>
         <p className='mt-2'>
-          Currently, there are no sharing mechanisms. This feature is under
-          active development. I&apos;m considering several strategies to make
-          this feature work seamlessly.
+          Yes, just copy the URL in the toolbar and share with your friends.
+          Each Syntax Tree comes with a workspace that stores the syntax rules,
+          sentence, and parts-of-speech annotations.
+        </p>
+        <p className='mt-2'>
+          <b>Note:</b> The trees are stored on a central server and are
+          accessible by the Workspace ID on the builder page. The syntax rules,
+          sentence, and sentence annotations can be overwritten by anyone with
+          the Workspace ID.
         </p>
 
         <h3 className='text-xl font-medium mt-4'>
@@ -185,11 +215,11 @@ const Page = () => {
           Yes. You can view the code at my{' '}
           <a
             href='https://github.com/adambcomer/lin-tree-solver'
-            className='text-sky-600'
+            className='text-medium text-blue-600 hover:underline'
           >
             Github Repository
           </a>
-          . I&apos;m happy to merge pull requests that build on the project.
+          . Contributions are always welcome.
         </p>
 
         <h3 className='text-xl font-medium mt-4'>
@@ -206,53 +236,17 @@ const Page = () => {
         <p className='mt-2'>
           Email:{' '}
           <a
-            href='#'
-            onClick={() => {
-              location.href =
-                'mai' +
-                'lto:' +
-                'ada' +
-                'mb' +
-                'com' +
-                'er' +
-                '@gm' +
-                'ai' +
-                'l.c' +
-                'om'
-            }}
-            className='text-sky-600'
+            href='mailto:adambcomer@gmail.com?subject=Help Drawing Syntax Tree'
+            className='text-medium text-blue-600 hover:underline'
           >
-            adamb
-            <span className='hidden'>.nosp@m.</span>
-            come
-            <span className='hidden'>.nosp@m.</span>
-            r@gma
-            <span className='hidden'>.nosp@m.</span>
-            il.c
-            <span className='hidden'>.nosp@m.</span>
-            om
-          </a>
-        </p>
-        <p className='mt-2'>
-          Project Site:{' '}
-          <a
-            href='https://lin-tree-solver.adambcomer.com/'
-            className='text-sky-600'
-          >
-            Project Site
-          </a>
-        </p>
-        <p className='mt-2'>
-          Personal Site:{' '}
-          <a href='https://adambcomer.com/' className='text-sky-600'>
-            Personal Site
+            adambcomer@gmail.com
           </a>
         </p>
         <p className='mt-2'>
           Repository:{' '}
           <a
             href='https://github.com/adambcomer/lin-tree-solver'
-            className='text-sky-600'
+            className='text-medium text-blue-600 hover:underline'
           >
             Project Github Repository
           </a>
