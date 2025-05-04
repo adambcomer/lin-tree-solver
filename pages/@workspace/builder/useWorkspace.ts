@@ -310,8 +310,10 @@ export const useWorkspace = (initialData: Response) => {
             ]
           }
         case RulesetActionTypes.DeleteRule:
-          state.rules.splice(action.index)
-          return { ...state }
+          return {
+            ...state,
+            rules: state.rules.filter((_, i) => i !== action.index)
+          }
         case RulesetActionTypes.UpdateRule:
           state.rules[action.index] = {
             name: action.name,
