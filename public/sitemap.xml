@@ -6,21 +6,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://lin-tree-solver.adambcomer.com/sentence</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://lin-tree-solver.adambcomer.com/viewer</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://lin-tree-solver.adambcomer.com/rules</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://lin-tree-solver.adambcomer.com/support</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
