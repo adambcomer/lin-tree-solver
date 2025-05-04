@@ -226,7 +226,14 @@ const RuleRulesetEditor = ({
     <>
       {ruleset.rules.map((rule, i) => (
         <div key={i} className='mb-4 flex items-center'>
-          <Chip className='mr-2 font-mono'>{rule.name}</Chip>
+          <Chip
+            className='mr-2 font-mono'
+            onClose={() =>
+              updateRuleset({ type: RulesetActionTypes.DeleteRule, index: i })
+            }
+          >
+            {rule.name}
+          </Chip>
           <div className='!text-lg mr-2'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
