@@ -22,5 +22,10 @@ import image from '../images/tree.jpeg'
 export const config = {
   favicon,
   image,
+  redirects: {
+    '/sentence': '/',
+    '/viewer': '/',
+    '/rules*': '/'
+  },
   extends: vikeReact
 } satisfies Config
