@@ -48,7 +48,7 @@
     "eslint-plugin-react": "7.37.5",
     "postcss": "8.5.3",
     "prettier": "3.5.3",
-    "protobufjs-cli": "1.1.3",
+    "protobufjs-cli": "1.2.0",
     "source-map-explorer": "2.5.3",
     "typescript": "5.8.3",
     "typescript-eslint": "8.31.0"
