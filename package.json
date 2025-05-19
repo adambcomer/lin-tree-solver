@@ -28,7 +28,7 @@
     "sqlite3": "5.1.7",
     "tailwindcss": "3.4.17",
     "vike": "0.4.229",
-    "vike-react": "0.6.1",
+    "vike-react": "0.6.3",
     "vike-server": "1.0.15",
     "vite": "6.3.4"
   },
