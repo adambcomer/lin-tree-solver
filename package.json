@@ -22,7 +22,7 @@
     "fontfaceobserver": "2.3.0",
     "framer-motion": "12.9.4",
     "nearley": "2.20.1",
-    "protobufjs": "7.5.0",
+    "protobufjs": "7.5.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sqlite3": "5.1.7",
