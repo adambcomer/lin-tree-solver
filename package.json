@@ -43,7 +43,7 @@
     "@types/react": "19.1.5",
     "@types/react-dom": "19.1.6",
     "autoprefixer": "10.4.21",
-    "eslint": "9.27.0",
+    "eslint": "9.31.0",
     "eslint-config-prettier": "10.1.5",
     "eslint-plugin-react": "7.37.5",
     "postcss": "8.5.6",
@@ -51,7 +51,7 @@
     "protobufjs-cli": "1.2.0",
     "source-map-explorer": "2.5.3",
     "typescript": "5.8.3",
-    "typescript-eslint": "8.31.0"
+    "typescript-eslint": "8.36.0"
   },
   "scripts": {
     "dev": "vike dev",
