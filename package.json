@@ -13,7 +13,7 @@
     "@heroui/spinner": "2.2.16",
     "@heroui/system": "2.4.15",
     "@heroui/theme": "2.4.15",
-    "@heroui/toast": "2.0.9",
+    "@heroui/toast": "2.0.11",
     "@heroui/tooltip": "2.2.16",
     "@vitejs/plugin-react": "4.5.0",
     "buffer": "6.0.3",
