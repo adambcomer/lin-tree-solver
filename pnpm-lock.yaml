@@ -72,14 +72,14 @@ importers:
         specifier: 3.4.17
         version: 3.4.17
       vike:
-        specifier: 0.4.229
-        version: 0.4.229(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
+        specifier: 0.4.235
+        version: 0.4.235(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
       vike-react:
-        specifier: 0.6.3
-        version: 0.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vike@0.4.229(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)))
+        specifier: 0.6.4
+        version: 0.6.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vike@0.4.235(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)))
       vike-server:
         specifier: 1.0.17
-        version: 1.0.17(vike@0.4.229(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
+        version: 1.0.17(vike@0.4.235(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
       vite:
         specifier: 6.3.4
         version: 6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
@@ -247,20 +247,14 @@ packages:
   '@brillout/import@0.2.6':
     resolution: {integrity: sha512-1GUTmADc8trUC1YSW2lp9r6PmwluMoEyHajnE1kxVdbKGD0wJOlq/DvTWMUqLtBDCnQR+n//qgMtz6HwA/lotA==}
 
-  '@brillout/json-serializer@0.5.15':
-    resolution: {integrity: sha512-iLAyV1HNC3nG07ypBwCJohFrajY1HeZdfBBgGuRtMH/JPddgG9bPmoSI18A1RBx67vRmY6/8rgisjR5YfTvZHA==}
-
-  '@brillout/picocolors@1.0.26':
-    resolution: {integrity: sha512-oJF92OEpzunaJyaEWXuS4PWY0k8JsqNO18kMf5hIwvsh+tyhbv+UwAnPPauSlO2eyvMSciui+YFKV9DEzTpmGA==}
+  '@brillout/json-serializer@0.5.16':
+    resolution: {integrity: sha512-X9CujUMruFxH35cyFgzebg3biBBRz4ouMmjJZwIa04D188du0V47QFcIK7YXKl3z0pue+9NccQ+1zaxhB49r1Q==}
 
   '@brillout/picocolors@1.0.28':
     resolution: {integrity: sha512-FBsirUdUlmjmeUlEuqfnUoKAZUt+d0VfMVBYUsFQrDFEV9Rm/QDyG69PSQtQbI6SZQNiZuAWuyhE5USflzx6iQ==}
 
   '@brillout/require-shim@0.1.2':
     resolution: {integrity: sha512-3I4LRHnVZXoSAsEoni5mosq9l6eiJED58d9V954W4CIZ88AUfYBanWGBGbJG3NztaRTpFHEA6wB3Hn93BmmJdg==}
-
-  '@brillout/vite-plugin-server-entry@0.7.8':
-    resolution: {integrity: sha512-gqvJVRFU85IexXj/4I580VgQt+cZLGd7jwUqA+3OXEyJTvj2nUcW34cpKB1wJEiNItwL1g9lscamuxZ8JrYn+g==}
 
   '@brillout/vite-plugin-server-entry@0.7.9':
     resolution: {integrity: sha512-mJrUakPTj8Zf3Pm4beKmHowfozHOLS/deMqheYYIlqK8FSR4Hd3vMeFQBL/rxLLd+svIlW/j2K3M2SVPDmvX7A==}
@@ -1417,6 +1411,11 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  acorn@8.15.0:
+    resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
@@ -2033,6 +2032,14 @@ packages:
 
   fdir@6.4.4:
     resolution: {integrity: sha512-1NZP+GK4GfuAv3PqKvxQRDMjdSRZjnkq7KfhlNrCNNlZ0ygQFpebfrnfnq/W7fpUnAv9aGWmY1zKx7FYL3gwhg==}
+    peerDependencies:
+      picomatch: ^3 || ^4
+    peerDependenciesMeta:
+      picomatch:
+        optional: true
+
+  fdir@6.4.6:
+    resolution: {integrity: sha512-hiFoqpyZcfNm1yc4u8oWCf9A2c4D3QjCrks3zmoVKVxpQRzmPNar1hUJcBG2RQHvEVGDN+Jm81ZheVLAQMK6+w==}
     peerDependencies:
       picomatch: ^3 || ^4
     peerDependenciesMeta:
@@ -3428,6 +3435,10 @@ packages:
     resolution: {integrity: sha512-mEwzpUgrLySlveBwEVDMKk5B57bhLPYovRfPAXD5gA/98Opn0rCDj3GtLwFvCvH5RK9uPCExUROW5NjDwvqkxw==}
     engines: {node: '>=12.0.0'}
 
+  tinyglobby@0.2.14:
+    resolution: {integrity: sha512-tX5e7OM1HnYr2+a2C/4V0htOcSQcoSTH9KgJnVvNm5zm/cyEWKJ7j7YutsH9CxMdtOkkLFy2AHrMci9IM8IPZQ==}
+    engines: {node: '>=12.0.0'}
+
   tldts-core@6.1.86:
     resolution: {integrity: sha512-Je6p7pkk+KMzMv2XXKmAE3McmolOQFdxkKw0R8EYNr7sELW46JqnNeTX8ybPiQgvg1ymCoF8LXs5fzFaZvJPTA==}
 
@@ -3590,8 +3601,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vike-react@0.6.3:
-    resolution: {integrity: sha512-qQSSwE3bgi1PLywug0hs7U0tql6ye5lLW6UfibFAc1VRzj1hf3NjK7gbE7uOBft3SLw4uXYvIE0B7+kX3riH9Q==}
+  vike-react@0.6.4:
+    resolution: {integrity: sha512-T9dsny/193gaikfKvGUT+jvGbguYTDiuYShkQ2C5KngCJZO+pX3bcspqYFvOIc9yroSk3UooP5KgfSQ3sz2pww==}
     peerDependencies:
       react: '>=19'
       react-dom: '>=19'
@@ -3606,8 +3617,8 @@ packages:
       vite:
         optional: true
 
-  vike@0.4.229:
-    resolution: {integrity: sha512-FLiNUDwj42yRpb/iNKwjoScskyEozCjtz9kne5qvgp9fkxYSEXU/sKb+t5+XUljb4orjFgBBVCNyISqdRnAKkA==}
+  vike@0.4.235:
+    resolution: {integrity: sha512-wbx9wCF7E8IpaDhyhrsIOiLUl7hE/7e8vJy2bmFMjKjhIs7BhHiLLymTHe0i5qmbATmMhMLE0ur+vK4QH+nesw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -3862,18 +3873,11 @@ snapshots:
 
   '@brillout/import@0.2.6': {}
 
-  '@brillout/json-serializer@0.5.15': {}
-
-  '@brillout/picocolors@1.0.26': {}
+  '@brillout/json-serializer@0.5.16': {}
 
   '@brillout/picocolors@1.0.28': {}
 
   '@brillout/require-shim@0.1.2': {}
-
-  '@brillout/vite-plugin-server-entry@0.7.8':
-    dependencies:
-      '@brillout/import': 0.2.6
-      '@brillout/picocolors': 1.0.26
 
   '@brillout/vite-plugin-server-entry@0.7.9':
     dependencies:
@@ -5132,6 +5136,8 @@ snapshots:
 
   acorn@8.14.1: {}
 
+  acorn@8.15.0: {}
+
   agent-base@6.0.2:
     dependencies:
       debug: 4.4.1
@@ -5965,6 +5971,10 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.2
 
+  fdir@6.4.6(picomatch@4.0.2):
+    optionalDependencies:
+      picomatch: 4.0.2
+
   file-entry-cache@8.0.0:
     dependencies:
       flat-cache: 4.0.1
@@ -6563,7 +6573,7 @@ snapshots:
 
   magic-string@0.30.17:
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.0
+      '@jridgewell/sourcemap-codec': 1.5.4
 
   make-fetch-happen@9.1.0:
     dependencies:
@@ -7063,7 +7073,7 @@ snapshots:
   react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@brillout/import': 0.2.6
-      '@brillout/json-serializer': 0.5.15
+      '@brillout/json-serializer': 0.5.16
       '@brillout/picocolors': 1.0.28
       isbot-fast: 1.2.0
       react: 19.1.0
@@ -7556,6 +7566,11 @@ snapshots:
       fdir: 6.4.4(picomatch@4.0.2)
       picomatch: 4.0.2
 
+  tinyglobby@0.2.14:
+    dependencies:
+      fdir: 6.4.6(picomatch@4.0.2)
+      picomatch: 4.0.2
+
   tldts-core@6.1.86: {}
 
   tldts@6.1.86:
@@ -7718,14 +7733,14 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vike-react@0.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vike@0.4.229(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))):
+  vike-react@0.6.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vike@0.4.235(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))):
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       react-streaming: 0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      vike: 0.4.229(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
+      vike: 0.4.235(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
 
-  vike-server@1.0.17(vike@0.4.229(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)):
+  vike-server@1.0.17(vike@0.4.235(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)):
     dependencies:
       '@brillout/picocolors': 1.0.28
       '@brillout/vite-plugin-server-entry': 0.7.9
@@ -7739,7 +7754,7 @@ snapshots:
       '@universal-middleware/hono': 0.4.14
       '@universal-middleware/sirv': 0.1.20
       esbuild: 0.25.6
-      vike: 0.4.229(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
+      vike: 0.4.235(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
     optionalDependencies:
       vite: 6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
     transitivePeerDependencies:
@@ -7751,24 +7766,24 @@ snapshots:
       - h3
       - hono
 
-  vike@0.4.229(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)):
+  vike@0.4.235(react-streaming@0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)):
     dependencies:
       '@brillout/import': 0.2.6
-      '@brillout/json-serializer': 0.5.15
-      '@brillout/picocolors': 1.0.26
+      '@brillout/json-serializer': 0.5.16
+      '@brillout/picocolors': 1.0.28
       '@brillout/require-shim': 0.1.2
-      '@brillout/vite-plugin-server-entry': 0.7.8
-      acorn: 8.14.1
+      '@brillout/vite-plugin-server-entry': 0.7.9
+      acorn: 8.15.0
       cac: 6.7.14
       es-module-lexer: 1.7.0
-      esbuild: 0.25.3
+      esbuild: 0.25.6
       json5: 2.2.3
       magic-string: 0.30.17
       picomatch: 4.0.2
-      semver: 7.7.1
+      semver: 7.7.2
       sirv: 3.0.1
       source-map-support: 0.5.21
-      tinyglobby: 0.2.13
+      tinyglobby: 0.2.14
     optionalDependencies:
       react-streaming: 0.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       vite: 6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
