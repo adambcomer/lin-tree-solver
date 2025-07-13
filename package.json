@@ -29,7 +29,7 @@
     "tailwindcss": "3.4.17",
     "vike": "0.4.229",
     "vike-react": "0.6.3",
-    "vike-server": "1.0.15",
+    "vike-server": "1.0.17",
     "vite": "6.3.4"
   },
   "devDependencies": {
