@@ -15,6 +15,7 @@
  */
 
 import eslint from '@eslint/js'
+import { defineConfig } from 'eslint/config'
 import tseslint from 'typescript-eslint'
 import reacteslint from 'eslint-plugin-react'
 import prettierlint from 'eslint-config-prettier/flat'
@@ -23,7 +24,7 @@ import { fileURLToPath } from 'node:url'
 
 const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url))
 
-export default tseslint.config(
+export default defineConfig(
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}']
   },
