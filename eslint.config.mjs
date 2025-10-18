@@ -31,9 +31,8 @@ export default tseslint.config(
   {
     ignores: [
       'eslint.config.mjs',
-      'postcss.config.cjs',
-      'tailwind.config.ts',
       'vite.config.ts',
+      'hero.ts',
 
       // TODO: Add nearley types
       'pages/@workspace/builder/compile-grammar.js',

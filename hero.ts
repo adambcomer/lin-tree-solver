@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {}
-  }
-}
+import { heroui } from '@heroui/theme'
+
+export default heroui()
