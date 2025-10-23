@@ -21,7 +21,7 @@ import { serve } from 'vike-server/express/serve'
 import { router as api } from './handlers/api.js'
 import { initDB } from '../repo/database.js'
 
-initDB().catch(console.error)
+initDB()
 
 const app = express()
 

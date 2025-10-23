@@ -17,6 +17,7 @@
     "@heroui/tooltip": "2.2.24",
     "@tailwindcss/vite": "4.1.15",
     "@vitejs/plugin-react": "5.0.4",
+    "better-sqlite3": "12.4.1",
     "buffer": "6.0.3",
     "compression": "1.8.1",
     "express": "5.1.0",
@@ -26,7 +27,6 @@
     "protobufjs": "7.5.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "sqlite3": "5.1.7",
     "tailwindcss": "4.1.15",
     "vike": "0.4.244",
     "vike-react": "0.6.10",
@@ -36,6 +36,7 @@
   "devDependencies": {
     "@eslint/compat": "1.4.0",
     "@eslint/js": "9.38.0",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/compression": "1.8.1",
     "@types/express": "5.0.3",
     "@types/fontfaceobserver": "2.1.3",

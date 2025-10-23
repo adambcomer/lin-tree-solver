@@ -15,21 +15,12 @@
  */
 
 import fs from 'node:fs'
-import sqlite3 from 'sqlite3'
+import Database from 'better-sqlite3'
 
-export const db = new sqlite3.Database(process.env.DATABASE_PATH ?? '')
+export const db = new Database(process.env.DATABASE_PATH ?? '')
 
 export const initDB = () => {
-  return new Promise<void>((resolve, reject) => {
-    const initDBData = fs.readFileSync('./repo/db.sql', 'utf8')
+  const initDBData = fs.readFileSync('./repo/db.sql', 'utf8')
 
-    db.exec(initDBData, function (this, err) {
-      if (err) {
-        reject(err)
-        return
-      }
-
-      resolve()
-    })
-  })
+  db.exec(initDBData)
 }
