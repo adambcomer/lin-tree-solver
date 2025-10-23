@@ -27,16 +27,16 @@ import { randomUUID } from 'node:crypto'
 
 export const router = Router()
 
-router.post('/', async (_, res) => {
+router.post('/', (_, res) => {
   const id = randomUUID()
 
-  await createWorkspace(db, id)
+  createWorkspace(db, id)
 
   res.send({ id })
 })
 
-router.get('/:id', async (req, res) => {
-  const workspace = await getWorkspace(db, req.params.id)
+router.get('/:id', (req, res) => {
+  const workspace = getWorkspace(db, req.params.id)
   if (!workspace) {
     res.sendStatus(404)
     return
@@ -51,7 +51,7 @@ type WorkspacePutReqest = Request<
   { ruleset: unknown; sentence: unknown }
 >
 
-router.put('/:id', async (req: WorkspacePutReqest, res) => {
+router.put('/:id', (req: WorkspacePutReqest, res) => {
   const ruleset: unknown = req.body.ruleset
   if (!isRuleSet(ruleset)) {
     res.sendStatus(422)
@@ -64,7 +64,7 @@ router.put('/:id', async (req: WorkspacePutReqest, res) => {
     return
   }
 
-  await updateWorkspace(db, req.params.id, ruleset, sentence)
+  updateWorkspace(db, req.params.id, ruleset, sentence)
 
   res.sendStatus(200)
 })
