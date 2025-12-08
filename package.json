@@ -20,7 +20,7 @@
     "better-sqlite3": "12.4.1",
     "buffer": "6.0.3",
     "compression": "1.8.1",
-    "express": "5.1.0",
+    "express": "5.2.0",
     "fontfaceobserver": "2.3.0",
     "framer-motion": "12.23.24",
     "nearley": "2.20.1",
