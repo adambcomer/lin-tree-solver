@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { useState } from 'react'
 import { Button } from '@heroui/button'
 import { navigate } from 'vike/client/router'
 import { addToast } from '@heroui/toast'
@@ -28,16 +29,22 @@ interface CreatWorkspaceResponse {
 }
 
 const Page = () => {
-  const onGetStarted = () =>
+  const [loading, setLoading] = useState(false)
+
+  const onGetStarted = () => {
+    setLoading(true)
+
     void fetch('/api/workspaces', { method: 'POST' })
       .then((res) => res.json())
       .then((data: CreatWorkspaceResponse) => navigate(`/${data.id}/builder`))
-      .catch(() =>
+      .catch(() => {
+        setLoading(false)
         addToast({
           title: 'Error Creating a New Workspace',
           color: 'danger'
         })
-      )
+      })
+  }
 
   return (
     <>
@@ -82,6 +89,7 @@ const Page = () => {
           size='lg'
           onPress={onGetStarted}
           className='mt-8'
+          isLoading={loading}
         >
           New Syntax Tree
         </Button>
