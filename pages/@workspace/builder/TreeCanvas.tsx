@@ -27,12 +27,11 @@ import {
 } from 'react'
 import FontFaceObserver from 'fontfaceobserver'
 import { getColor } from './colors'
-import { Node } from './types'
-import { Ruleset, Sentence } from './useWorkspace'
+import { isNode, isWordNode, Node, WordNode } from './types'
+import { Ruleset } from './useWorkspace'
 
 interface TreeCanvasProps {
   ruleset: Ruleset
-  sentence: Sentence
   tree: Node
   zoom: number
 }
@@ -89,30 +88,33 @@ const TreeCanvas = (
 
       const recursiveDraw = (
         ctx: CanvasRenderingContext2D,
-        node: Node | string,
-        words: string[],
+        node: Node | WordNode,
         start: number,
         width: number,
         level: number
       ): void => {
-        if (typeof node === 'string') {
+        if (isWordNode(node)) {
           ctx.fillStyle = '#000'
           ctx.textAlign = 'center'
           ctx.font = '64px Noto Sans Mono'
-          ctx.fillText(node, Math.floor(width / 2 + start), 200 + level * 400)
+          ctx.fillText(
+            node.pos,
+            Math.floor(width / 2 + start),
+            200 + level * 400
+          )
 
-          ctx.fillStyle = colorMap.get(node) ?? ''
+          ctx.fillStyle = colorMap.get(node.pos) ?? ''
           ctx.fillRect(
-            Math.floor(width / 2 + start - 26 * words[0].length),
+            Math.floor(width / 2 + start - 26 * node.word.length),
             325 + level * 400,
-            52 * words[0].length,
+            52 * node.word.length,
             20
           )
 
           ctx.fillStyle = '#000'
           ctx.font = '500 72px Noto Sans Mono'
           ctx.fillText(
-            words[0],
+            node.word,
             Math.floor(width / 2 + start),
             325 + level * 400
           )
@@ -133,7 +135,7 @@ const TreeCanvas = (
         let cumulative = 0
         for (const c of node.children) {
           let w = 1
-          if (c instanceof Object) {
+          if (isNode(c)) {
             w = c.terminals
           }
 
@@ -150,7 +152,6 @@ const TreeCanvas = (
           recursiveDraw(
             ctx,
             c,
-            words.slice(cumulative, cumulative + w),
             cumulative * widthChunk + start,
             w * widthChunk,
             level + 1
@@ -173,18 +174,11 @@ const TreeCanvas = (
         ctx.translate(dx, dy)
         ctx.scale(props.zoom, props.zoom)
 
-        recursiveDraw(
-          ctx,
-          props.tree,
-          props.sentence.words.map((w) => w.text),
-          0,
-          width,
-          0
-        )
+        recursiveDraw(ctx, props.tree, 0, width, 0)
         frame = undefined
       })
     },
-    [canvas, props.zoom, props.ruleset, props.sentence, props.tree]
+    [canvas, props.zoom, props.ruleset, props.tree]
   )
 
   useEffect(() => {
