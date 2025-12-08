@@ -233,7 +233,6 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
         <TreeCanvas
           ref={canvas}
           tree={trees[treeIndex]}
-          sentence={sentence}
           ruleset={ruleset}
           zoom={canvasZoom}
         />

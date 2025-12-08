@@ -16,13 +16,13 @@
 
 import { compileGrammar } from './compile-grammar'
 import { Parser, Grammar } from 'nearley'
-import { Node } from './types'
+import { ParserNode, Node } from './types'
 
-function clone(node: Node): Node {
+function cloneTree(node: ParserNode): ParserNode {
   const children = []
   for (const c of node.children) {
     if (typeof c !== 'string') {
-      children.push(clone(c))
+      children.push(cloneTree(c))
     } else {
       children.push(c)
     }
@@ -34,14 +34,41 @@ function clone(node: Node): Node {
   }
 }
 
-function countTerminal(node: Node): void {
+function countTerminalNodes(node: ParserNode): void {
   for (const c of node.children) {
     if (typeof c !== 'string') {
-      countTerminal(c)
+      countTerminalNodes(c)
       node.terminals += c.terminals
     } else {
       node.terminals += 1
     }
+  }
+}
+
+function addWordsToTerminalNodes(
+  node: ParserNode,
+  words: Array<{ word: string; pos: string[] }>
+): Node {
+  const children = []
+  let idx = 0
+  for (const c of node.children) {
+    let width = 0
+    if (typeof c !== 'string') {
+      children.push(
+        addWordsToTerminalNodes(c, words.slice(idx, idx + c.terminals))
+      )
+      width = c.terminals
+    } else {
+      children.push({ pos: c, word: words[idx].word })
+      width = 1
+    }
+
+    idx += width
+  }
+
+  return {
+    ...node,
+    children
   }
 }
 
@@ -88,7 +115,7 @@ ctx.onmessage = (
       parser.feed(comb.join(''))
       const t = parser
         .finish()
-        .map((t: Node[]) => clone(t[0]))
+        .map((t: ParserNode[]) => cloneTree(t[0]))
         .filter((t) =>
           !treeFilter.has(JSON.stringify(t))
             ? treeFilter.add(JSON.stringify(t))
@@ -96,9 +123,12 @@ ctx.onmessage = (
         )
 
       for (let i = 0; i < t.length; i++) {
-        countTerminal(t[i])
+        countTerminalNodes(t[i])
       }
-      trees = trees.concat(t)
+
+      trees = trees.concat(
+        t.map((t) => addWordsToTerminalNodes(t, e.data.words))
+      )
     } catch (e) {
       if (
         e instanceof Error &&
