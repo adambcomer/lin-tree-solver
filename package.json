@@ -16,7 +16,7 @@
     "@heroui/toast": "2.0.17",
     "@heroui/tooltip": "2.2.24",
     "@tailwindcss/vite": "4.1.17",
-    "@vitejs/plugin-react": "5.1.0",
+    "@vitejs/plugin-react": "5.1.1",
     "better-sqlite3": "12.4.1",
     "buffer": "6.0.3",
     "compression": "1.8.1",
@@ -28,10 +28,10 @@
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "tailwindcss": "4.1.17",
-    "vike": "0.4.244",
-    "vike-react": "0.6.10",
+    "vike": "0.4.247",
+    "vike-react": "0.6.13",
     "vike-server": "1.0.25",
-    "vite": "7.1.12"
+    "vite": "7.2.7"
   },
   "devDependencies": {
     "@eslint/compat": "2.0.0",
