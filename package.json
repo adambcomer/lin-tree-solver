@@ -16,7 +16,7 @@
     "@heroui/toast": "2.0.19",
     "@heroui/tooltip": "2.2.26",
     "@tailwindcss/vite": "4.1.17",
-    "@vitejs/plugin-react": "5.1.1",
+    "@vitejs/plugin-react": "5.1.2",
     "better-sqlite3": "12.5.0",
     "buffer": "6.0.3",
     "compression": "1.8.1",
