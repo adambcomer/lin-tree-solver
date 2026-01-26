@@ -35,9 +35,14 @@ interface CreatWorkspaceResponse {
 }
 
 const Page = () => {
-  const [loading, setLoading] = useState(false)
+  const [basicTreeLoading, setBasicTreeLoading] = useState(false)
+  const [xbarTreeLoading, setXBarTreeLoading] = useState(false)
+  const [dphypothesisTreeLoading, setDPHypothesisTreeLoading] = useState(false)
 
-  const newSyntaxTree = (type: RuleSetType) => {
+  const newSyntaxTree = (
+    type: RuleSetType,
+    setLoading: (newState: boolean) => void
+  ) => {
     setLoading(true)
 
     void fetch('/api/workspaces', {
@@ -100,8 +105,13 @@ const Page = () => {
           <Button
             color='primary'
             size='lg'
-            onPress={() => newSyntaxTree(RuleSetType.Basic)}
-            isLoading={loading}
+            onPress={() =>
+              newSyntaxTree(RuleSetType.Basic, setBasicTreeLoading)
+            }
+            isLoading={basicTreeLoading}
+            disabled={
+              basicTreeLoading || xbarTreeLoading || dphypothesisTreeLoading
+            }
           >
             New Syntax Tree
           </Button>
@@ -109,9 +119,12 @@ const Page = () => {
           <Button
             color='default'
             size='lg'
-            onPress={() => newSyntaxTree(RuleSetType.XBar)}
+            onPress={() => newSyntaxTree(RuleSetType.XBar, setXBarTreeLoading)}
             className='ml-4'
-            isLoading={loading}
+            isLoading={xbarTreeLoading}
+            disabled={
+              basicTreeLoading || xbarTreeLoading || dphypothesisTreeLoading
+            }
           >
             New X-Bar Syntax Tree
           </Button>
@@ -119,9 +132,17 @@ const Page = () => {
           <Button
             color='default'
             size='lg'
-            onPress={() => newSyntaxTree(RuleSetType.DPHypothesis)}
+            onPress={() =>
+              newSyntaxTree(
+                RuleSetType.DPHypothesis,
+                setDPHypothesisTreeLoading
+              )
+            }
             className='ml-4'
-            isLoading={loading}
+            isLoading={dphypothesisTreeLoading}
+            disabled={
+              basicTreeLoading || xbarTreeLoading || dphypothesisTreeLoading
+            }
           >
             New DP-Hypothesis Syntax Tree
           </Button>
