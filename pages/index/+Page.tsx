@@ -24,17 +24,34 @@ import treeJPEG from '/images/tree.jpeg'
 import treeAVIF from '/images/tree.avif'
 import treeJXL from '/images/tree.jxl'
 
+enum RuleSetType {
+  Basic = 'basic',
+  XBar = 'xbar',
+  DPHypothesis = 'dphypothesis'
+}
+
 interface CreatWorkspaceResponse {
   id: string
 }
 
 const Page = () => {
-  const [loading, setLoading] = useState(false)
+  const [basicTreeLoading, setBasicTreeLoading] = useState(false)
+  const [xbarTreeLoading, setXBarTreeLoading] = useState(false)
+  const [dphypothesisTreeLoading, setDPHypothesisTreeLoading] = useState(false)
 
-  const onGetStarted = () => {
+  const newSyntaxTree = (
+    type: RuleSetType,
+    setLoading: (newState: boolean) => void
+  ) => {
     setLoading(true)
 
-    void fetch('/api/workspaces', { method: 'POST' })
+    void fetch('/api/workspaces', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({ type })
+    })
       .then((res) => res.json())
       .then((data: CreatWorkspaceResponse) => navigate(`/${data.id}/builder`))
       .catch(() => {
@@ -84,15 +101,52 @@ const Page = () => {
           </i>
         </p>
 
-        <Button
-          color='primary'
-          size='lg'
-          onPress={onGetStarted}
-          className='mt-8'
-          isLoading={loading}
-        >
-          New Syntax Tree
-        </Button>
+        <div className='mt-8'>
+          <Button
+            color='primary'
+            size='lg'
+            onPress={() =>
+              newSyntaxTree(RuleSetType.Basic, setBasicTreeLoading)
+            }
+            isLoading={basicTreeLoading}
+            disabled={
+              basicTreeLoading || xbarTreeLoading || dphypothesisTreeLoading
+            }
+          >
+            New Syntax Tree
+          </Button>
+
+          <Button
+            color='default'
+            size='lg'
+            onPress={() => newSyntaxTree(RuleSetType.XBar, setXBarTreeLoading)}
+            className='ml-4'
+            isLoading={xbarTreeLoading}
+            disabled={
+              basicTreeLoading || xbarTreeLoading || dphypothesisTreeLoading
+            }
+          >
+            New X-Bar Syntax Tree
+          </Button>
+
+          <Button
+            color='default'
+            size='lg'
+            onPress={() =>
+              newSyntaxTree(
+                RuleSetType.DPHypothesis,
+                setDPHypothesisTreeLoading
+              )
+            }
+            className='ml-4'
+            isLoading={dphypothesisTreeLoading}
+            disabled={
+              basicTreeLoading || xbarTreeLoading || dphypothesisTreeLoading
+            }
+          >
+            New DP-Hypothesis Syntax Tree
+          </Button>
+        </div>
 
         <picture>
           <source srcSet={treeJXL} type='image/jxl' />

@@ -20,6 +20,7 @@ import {
   createWorkspace,
   getWorkspace,
   isRuleSet,
+  isRuleSetType,
   isSentence,
   updateWorkspace
 } from '../../repo/workspace.js'
@@ -27,10 +28,17 @@ import { randomUUID } from 'node:crypto'
 
 export const router = Router()
 
-router.post('/', (_, res) => {
+type WorkspacePostReqest = Request<unknown, unknown, { type: unknown }>
+
+router.post('/', (req: WorkspacePostReqest, res) => {
+  if (!isRuleSetType(req.body.type)) {
+    res.sendStatus(422)
+    return
+  }
+
   const id = randomUUID()
 
-  createWorkspace(db, id)
+  createWorkspace(db, id, req.body.type)
 
   res.send({ id })
 })
