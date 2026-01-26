@@ -21,10 +21,24 @@ export const DEFAULT_SENTENCE: ISentence = {
     { text: 'The', pos: ['D'] },
     { text: 'small', pos: ['Adj'] },
     { text: 'dog', pos: ['N'] },
-    // { word: '[PAST]', pos: ['T'] }, // Necessary for DP-hypothesis
     { text: 'quickly', pos: ['Adv'] },
     { text: 'ran', pos: ['V'] },
-    // { word: 'ø', pos: ['D'] }, // Necessary for DP-hypothesis
+    { text: 'home', pos: ['N'] },
+    { text: 'to', pos: ['P'] },
+    { text: 'his', pos: ['D'] },
+    { text: 'owner', pos: ['N'] }
+  ]
+}
+
+export const DP_HYPOTHESIS_SENTENCE: ISentence = {
+  words: [
+    { text: 'The', pos: ['D'] },
+    { text: 'small', pos: ['Adj'] },
+    { text: 'dog', pos: ['N'] },
+    { text: '[PAST]', pos: ['T'] }, // Necessary for DP-hypothesis
+    { text: 'quickly', pos: ['Adv'] },
+    { text: 'ran', pos: ['V'] },
+    { text: 'ø', pos: ['D'] }, // Necessary for DP-hypothesis
     { text: 'home', pos: ['N'] },
     { text: 'to', pos: ['P'] },
     { text: 'his', pos: ['D'] },

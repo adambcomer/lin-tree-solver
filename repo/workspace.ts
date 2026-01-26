@@ -16,8 +16,21 @@
 
 import { Database } from 'better-sqlite3'
 import { Sentence, RuleSet } from './proto/bundle.js'
-import { DEFAULT_SENTENCE } from './data/sentence.js'
-import { DEFAULT_RULESET } from './data/ruleset.js'
+import { DP_HYPOTHESIS_SENTENCE, DEFAULT_SENTENCE } from './data/sentence.js'
+import {
+  DEFAULT_RULESET,
+  DP_HYPOTHESIS_RULESET,
+  XBAR_RULESET
+} from './data/ruleset.js'
+
+export enum RuleSetType {
+  Basic = 'basic',
+  XBar = 'xbar',
+  DPHypothesis = 'dphypothesis'
+}
+
+export const isRuleSetType = (value: unknown): value is RuleSetType =>
+  Object.values(RuleSetType).includes(value as RuleSetType)
 
 export { Sentence, RuleSet } from './proto/bundle.js'
 
@@ -35,11 +48,29 @@ interface WorkspaceRow {
   updated_at: string
 }
 
-export const createWorkspace = (db: Database, id: string) => {
+export const createWorkspace = (
+  db: Database,
+  id: string,
+  type: RuleSetType
+) => {
   const timestamp = new Date()
 
-  const sentence = Sentence.encode(DEFAULT_SENTENCE).finish()
-  const ruleSet = RuleSet.encode(DEFAULT_RULESET).finish()
+  let sentence
+  let ruleSet
+  switch (type) {
+    case RuleSetType.Basic:
+      sentence = Sentence.encode(DEFAULT_SENTENCE).finish()
+      ruleSet = RuleSet.encode(DEFAULT_RULESET).finish()
+      break
+    case RuleSetType.XBar:
+      sentence = Sentence.encode(DEFAULT_SENTENCE).finish()
+      ruleSet = RuleSet.encode(XBAR_RULESET).finish()
+      break
+    case RuleSetType.DPHypothesis:
+      sentence = Sentence.encode(DP_HYPOTHESIS_SENTENCE).finish()
+      ruleSet = RuleSet.encode(DP_HYPOTHESIS_RULESET).finish()
+      break
+  }
 
   db.prepare(
     'INSERT INTO workspaces (id, sentence, ruleset, created_at, updated_at) VALUES (?, ?, ?, ?, ?);'
