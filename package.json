@@ -6,7 +6,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@heroui/accordion": "2.2.26",
+    "@heroui/accordion": "2.2.27",
     "@heroui/button": "2.2.29",
     "@heroui/chip": "2.2.24",
     "@heroui/input": "2.4.30",
