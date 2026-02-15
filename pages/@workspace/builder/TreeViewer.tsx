@@ -100,118 +100,54 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
 
   if (loading) {
     return (
-      <div className='mt-8 flex items-center justify-center h-32'>
-        <Spinner />
+      <div className='flex flex-col items-center justify-center h-64'>
+        <Spinner size='lg' />
+        <p className='mt-4 text-default-600'>Generating syntax trees...</p>
       </div>
     )
   }
 
   return (
-    <div className='mt-8 w-full aspect-video relative'>
-      <Tooltip content='Next Tree' showArrow>
-        <Button
-          isIconOnly
-          className='absolute right-5 top-5'
-          disabled={!trees.length || treeIndex === trees.length - 1}
-          onPress={() => setTreeIndex(treeIndex + 1)}
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            height='24px'
-            viewBox='0 -960 960 960'
-            width='24px'
-          >
-            <path d='M504-480 348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156Z' />
-          </svg>
-        </Button>
-      </Tooltip>
-      <Tooltip content='Previous Tree' showArrow>
-        <Button
-          isIconOnly
-          className='absolute right-20 top-5'
-          disabled={!trees.length || treeIndex === 0}
-          onPress={() => setTreeIndex(treeIndex - 1)}
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            height='24px'
-            viewBox='0 -960 960 960'
-            width='24px'
-          >
-            <path d='m432-480 156 156q11 11 11 28t-11 28q-11 11-28 11t-28-11L348-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 28-11t28 11q11 11 11 28t-11 28L432-480Z' />
-          </svg>
-        </Button>
-      </Tooltip>
-
-      <Tooltip content='Save Image' placement='right' showArrow>
-        <Button
-          isIconOnly
-          className='absolute right-5 top-20'
-          disabled={!trees.length}
-          onPress={saveTreeImage}
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            height='24px'
-            viewBox='0 -960 960 960'
-            width='24px'
-          >
-            <path d='M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0 0v-560 560Zm80-80h400q12 0 18-11t-2-21L586-459q-6-8-16-8t-16 8L450-320l-74-99q-6-8-16-8t-16 8l-80 107q-8 10-2 21t18 11Z' />
-          </svg>
-        </Button>
-      </Tooltip>
-
-      <Tooltip content='Zoom In' showArrow>
-        <Button
-          isIconOnly
-          className='absolute right-5 bottom-5'
-          disabled={!trees.length}
-          onPress={() => setCanvasZoom(canvasZoom * (4 / 3))}
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            height='24px'
-            viewBox='0 -960 960 960'
-            width='24px'
-          >
-            <path d='M340-540h-40q-17 0-28.5-11.5T260-580q0-17 11.5-28.5T300-620h40v-40q0-17 11.5-28.5T380-700q17 0 28.5 11.5T420-660v40h40q17 0 28.5 11.5T500-580q0 17-11.5 28.5T460-540h-40v40q0 17-11.5 28.5T380-460q-17 0-28.5-11.5T340-500v-40Zm40 220q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z' />
-          </svg>
-        </Button>
-      </Tooltip>
-      <Tooltip content='Zoom Out' showArrow>
-        <Button
-          isIconOnly
-          className='absolute right-20 bottom-5'
-          disabled={!trees.length}
-          onPress={() => setCanvasZoom(canvasZoom * (3 / 4))}
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            height='24px'
-            viewBox='0 -960 960 960'
-            width='24px'
-          >
-            <path d='M320-540q-17 0-28.5-11.5T280-580q0-17 11.5-28.5T320-620h120q17 0 28.5 11.5T480-580q0 17-11.5 28.5T440-540H320Zm60 220q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z' />
-          </svg>
-        </Button>
-      </Tooltip>
-
+    <div className='w-full aspect-video relative'>
       {!!errors?.length && (
-        <div className='mx-auto w-full font-mono overflow-y-scroll h-screen'>
+        <div className='mx-auto w-full overflow-y-scroll p-6 bg-danger-50 rounded-large border-2 border-danger-200'>
+          <div className='flex items-start gap-3 mb-4'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              height='24px'
+              viewBox='0 -960 960 960'
+              width='24px'
+              className='fill-danger-500 shrink-0'
+            >
+              <path d='M479.98-280q14.02 0 23.52-9.49 9.5-9.48 9.5-23.51 0-14.02-9.48-23.51-9.49-9.49-23.5-9.49-14.02 0-23.52 9.49-9.5 9.48-9.5 23.51 0 14.02 9.48 23.51 9.49 9.49 23.5 9.49ZM453-433h60v-253h-60v253Zm27.27 337q-82.74 0-155.5-31.5Q252-159 197.5-213.5t-86-127.34Q80-413.68 80-496.34t31.5-155.5Q143-724.6 197.5-779q54.5-54.4 127.34-85.7 72.83-31.3 155.5-31.3 82.66 0 155.16 31.3 72.5 31.3 127.34 85.7 54.83 54.4 86.16 127.16 31.33 72.76 31.33 155.5 0 82.74-31.33 155.5-31.33 72.76-86.16 127.26-54.84 54.5-127.34 86-72.5 31.5-155.16 31.5Z' />
+            </svg>
+            <div>
+              <h3 className='font-semibold text-lg text-danger-700 mb-1'>
+                Parse Errors Detected
+              </h3>
+              <p className='text-sm text-danger-600'>
+                The parser found issues with the following POS combinations.
+                Check if your rules and annotations match:
+              </p>
+            </div>
+          </div>
           {errors.map((err, i) => (
-            <div className='mt-2' key={i}>
-              <div className='font-medium'>
+            <div
+              className='mt-4 p-4 bg-white rounded-medium border border-danger-200'
+              key={i}
+            >
+              <div className='font-medium text-danger-700'>
                 Unexpected token &quot;{err.token}&quot; at position{' '}
-                {err.offset} in the following sentence:
+                {err.offset}:
               </div>
-              <div className='mt-1'>
+              <div className='mt-2 font-mono text-sm'>
                 {sentence.words.map((word, i) => {
                   return (
                     <span
                       className={
                         i === err.offset
-                          ? 'mr-1 font-medium text-red-500 underline'
-                          : 'mr-1'
+                          ? 'mr-1 font-bold text-danger-600 underline decoration-2'
+                          : 'mr-1 text-default-700'
                       }
                       key={word.text + err.pos[i]}
                     >
@@ -220,9 +156,11 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
                   )
                 })}
               </div>
-              <div className='mt-1'>
-                Expected one of the following parts of speech:{' '}
-                {err.tokens.join(', ')}
+              <div className='mt-2 text-sm text-default-600'>
+                Expected one of:{' '}
+                <span className='font-mono font-medium text-default-700'>
+                  {err.tokens.join(', ')}
+                </span>
               </div>
             </div>
           ))}
@@ -230,30 +168,113 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
       )}
 
       {trees.length ? (
-        <TreeCanvas
-          ref={canvas}
-          tree={trees[treeIndex]}
-          ruleset={ruleset}
-          zoom={canvasZoom}
-        />
+        <>
+          <Tooltip content='Next Tree' showArrow>
+            <Button
+              isIconOnly
+              className='absolute right-5 top-5'
+              disabled={!trees.length || treeIndex === trees.length - 1}
+              onPress={() => setTreeIndex(treeIndex + 1)}
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                height='24px'
+                viewBox='0 -960 960 960'
+                width='24px'
+              >
+                <path d='M504-480 348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156Z' />
+              </svg>
+            </Button>
+          </Tooltip>
+          <Tooltip content='Previous Tree' showArrow>
+            <Button
+              isIconOnly
+              className='absolute right-20 top-5'
+              disabled={!trees.length || treeIndex === 0}
+              onPress={() => setTreeIndex(treeIndex - 1)}
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                height='24px'
+                viewBox='0 -960 960 960'
+                width='24px'
+              >
+                <path d='m432-480 156 156q11 11 11 28t-11 28q-11 11-28 11t-28-11L348-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 28-11t28 11q11 11 11 28t-11 28L432-480Z' />
+              </svg>
+            </Button>
+          </Tooltip>
+
+          <Tooltip content='Save Image' placement='right' showArrow>
+            <Button
+              isIconOnly
+              className='absolute right-5 top-20'
+              disabled={!trees.length}
+              onPress={saveTreeImage}
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                height='24px'
+                viewBox='0 -960 960 960'
+                width='24px'
+              >
+                <path d='M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0 0v-560 560Zm80-80h400q12 0 18-11t-2-21L586-459q-6-8-16-8t-16 8L450-320l-74-99q-6-8-16-8t-16 8l-80 107q-8 10-2 21t18 11Z' />
+              </svg>
+            </Button>
+          </Tooltip>
+
+          <Tooltip content='Zoom In' showArrow>
+            <Button
+              isIconOnly
+              className='absolute right-5 bottom-5'
+              disabled={!trees.length}
+              onPress={() => setCanvasZoom(canvasZoom * (4 / 3))}
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                height='24px'
+                viewBox='0 -960 960 960'
+                width='24px'
+              >
+                <path d='M340-540h-40q-17 0-28.5-11.5T260-580q0-17 11.5-28.5T300-620h40v-40q0-17 11.5-28.5T380-700q17 0 28.5 11.5T420-660v40h40q17 0 28.5 11.5T500-580q0 17-11.5 28.5T460-540h-40v40q0 17-11.5 28.5T380-460q-17 0-28.5-11.5T340-500v-40Zm40 220q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z' />
+              </svg>
+            </Button>
+          </Tooltip>
+          <Tooltip content='Zoom Out' showArrow>
+            <Button
+              isIconOnly
+              className='absolute right-20 bottom-5'
+              disabled={!trees.length}
+              onPress={() => setCanvasZoom(canvasZoom * (3 / 4))}
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                height='24px'
+                viewBox='0 -960 960 960'
+                width='24px'
+              >
+                <path d='M320-540q-17 0-28.5-11.5T280-580q0-17 11.5-28.5T320-620h120q17 0 28.5 11.5T480-580q0 17-11.5 28.5T440-540H320Zm60 220q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z' />
+              </svg>
+            </Button>
+          </Tooltip>
+          <TreeCanvas
+            ref={canvas}
+            tree={trees[treeIndex]}
+            ruleset={ruleset}
+            zoom={canvasZoom}
+          />
+        </>
       ) : (
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          width='100%'
-          height='100%'
-          viewBox='0 100 1000 500'
-        >
-          <text
-            x='50%'
-            y='50%'
-            fontFamily='Roboto Mono'
-            fontSize='16'
-            fill='#000'
-            textAnchor='middle'
-          >
-            No Complete Trees Found
-          </text>
-        </svg>
+        !errors?.length && (
+          <div className='flex flex-col items-center justify-center h-64 bg-default-100 rounded-large'>
+            <p className='text-lg font-medium text-default-600 mb-2'>
+              No Complete Trees Found
+            </p>
+            <p className='text-sm text-default-500 max-w-md text-center'>
+              Try adjusting your POS annotations or syntax rules to create valid
+              parse trees for this sentence.
+            </p>
+          </div>
+        )
       )}
     </div>
   )

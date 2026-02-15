@@ -41,10 +41,12 @@ export const SentenceEditor = ({
   )
 
   return (
-    <div className='mt-8'>
+    <div>
       <Input
         size='lg'
         label='Sentence'
+        placeholder='Enter your sentence here...'
+        description='Type a sentence. Each word will appear below for annotation.'
         value={sentenceText}
         onChange={(e) => {
           setSentenceText(e.target.value)
@@ -55,7 +57,15 @@ export const SentenceEditor = ({
         }}
       />
 
-      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mt-8'>
+      {sentence.words.length > 0 && (
+        <p className='text-sm text-default-600 mt-6 mb-2'>
+          Click on the parts of speech tags below to annotate each word. You can
+          select multiple tags if a word could have different grammatical
+          functions.
+        </p>
+      )}
+
+      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mt-4'>
         {sentence.words.map((w, wordIndex) => (
           <div
             key={wordIndex}
