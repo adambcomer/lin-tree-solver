@@ -43,6 +43,12 @@ const PosRulesetEditor = ({
 
   return (
     <>
+      {ruleset.pos.size === 0 && (
+        <p className='text-sm text-default-600 mb-4'>
+          Start by defining your parts of speech (e.g., N for noun, V for verb,
+          Det for determiner). These will be used to annotate your sentence.
+        </p>
+      )}
       <div className='flex flex-wrap gap-2 mb-4'>
         {[...ruleset.pos].map((p, i) => (
           <Chip
@@ -130,7 +136,14 @@ const RootRulesetEditor = ({
 
   return (
     <>
-      <div className='flex mb-4'>
+      {ruleset.roots.size === 0 && (
+        <p className='text-sm text-default-600 mb-4'>
+          Root tags determine which rules can serve as the top-level node in
+          your syntax tree. Typically this is &quot;S&quot; for sentence, but
+          you can also use NP, VP, etc. for phrase-level analyses.
+        </p>
+      )}
+      <div className='flex mb-4 overflow-scroll'>
         {[...ruleset.roots].map((r) => (
           <Chip
             key={r}
@@ -223,7 +236,30 @@ const RuleRulesetEditor = ({
   const colorMap = new Map([...ruleset.pos].map((p, i) => [p, getColor(i)]))
 
   return (
-    <>
+    <div className='overflow-x-scroll'>
+      {ruleset.rules.length === 0 && (
+        <div className='text-sm text-default-600 mb-4'>
+          <p className='mb-2'>
+            Define your phrase structure rules using EBNF-like syntax. For
+            example:
+          </p>
+          <code className='block bg-default-100 p-3 rounded-medium font-mono text-xs'>
+            S → NP VP
+            <br />
+            NP → (Det) N
+            <br />
+            VP → V (NP)
+          </code>
+          <p className='mt-2 text-xs'>
+            Use <code className='bg-default-100 px-1 rounded'>{'{ }'}</code> for
+            alternatives,{' '}
+            <code className='bg-default-100 px-1 rounded'>( )</code> for
+            optional, and{' '}
+            <code className='bg-default-100 px-1 rounded'>(+)</code> for
+            repeating elements.
+          </p>
+        </div>
+      )}
       {ruleset.rules.map((rule, i) => (
         <div key={i} className='mb-4 flex items-center'>
           <Chip
@@ -348,7 +384,7 @@ const RuleRulesetEditor = ({
           </Button>
         </div>
       )}
-    </>
+    </div>
   )
 }
 
@@ -362,21 +398,28 @@ export const RulesetEditor = ({
   updateRuleset
 }: RulesetEditorProps) => {
   return (
-    <Accordion
-      className='mt-8'
-      variant='bordered'
-      selectionMode='multiple'
-      keepContentMounted
-    >
-      <AccordionItem key={1} title='Parts of Speech'>
+    <Accordion variant='bordered' selectionMode='multiple' keepContentMounted>
+      <AccordionItem
+        key={1}
+        title='Parts of Speech'
+        subtitle='Define the grammatical categories used in your analysis (e.g., N, V, Det)'
+      >
         <PosRulesetEditor ruleset={ruleset} updateRuleset={updateRuleset} />
       </AccordionItem>
 
-      <AccordionItem key={2} title='Root Tags'>
+      <AccordionItem
+        key={2}
+        title='Root Tags'
+        subtitle='Specify which rules can serve as the starting point for your trees'
+      >
         <RootRulesetEditor ruleset={ruleset} updateRuleset={updateRuleset} />
       </AccordionItem>
 
-      <AccordionItem key={3} title='Syntax Rules'>
+      <AccordionItem
+        key={3}
+        title='Syntax Rules'
+        subtitle='Create phrase structure rules that define how constituents combine'
+      >
         <RuleRulesetEditor ruleset={ruleset} updateRuleset={updateRuleset} />
       </AccordionItem>
     </Accordion>
