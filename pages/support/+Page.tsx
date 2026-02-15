@@ -15,6 +15,7 @@
  */
 
 import { Head } from 'vike-react/Head'
+import { Card, CardHeader, CardBody } from '@heroui/card'
 
 const Page = () => (
   <>
@@ -29,37 +30,73 @@ const Page = () => (
         content='https://lin-tree-solver.adambcomer.com/support'
       />
     </Head>
-    <div>
-      <h1 className='text-5xl'>Support</h1>
+    <div className='max-w-7xl mx-auto'>
+      {/* Hero Section */}
+      <div className='text-center py-12'>
+        <h1 className='text-5xl font-bold mb-4'>Support &amp; Guides</h1>
+        <p className='text-xl text-default-600 max-w-3xl mx-auto'>
+          Helpful documentation to get the most out of Linguistics Tree Solver.
+          Browse our guides below to learn how to customize your syntax trees
+          and share your work.
+        </p>
+      </div>
 
-      <p className='mt-4'>Helpful documentation to solve common problems.</p>
+      {/* Guide Cards */}
+      <div className='mb-16'>
+        <h2 className='text-3xl font-semibold mb-6 text-center'>
+          Getting Started Guides
+        </h2>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+          <a href='/support/new-tree-root' className='block'>
+            <Card className='h-full hover:shadow-lg transition-shadow'>
+              <CardHeader>
+                <h3 className='text-2xl font-semibold'>
+                  Changing the Root of a Tree
+                </h3>
+              </CardHeader>
+              <CardBody>
+                <p className='text-default-600'>
+                  Learn how to build trees for individual clauses like noun
+                  phrases or verb phrases instead of complete sentences. This
+                  guide shows you how to modify your rule set to start from a
+                  different root element.
+                </p>
+              </CardBody>
+            </Card>
+          </a>
 
-      <h2 className='text-3xl mt-8'>Pages:</h2>
+          <a href='/support/sharing-trees' className='block'>
+            <Card className='h-full hover:shadow-lg transition-shadow'>
+              <CardHeader>
+                <h3 className='text-2xl font-semibold'>Sharing Trees</h3>
+              </CardHeader>
+              <CardBody>
+                <p className='text-default-600'>
+                  Share your syntax trees with classmates, students, or
+                  colleagues. Learn how workspace URLs work and what information
+                  gets shared when you send a link.
+                </p>
+              </CardBody>
+            </Card>
+          </a>
+        </div>
+      </div>
 
-      <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
-        <a href='/support/new-tree-root'>
-          <div className='p-4 bg-slate-200 rounded-medium h-[144px]'>
-            <h2 className='text-2xl text-nowrap overflow-hidden overflow-ellipsis'>
-              Changing the Root of a Tree
-            </h2>
-            <p className='mt-2 line-clamp-3'>
-              Sometimes you don&apos;t want to build a tree for a complete
-              sentence, but rather for an individual clause within a sentence
-              like a noun phrase or verb phrase. This guide shows you how to
-              modify a rule set to build trees that start from a different root.
-            </p>
-          </div>
-        </a>
-        <a href='/support/sharing-trees'>
-          <div className='p-4 bg-slate-200 rounded-medium h-[144px]'>
-            <h2 className='text-2xl text-nowrap overflow-hidden overflow-ellipsis'>
-              Sharing Trees
-            </h2>
-            <p className='mt-2 line-clamp-3'>
-              Sharing Parse Trees is simple, just copy the URL.
-            </p>
-          </div>
-        </a>
+      {/* Need More Help Section */}
+      <div className='py-12 border-t border-default-200'>
+        <div className='text-center'>
+          <h2 className='text-2xl font-semibold mb-4'>Still Need Help?</h2>
+          <p className='text-default-600 mb-6 max-w-2xl mx-auto'>
+            Can&apos;t find what you&apos;re looking for? Reach out and
+            we&apos;ll be happy to help you get started.
+          </p>
+          <a
+            href='mailto:adambcomer@gmail.com?subject=Help with Linguistics Tree Solver'
+            className='text-primary hover:underline text-lg'
+          >
+            Contact Support
+          </a>
+        </div>
       </div>
     </div>
   </>
