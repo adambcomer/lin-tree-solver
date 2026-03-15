@@ -18,7 +18,7 @@
     "@heroui/tooltip": "2.2.29",
     "@tailwindcss/vite": "4.2.1",
     "@vitejs/plugin-react": "5.1.4",
-    "better-sqlite3": "12.6.2",
+    "better-sqlite3": "12.8.0",
     "buffer": "6.0.3",
     "compression": "1.8.1",
     "express": "5.2.1",
