@@ -52,7 +52,7 @@
     "protobufjs-cli": "2.0.0",
     "source-map-explorer": "2.5.3",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.57.0"
+    "typescript-eslint": "8.57.1"
   },
   "scripts": {
     "dev": "vike dev",
