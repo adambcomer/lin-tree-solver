@@ -66,8 +66,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       protobufjs:
-        specifier: 8.0.0
-        version: 8.0.0
+        specifier: 8.0.1
+        version: 8.0.1
       react:
         specifier: 19.2.4
         version: 19.2.4
@@ -134,7 +134,7 @@ importers:
         version: 3.8.3
       protobufjs-cli:
         specifier: 2.0.0
-        version: 2.0.0(protobufjs@8.0.0)
+        version: 2.0.0(protobufjs@8.0.1)
       source-map-explorer:
         specifier: 2.5.3
         version: 2.5.3
@@ -2908,8 +2908,8 @@ packages:
     peerDependencies:
       protobufjs: ^7.0.0
 
-  protobufjs@8.0.0:
-    resolution: {integrity: sha512-jx6+sE9h/UryaCZhsJWbJtTEy47yXoGNYI4z8ZaRncM0zBKeRqjO2JEcOUYwrYGb1WLhXM1FfMzW3annvFv0rw==}
+  protobufjs@8.0.1:
+    resolution: {integrity: sha512-NWWCCscLjs+cOKF/s/XVNFRW7Yih0fdH+9brffR5NZCy8k42yRdl5KlWKMVXuI1vfCoy4o1z80XR/W/QUb3V3w==}
     engines: {node: '>=12.0.0'}
 
   proxy-addr@2.0.7:
@@ -6585,7 +6585,7 @@ snapshots:
       object-assign: 4.1.1
       react-is: 16.13.1
 
-  protobufjs-cli@2.0.0(protobufjs@8.0.0):
+  protobufjs-cli@2.0.0(protobufjs@8.0.1):
     dependencies:
       chalk: 4.1.2
       escodegen: 1.14.3
@@ -6594,12 +6594,12 @@ snapshots:
       glob: 8.1.0
       jsdoc: 4.0.5
       minimist: 1.2.8
-      protobufjs: 8.0.0
+      protobufjs: 8.0.1
       semver: 7.7.4
       tmp: 0.2.5
       uglify-js: 3.19.3
 
-  protobufjs@8.0.0:
+  protobufjs@8.0.1:
     dependencies:
       '@protobufjs/aspromise': 1.1.2
       '@protobufjs/base64': 1.1.2
