@@ -16,7 +16,7 @@
     "@heroui/theme": "2.4.26",
     "@heroui/toast": "2.0.22",
     "@heroui/tooltip": "2.2.29",
-    "@tailwindcss/vite": "4.2.1",
+    "@tailwindcss/vite": "4.2.2",
     "@vitejs/plugin-react": "6.0.1",
     "better-sqlite3": "12.8.0",
     "buffer": "6.0.3",
