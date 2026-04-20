@@ -32,7 +32,7 @@
     "vike": "0.4.258",
     "vike-react": "0.6.21",
     "vike-server": "1.0.25",
-    "vite": "8.0.8"
+    "vite": "8.0.9"
   },
   "devDependencies": {
     "@eslint/compat": "2.0.5",
