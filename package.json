@@ -57,7 +57,7 @@
     "oxfmt": "0.54.0",
     "oxlint": "1.69.0",
     "oxlint-tsgolint": "0.23.0",
-    "protobufjs-cli": "2.0.1",
+    "protobufjs-cli": "2.0.2",
     "source-map-explorer": "2.5.3",
     "typescript": "6.0.3"
   },
