@@ -153,8 +153,7 @@ export const Word = ($root.Word = (() => {
    * @returns {string|null} `null` if valid, otherwise the reason why it is not
    */
   Word.verify = function verify(message) {
-    if (typeof message !== 'object' || message === null)
-      return 'object expected'
+    if (typeof message !== 'object' || message === null) return 'object expected'
     if (message.text != null && message.hasOwnProperty('text'))
       if (!$util.isString(message.text)) return 'text: string expected'
     if (message.pos != null && message.hasOwnProperty('pos')) {
@@ -178,11 +177,9 @@ export const Word = ($root.Word = (() => {
     let message = new $root.Word()
     if (object.text != null) message.text = String(object.text)
     if (object.pos) {
-      if (!Array.isArray(object.pos))
-        throw TypeError('.Word.pos: array expected')
+      if (!Array.isArray(object.pos)) throw TypeError('.Word.pos: array expected')
       message.pos = []
-      for (let i = 0; i < object.pos.length; ++i)
-        message.pos[i] = String(object.pos[i])
+      for (let i = 0; i < object.pos.length; ++i) message.pos[i] = String(object.pos[i])
     }
     return message
   }
@@ -201,12 +198,10 @@ export const Word = ($root.Word = (() => {
     let object = {}
     if (options.arrays || options.defaults) object.pos = []
     if (options.defaults) object.text = ''
-    if (message.text != null && message.hasOwnProperty('text'))
-      object.text = message.text
+    if (message.text != null && message.hasOwnProperty('text')) object.text = message.text
     if (message.pos && message.pos.length) {
       object.pos = []
-      for (let j = 0; j < message.pos.length; ++j)
-        object.pos[j] = message.pos[j]
+      for (let j = 0; j < message.pos.length; ++j) object.pos[j] = message.pos[j]
     }
     return object
   }
@@ -372,8 +367,7 @@ export const Sentence = ($root.Sentence = (() => {
    * @returns {string|null} `null` if valid, otherwise the reason why it is not
    */
   Sentence.verify = function verify(message) {
-    if (typeof message !== 'object' || message === null)
-      return 'object expected'
+    if (typeof message !== 'object' || message === null) return 'object expected'
     if (message.words != null && message.hasOwnProperty('words')) {
       if (!Array.isArray(message.words)) return 'words: array expected'
       for (let i = 0; i < message.words.length; ++i) {
@@ -396,12 +390,10 @@ export const Sentence = ($root.Sentence = (() => {
     if (object instanceof $root.Sentence) return object
     let message = new $root.Sentence()
     if (object.words) {
-      if (!Array.isArray(object.words))
-        throw TypeError('.Sentence.words: array expected')
+      if (!Array.isArray(object.words)) throw TypeError('.Sentence.words: array expected')
       message.words = []
       for (let i = 0; i < object.words.length; ++i) {
-        if (typeof object.words[i] !== 'object')
-          throw TypeError('.Sentence.words: object expected')
+        if (typeof object.words[i] !== 'object') throw TypeError('.Sentence.words: object expected')
         message.words[i] = $root.Word.fromObject(object.words[i])
       }
     }
@@ -533,15 +525,9 @@ export const Tag = ($root.Tag = (() => {
     if (message.values != null && message.values.length)
       for (let i = 0; i < message.values.length; ++i)
         writer.uint32(/* id 1, wireType 2 =*/ 10).string(message.values[i])
-    if (
-      message.optional != null &&
-      Object.hasOwnProperty.call(message, 'optional')
-    )
+    if (message.optional != null && Object.hasOwnProperty.call(message, 'optional'))
       writer.uint32(/* id 2, wireType 0 =*/ 16).bool(message.optional)
-    if (
-      message.repeated != null &&
-      Object.hasOwnProperty.call(message, 'repeated')
-    )
+    if (message.repeated != null && Object.hasOwnProperty.call(message, 'repeated'))
       writer.uint32(/* id 3, wireType 0 =*/ 24).bool(message.repeated)
     return writer
   }
@@ -623,20 +609,16 @@ export const Tag = ($root.Tag = (() => {
    * @returns {string|null} `null` if valid, otherwise the reason why it is not
    */
   Tag.verify = function verify(message) {
-    if (typeof message !== 'object' || message === null)
-      return 'object expected'
+    if (typeof message !== 'object' || message === null) return 'object expected'
     if (message.values != null && message.hasOwnProperty('values')) {
       if (!Array.isArray(message.values)) return 'values: array expected'
       for (let i = 0; i < message.values.length; ++i)
-        if (!$util.isString(message.values[i]))
-          return 'values: string[] expected'
+        if (!$util.isString(message.values[i])) return 'values: string[] expected'
     }
     if (message.optional != null && message.hasOwnProperty('optional'))
-      if (typeof message.optional !== 'boolean')
-        return 'optional: boolean expected'
+      if (typeof message.optional !== 'boolean') return 'optional: boolean expected'
     if (message.repeated != null && message.hasOwnProperty('repeated'))
-      if (typeof message.repeated !== 'boolean')
-        return 'repeated: boolean expected'
+      if (typeof message.repeated !== 'boolean') return 'repeated: boolean expected'
     return null
   }
 
@@ -652,11 +634,9 @@ export const Tag = ($root.Tag = (() => {
     if (object instanceof $root.Tag) return object
     let message = new $root.Tag()
     if (object.values) {
-      if (!Array.isArray(object.values))
-        throw TypeError('.Tag.values: array expected')
+      if (!Array.isArray(object.values)) throw TypeError('.Tag.values: array expected')
       message.values = []
-      for (let i = 0; i < object.values.length; ++i)
-        message.values[i] = String(object.values[i])
+      for (let i = 0; i < object.values.length; ++i) message.values[i] = String(object.values[i])
     }
     if (object.optional != null) message.optional = Boolean(object.optional)
     if (object.repeated != null) message.repeated = Boolean(object.repeated)
@@ -682,8 +662,7 @@ export const Tag = ($root.Tag = (() => {
     }
     if (message.values && message.values.length) {
       object.values = []
-      for (let j = 0; j < message.values.length; ++j)
-        object.values[j] = message.values[j]
+      for (let j = 0; j < message.values.length; ++j) object.values[j] = message.values[j]
     }
     if (message.optional != null && message.hasOwnProperty('optional'))
       object.optional = message.optional
@@ -788,10 +767,7 @@ export const Rule = ($root.Rule = (() => {
       writer.uint32(/* id 1, wireType 2 =*/ 10).string(message.name)
     if (message.tags != null && message.tags.length)
       for (let i = 0; i < message.tags.length; ++i)
-        $root.Tag.encode(
-          message.tags[i],
-          writer.uint32(/* id 2, wireType 2 =*/ 18).fork()
-        ).ldelim()
+        $root.Tag.encode(message.tags[i], writer.uint32(/* id 2, wireType 2 =*/ 18).fork()).ldelim()
     return writer
   }
 
@@ -868,8 +844,7 @@ export const Rule = ($root.Rule = (() => {
    * @returns {string|null} `null` if valid, otherwise the reason why it is not
    */
   Rule.verify = function verify(message) {
-    if (typeof message !== 'object' || message === null)
-      return 'object expected'
+    if (typeof message !== 'object' || message === null) return 'object expected'
     if (message.name != null && message.hasOwnProperty('name'))
       if (!$util.isString(message.name)) return 'name: string expected'
     if (message.tags != null && message.hasOwnProperty('tags')) {
@@ -895,12 +870,10 @@ export const Rule = ($root.Rule = (() => {
     let message = new $root.Rule()
     if (object.name != null) message.name = String(object.name)
     if (object.tags) {
-      if (!Array.isArray(object.tags))
-        throw TypeError('.Rule.tags: array expected')
+      if (!Array.isArray(object.tags)) throw TypeError('.Rule.tags: array expected')
       message.tags = []
       for (let i = 0; i < object.tags.length; ++i) {
-        if (typeof object.tags[i] !== 'object')
-          throw TypeError('.Rule.tags: object expected')
+        if (typeof object.tags[i] !== 'object') throw TypeError('.Rule.tags: object expected')
         message.tags[i] = $root.Tag.fromObject(object.tags[i])
       }
     }
@@ -921,8 +894,7 @@ export const Rule = ($root.Rule = (() => {
     let object = {}
     if (options.arrays || options.defaults) object.tags = []
     if (options.defaults) object.name = ''
-    if (message.name != null && message.hasOwnProperty('name'))
-      object.name = message.name
+    if (message.name != null && message.hasOwnProperty('name')) object.name = message.name
     if (message.tags && message.tags.length) {
       object.tags = []
       for (let j = 0; j < message.tags.length; ++j)
@@ -1128,8 +1100,7 @@ export const RuleSet = ($root.RuleSet = (() => {
    * @returns {string|null} `null` if valid, otherwise the reason why it is not
    */
   RuleSet.verify = function verify(message) {
-    if (typeof message !== 'object' || message === null)
-      return 'object expected'
+    if (typeof message !== 'object' || message === null) return 'object expected'
     if (message.roots != null && message.hasOwnProperty('roots')) {
       if (!Array.isArray(message.roots)) return 'roots: array expected'
       for (let i = 0; i < message.roots.length; ++i)
@@ -1162,26 +1133,20 @@ export const RuleSet = ($root.RuleSet = (() => {
     if (object instanceof $root.RuleSet) return object
     let message = new $root.RuleSet()
     if (object.roots) {
-      if (!Array.isArray(object.roots))
-        throw TypeError('.RuleSet.roots: array expected')
+      if (!Array.isArray(object.roots)) throw TypeError('.RuleSet.roots: array expected')
       message.roots = []
-      for (let i = 0; i < object.roots.length; ++i)
-        message.roots[i] = String(object.roots[i])
+      for (let i = 0; i < object.roots.length; ++i) message.roots[i] = String(object.roots[i])
     }
     if (object.pos) {
-      if (!Array.isArray(object.pos))
-        throw TypeError('.RuleSet.pos: array expected')
+      if (!Array.isArray(object.pos)) throw TypeError('.RuleSet.pos: array expected')
       message.pos = []
-      for (let i = 0; i < object.pos.length; ++i)
-        message.pos[i] = String(object.pos[i])
+      for (let i = 0; i < object.pos.length; ++i) message.pos[i] = String(object.pos[i])
     }
     if (object.rules) {
-      if (!Array.isArray(object.rules))
-        throw TypeError('.RuleSet.rules: array expected')
+      if (!Array.isArray(object.rules)) throw TypeError('.RuleSet.rules: array expected')
       message.rules = []
       for (let i = 0; i < object.rules.length; ++i) {
-        if (typeof object.rules[i] !== 'object')
-          throw TypeError('.RuleSet.rules: object expected')
+        if (typeof object.rules[i] !== 'object') throw TypeError('.RuleSet.rules: object expected')
         message.rules[i] = $root.Rule.fromObject(object.rules[i])
       }
     }
@@ -1207,13 +1172,11 @@ export const RuleSet = ($root.RuleSet = (() => {
     }
     if (message.roots && message.roots.length) {
       object.roots = []
-      for (let j = 0; j < message.roots.length; ++j)
-        object.roots[j] = message.roots[j]
+      for (let j = 0; j < message.roots.length; ++j) object.roots[j] = message.roots[j]
     }
     if (message.pos && message.pos.length) {
       object.pos = []
-      for (let j = 0; j < message.pos.length; ++j)
-        object.pos[j] = message.pos[j]
+      for (let j = 0; j < message.pos.length; ++j) object.pos[j] = message.pos[j]
     }
     if (message.rules && message.rules.length) {
       object.rules = []

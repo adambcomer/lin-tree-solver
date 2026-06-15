@@ -17,11 +17,7 @@
 import { Database } from 'better-sqlite3'
 import { Sentence, RuleSet } from './proto/bundle.js'
 import { DP_HYPOTHESIS_SENTENCE, DEFAULT_SENTENCE } from './data/sentence.js'
-import {
-  DEFAULT_RULESET,
-  DP_HYPOTHESIS_RULESET,
-  XBAR_RULESET
-} from './data/ruleset.js'
+import { DEFAULT_RULESET, DP_HYPOTHESIS_RULESET, XBAR_RULESET } from './data/ruleset.js'
 
 export enum RuleSetType {
   Basic = 'basic',
@@ -34,11 +30,9 @@ export const isRuleSetType = (value: unknown): value is RuleSetType =>
 
 export { Sentence, RuleSet } from './proto/bundle.js'
 
-export const isSentence = (value: unknown): value is Sentence =>
-  !!value && !Sentence.verify(value)
+export const isSentence = (value: unknown): value is Sentence => !!value && !Sentence.verify(value)
 
-export const isRuleSet = (value: unknown): value is RuleSet =>
-  !!value && !RuleSet.verify(value)
+export const isRuleSet = (value: unknown): value is RuleSet => !!value && !RuleSet.verify(value)
 
 interface WorkspaceRow {
   id: string
@@ -48,11 +42,7 @@ interface WorkspaceRow {
   updated_at: string
 }
 
-export const createWorkspace = (
-  db: Database,
-  id: string,
-  type: RuleSetType
-) => {
+export const createWorkspace = (db: Database, id: string, type: RuleSetType) => {
   const timestamp = new Date()
 
   let sentence
@@ -79,10 +69,9 @@ export const createWorkspace = (
 
 export const getWorkspace = (db: Database, id: string) => {
   const row = db
-    .prepare<
-      string,
-      WorkspaceRow
-    >('SELECT id, sentence, ruleset, created_at, updated_at FROM workspaces WHERE id = ?;')
+    .prepare<string, WorkspaceRow>(
+      'SELECT id, sentence, ruleset, created_at, updated_at FROM workspaces WHERE id = ?;'
+    )
     .get(id)
   if (!row) {
     return undefined
@@ -97,15 +86,8 @@ export const getWorkspace = (db: Database, id: string) => {
   }
 }
 
-export const updateWorkspace = (
-  db: Database,
-  id: string,
-  ruleset: RuleSet,
-  sentence: Sentence
-) => {
-  db.prepare(
-    'UPDATE workspaces SET sentence = ?, ruleset = ?, updated_at = ? WHERE id = ?;'
-  ).run(
+export const updateWorkspace = (db: Database, id: string, ruleset: RuleSet, sentence: Sentence) => {
+  db.prepare('UPDATE workspaces SET sentence = ?, ruleset = ?, updated_at = ? WHERE id = ?;').run(
     Sentence.encode(sentence).finish(),
     RuleSet.encode(ruleset).finish(),
     new Date().toISOString(),

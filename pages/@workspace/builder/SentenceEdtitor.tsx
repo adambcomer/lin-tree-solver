@@ -15,12 +15,7 @@
  */
 
 import { Input } from '@heroui/input'
-import {
-  Ruleset,
-  Sentence,
-  SentenceActions,
-  SentenceActionTypes
-} from './useWorkspace'
+import { Ruleset, Sentence, SentenceActions, SentenceActionTypes } from './useWorkspace'
 import { getColor } from './colors'
 import { Dispatch, useState } from 'react'
 import { cn } from '@heroui/theme'
@@ -31,14 +26,8 @@ interface SentenceEditorProps {
   updateSentence: Dispatch<SentenceActions>
 }
 
-export const SentenceEditor = ({
-  sentence,
-  ruleset,
-  updateSentence
-}: SentenceEditorProps) => {
-  const [sentenceText, setSentenceText] = useState(
-    sentence.words.map((s) => s.text).join(' ')
-  )
+export const SentenceEditor = ({ sentence, ruleset, updateSentence }: SentenceEditorProps) => {
+  const [sentenceText, setSentenceText] = useState(sentence.words.map((s) => s.text).join(' '))
 
   return (
     <div>
@@ -59,28 +48,20 @@ export const SentenceEditor = ({
 
       {sentence.words.length > 0 && (
         <p className='text-sm text-default-600 mt-6 mb-2'>
-          Click on the parts of speech tags below to annotate each word. You can
-          select multiple tags if a word could have different grammatical
-          functions.
+          Click on the parts of speech tags below to annotate each word. You can select multiple
+          tags if a word could have different grammatical functions.
         </p>
       )}
 
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mt-4'>
         {sentence.words.map((w, wordIndex) => (
-          <div
-            key={wordIndex}
-            className='border-medium border-divider rounded-medium p-4'
-          >
+          <div key={wordIndex} className='border-medium border-divider rounded-medium p-4'>
             <div className='text-center font-bold'>{w.text}</div>
             <div className='grid grid-cols-2 gap-2 mt-4'>
               {[...ruleset.pos].map((p, i) => (
                 <div
                   key={p}
-                  style={
-                    w.pos.has(p)
-                      ? { backgroundColor: getColor(i), color: '#fff' }
-                      : {}
-                  }
+                  style={w.pos.has(p) ? { backgroundColor: getColor(i), color: '#fff' } : {}}
                   onClick={() =>
                     w.pos.has(p)
                       ? updateSentence({
@@ -97,8 +78,7 @@ export const SentenceEditor = ({
                   className={cn(
                     'py-2 text-center font-mono cursor-pointer rounded-lg border-medium border-divider',
                     {
-                      [`bg-${getColor(i)} text-white border-transparent`]:
-                        w.pos.has(p)
+                      [`bg-${getColor(i)} text-white border-transparent`]: w.pos.has(p)
                     }
                   )}
                 >

@@ -33,10 +33,7 @@ interface PosRulesetEditorProps {
   updateRuleset: Dispatch<RulesetActions>
 }
 
-const PosRulesetEditor = ({
-  ruleset,
-  updateRuleset
-}: PosRulesetEditorProps) => {
+const PosRulesetEditor = ({ ruleset, updateRuleset }: PosRulesetEditorProps) => {
   const [editing, setEditing] = useState(false)
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
@@ -45,17 +42,15 @@ const PosRulesetEditor = ({
     <>
       {ruleset.pos.size === 0 && (
         <p className='text-sm text-default-600 mb-4'>
-          Start by defining your parts of speech (e.g., N for noun, V for verb,
-          Det for determiner). These will be used to annotate your sentence.
+          Start by defining your parts of speech (e.g., N for noun, V for verb, Det for determiner).
+          These will be used to annotate your sentence.
         </p>
       )}
       <div className='flex flex-wrap gap-2 mb-4'>
         {[...ruleset.pos].map((p, i) => (
           <Chip
             key={p}
-            onClose={() =>
-              updateRuleset({ type: RulesetActionTypes.DeletePOS, pos: p })
-            }
+            onClose={() => updateRuleset({ type: RulesetActionTypes.DeletePOS, pos: p })}
             className='text-white font-mono'
             style={{ backgroundColor: getColor(i) }}
           >
@@ -126,10 +121,7 @@ interface RootRulesetEditorProps {
   updateRuleset: Dispatch<RulesetActions>
 }
 
-const RootRulesetEditor = ({
-  ruleset,
-  updateRuleset
-}: RootRulesetEditorProps) => {
+const RootRulesetEditor = ({ ruleset, updateRuleset }: RootRulesetEditorProps) => {
   const [editing, setEditing] = useState(false)
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
@@ -138,18 +130,16 @@ const RootRulesetEditor = ({
     <>
       {ruleset.roots.size === 0 && (
         <p className='text-sm text-default-600 mb-4'>
-          Root tags determine which rules can serve as the top-level node in
-          your syntax tree. Typically this is &quot;S&quot; for sentence, but
-          you can also use NP, VP, etc. for phrase-level analyses.
+          Root tags determine which rules can serve as the top-level node in your syntax tree.
+          Typically this is &quot;S&quot; for sentence, but you can also use NP, VP, etc. for
+          phrase-level analyses.
         </p>
       )}
       <div className='flex mb-4 overflow-scroll'>
         {[...ruleset.roots].map((r) => (
           <Chip
             key={r}
-            onClose={() =>
-              updateRuleset({ type: RulesetActionTypes.DeleteRoot, root: r })
-            }
+            onClose={() => updateRuleset({ type: RulesetActionTypes.DeleteRoot, root: r })}
             className='mr-2 font-mono'
           >
             {r}
@@ -197,9 +187,7 @@ const RootRulesetEditor = ({
                 return
               } else if (ruleset.rules.every((r) => value !== r.name)) {
                 // TODO: Check if POS works here
-                setError(
-                  'Root must reference an existing Rule. Enter a new Root'
-                )
+                setError('Root must reference an existing Rule. Enter a new Root')
                 return
               }
 
@@ -225,10 +213,7 @@ interface RuleRulesetEditorProps {
   updateRuleset: Dispatch<RulesetActions>
 }
 
-const RuleRulesetEditor = ({
-  ruleset,
-  updateRuleset
-}: RuleRulesetEditorProps) => {
+const RuleRulesetEditor = ({ ruleset, updateRuleset }: RuleRulesetEditorProps) => {
   const [editing, setEditing] = useState(false)
   const [name, setName] = useState({ text: '', error: '' })
   const [value, setValue] = useState({ text: '', error: '' })
@@ -240,8 +225,7 @@ const RuleRulesetEditor = ({
       {ruleset.rules.length === 0 && (
         <div className='text-sm text-default-600 mb-4'>
           <p className='mb-2'>
-            Define your phrase structure rules using EBNF-like syntax. For
-            example:
+            Define your phrase structure rules using EBNF-like syntax. For example:
           </p>
           <code className='block bg-default-100 p-3 rounded-medium font-mono text-xs'>
             S → NP VP
@@ -251,12 +235,9 @@ const RuleRulesetEditor = ({
             VP → V (NP)
           </code>
           <p className='mt-2 text-xs'>
-            Use <code className='bg-default-100 px-1 rounded'>{'{ }'}</code> for
-            alternatives,{' '}
-            <code className='bg-default-100 px-1 rounded'>( )</code> for
-            optional, and{' '}
-            <code className='bg-default-100 px-1 rounded'>(+)</code> for
-            repeating elements.
+            Use <code className='bg-default-100 px-1 rounded'>{'{ }'}</code> for alternatives,{' '}
+            <code className='bg-default-100 px-1 rounded'>( )</code> for optional, and{' '}
+            <code className='bg-default-100 px-1 rounded'>(+)</code> for repeating elements.
           </p>
         </div>
       )}
@@ -264,9 +245,7 @@ const RuleRulesetEditor = ({
         <div key={i} className='mb-4 flex items-center'>
           <Chip
             className='mr-2 font-mono'
-            onClose={() =>
-              updateRuleset({ type: RulesetActionTypes.DeleteRule, index: i })
-            }
+            onClose={() => updateRuleset({ type: RulesetActionTypes.DeleteRule, index: i })}
           >
             {rule.name}
           </Chip>
@@ -293,9 +272,7 @@ const RuleRulesetEditor = ({
                   : {}
               }
             >
-              {tagToString(tag).length
-                ? ` ${tagToString(tag)} `
-                : tagToString(tag)}
+              {tagToString(tag).length ? ` ${tagToString(tag)} ` : tagToString(tag)}
             </Chip>
           ))}
         </div>
@@ -354,9 +331,7 @@ const RuleRulesetEditor = ({
               if (
                 !tags.every((t) =>
                   t.values.every(
-                    (v) =>
-                      ruleset.pos.has(v) ||
-                      ruleset.rules.findIndex((r) => r.name === v) !== -1
+                    (v) => ruleset.pos.has(v) || ruleset.rules.findIndex((r) => r.name === v) !== -1
                   )
                 )
               ) {
@@ -393,10 +368,7 @@ interface RulesetEditorProps {
   updateRuleset: Dispatch<RulesetActions>
 }
 
-export const RulesetEditor = ({
-  ruleset,
-  updateRuleset
-}: RulesetEditorProps) => {
+export const RulesetEditor = ({ ruleset, updateRuleset }: RulesetEditorProps) => {
   return (
     <Accordion variant='bordered' selectionMode='multiple' keepContentMounted>
       <AccordionItem

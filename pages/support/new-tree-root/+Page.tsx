@@ -37,10 +37,7 @@ import finalTreeJXL from '/images/new-tree-root/final_tree.jxl'
 const Page = () => (
   <>
     <Head>
-      <link
-        rel='canonical'
-        href='https://lin-tree-solver.adambcomer.com/support/new-tree-root'
-      />
+      <link rel='canonical' href='https://lin-tree-solver.adambcomer.com/support/new-tree-root' />
       <meta property='og:type' content='website' />
       <meta
         property='og:url'
@@ -52,8 +49,8 @@ const Page = () => (
     <div className='text-center py-12'>
       <h1 className='text-5xl font-bold mb-4'>Changing the Root of a Tree</h1>
       <p className='text-xl text-default-600 max-w-3xl mx-auto'>
-        Learn how to build syntax trees for individual clauses like noun phrases
-        or verb phrases instead of complete sentences.
+        Learn how to build syntax trees for individual clauses like noun phrases or verb phrases
+        instead of complete sentences.
       </p>
     </div>
 
@@ -62,16 +59,14 @@ const Page = () => (
       <Card>
         <CardBody>
           <p className='text-default-600 mb-4'>
-            Sometimes you don&apos;t want to build a tree for a complete
-            sentence, but rather for an individual clause within a sentence like
-            a noun phrase or verb phrase. This guide shows you how to modify a
-            rule set to build trees that start from a different root.
+            Sometimes you don&apos;t want to build a tree for a complete sentence, but rather for an
+            individual clause within a sentence like a noun phrase or verb phrase. This guide shows
+            you how to modify a rule set to build trees that start from a different root.
           </p>
           <p className='text-default-600'>
-            Most of the time this looks like building a tree where instead of
-            starting at a SP or CP, you want to build a tree starting at a NP or
-            VP. To do this, we have to adjust the &quot;root&quot; rule to shift
-            the root to our desired clause type.
+            Most of the time this looks like building a tree where instead of starting at a SP or
+            CP, you want to build a tree starting at a NP or VP. To do this, we have to adjust the
+            &quot;root&quot; rule to shift the root to our desired clause type.
           </p>
         </CardBody>
       </Card>
@@ -79,9 +74,7 @@ const Page = () => (
 
     {/* Step-by-step Guide */}
     <div className='space-y-8 mb-16'>
-      <h2 className='text-3xl font-semibold mb-6 text-center'>
-        Step-by-Step Guide
-      </h2>
+      <h2 className='text-3xl font-semibold mb-6 text-center'>Step-by-Step Guide</h2>
 
       {/* Step 1 */}
       <Card>
@@ -93,8 +86,8 @@ const Page = () => (
         </CardHeader>
         <CardBody>
           <p className='text-default-600 mb-4'>
-            Start by going to the Syntax Rules and clicking the edit button on
-            the Syntax Rule set you wish to use.
+            Start by going to the Syntax Rules and clicking the edit button on the Syntax Rule set
+            you wish to use.
           </p>
           <picture>
             <source srcSet={editSyntaxRulesJXL} type='image/jxl' />
@@ -118,15 +111,14 @@ const Page = () => (
         </CardHeader>
         <CardBody>
           <p className='text-default-600 mb-4'>
-            Next, edit the root tags for these Syntax Rules. The root tags tell
-            the tree builder where to start from to build your tree. The default
-            for the rules{' '}
+            Next, edit the root tags for these Syntax Rules. The root tags tell the tree builder
+            where to start from to build your tree. The default for the rules{' '}
             <i>
-              Chapter 3: Constituency, Trees, and Rules, Syntax: A Generative
-              Introduction, by Andrew Carnie
+              Chapter 3: Constituency, Trees, and Rules, Syntax: A Generative Introduction, by
+              Andrew Carnie
             </i>{' '}
-            is the CP tag or clause. Click the small &quot;X&quot; next to the
-            CP to remove it from the set of tags.
+            is the CP tag or clause. Click the small &quot;X&quot; next to the CP to remove it from
+            the set of tags.
           </p>
           <picture>
             <source srcSet={editSyntaxRuleJXL} type='image/jxl' />
@@ -150,11 +142,10 @@ const Page = () => (
         </CardHeader>
         <CardBody>
           <p className='text-default-600 mb-4'>
-            Next, add a new root tag to the empty set of root tags. The root tag
-            you wish to set must already exist in the list of rules below. If
-            the root you wish to use hasn&apos;t been added, add the new rule
-            before modifying the root. In this example, I&apos;m going to change
-            the root to a NP so I can build trees that start from a noun phrase.
+            Next, add a new root tag to the empty set of root tags. The root tag you wish to set
+            must already exist in the list of rules below. If the root you wish to use hasn&apos;t
+            been added, add the new rule before modifying the root. In this example, I&apos;m going
+            to change the root to a NP so I can build trees that start from a noun phrase.
           </p>
           <picture>
             <source srcSet={newSyntaxRuleJXL} type='image/jxl' />
@@ -178,10 +169,9 @@ const Page = () => (
         </CardHeader>
         <CardBody>
           <p className='text-default-600 mb-4'>
-            Finally, click save in the top-right-hand corner. You should now be
-            able to go to the Sentence Editor and the Tree Viewer to build and
-            view your new trees. For my example, I can now build and view trees
-            that look like this:
+            Finally, click save in the top-right-hand corner. You should now be able to go to the
+            Sentence Editor and the Tree Viewer to build and view your new trees. For my example, I
+            can now build and view trees that look like this:
           </p>
           <picture>
             <source srcSet={finalTreeJXL} type='image/jxl' />
@@ -200,9 +190,7 @@ const Page = () => (
     <div className='py-12 border-t border-default-200'>
       <div className='text-center'>
         <h2 className='text-2xl font-semibold mb-4'>Need More Help?</h2>
-        <p className='text-default-600 mb-6'>
-          Check out our other guides or contact support.
-        </p>
+        <p className='text-default-600 mb-6'>Check out our other guides or contact support.</p>
         <div className='flex flex-col sm:flex-row gap-4 justify-center'>
           <a href='/support' className='text-primary hover:underline text-lg'>
             Back to Support

@@ -22,10 +22,7 @@ import { getWorkspace } from '../../../repo/workspace'
 export const data = (pageContext: PageContextServer) => {
   const workspace = getWorkspace(db, pageContext.routeParams.workspace)
   if (!workspace) {
-    throw render(
-      404,
-      `Workspace with ID ${pageContext.routeParams.workspace} can't be found.`
-    )
+    throw render(404, `Workspace with ID ${pageContext.routeParams.workspace} can't be found.`)
   }
 
   return workspace
