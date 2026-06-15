@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import { IRuleSet } from '../proto/bundle.js'
+import { RuleSet } from '../proto/bundle.js'
 
-export const DEFAULT_RULESET: IRuleSet = {
+export const DEFAULT_RULESET: RuleSet.$Properties = {
   roots: ['CP'],
   pos: ['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'],
   rules: [
@@ -177,7 +177,7 @@ export const DEFAULT_RULESET: IRuleSet = {
   ]
 }
 
-export const XBAR_RULESET: IRuleSet = {
+export const XBAR_RULESET: RuleSet.$Properties = {
   roots: ['CP'],
   pos: ['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'],
   rules: [
@@ -477,7 +477,7 @@ export const XBAR_RULESET: IRuleSet = {
   ]
 }
 
-export const DP_HYPOTHESIS_RULESET: IRuleSet = {
+export const DP_HYPOTHESIS_RULESET: RuleSet.$Properties = {
   roots: ['CP'],
   pos: ['N', 'D', 'V', 'Adj', 'Adv', 'P', 'T', 'C', 'Conj'],
   rules: [

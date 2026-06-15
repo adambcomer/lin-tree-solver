@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import { ISentence } from '../proto/bundle.js'
+import { Sentence } from '../proto/bundle.js'
 
-export const DEFAULT_SENTENCE: ISentence = {
+export const DEFAULT_SENTENCE: Sentence.$Properties = {
   words: [
     { text: 'The', pos: ['D'] },
     { text: 'small', pos: ['Adj'] },
@@ -30,7 +30,7 @@ export const DEFAULT_SENTENCE: ISentence = {
   ]
 }
 
-export const DP_HYPOTHESIS_SENTENCE: ISentence = {
+export const DP_HYPOTHESIS_SENTENCE: Sentence.$Properties = {
   words: [
     { text: 'The', pos: ['D'] },
     { text: 'small', pos: ['Adj'] },
