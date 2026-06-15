@@ -38,10 +38,7 @@ interface TreeCanvasProps {
 
 let frame: number | undefined
 
-const TreeCanvas = (
-  props: TreeCanvasProps,
-  ref: ForwardedRef<HTMLCanvasElement>
-) => {
+const TreeCanvas = (props: TreeCanvasProps, ref: ForwardedRef<HTMLCanvasElement>) => {
   const [canvasSize, setCanvasSize] = useState({ height: 0, width: 0 })
   const [canvasPan, setCanvasPan] = useState({
     x: 0,
@@ -52,9 +49,7 @@ const TreeCanvas = (
   })
   const canvas = useRef<HTMLCanvasElement>(null)
 
-  const colorMap = new Map(
-    [...props.ruleset.pos].map((p, i) => [p, getColor(i)])
-  )
+  const colorMap = new Map([...props.ruleset.pos].map((p, i) => [p, getColor(i)]))
 
   useLayoutEffect(() => {
     if (ref === null) return
@@ -97,11 +92,7 @@ const TreeCanvas = (
           ctx.fillStyle = '#000'
           ctx.textAlign = 'center'
           ctx.font = '64px Noto Sans Mono'
-          ctx.fillText(
-            node.pos,
-            Math.floor(width / 2 + start),
-            200 + level * 400
-          )
+          ctx.fillText(node.pos, Math.floor(width / 2 + start), 200 + level * 400)
 
           ctx.fillStyle = colorMap.get(node.pos) ?? ''
           ctx.fillRect(
@@ -113,22 +104,14 @@ const TreeCanvas = (
 
           ctx.fillStyle = '#000'
           ctx.font = '500 72px Noto Sans Mono'
-          ctx.fillText(
-            node.word,
-            Math.floor(width / 2 + start),
-            325 + level * 400
-          )
+          ctx.fillText(node.word, Math.floor(width / 2 + start), 325 + level * 400)
           return
         }
 
         ctx.fillStyle = '#000'
         ctx.textAlign = 'center'
         ctx.font = '64px Noto Sans Mono'
-        ctx.fillText(
-          node.node,
-          Math.floor(width / 2 + start),
-          200 + level * 400
-        )
+        ctx.fillText(node.node, Math.floor(width / 2 + start), 200 + level * 400)
 
         const widthChunk = width * (1 / node.terminals)
 
@@ -149,13 +132,7 @@ const TreeCanvas = (
           ctx.lineCap = 'round'
           ctx.stroke()
 
-          recursiveDraw(
-            ctx,
-            c,
-            cumulative * widthChunk + start,
-            w * widthChunk,
-            level + 1
-          )
+          recursiveDraw(ctx, c, cumulative * widthChunk + start, w * widthChunk, level + 1)
 
           cumulative += w
         }

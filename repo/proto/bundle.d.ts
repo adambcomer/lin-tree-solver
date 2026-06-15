@@ -36,10 +36,7 @@ export class Word implements IWord {
    * @param [writer] Writer to encode to
    * @returns Writer
    */
-  public static encode(
-    message: IWord,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer
+  public static encode(message: IWord, writer?: $protobuf.Writer): $protobuf.Writer
 
   /**
    * Encodes the specified Word message, length delimited. Does not implicitly {@link Word.verify|verify} messages.
@@ -47,10 +44,7 @@ export class Word implements IWord {
    * @param [writer] Writer to encode to
    * @returns Writer
    */
-  public static encodeDelimited(
-    message: IWord,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer
+  public static encodeDelimited(message: IWord, writer?: $protobuf.Writer): $protobuf.Writer
 
   /**
    * Decodes a Word message from the specified reader or buffer.
@@ -60,10 +54,7 @@ export class Word implements IWord {
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  public static decode(
-    reader: $protobuf.Reader | Uint8Array,
-    length?: number
-  ): Word
+  public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): Word
 
   /**
    * Decodes a Word message from the specified reader or buffer, length delimited.
@@ -143,10 +134,7 @@ export class Sentence implements ISentence {
    * @param [writer] Writer to encode to
    * @returns Writer
    */
-  public static encode(
-    message: ISentence,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer
+  public static encode(message: ISentence, writer?: $protobuf.Writer): $protobuf.Writer
 
   /**
    * Encodes the specified Sentence message, length delimited. Does not implicitly {@link Sentence.verify|verify} messages.
@@ -154,10 +142,7 @@ export class Sentence implements ISentence {
    * @param [writer] Writer to encode to
    * @returns Writer
    */
-  public static encodeDelimited(
-    message: ISentence,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer
+  public static encodeDelimited(message: ISentence, writer?: $protobuf.Writer): $protobuf.Writer
 
   /**
    * Decodes a Sentence message from the specified reader or buffer.
@@ -167,10 +152,7 @@ export class Sentence implements ISentence {
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  public static decode(
-    reader: $protobuf.Reader | Uint8Array,
-    length?: number
-  ): Sentence
+  public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): Sentence
 
   /**
    * Decodes a Sentence message from the specified reader or buffer, length delimited.
@@ -262,10 +244,7 @@ export class Tag implements ITag {
    * @param [writer] Writer to encode to
    * @returns Writer
    */
-  public static encode(
-    message: ITag,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer
+  public static encode(message: ITag, writer?: $protobuf.Writer): $protobuf.Writer
 
   /**
    * Encodes the specified Tag message, length delimited. Does not implicitly {@link Tag.verify|verify} messages.
@@ -273,10 +252,7 @@ export class Tag implements ITag {
    * @param [writer] Writer to encode to
    * @returns Writer
    */
-  public static encodeDelimited(
-    message: ITag,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer
+  public static encodeDelimited(message: ITag, writer?: $protobuf.Writer): $protobuf.Writer
 
   /**
    * Decodes a Tag message from the specified reader or buffer.
@@ -286,10 +262,7 @@ export class Tag implements ITag {
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  public static decode(
-    reader: $protobuf.Reader | Uint8Array,
-    length?: number
-  ): Tag
+  public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): Tag
 
   /**
    * Decodes a Tag message from the specified reader or buffer, length delimited.
@@ -320,10 +293,7 @@ export class Tag implements ITag {
    * @param [options] Conversion options
    * @returns Plain object
    */
-  public static toObject(
-    message: Tag,
-    options?: $protobuf.IConversionOptions
-  ): { [k: string]: any }
+  public static toObject(message: Tag, options?: $protobuf.IConversionOptions): { [k: string]: any }
 
   /**
    * Converts this Tag to JSON.
@@ -375,10 +345,7 @@ export class Rule implements IRule {
    * @param [writer] Writer to encode to
    * @returns Writer
    */
-  public static encode(
-    message: IRule,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer
+  public static encode(message: IRule, writer?: $protobuf.Writer): $protobuf.Writer
 
   /**
    * Encodes the specified Rule message, length delimited. Does not implicitly {@link Rule.verify|verify} messages.
@@ -386,10 +353,7 @@ export class Rule implements IRule {
    * @param [writer] Writer to encode to
    * @returns Writer
    */
-  public static encodeDelimited(
-    message: IRule,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer
+  public static encodeDelimited(message: IRule, writer?: $protobuf.Writer): $protobuf.Writer
 
   /**
    * Decodes a Rule message from the specified reader or buffer.
@@ -399,10 +363,7 @@ export class Rule implements IRule {
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  public static decode(
-    reader: $protobuf.Reader | Uint8Array,
-    length?: number
-  ): Rule
+  public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): Rule
 
   /**
    * Decodes a Rule message from the specified reader or buffer, length delimited.
@@ -494,10 +455,7 @@ export class RuleSet implements IRuleSet {
    * @param [writer] Writer to encode to
    * @returns Writer
    */
-  public static encode(
-    message: IRuleSet,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer
+  public static encode(message: IRuleSet, writer?: $protobuf.Writer): $protobuf.Writer
 
   /**
    * Encodes the specified RuleSet message, length delimited. Does not implicitly {@link RuleSet.verify|verify} messages.
@@ -505,10 +463,7 @@ export class RuleSet implements IRuleSet {
    * @param [writer] Writer to encode to
    * @returns Writer
    */
-  public static encodeDelimited(
-    message: IRuleSet,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer
+  public static encodeDelimited(message: IRuleSet, writer?: $protobuf.Writer): $protobuf.Writer
 
   /**
    * Decodes a RuleSet message from the specified reader or buffer.
@@ -518,10 +473,7 @@ export class RuleSet implements IRuleSet {
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  public static decode(
-    reader: $protobuf.Reader | Uint8Array,
-    length?: number
-  ): RuleSet
+  public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): RuleSet
 
   /**
    * Decodes a RuleSet message from the specified reader or buffer, length delimited.

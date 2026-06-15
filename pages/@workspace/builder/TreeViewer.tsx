@@ -32,9 +32,7 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
   const [treeIndex, setTreeIndex] = useState(0)
   const [loading, setLoading] = useState(true)
   const [errors, setErrors] =
-    useState<
-      { token: string; offset: number; tokens: string[]; pos: string[] }[]
-    >()
+    useState<{ token: string; offset: number; tokens: string[]; pos: string[] }[]>()
   const [canvasZoom, setCanvasZoom] = useState(1)
   const canvas = useRef<HTMLCanvasElement>(null)
 
@@ -89,9 +87,7 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
     context.fillRect(0, 0, image.width, image.height)
     context.drawImage(canvas.current, 0, 0)
 
-    const png = image
-      .toDataURL('image/png')
-      .replace('image/png', 'image/octet-stream')
+    const png = image.toDataURL('image/png').replace('image/png', 'image/octet-stream')
     const link = document.createElement('a')
     link.download = 'tree.png'
     link.href = png
@@ -122,23 +118,17 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
               <path d='M479.98-280q14.02 0 23.52-9.49 9.5-9.48 9.5-23.51 0-14.02-9.48-23.51-9.49-9.49-23.5-9.49-14.02 0-23.52 9.49-9.5 9.48-9.5 23.51 0 14.02 9.48 23.51 9.49 9.49 23.5 9.49ZM453-433h60v-253h-60v253Zm27.27 337q-82.74 0-155.5-31.5Q252-159 197.5-213.5t-86-127.34Q80-413.68 80-496.34t31.5-155.5Q143-724.6 197.5-779q54.5-54.4 127.34-85.7 72.83-31.3 155.5-31.3 82.66 0 155.16 31.3 72.5 31.3 127.34 85.7 54.83 54.4 86.16 127.16 31.33 72.76 31.33 155.5 0 82.74-31.33 155.5-31.33 72.76-86.16 127.26-54.84 54.5-127.34 86-72.5 31.5-155.16 31.5Z' />
             </svg>
             <div>
-              <h3 className='font-semibold text-lg text-danger-700 mb-1'>
-                Parse Errors Detected
-              </h3>
+              <h3 className='font-semibold text-lg text-danger-700 mb-1'>Parse Errors Detected</h3>
               <p className='text-sm text-danger-600'>
-                The parser found issues with the following POS combinations.
-                Check if your rules and annotations match:
+                The parser found issues with the following POS combinations. Check if your rules and
+                annotations match:
               </p>
             </div>
           </div>
           {errors.map((err, i) => (
-            <div
-              className='mt-4 p-4 bg-white rounded-medium border border-danger-200'
-              key={i}
-            >
+            <div className='mt-4 p-4 bg-white rounded-medium border border-danger-200' key={i}>
               <div className='font-medium text-danger-700'>
-                Unexpected token &quot;{err.token}&quot; at position{' '}
-                {err.offset}:
+                Unexpected token &quot;{err.token}&quot; at position {err.offset}:
               </div>
               <div className='mt-2 font-mono text-sm'>
                 {sentence.words.map((word, i) => {
@@ -256,22 +246,15 @@ export const TreeViewer = ({ sentence, ruleset }: TreeViewerProps) => {
               </svg>
             </Button>
           </Tooltip>
-          <TreeCanvas
-            ref={canvas}
-            tree={trees[treeIndex]}
-            ruleset={ruleset}
-            zoom={canvasZoom}
-          />
+          <TreeCanvas ref={canvas} tree={trees[treeIndex]} ruleset={ruleset} zoom={canvasZoom} />
         </>
       ) : (
         !errors?.length && (
           <div className='flex flex-col items-center justify-center h-64 bg-default-100 rounded-large'>
-            <p className='text-lg font-medium text-default-600 mb-2'>
-              No Complete Trees Found
-            </p>
+            <p className='text-lg font-medium text-default-600 mb-2'>No Complete Trees Found</p>
             <p className='text-sm text-default-500 max-w-md text-center'>
-              Try adjusting your POS annotations or syntax rules to create valid
-              parse trees for this sentence.
+              Try adjusting your POS annotations or syntax rules to create valid parse trees for
+              this sentence.
             </p>
           </div>
         )

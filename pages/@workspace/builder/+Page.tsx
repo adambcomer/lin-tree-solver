@@ -63,13 +63,8 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>
-          {`"${senentenceText}" Syntax Tree | Linguistics Tree Solver`}
-        </title>
-        <meta
-          name='description'
-          content={`Syntax tree for the sentence "${senentenceText}".`}
-        />
+        <title>{`"${senentenceText}" Syntax Tree | Linguistics Tree Solver`}</title>
+        <meta name='description' content={`Syntax tree for the sentence "${senentenceText}".`} />
         <meta
           property='og:description'
           content={`Syntax tree for the sentence "${senentenceText}".`}
@@ -89,13 +84,10 @@ const Page = () => {
       <div className='text-center py-12'>
         <h1 className='text-5xl font-bold mb-4'>Linguistics Tree Solver</h1>
         <p className='text-lg text-default-600 max-w-3xl mx-auto mb-4'>
-          Build and visualize syntax trees for linguistic analysis. Follow the
-          three steps below to create your parse tree.
+          Build and visualize syntax trees for linguistic analysis. Follow the three steps below to
+          create your parse tree.
         </p>
-        <Chip
-          variant='flat'
-          className='font-mono min-w-auto max-w-full overflow-scroll'
-        >
+        <Chip variant='flat' className='font-mono min-w-auto max-w-full overflow-scroll'>
           Workspace: {routeParams.workspace}
         </Chip>
       </div>
@@ -109,8 +101,8 @@ const Page = () => {
           <div className='flex flex-col'>
             <h2 className='text-3xl font-semibold'>Build Rule Set</h2>
             <p className='text-default-600 text-sm mt-1'>
-              Define your grammar by specifying parts of speech (POS), syntax
-              rules, and root tags. Click on each section to expand and edit.
+              Define your grammar by specifying parts of speech (POS), syntax rules, and root tags.
+              Click on each section to expand and edit.
             </p>
           </div>
         </div>
@@ -126,8 +118,8 @@ const Page = () => {
           <div className='flex flex-col'>
             <h2 className='text-3xl font-semibold'>Annotate Sentence</h2>
             <p className='text-default-600 text-sm mt-1'>
-              Enter your sentence and tag each word with its possible parts of
-              speech. Click on POS tags to toggle them for each word.
+              Enter your sentence and tag each word with its possible parts of speech. Click on POS
+              tags to toggle them for each word.
             </p>
           </div>
         </div>
@@ -147,9 +139,8 @@ const Page = () => {
           <div className='flex flex-col'>
             <h2 className='text-3xl font-semibold'>View Syntax Trees</h2>
             <p className='text-default-600 text-sm mt-1'>
-              Your syntax trees will appear here automatically. Use the
-              navigation buttons to view multiple trees, zoom in/out, and
-              download images.
+              Your syntax trees will appear here automatically. Use the navigation buttons to view
+              multiple trees, zoom in/out, and download images.
             </p>
           </div>
         </div>
@@ -157,11 +148,7 @@ const Page = () => {
       </div>
 
       <a href='/support' target='_blank'>
-        <Button
-          color='primary'
-          variant='shadow'
-          className='fixed bottom-5 right-5 font-semibold'
-        >
+        <Button color='primary' variant='shadow' className='fixed bottom-5 right-5 font-semibold'>
           Need Help?
         </Button>
       </a>

@@ -53,11 +53,7 @@ router.get('/:id', (req, res) => {
   res.send(workspace)
 })
 
-type WorkspacePutReqest = Request<
-  { id: string },
-  unknown,
-  { ruleset: unknown; sentence: unknown }
->
+type WorkspacePutReqest = Request<{ id: string }, unknown, { ruleset: unknown; sentence: unknown }>
 
 router.put('/:id', (req: WorkspacePutReqest, res) => {
   const ruleset: unknown = req.body.ruleset

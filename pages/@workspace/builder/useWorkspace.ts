@@ -71,43 +71,41 @@ export interface Rule {
 
 export const parseRuleTags = (rule: string) => {
   return (
-    rule
-      .match(/(\({[a-zA-Z_/+]+}\)|{[a-zA-Z_/+]+}|\([a-zA-Z_+]+\)|[a-zA-Z_]+)/g)
-      ?.map((t) => {
-        if (t.startsWith('({') && t.endsWith('}+)')) {
-          return {
-            values: t.slice(2, t.length - 3).split('/'),
-            optional: true,
-            repeated: true
-          }
-        } else if (t.startsWith('({') && t.endsWith('})')) {
-          return {
-            values: t.slice(2, t.length - 2).split('/'),
-            optional: true,
-            repeated: false
-          }
-        } else if (t.startsWith('{') && t.endsWith('}')) {
-          return {
-            values: t.slice(1, t.length - 1).split('/'),
-            optional: false,
-            repeated: false
-          }
-        } else if (t.startsWith('(') && t.endsWith('+)')) {
-          return {
-            values: [t.slice(1, t.length - 2)],
-            optional: true,
-            repeated: true
-          }
-        } else if (t.startsWith('(') && t.endsWith(')')) {
-          return {
-            values: [t.slice(1, t.length - 1)],
-            optional: true,
-            repeated: false
-          }
-        } else {
-          return { values: [t], optional: false, repeated: false }
+    rule.match(/(\({[a-zA-Z_/+]+}\)|{[a-zA-Z_/+]+}|\([a-zA-Z_+]+\)|[a-zA-Z_]+)/g)?.map((t) => {
+      if (t.startsWith('({') && t.endsWith('}+)')) {
+        return {
+          values: t.slice(2, t.length - 3).split('/'),
+          optional: true,
+          repeated: true
         }
-      }) ?? []
+      } else if (t.startsWith('({') && t.endsWith('})')) {
+        return {
+          values: t.slice(2, t.length - 2).split('/'),
+          optional: true,
+          repeated: false
+        }
+      } else if (t.startsWith('{') && t.endsWith('}')) {
+        return {
+          values: t.slice(1, t.length - 1).split('/'),
+          optional: false,
+          repeated: false
+        }
+      } else if (t.startsWith('(') && t.endsWith('+)')) {
+        return {
+          values: [t.slice(1, t.length - 2)],
+          optional: true,
+          repeated: true
+        }
+      } else if (t.startsWith('(') && t.endsWith(')')) {
+        return {
+          values: [t.slice(1, t.length - 1)],
+          optional: true,
+          repeated: false
+        }
+      } else {
+        return { values: [t], optional: false, repeated: false }
+      }
+    }) ?? []
   )
 }
 
@@ -156,11 +154,7 @@ export const buildRulesetGrammar = (ruleset: Ruleset) => {
             tags.push(`${tag.values[0]}:*`)
           }
         } else {
-          tags.push(
-            `(${tag.values
-              .map((v) => (ruleset.pos.has(v) ? `"${v}"` : v))
-              .join('|')}):*`
-          )
+          tags.push(`(${tag.values.map((v) => (ruleset.pos.has(v) ? `"${v}"` : v)).join('|')}):*`)
         }
       } else if (tag.optional) {
         if (tag.values.length === 1) {
@@ -170,11 +164,7 @@ export const buildRulesetGrammar = (ruleset: Ruleset) => {
             tags.push(`${tag.values[0]}:?`)
           }
         } else {
-          tags.push(
-            `(${tag.values
-              .map((v) => (ruleset.pos.has(v) ? `"${v}"` : v))
-              .join('|')}):?`
-          )
+          tags.push(`(${tag.values.map((v) => (ruleset.pos.has(v) ? `"${v}"` : v)).join('|')}):?`)
         }
       } else {
         if (tag.values.length === 1) {
@@ -184,11 +174,7 @@ export const buildRulesetGrammar = (ruleset: Ruleset) => {
             tags.push(`${tag.values[0]}`)
           }
         } else {
-          tags.push(
-            `(${tag.values
-              .map((v) => (ruleset.pos.has(v) ? `"${v}"` : v))
-              .join('|')})`
-          )
+          tags.push(`(${tag.values.map((v) => (ruleset.pos.has(v) ? `"${v}"` : v)).join('|')})`)
         }
       }
     }
@@ -304,10 +290,7 @@ export const useWorkspace = (initialData: Response) => {
         case RulesetActionTypes.AddRule:
           return {
             ...state,
-            rules: [
-              ...state.rules,
-              { name: action.name, tags: parseRuleTags(action.rule) }
-            ]
+            rules: [...state.rules, { name: action.name, tags: parseRuleTags(action.rule) }]
           }
         case RulesetActionTypes.DeleteRule:
           return {

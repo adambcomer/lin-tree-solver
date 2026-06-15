@@ -1,10 +1,21 @@
 {
   "name": "lin-tree-solver",
-  "homepage": "https://lin-tree-solver.adambcomer.com",
-  "license": "Apache-2.0",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lin-tree-solver.adambcomer.com",
+  "license": "Apache-2.0",
   "type": "module",
+  "scripts": {
+    "dev": "vike dev",
+    "build": "tsc --noEmit && vike build",
+    "preview": "tsc --noEmit && vike build && NODE_ENV=production DATABASE_PATH='./database.sqlite' node dist/server/index.js",
+    "proto": "pbjs -t static-module -w es6 --es6 -o repo/proto/bundle.js repo/proto/sentence.proto repo/proto/ruleset.proto && pbts -o repo/proto/bundle.d.ts repo/proto/bundle.js",
+    "lint:check": "eslint .",
+    "lint": "eslint --fix .",
+    "format:check": "oxfmt --check",
+    "format": "oxfmt",
+    "analyze": "source-map-explorer 'dist/static/*.js'"
+  },
   "dependencies": {
     "@heroui/accordion": "2.2.29",
     "@heroui/button": "2.2.32",
@@ -46,24 +57,12 @@
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "eslint": "10.2.1",
-    "eslint-config-prettier": "10.1.8",
     "eslint-plugin-react": "7.37.5",
-    "prettier": "3.8.3",
+    "oxfmt": "0.54.0",
     "protobufjs-cli": "2.0.1",
     "source-map-explorer": "2.5.3",
     "typescript": "6.0.3",
     "typescript-eslint": "8.58.2"
-  },
-  "scripts": {
-    "dev": "vike dev",
-    "build": "tsc --noEmit && vike build",
-    "preview": "tsc --noEmit && vike build && NODE_ENV=production DATABASE_PATH='./database.sqlite' node dist/server/index.js",
-    "proto": "pbjs -t static-module -w es6 --es6 -o repo/proto/bundle.js repo/proto/sentence.proto repo/proto/ruleset.proto && pbts -o repo/proto/bundle.d.ts repo/proto/bundle.js",
-    "lint:check": "eslint .",
-    "lint": "eslint --fix .",
-    "format:check": "prettier --check .",
-    "format": "prettier --write .",
-    "analyze": "source-map-explorer 'dist/static/*.js'"
   },
   "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
 }

@@ -18,6 +18,5 @@ import type { Config } from 'vike/types'
 
 export const config = {
   title: 'Support | Linguistics Tree Solver',
-  description:
-    'Helpful documentation and guides to get the most out of Linguistics Tree Solver.'
+  description: 'Helpful documentation and guides to get the most out of Linguistics Tree Solver.'
 } satisfies Config

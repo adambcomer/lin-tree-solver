@@ -54,9 +54,7 @@ function addWordsToTerminalNodes(
   for (const c of node.children) {
     let width = 0
     if (typeof c !== 'string') {
-      children.push(
-        addWordsToTerminalNodes(c, words.slice(idx, idx + c.terminals))
-      )
+      children.push(addWordsToTerminalNodes(c, words.slice(idx, idx + c.terminals)))
       width = c.terminals
     } else {
       children.push({ pos: c, word: words[idx].word })
@@ -117,18 +115,14 @@ ctx.onmessage = (
         .finish()
         .map((t: ParserNode[]) => cloneTree(t[0]))
         .filter((t) =>
-          !treeFilter.has(JSON.stringify(t))
-            ? treeFilter.add(JSON.stringify(t))
-            : false
+          !treeFilter.has(JSON.stringify(t)) ? treeFilter.add(JSON.stringify(t)) : false
         )
 
       for (let i = 0; i < t.length; i++) {
         countTerminalNodes(t[i])
       }
 
-      trees = trees.concat(
-        t.map((t) => addWordsToTerminalNodes(t, e.data.words))
-      )
+      trees = trees.concat(t.map((t) => addWordsToTerminalNodes(t, e.data.words)))
     } catch (e) {
       if (
         e instanceof Error &&
@@ -191,15 +185,9 @@ ctx.onmessage = (
               const stackSymbols = stateStack[0].rule.symbols
               const stackDot = stateStack[0].dot
 
-              if (
-                stackSymbols.every(
-                  (s) => typeof s === 'object' && 'literal' in s
-                )
-              ) {
+              if (stackSymbols.every((s) => typeof s === 'object' && 'literal' in s)) {
                 expectedTokens.add(
-                  `"${(stackSymbols as Array<{ literal: string }>)
-                    .map((s) => s.literal)
-                    .join('')}"`
+                  `"${(stackSymbols as Array<{ literal: string }>).map((s) => s.literal).join('')}"`
                 )
               } else {
                 let start = stackDot + 1
@@ -221,9 +209,7 @@ ctx.onmessage = (
                 }
 
                 expectedTokens.add(
-                  `"${(
-                    stackSymbols.slice(start, end) as Array<{ literal: string }>
-                  )
+                  `"${(stackSymbols.slice(start, end) as Array<{ literal: string }>)
                     .map((s) => s.literal)
                     .join('')}"`
                 )

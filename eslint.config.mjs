@@ -18,7 +18,6 @@ import eslint from '@eslint/js'
 import { defineConfig } from 'eslint/config'
 import tseslint from 'typescript-eslint'
 import reacteslint from 'eslint-plugin-react'
-import prettierlint from 'eslint-config-prettier/flat'
 import { includeIgnoreFile } from '@eslint/compat'
 import { fileURLToPath } from 'node:url'
 
@@ -63,6 +62,5 @@ export default defineConfig(
     }
   },
   reacteslint.configs.flat.recommended,
-  reacteslint.configs.flat['jsx-runtime'],
-  prettierlint
+  reacteslint.configs.flat['jsx-runtime']
 )
