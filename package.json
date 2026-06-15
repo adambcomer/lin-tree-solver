@@ -36,7 +36,7 @@
     "fontfaceobserver": "2.3.0",
     "framer-motion": "12.40.0",
     "nearley": "2.20.1",
-    "protobufjs": "8.0.1",
+    "protobufjs": "8.2.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "tailwindcss": "4.3.1",
