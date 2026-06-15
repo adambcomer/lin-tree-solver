@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "options": {
+    "typeAware": true
+  },
+  "plugins": [
+    "eslint",
+    "typescript",
+    "react",
+    "react-perf",
+    "oxc",
+    "unicorn",
+    "promise",
+    "import",
+    "node"
+  ],
+  "categories": {
+    "correctness": "error"
+  },
+
+  "env": {
+    "builtin": true,
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "version": "18"
+    }
+  },
+  "ignorePatterns": [
+    "vite.config.ts",
+    "hero.ts",
+    "pages/@workspace/builder/compile-grammar.js",
+    "pages/@workspace/builder/parser.ts",
+    "repo/proto/bundle.d.ts",
+    "repo/proto/bundle.js"
+  ]
+}

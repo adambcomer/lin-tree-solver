@@ -22,6 +22,7 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState
 } from 'react'
@@ -49,7 +50,10 @@ const TreeCanvas = (props: TreeCanvasProps, ref: ForwardedRef<HTMLCanvasElement>
   })
   const canvas = useRef<HTMLCanvasElement>(null)
 
-  const colorMap = new Map([...props.ruleset.pos].map((p, i) => [p, getColor(i)]))
+  const colorMap = useMemo(
+    () => new Map([...props.ruleset.pos].map((p, i) => [p, getColor(i)])),
+    [props.ruleset]
+  )
 
   useLayoutEffect(() => {
     if (ref === null) return
@@ -155,7 +159,7 @@ const TreeCanvas = (props: TreeCanvasProps, ref: ForwardedRef<HTMLCanvasElement>
         frame = undefined
       })
     },
-    [canvas, props.zoom, props.ruleset, props.tree]
+    [canvas, props.zoom, colorMap, props.tree]
   )
 
   useEffect(() => {

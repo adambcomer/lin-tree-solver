@@ -14,12 +14,22 @@
  * limitations under the License.
  */
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 const useDebounce = <T>(value: T, delay: number, cb: (value: T) => void) => {
+  const cbRef = useRef(cb)
+  cbRef.current = cb
+
+  const isFirstRender = useRef(true)
+
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+
     const timer = setTimeout(() => {
-      cb(value)
+      cbRef.current(value)
     }, delay)
 
     return () => {
