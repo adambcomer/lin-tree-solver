@@ -22,7 +22,7 @@ importers:
         version: 2.2.25(@heroui/system@2.4.28(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@react-spectrum/provider@3.11.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(framer-motion@12.42.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@heroui/theme@2.4.26(tailwindcss@4.3.3))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@heroui/input':
         specifier: 2.4.33
-        version: 2.4.33(@heroui/system@2.4.28(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@react-spectrum/provider@3.11.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(framer-motion@12.42.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 2.4.33(@heroui/system@2.4.28(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@react-spectrum/provider@3.11.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(framer-motion@12.42.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@heroui/spinner':
         specifier: 2.2.29
         version: 2.2.29(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@react-spectrum/provider@3.11.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(framer-motion@12.42.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -109,11 +109,11 @@ importers:
         specifier: 24.13.3
         version: 24.13.3
       '@types/react':
-        specifier: 19.2.17
-        version: 19.2.17
+        specifier: 19.2.18
+        version: 19.2.18
       '@types/react-dom':
         specifier: 19.2.3
-        version: 19.2.3(@types/react@19.2.17)
+        version: 19.2.3(@types/react@19.2.18)
       oxfmt:
         specifier: 0.60.0
         version: 0.60.0
@@ -1583,8 +1583,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.2.0
 
-  '@types/react@19.2.17':
-    resolution: {integrity: sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==}
+  '@types/react@19.2.18':
+    resolution: {integrity: sha512-AnzbBERsrLKtk2XSfTbYRLjQPdy116Sty4q+T+Bp3IC4l6jNBvreVPAHmpq9qhXQM7CXZPjLVmGMw9sy+hxQ3w==}
 
   '@types/send@1.2.1':
     resolution: {integrity: sha512-arsCikDvlU99zl1g69TcAB3mzZPpxgw0UQnaHeC1Nwb015xp8bknZv5rIfri9xTOcMuaVgvabfIRA7PSZVuZIQ==}
@@ -3414,7 +3414,7 @@ snapshots:
       - '@heroui/theme'
       - '@react-spectrum/provider'
 
-  '@heroui/input@2.4.33(@heroui/system@2.4.28(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@react-spectrum/provider@3.11.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(framer-motion@12.42.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@heroui/input@2.4.33(@heroui/system@2.4.28(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@react-spectrum/provider@3.11.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(framer-motion@12.42.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@heroui/form': 2.1.32(@heroui/system@2.4.28(@heroui/theme@2.4.26(tailwindcss@4.3.3))(@react-spectrum/provider@3.11.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(framer-motion@12.42.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@heroui/theme@2.4.26(tailwindcss@4.3.3))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@heroui/react-utils': 2.1.14(react@19.2.8)
@@ -3431,7 +3431,7 @@ snapshots:
       '@react-types/textfield': 3.12.8(react@19.2.8)
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
-      react-textarea-autosize: 8.5.9(@types/react@19.2.17)(react@19.2.8)
+      react-textarea-autosize: 8.5.9(@types/react@19.2.18)(react@19.2.8)
     transitivePeerDependencies:
       - '@types/react'
 
@@ -4375,11 +4375,11 @@ snapshots:
 
   '@types/range-parser@1.2.7': {}
 
-  '@types/react-dom@19.2.3(@types/react@19.2.17)':
+  '@types/react-dom@19.2.3(@types/react@19.2.18)':
     dependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
 
-  '@types/react@19.2.17':
+  '@types/react@19.2.18':
     dependencies:
       csstype: 3.2.3
 
@@ -5449,12 +5449,12 @@ snapshots:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
 
-  react-textarea-autosize@8.5.9(@types/react@19.2.17)(react@19.2.8):
+  react-textarea-autosize@8.5.9(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       '@babel/runtime': 7.29.7
       react: 19.2.8
-      use-composed-ref: 1.4.0(@types/react@19.2.17)(react@19.2.8)
-      use-latest: 1.3.0(@types/react@19.2.17)(react@19.2.8)
+      use-composed-ref: 1.4.0(@types/react@19.2.18)(react@19.2.8)
+      use-latest: 1.3.0(@types/react@19.2.18)(react@19.2.8)
     transitivePeerDependencies:
       - '@types/react'
 
@@ -5682,24 +5682,24 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  use-composed-ref@1.4.0(@types/react@19.2.17)(react@19.2.8):
+  use-composed-ref@1.4.0(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       react: 19.2.8
     optionalDependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
 
-  use-isomorphic-layout-effect@1.2.1(@types/react@19.2.17)(react@19.2.8):
+  use-isomorphic-layout-effect@1.2.1(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       react: 19.2.8
     optionalDependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
 
-  use-latest@1.3.0(@types/react@19.2.17)(react@19.2.8):
+  use-latest@1.3.0(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       react: 19.2.8
-      use-isomorphic-layout-effect: 1.2.1(@types/react@19.2.17)(react@19.2.8)
+      use-isomorphic-layout-effect: 1.2.1(@types/react@19.2.18)(react@19.2.8)
     optionalDependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
 
   use-sync-external-store@1.6.0(react@19.2.8):
     dependencies:
