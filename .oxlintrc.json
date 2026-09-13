@@ -17,7 +17,6 @@
   "categories": {
     "correctness": "error"
   },
-
   "env": {
     "builtin": true,
     "browser": true
@@ -30,8 +29,9 @@
   "ignorePatterns": [
     "vite.config.ts",
     "hero.ts",
-    "pages/@workspace/builder/compile-grammar.js",
-    "pages/@workspace/builder/parser.ts",
+    "server.js",
+    "pages/builder/compile-grammar.js",
+    "pages/builder/parser.ts",
     "repo/proto/bundle.d.ts",
     "repo/proto/bundle.js"
   ]

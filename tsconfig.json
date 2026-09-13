@@ -5,12 +5,20 @@
     "moduleResolution": "Bundler",
     "target": "ES2022",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "jsx": "react-jsx",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "noEmit": true,
-    "allowJs": true
+    "allowJs": true,
+    "rootDirs": [".", "./.react-router/types"]
   },
-  "include": ["pages/**/*", "+config.ts", "vite.d.ts"]
+  "include": [
+    ".react-router/types/**/*",
+    "pages/**/*",
+    "server/**/*",
+    "repo/**/*",
+    "react-router.config.ts",
+    "vite.d.ts"
+  ]
 }

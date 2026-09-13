@@ -18,9 +18,10 @@ import { useState } from 'react'
 import { Button } from '@heroui/button'
 import { Card, CardHeader, CardBody, CardFooter } from '@heroui/card'
 import { Chip } from '@heroui/chip'
-import { navigate } from 'vike/client/router'
+import { useNavigate } from 'react-router'
 import { addToast } from '@heroui/toast'
-import { Head } from 'vike-react/Head'
+
+import type { Route } from './+types/home'
 
 import treeJPEG from '/images/tree.jpeg'
 import treeAVIF from '/images/tree.avif'
@@ -36,7 +37,24 @@ interface CreatWorkspaceResponse {
   id: string
 }
 
+export const meta: Route.MetaFunction = () => [
+  { title: 'Linguistics Tree Solver' },
+  {
+    name: 'description',
+    content: 'Automatically build trees based on linguistic syntax rules.'
+  },
+  {
+    property: 'og:description',
+    content: 'Automatically build trees based on linguistic syntax rules.'
+  },
+  { tagName: 'link', rel: 'canonical', href: 'https://lin-tree-solver.adambcomer.com' },
+  { property: 'og:type', content: 'website' },
+  { property: 'og:url', content: 'https://lin-tree-solver.adambcomer.com' },
+  { property: 'og:image', content: treeJPEG }
+]
+
 const Page = () => {
+  const navigate = useNavigate()
   const [basicTreeLoading, setBasicTreeLoading] = useState(false)
   const [xbarTreeLoading, setXBarTreeLoading] = useState(false)
   const [dphypothesisTreeLoading, setDPHypothesisTreeLoading] = useState(false)
@@ -64,21 +82,6 @@ const Page = () => {
 
   return (
     <>
-      <Head>
-        <title>Linguistics Tree Solver</title>
-        <meta
-          name='description'
-          content='Automatically build trees based on linguistic syntax rules.'
-        />
-        <meta
-          property='og:description'
-          content='Automatically build trees based on linguistic syntax rules.'
-        />
-        <link rel='canonical' href='https://lin-tree-solver.adambcomer.com' />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://lin-tree-solver.adambcomer.com' />
-      </Head>
-
       {/* Hero Section */}
       <div className='text-center py-12'>
         <h1 className='text-5xl font-bold mb-4'>Linguistics Tree Solver</h1>
