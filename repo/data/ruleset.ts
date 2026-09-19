@@ -259,10 +259,13 @@ export const XBAR_RULESET: RuleSet.$Properties = {
         { values: ['PP'], optional: false, repeated: false }
       ]
     },
-    // ['N_bar', 'N'],
+    // ['N_bar', 'N (PP)'],
     {
       name: 'N_bar',
-      tags: [{ values: ['N'], optional: false, repeated: false }]
+      tags: [
+        { values: ['N'], optional: false, repeated: false },
+        { values: ['PP'], optional: true, repeated: false }
+      ]
     },
     // ['PP', 'P_bar'],
     {
