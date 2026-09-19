@@ -15,10 +15,18 @@
  */
 
 import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
-import vike from 'vike/plugin'
+import { reactRouter } from '@react-router/dev/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [tailwindcss(), react(), vike()]
+  environments: {
+    ssr: {
+      build: {
+        rollupOptions: {
+          input: './server/app.ts'
+        }
+      }
+    }
+  },
+  plugins: [tailwindcss(), reactRouter()]
 })

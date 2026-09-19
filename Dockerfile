@@ -33,10 +33,11 @@ FROM gcr.io/distroless/nodejs24-debian13
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
 COPY --from=build /app/repo/db.sql /app/repo/db.sql
+COPY --from=build /app/server.js /app/server.js
 
 ENV NODE_ENV=production
 
 WORKDIR /app
 
 EXPOSE 3000
-CMD ["dist/server/index.js"]
+CMD ["server.js"]

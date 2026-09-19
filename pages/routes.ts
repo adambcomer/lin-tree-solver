@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Adam Bishop Comer
+ * Copyright 2026 Adam Bishop Comer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,14 @@
  * limitations under the License.
  */
 
-import vikeServer from 'vike-server/config'
+import { type RouteConfig, index, prefix, route } from '@react-router/dev/routes'
 
-export const config = {
-  extends: [vikeServer],
-  server: 'server/index.ts'
-}
+export default [
+  index('home.tsx'),
+  route(':workspace/builder', 'builder/builder.tsx'),
+  ...prefix('support', [
+    index('support/support.tsx'),
+    route('sharing-trees', 'support/sharing-trees.tsx'),
+    route('new-tree-root', 'support/new-tree-root.tsx')
+  ])
+] satisfies RouteConfig

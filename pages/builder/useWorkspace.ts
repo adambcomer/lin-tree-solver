@@ -128,7 +128,6 @@ export const tagToString = (tag: Tag) => {
 }
 
 interface RulesetData {
-  name: string
   roots: string[]
   pos: string[]
   rules: Rule[]
@@ -258,8 +257,8 @@ export interface Response {
   id: string
   sentence: SentenceData
   ruleset: RulesetData
-  created_at: Date
-  updated_at: Date
+  createdAt: Date
+  updatedAt: Date
 }
 
 export const useWorkspace = (initialData: Response) => {

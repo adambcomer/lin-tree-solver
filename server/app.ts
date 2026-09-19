@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Adam Bishop Comer
+ * Copyright 2026 Adam Bishop Comer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,29 +15,26 @@
  */
 
 import express from 'express'
-import compression from 'compression'
-import { apply } from 'vike-server/express'
-import { serve } from 'vike-server/express/serve'
+import { createRequestHandler } from '@react-router/express'
 import { router as api } from './handlers/api.js'
 import { initDB } from '../repo/database.js'
 
 initDB()
 
-const app = express()
+export const app = express()
 
 app.use(express.json())
-app.use(compression())
 
 app.use('/api', api)
 
-if (import.meta.env.PROD) {
-  app.use((req, res, next) => {
-    next()
-    if (req.path.startsWith('/assets')) {
-      res.set('Cache-Control', 'public,max-age=14400')
-    }
-  })
-}
+// Routes retired in earlier versions of the app.
+app.get(['/sentence', '/viewer', '/rules{/*path}'], (_req, res) => {
+  res.redirect(301, '/')
+})
 
-apply(app, { compress: false })
-serve(app, { port: 3000 })
+app.use(
+  createRequestHandler({
+    build: () => import('virtual:react-router/server-build'),
+    mode: import.meta.env.MODE
+  })
+)

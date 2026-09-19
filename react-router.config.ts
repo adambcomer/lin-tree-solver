@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Adam Bishop Comer
+ * Copyright 2026 Adam Bishop Comer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,10 @@
  * limitations under the License.
  */
 
-import type { Config } from 'vike/types'
-import vikeReact from 'vike-react/config'
-import favicon from './favicon.ico'
-import image from '../images/tree.jpeg'
+import type { Config } from '@react-router/dev/config'
 
-export const config = {
-  favicon,
-  image,
-  redirects: {
-    '/sentence': '/',
-    '/viewer': '/',
-    '/rules*': '/'
-  },
-  extends: vikeReact
+export default {
+  ssr: true,
+  appDirectory: 'pages',
+  buildDirectory: 'dist'
 } satisfies Config

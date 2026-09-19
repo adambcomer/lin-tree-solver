@@ -14,21 +14,33 @@
  * limitations under the License.
  */
 
-import { Head } from 'vike-react/Head'
+import { Link } from 'react-router'
 import { Card, CardHeader, CardBody } from '@heroui/card'
 import { Chip } from '@heroui/chip'
 
+import treeJPEG from '/images/tree.jpeg'
+
+import type { Route } from './+types/sharing-trees'
+
+export const meta: Route.MetaFunction = () => [
+  { title: 'Sharing Trees | Linguistics Tree Solver' },
+  {
+    name: 'description',
+    content:
+      'Learn how to share your syntax trees with classmates, students, or colleagues using workspace URLs.'
+  },
+  {
+    tagName: 'link',
+    rel: 'canonical',
+    href: 'https://lin-tree-solver.adambcomer.com/support/sharing-trees'
+  },
+  { property: 'og:type', content: 'website' },
+  { property: 'og:url', content: 'https://lin-tree-solver.adambcomer.com/support/sharing-trees' },
+  { property: 'og:image', content: treeJPEG }
+]
+
 const Page = () => (
   <>
-    <Head>
-      <link rel='canonical' href='https://lin-tree-solver.adambcomer.com/support/sharing-trees' />
-      <meta property='og:type' content='website' />
-      <meta
-        property='og:url'
-        content='https://lin-tree-solver.adambcomer.com/support/sharing-trees'
-      />
-    </Head>
-
     {/* Hero Section */}
     <div className='text-center py-12'>
       <h1 className='text-5xl font-bold mb-4'>Sharing Parse Trees</h1>
@@ -139,9 +151,9 @@ const Page = () => (
         <h2 className='text-2xl font-semibold mb-4'>Need More Help?</h2>
         <p className='text-default-600 mb-6'>Check out our other guides or contact support.</p>
         <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-          <a href='/support' className='text-primary hover:underline text-lg'>
+          <Link to='/support' className='text-primary hover:underline text-lg'>
             Back to Support
-          </a>
+          </Link>
           <span className='hidden sm:inline text-default-400'>•</span>
           <a
             href='mailto:adambcomer@gmail.com?subject=Help Sharing Trees'

@@ -14,25 +14,81 @@
  * limitations under the License.
  */
 
-import { usePageContext } from 'vike-react/usePageContext'
-import { useData } from 'vike-react/useData'
-import { Response, useWorkspace } from './useWorkspace'
+import { useEffect } from 'react'
+import { data as routeData } from 'react-router'
+import { type Response, useWorkspace } from './useWorkspace'
 import { RulesetEditor } from './RulesetEditor'
 import { SentenceEditor } from './SentenceEdtitor'
 import { TreeViewer } from './TreeViewer'
 import useDebounce from './useDebounce'
 import { Button } from '@heroui/button'
 import { addToast } from '@heroui/toast'
-import { Head } from 'vike-react/Head'
 import { Chip } from '@heroui/chip'
 
-const Page = () => {
-  const { routeParams } = usePageContext()
-  const initialData = useData<Response>()
-  const { data, updateSentence, updateRuleset } = useWorkspace(initialData)
+import treeJPEG from '/images/tree.jpeg'
+
+import type { Route } from './+types/builder'
+import { db } from '../../repo/database'
+import { getWorkspace } from '../../repo/workspace'
+
+// Flattens the decoded protobuf messages into the plain, serializable shape that
+// gets handed to the client.
+export const loader = ({ params }: Route.LoaderArgs): Response => {
+  const workspace = getWorkspace(db, params.workspace)
+  if (!workspace) {
+    throw routeData(`Workspace with ID ${params.workspace} can't be found.`, {
+      status: 404,
+      statusText: 'Not Found'
+    })
+  }
+
+  return {
+    id: workspace.id,
+    sentence: {
+      words: (workspace.sentence.words ?? []).map((w) => ({
+        text: w.text ?? '',
+        pos: w.pos ?? []
+      }))
+    },
+    ruleset: {
+      roots: workspace.ruleset.roots ?? [],
+      pos: workspace.ruleset.pos ?? [],
+      rules: (workspace.ruleset.rules ?? []).map((r) => ({
+        name: r.name ?? '',
+        tags: (r.tags ?? []).map((t) => ({
+          values: t.values ?? [],
+          optional: t.optional ?? false,
+          repeated: t.repeated ?? false
+        }))
+      }))
+    },
+    createdAt: workspace.createdAt,
+    updatedAt: workspace.updatedAt
+  }
+}
+
+const sentenceTitle = (text: string) => `"${text}" Syntax Tree | Linguistics Tree Solver`
+
+export const meta: Route.MetaFunction = ({ loaderData, params }) => {
+  const sentenceText = loaderData?.sentence.words.map((w) => w.text).join(' ') ?? ''
+  const url = `https://lin-tree-solver.adambcomer.com/${params.workspace}/builder`
+
+  return [
+    { title: sentenceTitle(sentenceText) },
+    { name: 'description', content: `Syntax tree for the sentence "${sentenceText}".` },
+    { property: 'og:description', content: `Syntax tree for the sentence "${sentenceText}".` },
+    { tagName: 'link', rel: 'canonical', href: url },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: url },
+    { property: 'og:image', content: treeJPEG }
+  ]
+}
+
+const Page = ({ loaderData, params }: Route.ComponentProps) => {
+  const { data, updateSentence, updateRuleset } = useWorkspace(loaderData)
 
   useDebounce(data, 500, (value) => {
-    void fetch(`/api/workspaces/${initialData.id}`, {
+    void fetch(`/api/workspaces/${params.workspace}`, {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -60,26 +116,12 @@ const Page = () => {
 
   const senentenceText = data.sentence.words.map((w) => w.text).join(' ')
 
+  useEffect(() => {
+    document.title = sentenceTitle(senentenceText)
+  }, [senentenceText])
+
   return (
     <>
-      <Head>
-        <title>{`"${senentenceText}" Syntax Tree | Linguistics Tree Solver`}</title>
-        <meta name='description' content={`Syntax tree for the sentence "${senentenceText}".`} />
-        <meta
-          property='og:description'
-          content={`Syntax tree for the sentence "${senentenceText}".`}
-        />
-        <link
-          rel='canonical'
-          href={`https://lin-tree-solver.adambcomer.com/${initialData.id}/builder`}
-        />
-        <meta property='og:type' content='website' />
-        <meta
-          property='og:url'
-          content={`https://lin-tree-solver.adambcomer.com/${initialData.id}/builder`}
-        />
-      </Head>
-
       {/* Hero Section */}
       <div className='text-center py-12'>
         <h1 className='text-5xl font-bold mb-4'>Linguistics Tree Solver</h1>
@@ -88,7 +130,7 @@ const Page = () => {
           create your parse tree.
         </p>
         <Chip variant='flat' className='font-mono min-w-auto max-w-full overflow-scroll'>
-          Workspace: {routeParams.workspace}
+          Workspace: {params.workspace}
         </Chip>
       </div>
 

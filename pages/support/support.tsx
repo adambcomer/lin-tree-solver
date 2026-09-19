@@ -14,17 +14,31 @@
  * limitations under the License.
  */
 
-import { Head } from 'vike-react/Head'
+import { Link } from 'react-router'
 import { Card, CardHeader, CardBody } from '@heroui/card'
+
+import treeJPEG from '/images/tree.jpeg'
+
+import type { Route } from './+types/support'
+
+export const meta: Route.MetaFunction = () => [
+  { title: 'Support | Linguistics Tree Solver' },
+  {
+    name: 'description',
+    content: 'Helpful documentation and guides to get the most out of Linguistics Tree Solver.'
+  },
+  {
+    tagName: 'link',
+    rel: 'canonical',
+    href: 'https://lin-tree-solver.adambcomer.com/support'
+  },
+  { property: 'og:type', content: 'website' },
+  { property: 'og:url', content: 'https://lin-tree-solver.adambcomer.com/support' },
+  { property: 'og:image', content: treeJPEG }
+]
 
 const Page = () => (
   <>
-    <Head>
-      <link rel='canonical' href='https://lin-tree-solver.adambcomer.com/support' />
-      <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://lin-tree-solver.adambcomer.com/support' />
-    </Head>
-
     {/* Hero Section */}
     <div className='text-center py-12'>
       <h1 className='text-5xl font-bold mb-4'>Support &amp; Guides</h1>
@@ -38,7 +52,7 @@ const Page = () => (
     <div className='mb-16'>
       <h2 className='text-3xl font-semibold mb-6 text-center'>Getting Started Guides</h2>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-        <a href='/support/new-tree-root' className='block'>
+        <Link to='/support/new-tree-root' className='block'>
           <Card className='h-full hover:shadow-lg transition-shadow'>
             <CardHeader>
               <h3 className='text-2xl font-semibold'>Changing the Root of a Tree</h3>
@@ -51,9 +65,9 @@ const Page = () => (
               </p>
             </CardBody>
           </Card>
-        </a>
+        </Link>
 
-        <a href='/support/sharing-trees' className='block'>
+        <Link to='/support/sharing-trees' className='block'>
           <Card className='h-full hover:shadow-lg transition-shadow'>
             <CardHeader>
               <h3 className='text-2xl font-semibold'>Sharing Trees</h3>
@@ -65,7 +79,7 @@ const Page = () => (
               </p>
             </CardBody>
           </Card>
-        </a>
+        </Link>
       </div>
     </div>
 
