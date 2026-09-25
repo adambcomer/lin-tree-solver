@@ -33,7 +33,7 @@
     "compression": "1.8.1",
     "express": "5.2.1",
     "fontfaceobserver": "2.3.0",
-    "framer-motion": "13.0.0",
+    "framer-motion": "13.1.1",
     "nearley": "2.20.1",
     "protobufjs": "8.7.2",
     "react": "19.2.8",
