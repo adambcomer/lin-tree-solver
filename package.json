@@ -30,7 +30,7 @@
     "@vitejs/plugin-react": "6.0.5",
     "better-sqlite3": "13.0.3",
     "buffer": "6.0.3",
-    "compression": "1.8.1",
+    "compression": "1.8.2",
     "express": "5.2.1",
     "fontfaceobserver": "2.3.0",
     "framer-motion": "13.0.0",
